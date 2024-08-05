@@ -14,8 +14,9 @@ class MainViewModel: ObservableObject {
     @Published var stat: MeasurementModel = MeasurementModel()
     
     @Published var isAnalysisRunning = false
-    @Published var hostAddress = "109.106.238.225"
-    
+//    @Published var hostAddress = "109.106.238.225"
+    @Published var hostAddress = "1.1.1.1"
+
     @Published var startTime: Date = Date()
     @Published var elapsedTime: TimeInterval = 0
     
@@ -29,7 +30,7 @@ class MainViewModel: ObservableObject {
     private var counter: Int = 0
     var logs: [String] = []
     
-    private let numBarsInChart = 15
+    private let numBarsInChart = 60
     
     init() {
         resetChart()

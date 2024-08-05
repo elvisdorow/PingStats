@@ -29,10 +29,10 @@ struct MainView: View {
                         .padding(.top, 20)
                         .padding(.leading, 10)
                     
-                    BarChartView()
-                        .padding(.top, 3)
+                    ChartLogView()
                         .frame(height: UIScreen.main.bounds.height * 0.15)
-                        .padding()
+                        .padding(.horizontal)
+                        .padding(.bottom)
 
                     GroupBox(label: Label(
                         title: { Text("Connection Stability") },
@@ -47,10 +47,17 @@ struct MainView: View {
                     .frame(maxHeight: UIScreen.main.bounds.height * 0.12)
                     .padding(.horizontal)
 
+                    Spacer()
+                    
                     NetQualityView()
-                    .padding(.top, 20)
+                    .frame(height: UIScreen.main.bounds.height * 0.14)
+                    .padding(.top, 15)
+                    
+                    Spacer()
                     
                     DetailedStatsView()
+                    
+                    Spacer()
 
                     ActionControlView()
 
@@ -87,7 +94,7 @@ struct ConnectionQuality: View {
     }
 }
 
-struct BarChartView: View {
+struct ChartLogView: View {
 
     @EnvironmentObject var viewModel: MainViewModel
  
@@ -113,16 +120,14 @@ struct BarChartView: View {
                                    endPoint: .bottom
                                ))
 
-                    /*
-                    BarMark(
-                        x: .value("seq", data.sequency),
-                        y: .value("ms", data.duration.scaled(by: 1000)),
-                        width: 10
-                    )
-                    .foregroundStyle(Color.accent)
-                    .clipShape(RoundedBottomRectangle(cornerRadius: 3))
-                    .cornerRadius(3)
-                     */
+//                    BarMark(
+//                        x: .value("seq", data.sequency),
+//                        y: .value("ms", data.duration.scaled(by: 1000)),
+//                        width: 4
+//                    )
+//                    .foregroundStyle(Color.accent)
+//                    .clipShape(RoundedBottomRectangle(cornerRadius: 3))
+//                    .cornerRadius(3)
 
                 }
             }
@@ -380,12 +385,13 @@ struct ActionControlView: View {
                     TextField(text: $viewModel.hostAddress, label:  {
                         Text("0.0.0.0")
                     })
+                    .foregroundColor(viewModel.isAnalysisRunning ? .primary.opacity(0.3) : .primary)
                     .disabled(viewModel.isAnalysisRunning)
                 }
                 .padding(.leading, 8)
                 .frame(height: 40)
                 .frame(maxWidth: /*@START_MENU_TOKEN@*/.infinity/*@END_MENU_TOKEN@*/)
-                .background(Color(.systemGray4))
+                .background(viewModel.isAnalysisRunning ? Color(.systemGray4).opacity(0.4): Color(.systemGray4))
                 .cornerRadius(5.0)
                 .overlay {
                 }
@@ -401,10 +407,10 @@ struct ActionControlView: View {
                         }
                     }
             }
-            .frame(maxHeight: .infinity)
 
         }
         .padding(.horizontal)
+        .padding(.bottom)
         .frame(maxWidth: .infinity)
     }
 }
