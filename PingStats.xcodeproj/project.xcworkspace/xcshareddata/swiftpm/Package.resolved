@@ -1,0 +1,42 @@
+{
+  "originHash" : "08d78d29eaf1303367acaac95cbb7a7ee43efa1218a8710dd8cb8709d8d64c95",
+  "pins" : [
+    {
+      "identity" : "chartview",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/AppPear/ChartView",
+      "state" : {
+        "revision" : "9115a992c91fa19cbb4f2241084240d38654a1fc",
+        "version" : "1.5.5"
+      }
+    },
+    {
+      "identity" : "gaugekit",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/antonmartinsson/gaugekit.git",
+      "state" : {
+        "branch" : "main",
+        "revision" : "8e4a4c984e33dc1e0fad4fb1e55f6561f20ec8c8"
+      }
+    },
+    {
+      "identity" : "swiftyping",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/samiyr/SwiftyPing.git",
+      "state" : {
+        "branch" : "master",
+        "revision" : "05591bc0047e41e0e1d98135c6bc457192a72d39"
+      }
+    },
+    {
+      "identity" : "swiftysegmentedpicker",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/KazaiMazai/SwiftySegmentedPicker.git",
+      "state" : {
+        "revision" : "2eba81888c722d5ab3be0fae455b3c8fa0c03869",
+        "version" : "0.1.0"
+      }
+    }
+  ],
+  "version" : 3
+}
