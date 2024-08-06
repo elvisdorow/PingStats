@@ -14,8 +14,7 @@ class MainViewModel: ObservableObject {
     @Published var stat: MeasurementModel = MeasurementModel()
     
     @Published var isAnalysisRunning = false
-//    @Published var hostAddress = "109.106.238.225"
-    @Published var hostAddress = "1.1.1.1"
+    @Published var host = "1.1.1.1"
 
     @Published var startTime: Date = Date()
     @Published var elapsedTime: TimeInterval = 0
@@ -24,6 +23,9 @@ class MainViewModel: ObservableObject {
     
     @Published var timer = Timer.publish(every: 1, on: .main, in: .common)
     var timerCancellable: Cancellable? = nil
+
+    var hostName: String?
+    var hostIP: String?
     
     private var pinger: SwiftyPing?
     private var errors: [PingError] = []
@@ -36,6 +38,7 @@ class MainViewModel: ObservableObject {
         resetChart()
     }
     
+    
     func start() {
         stat.responses.removeAll()
         errors.removeAll()
@@ -43,7 +46,7 @@ class MainViewModel: ObservableObject {
         resetChart()
         
         stat = MeasurementModel()
-        stat.hostAddress = hostAddress
+        stat.hostAddress = host
         
         startTime = Date()
         elapsedTime = 0
@@ -58,8 +61,31 @@ class MainViewModel: ObservableObject {
         var config: PingConfiguration = PingConfiguration(interval: 1.0, with: 5)
         config.payloadSize = 64
         config.timeToLive = 55
+                
+        if self.isValidIPAddress(host) {
+            self.hostIP = host
+            
+            resolveHostname(for: host) { hostname in
+                if let hostname = hostname {
+                    self.hostName = hostname
+                }
+            }
+        } else {
+            self.hostIP = nil
+            self.hostName = host
+        }
         
-        pinger = try? SwiftyPing(host: hostAddress, configuration: config, queue: DispatchQueue.global())
+        print(self.hostIP ?? "")
+        print(self.hostName ?? "")
+        
+        do {
+            let finalHostAddress = (self.hostName != nil ? self.hostName!: self.host)
+            pinger = try SwiftyPing(host: finalHostAddress, configuration: config, queue: DispatchQueue.global())
+
+        } catch {
+            print(error.localizedDescription)
+        }
+        
         
         // Ping indefinitely
         pinger?.observer = { (response) in
@@ -316,5 +342,60 @@ class MainViewModel: ObservableObject {
         }
 
         return score
+    }
+    
+    private func resolveHostname(for ipAddress: String, completion: @escaping (String?) -> Void) {
+        var hints = addrinfo(
+            ai_flags: AI_NUMERICHOST,
+            ai_family: AF_UNSPEC,
+            ai_socktype: SOCK_STREAM,
+            ai_protocol: IPPROTO_TCP,
+            ai_addrlen: 0,
+            ai_canonname: nil,
+            ai_addr: nil,
+            ai_next: nil
+        )
+        
+        var res: UnsafeMutablePointer<addrinfo>?
+        
+        let status = getaddrinfo(ipAddress, nil, &hints, &res)
+        
+        if status == 0, let result = res {
+            defer { freeaddrinfo(result) }
+            
+            var hostnameBuffer = [CChar](repeating: 0, count: Int(NI_MAXHOST))
+            
+            let getnameinfoStatus = getnameinfo(
+                result.pointee.ai_addr,
+                socklen_t(result.pointee.ai_addrlen),
+                &hostnameBuffer,
+                socklen_t(hostnameBuffer.count),
+                nil,
+                0,
+                NI_NAMEREQD
+            )
+            
+            if getnameinfoStatus == 0 {
+                let hostname = String(cString: hostnameBuffer)
+                completion(hostname)
+                return
+            }
+        }
+        completion(nil)
+    }
+    
+    func isValidIPAddress(_ ipAddress: String) -> Bool {
+        let ipv4Pattern = "^((25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\.){3}(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$"
+
+        func isMatch(for pattern: String, in text: String) -> Bool {
+            let regex = try? NSRegularExpression(pattern: pattern, options: .caseInsensitive)
+            let matches = regex?.matches(in: text, options: [], range: NSRange(location: 0, length: text.utf16.count))
+            return matches?.count ?? 0 > 0
+        }
+
+        if isMatch(for: ipv4Pattern, in: ipAddress) {
+            return true
+        }
+        return false
     }
 }

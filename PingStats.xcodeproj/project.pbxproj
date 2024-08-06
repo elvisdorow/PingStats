@@ -29,6 +29,7 @@
 /* Begin PBXFileReference section */
 		1409322E2C52775B00D2C03F /* MeasurementModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeasurementModel.swift; sourceTree = "<group>"; };
 		140932312C528BEA00D2C03F /* MainViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewModel.swift; sourceTree = "<group>"; };
+		14862A5C2C62CFEE00394101 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		14B9508A2C45AC4400E8A388 /* PingStats.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PingStats.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		14B9508D2C45AC4400E8A388 /* PingStatsApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PingStatsApp.swift; sourceTree = "<group>"; };
 		14B9508F2C45AC4400E8A388 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
@@ -85,6 +86,7 @@
 		14B9508C2C45AC4400E8A388 /* PingStats */ = {
 			isa = PBXGroup;
 			children = (
+				14862A5C2C62CFEE00394101 /* Info.plist */,
 				140932302C52778F00D2C03F /* viewModel */,
 				14B950A52C46938900E8A388 /* view */,
 				14B9509B2C45B5F000E8A388 /* model */,
@@ -356,6 +358,7 @@
 				DEVELOPMENT_TEAM = EZ733NNPCJ;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = PingStats/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "Ping Stat1";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -389,6 +392,7 @@
 				DEVELOPMENT_TEAM = EZ733NNPCJ;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = PingStats/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "Ping Stat1";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;

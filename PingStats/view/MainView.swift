@@ -382,7 +382,7 @@ struct ActionControlView: View {
                 
                 HStack {
                     Image(systemName: "pc").opacity(0.6)
-                    TextField(text: $viewModel.hostAddress, label:  {
+                    TextField(text: $viewModel.host, label:  {
                         Text("0.0.0.0")
                     })
                     .foregroundColor(viewModel.isAnalysisRunning ? .primary.opacity(0.3) : .primary)
