@@ -18,11 +18,16 @@ class MainViewModel: ObservableObject {
 
     @Published var startTime: Date = Date()
     @Published var elapsedTime: TimeInterval = 0
-    
     @Published var chartItems: [PingChartItem] = []
     
     @Published var timer = Timer.publish(every: 1, on: .main, in: .common)
     var timerCancellable: Cancellable? = nil
+
+    @Published var chartType: MySegmentedControl.SelectedControl = .areaChart
+    
+    @Published var formattedLogs: String = ""
+    
+    var logs: [LogTextModel] = []
 
     var hostName: String?
     var hostIP: String?
@@ -30,7 +35,6 @@ class MainViewModel: ObservableObject {
     private var pinger: SwiftyPing?
     private var errors: [PingError] = []
     private var counter: Int = 0
-    var logs: [String] = []
     
     private let numBarsInChart = 60
     
@@ -54,9 +58,11 @@ class MainViewModel: ObservableObject {
         timer = Timer.publish(every: 1, on: .main, in: .common)
         timerCancellable = timer.connect()
         
+        /*
         if logs.count > 0 {
             logs.removeSubrange(1..<logs.count)
         }
+         */
         
         var config: PingConfiguration = PingConfiguration(interval: 1.0, with: 5)
         config.payloadSize = 64
@@ -130,8 +136,11 @@ class MainViewModel: ObservableObject {
     private func addError(error: PingError) {
         errors.append(error)
         calculateStats()
+        
+        let logText: String = "error"
+        let log = LogTextModel(type: .error, text: logText)
+        self.logs.append(log)
     }
-    
     
     private func addResponse(response: PingStatResponse) {
         stat.responses.append(response)
@@ -139,6 +148,16 @@ class MainViewModel: ObservableObject {
         updateChart()
         calcConnectionQuality()
         calcItemQuality()
+        
+        let dateTime: Date = Date()
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "HH:mm:ss"
+        
+        let responseTime = response.duration * 1000
+        
+        let logText: String = "\(dateFormatter.string(from: dateTime))\t icmp_seq=\(self.counter)\t ttl=55 \t time=\(String(format: "%.0f", responseTime)) ms"
+        let log = LogTextModel(type: .good, text: logText)
+        self.logs.append(log)
     }
     
     private func calculateStats() {
@@ -159,16 +178,13 @@ class MainViewModel: ObservableObject {
             
             stat.bestPing = min.scaled(by: 1000.0)
             stat.worstPing = max.scaled(by: 1000.0)
-            
-            let logItem: String = "\(self.counter) - \(stat.bestPing) - \(stat.worstPing) - \(stat.avaragePing) - \(stat.jitter)"
-            
-            self.logs.append(logItem)
         }
         
         let lost = errors.count
         let lossPercentage = (Double(lost) / Double(counter) * 100)
         stat.packageLoss = lossPercentage
     }
+    
     
     private func updateChart() {
         let lastResponses = Array(stat.responses.suffix(numBarsInChart))

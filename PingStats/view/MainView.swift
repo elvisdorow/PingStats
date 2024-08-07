@@ -25,7 +25,7 @@ struct MainView: View {
                                endRadius: 900).ignoresSafeArea()
                 
                 VStack(spacing: 0) {
-                    MySegmentedControl(selected: .chart)
+                    MySegmentedControl(selected: $viewModel.chartType)
                         .padding(.top, 20)
                         .padding(.leading, 10)
                     
@@ -34,15 +34,27 @@ struct MainView: View {
                         .padding(.horizontal)
                         .padding(.bottom)
 
-                    GroupBox(label: Label(
-                        title: { Text("Connection Stability") },
-                        icon: { Image(systemName: "network") }
-                    ), content: {
+
+                    VStack(alignment: .leading) {
+                        Label(
+                            title: {
+                                Text("Network Quality")
+                                    .foregroundStyle(.primary.opacity(0.87))
+                                    .font(.subheadline)
+                                    .fontWeight(.light)
+                            },
+                            icon: { Image(systemName: "wifi") }
+                        )
                         HStack {
                             ConnectionQuality()
                             Text("\(formatNumbers(viewModel.stat.generalNetQuality, fraction: 0, unit: "%"))")
+                                .frame(width: 50)
                         }
-                    })
+                    }
+                    .padding()
+                    .padding(.bottom, 4)
+                    .background(Color(.secondarySystemBackground))
+                    .cornerRadius(14)
                     .frame(minHeight: 100)
                     .frame(maxHeight: UIScreen.main.bounds.height * 0.12)
                     .padding(.horizontal)
@@ -89,7 +101,9 @@ struct ConnectionQuality: View {
 
     var body: some View {
         VStack(alignment: .center, spacing: 0) {
-            PingProgressView(currentValue: $viewModel.stat.generalNetQuality)
+            LoadingBarView(currentValue: $viewModel.stat.generalNetQuality)
+                .frame(height: 20)
+//            PingProgressView(currentValue: $viewModel.stat.generalNetQuality)
         }
     }
 }
@@ -100,45 +114,54 @@ struct ChartLogView: View {
  
     var body: some View {
         HStack {
-            Chart {
-                ForEach(viewModel.chartItems) { data in
-                    LineMark(
-                        x: .value("seq", data.sequency),
-                        y: .value("ms", data.duration.scaled(by: 1000))
-                    )
-                    .lineStyle(StrokeStyle(lineWidth: 2))
-                    .foregroundStyle(.blue.opacity(0.7))
-                    .interpolationMethod(.catmullRom)
-                    AreaMark(
-                        x: .value("seq", data.sequency),
-                        y: .value("ms", data.duration.scaled(by: 1000))
-                    )
-                    .interpolationMethod(.catmullRom)
-                    .foregroundStyle(LinearGradient(
-                        gradient: Gradient(colors: [.accent.opacity(0.3), .accent.opacity(0.05)]),
-                                   startPoint: .top,
-                                   endPoint: .bottom
-                               ))
-
-//                    BarMark(
-//                        x: .value("seq", data.sequency),
-//                        y: .value("ms", data.duration.scaled(by: 1000)),
-//                        width: 4
-//                    )
-//                    .foregroundStyle(Color.accent)
-//                    .clipShape(RoundedBottomRectangle(cornerRadius: 3))
-//                    .cornerRadius(3)
-
+            if viewModel.chartType != .logs {
+                Chart {
+                    ForEach(viewModel.chartItems) { data in
+                        if viewModel.chartType == .areaChart {
+                            LineMark(
+                                x: .value("seq", data.sequency),
+                                y: .value("ms", data.duration.scaled(by: 1000))
+                            )
+                            .lineStyle(StrokeStyle(lineWidth: 2))
+                            .foregroundStyle(.blue.opacity(0.7))
+                            .interpolationMethod(.catmullRom)
+                            AreaMark(
+                                x: .value("seq", data.sequency),
+                                y: .value("ms", data.duration.scaled(by: 1000))
+                            )
+                            .interpolationMethod(.catmullRom)
+                            .foregroundStyle(LinearGradient(
+                                gradient: Gradient(colors: [.accent.opacity(0.3), .accent.opacity(0.05)]),
+                                startPoint: .top,
+                                endPoint: .bottom
+                            ))
+                            
+                        } else {
+                            BarMark(
+                                x: .value("seq", data.sequency),
+                                y: .value("ms", data.duration.scaled(by: 1000)),
+                                width: 4
+                            )
+                            .foregroundStyle(Color.accent)
+                            .clipShape(RoundedBottomRectangle(cornerRadius: 3))
+                            .cornerRadius(3)
+                            
+                        }
+                    }
                 }
-            }
-            .chartXAxis {
-                AxisMarks {
-                    AxisGridLine()
+                .chartXAxis {
+                    AxisMarks {
+                        AxisGridLine()
+                    }
                 }
-            }
-            .chartXScale(domain: 1...(viewModel.chartItems.count))
-            .chartYAxisLabel {
-                Text("ms")
+                .chartXScale(domain: 1...(viewModel.chartItems.count))
+                .chartYAxisLabel {
+                    Text("ms")
+                }
+
+            } else {
+                LogTableView(logs: $viewModel.logs)
+                    .padding(.top, 10)
             }
         }
         
@@ -412,6 +435,17 @@ struct ActionControlView: View {
         .padding(.horizontal)
         .padding(.bottom)
         .frame(maxWidth: .infinity)
+    }
+}
+
+struct DottedLineView: View {
+    var body: some View {
+        Path { path in
+            path.move(to: CGPoint(x: 20, y: 100))
+            path.addLine(to: CGPoint(x: 300, y: 100))
+        }
+        .stroke(style: StrokeStyle(lineWidth: 3, lineCap: .round, dash: [5, 5]))
+        .foregroundColor(.blue)
     }
 }
 

@@ -6,3 +6,13 @@
 //
 
 import Foundation
+
+enum LogType {
+    case good, error
+}
+
+struct LogTextModel: Identifiable, Hashable {
+    let id: UUID = UUID()
+    let type: LogType
+    let text: String
+}

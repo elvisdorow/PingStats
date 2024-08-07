@@ -10,6 +10,9 @@
 		1409322F2C52775B00D2C03F /* MeasurementModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1409322E2C52775B00D2C03F /* MeasurementModel.swift */; };
 		140932322C528BEA00D2C03F /* MainViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 140932312C528BEA00D2C03F /* MainViewModel.swift */; };
 		141D46792C5425BA0087C124 /* SwiftUICharts in Frameworks */ = {isa = PBXBuildFile; productRef = 141D46782C5425BA0087C124 /* SwiftUICharts */; };
+		142C51BA2C641EDF00492458 /* LogTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 142C51B92C641EDF00492458 /* LogTableView.swift */; };
+		142C51BC2C64240100492458 /* LogTextModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 142C51BB2C64240100492458 /* LogTextModel.swift */; };
+		14B688952C63B9B900EDE689 /* LoadingBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14B688942C63B9B900EDE689 /* LoadingBarView.swift */; };
 		14B9508E2C45AC4400E8A388 /* PingStatsApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14B9508D2C45AC4400E8A388 /* PingStatsApp.swift */; };
 		14B950902C45AC4400E8A388 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14B9508F2C45AC4400E8A388 /* MainView.swift */; };
 		14B950922C45AC4600E8A388 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 14B950912C45AC4600E8A388 /* Assets.xcassets */; };
@@ -29,7 +32,10 @@
 /* Begin PBXFileReference section */
 		1409322E2C52775B00D2C03F /* MeasurementModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeasurementModel.swift; sourceTree = "<group>"; };
 		140932312C528BEA00D2C03F /* MainViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewModel.swift; sourceTree = "<group>"; };
+		142C51B92C641EDF00492458 /* LogTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogTableView.swift; sourceTree = "<group>"; };
+		142C51BB2C64240100492458 /* LogTextModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogTextModel.swift; sourceTree = "<group>"; };
 		14862A5C2C62CFEE00394101 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		14B688942C63B9B900EDE689 /* LoadingBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingBarView.swift; sourceTree = "<group>"; };
 		14B9508A2C45AC4400E8A388 /* PingStats.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PingStats.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		14B9508D2C45AC4400E8A388 /* PingStatsApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PingStatsApp.swift; sourceTree = "<group>"; };
 		14B9508F2C45AC4400E8A388 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
@@ -111,6 +117,7 @@
 			children = (
 				14B9509C2C45B62500E8A388 /* PingResponseModel.swift */,
 				1409322E2C52775B00D2C03F /* MeasurementModel.swift */,
+				142C51BB2C64240100492458 /* LogTextModel.swift */,
 			);
 			path = model;
 			sourceTree = "<group>";
@@ -124,6 +131,8 @@
 				14FECBB92C4EAC91009CBF07 /* VerticalItemGauge.swift */,
 				14FECBBD2C502B6D009CBF07 /* PingProgressView.swift */,
 				14FECBBF2C5187F8009CBF07 /* PlayButtonView.swift */,
+				14B688942C63B9B900EDE689 /* LoadingBarView.swift */,
+				142C51B92C641EDF00492458 /* LogTableView.swift */,
 			);
 			path = view;
 			sourceTree = "<group>";
@@ -210,15 +219,18 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				142C51BA2C641EDF00492458 /* LogTableView.swift in Sources */,
 				14B950902C45AC4400E8A388 /* MainView.swift in Sources */,
 				1409322F2C52775B00D2C03F /* MeasurementModel.swift in Sources */,
 				14B9508E2C45AC4400E8A388 /* PingStatsApp.swift in Sources */,
 				14FECBBA2C4EAC91009CBF07 /* VerticalItemGauge.swift in Sources */,
 				14FECBBC2C4FAF59009CBF07 /* CircularGaugeItem.swift in Sources */,
 				14B950A42C45C57E00E8A388 /* Network.swift in Sources */,
+				142C51BC2C64240100492458 /* LogTextModel.swift in Sources */,
 				14B9509D2C45B62500E8A388 /* PingResponseModel.swift in Sources */,
 				14FECBC02C5187F8009CBF07 /* PlayButtonView.swift in Sources */,
 				14FECBB82C4AFBC6009CBF07 /* MySegmentedControl.swift in Sources */,
+				14B688952C63B9B900EDE689 /* LoadingBarView.swift in Sources */,
 				14FECBBE2C502B6D009CBF07 /* PingProgressView.swift in Sources */,
 				140932322C528BEA00D2C03F /* MainViewModel.swift in Sources */,
 			);

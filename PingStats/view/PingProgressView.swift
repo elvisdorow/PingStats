@@ -39,7 +39,7 @@ struct PingProgressViewStyle: ProgressViewStyle {
                     path.move(to: CGPoint(x: 0, y: geometry.size.height / 2))
                     path.addLine(to: CGPoint(x: geometry.size.width, y: geometry.size.height / 2))
                 }
-                .stroke(style: StrokeStyle(lineWidth: 20, dash: [3]))
+                .stroke(style: StrokeStyle(lineWidth:10, lineCap: .round, dash: [19,30]))
                 .foregroundColor(Color(.lightGray))
 
                 // Foreground path (colored dashed line)
@@ -53,7 +53,7 @@ struct PingProgressViewStyle: ProgressViewStyle {
                         startPoint: .leading,
                         endPoint: .trailing
                     ),
-                    style: StrokeStyle(lineWidth: 20, dash: [3])
+                    style: StrokeStyle(lineWidth: 20, lineJoin: .round, dash: [5, 2], dashPhase: 0.5)
                 )
                 .animation(.linear, value: completed)
             }
@@ -61,7 +61,10 @@ struct PingProgressViewStyle: ProgressViewStyle {
     }
 }
 
+struct PingProgressViewtest: PreviewProvider {
+    @State static var value = 0.0
+    static var previews: some View {
+        PingProgressView(currentValue: $value)
+    }
+}
 
-//#Preview {
-//    PingProgressView(currentValue: 86)
-//}

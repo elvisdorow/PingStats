@@ -10,11 +10,19 @@ import SwiftUI
 struct MySegmentedControl: View {
     
     enum SelectedControl {
-        case chart, logs
+        case areaChart, barChart, logs
     }
     
+    @Binding
+    var selected: SelectedControl
+    
     @State
-    var selected: SelectedControl = .chart
+    var underlinePos: Alignment = .leading
+    
+    @State
+    var underlineXOffset: CGFloat = 20
+    
+    
     
     var body: some View {
         VStack(spacing: 3) {
@@ -24,13 +32,30 @@ struct MySegmentedControl: View {
                         .resizable()
                         .frame(width: 20, height: 20)
                         .foregroundColor(.primary)
-                        .opacity(self.selected == .chart ? 1.0 : 0.4)
+                        .opacity(self.selected == .areaChart ? 1.0 : 0.4)
                 }
                 .frame(maxWidth: 100)
                 .onTapGesture {
                     withAnimation(.spring) {
-                        self.selected = .chart
-
+                        self.selected = .areaChart
+                        self.underlinePos = .leading
+                        self.underlineXOffset = 20
+                    }
+                }
+                
+                VStack(spacing: 5) {
+                    Image("barChartIcon")
+                        .resizable()
+                        .frame(width: 20, height: 20)
+                        .foregroundColor(.primary)
+                        .opacity(self.selected == .barChart ? 1.0 : 0.4)
+                }
+                .frame(maxWidth: 100)
+                .onTapGesture {
+                    withAnimation(.spring) {
+                        self.selected = .barChart
+                        self.underlinePos = .center
+                        self.underlineXOffset = 0
                     }
                 }
                 
@@ -42,7 +67,8 @@ struct MySegmentedControl: View {
                 .onTapGesture {
                     withAnimation(.spring) {
                         self.selected = .logs
-
+                        self.underlinePos = .trailing
+                        self.underlineXOffset = -20
                     }
                 }
             }
@@ -50,16 +76,21 @@ struct MySegmentedControl: View {
             HStack {
                 Rectangle()
                     .frame(height: 2)
-                    .frame(maxWidth: 60, alignment: .leading)
+                    .frame(maxWidth: 30, alignment: .leading)
                     .cornerRadius(30)
             }
-            .frame(maxWidth: /*@START_MENU_TOKEN@*/.infinity/*@END_MENU_TOKEN@*/, alignment: selected == .chart ? .leading : .trailing)
-            .offset(x: selected == .chart ? 20 : -20)
+            .frame(maxWidth: /*@START_MENU_TOKEN@*/.infinity/*@END_MENU_TOKEN@*/, alignment: underlinePos)
+            .offset(x: underlineXOffset)
             
         }.frame(maxWidth: 200)
     }
 }
 
-#Preview {
-    MySegmentedControl()
+struct SegmentControlPreview: PreviewProvider {
+    @State static var type = MySegmentedControl.SelectedControl.areaChart
+    static var previews: some View {
+        MySegmentedControl(selected: $type)
+
+    }
 }
+
