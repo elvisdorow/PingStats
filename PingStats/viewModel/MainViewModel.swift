@@ -15,6 +15,8 @@ class MainViewModel: ObservableObject {
     
     @Published var isAnalysisRunning = false
     @Published var host = "1.1.1.1"
+    
+    @Published var statusMessage = "No data"
 
     @Published var startTime: Date = Date()
     @Published var elapsedTime: TimeInterval = 0
@@ -23,9 +25,7 @@ class MainViewModel: ObservableObject {
     @Published var timer = Timer.publish(every: 1, on: .main, in: .common)
     var timerCancellable: Cancellable? = nil
 
-    @Published var chartType: MySegmentedControl.SelectedControl = .areaChart
-    
-    @Published var formattedLogs: String = ""
+    @Published var chartType: MySegmentedControl.SelectedControl = .barChart
     
     var logs: [LogTextModel] = []
 
@@ -84,6 +84,12 @@ class MainViewModel: ObservableObject {
         print(self.hostIP ?? "")
         print(self.hostName ?? "")
         
+        if self.hostIP != nil && self.hostName != nil {
+            self.statusMessage = "Pinging \(self.hostIP!) (\(self.hostName!))"
+        } else {
+            self.statusMessage = "Pinging \(self.host)"
+        }
+        
         do {
             let finalHostAddress = (self.hostName != nil ? self.hostName!: self.host)
             pinger = try SwiftyPing(host: finalHostAddress, configuration: config, queue: DispatchQueue.global())
@@ -128,6 +134,7 @@ class MainViewModel: ObservableObject {
         pinger?.haltPinging(resetSequence: true)
         counter = 0
         isAnalysisRunning = false
+        statusMessage = "Test finished"
         
         timerCancellable?.cancel()
         timerCancellable = nil
@@ -135,7 +142,7 @@ class MainViewModel: ObservableObject {
     
     private func addError(error: PingError) {
         errors.append(error)
-        calculateStats()
+        calculateCurrentStats()
         
         let logText: String = "error"
         let log = LogTextModel(type: .error, text: logText)
@@ -144,7 +151,7 @@ class MainViewModel: ObservableObject {
     
     private func addResponse(response: PingStatResponse) {
         stat.responses.append(response)
-        calculateStats()
+        calculateCurrentStats()
         updateChart()
         calcConnectionQuality()
         calcItemQuality()
@@ -160,16 +167,24 @@ class MainViewModel: ObservableObject {
         self.logs.append(log)
     }
     
-    private func calculateStats() {
+    private func calculateCurrentStats() {
         print("Calculating stats...")
         isAnalysisRunning = true
         
-        let roundtripTimes = stat.responses.map { $0.duration }
-        if roundtripTimes.count != 0, let min = roundtripTimes.min(), let max = roundtripTimes.max() {
-            let count = Double(roundtripTimes.count)
-            let total = roundtripTimes.reduce(0, +)
+        // Uses all responses to calculate stats
+//        let roundtripTimes = stat.responses.map { $0.duration }
+
+        // Use the last 30 responses
+        let lastResponses = stat.responses.suffix(numBarsInChart)
+
+        let lastRoudtripTimes = lastResponses.map { $0.duration }
+        let allRoudtripTimes = stat.responses.map { $0.duration }
+        
+        if lastRoudtripTimes.count != 0, let min = allRoudtripTimes.min(), let max = allRoudtripTimes.max() {
+            let count = Double(lastRoudtripTimes.count)
+            let total = lastRoudtripTimes.reduce(0, +)
             let avg = total / count
-            let variance = roundtripTimes.reduce(0, { $0 + ($1 - avg) * ($1 - avg) })
+            let variance = lastRoudtripTimes.reduce(0, { $0 + ($1 - avg) * ($1 - avg) })
             let stddev = sqrt(variance / count)
             
             stat.avaragePing = avg.scaled(by: 1000.0)
@@ -195,6 +210,7 @@ class MainViewModel: ObservableObject {
     }
     
     private func resetChart() {
+        logs = []
         chartItems = []
         for idx in 1...numBarsInChart {
             chartItems.append(.init(sequency: idx, duration: 0.0))

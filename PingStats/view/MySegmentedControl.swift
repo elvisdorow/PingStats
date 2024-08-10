@@ -20,13 +20,15 @@ struct MySegmentedControl: View {
     var underlinePos: Alignment = .leading
     
     @State
-    var underlineXOffset: CGFloat = 20
+    var underlineXOffset: CGFloat = 35
     
     
     
     var body: some View {
         VStack(spacing: 3) {
             HStack(spacing:0) {
+                
+                /*
                 VStack(spacing: 5) {
                     Image("areaChartIcon")
                         .resizable()
@@ -42,6 +44,7 @@ struct MySegmentedControl: View {
                         self.underlineXOffset = 20
                     }
                 }
+                 */
                 
                 VStack(spacing: 5) {
                     Image("barChartIcon")
@@ -54,8 +57,8 @@ struct MySegmentedControl: View {
                 .onTapGesture {
                     withAnimation(.spring) {
                         self.selected = .barChart
-                        self.underlinePos = .center
-                        self.underlineXOffset = 0
+                        self.underlinePos = .leading
+                        self.underlineXOffset = 35
                     }
                 }
                 
@@ -68,7 +71,7 @@ struct MySegmentedControl: View {
                     withAnimation(.spring) {
                         self.selected = .logs
                         self.underlinePos = .trailing
-                        self.underlineXOffset = -20
+                        self.underlineXOffset = -35
                     }
                 }
             }

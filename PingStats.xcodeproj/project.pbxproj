@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		1409322F2C52775B00D2C03F /* MeasurementModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1409322E2C52775B00D2C03F /* MeasurementModel.swift */; };
 		140932322C528BEA00D2C03F /* MainViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 140932312C528BEA00D2C03F /* MainViewModel.swift */; };
+		140AFF682C6663BA00A4A2C8 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 140AFF672C6663BA00A4A2C8 /* SettingsView.swift */; };
 		141D46792C5425BA0087C124 /* SwiftUICharts in Frameworks */ = {isa = PBXBuildFile; productRef = 141D46782C5425BA0087C124 /* SwiftUICharts */; };
 		142C51BA2C641EDF00492458 /* LogTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 142C51B92C641EDF00492458 /* LogTableView.swift */; };
 		142C51BC2C64240100492458 /* LogTextModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 142C51BB2C64240100492458 /* LogTextModel.swift */; };
@@ -23,15 +24,14 @@
 		14B950A82C47025C00E8A388 /* GaugeKit in Frameworks */ = {isa = PBXBuildFile; productRef = 14B950A72C47025C00E8A388 /* GaugeKit */; };
 		14FECBB62C4AF500009CBF07 /* SegmentedPicker in Frameworks */ = {isa = PBXBuildFile; productRef = 14FECBB52C4AF500009CBF07 /* SegmentedPicker */; };
 		14FECBB82C4AFBC6009CBF07 /* MySegmentedControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14FECBB72C4AFBC6009CBF07 /* MySegmentedControl.swift */; };
-		14FECBBA2C4EAC91009CBF07 /* VerticalItemGauge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14FECBB92C4EAC91009CBF07 /* VerticalItemGauge.swift */; };
 		14FECBBC2C4FAF59009CBF07 /* CircularGaugeItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14FECBBB2C4FAF59009CBF07 /* CircularGaugeItem.swift */; };
-		14FECBBE2C502B6D009CBF07 /* PingProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14FECBBD2C502B6D009CBF07 /* PingProgressView.swift */; };
 		14FECBC02C5187F8009CBF07 /* PlayButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14FECBBF2C5187F8009CBF07 /* PlayButtonView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		1409322E2C52775B00D2C03F /* MeasurementModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeasurementModel.swift; sourceTree = "<group>"; };
 		140932312C528BEA00D2C03F /* MainViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewModel.swift; sourceTree = "<group>"; };
+		140AFF672C6663BA00A4A2C8 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		142C51B92C641EDF00492458 /* LogTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogTableView.swift; sourceTree = "<group>"; };
 		142C51BB2C64240100492458 /* LogTextModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogTextModel.swift; sourceTree = "<group>"; };
 		14862A5C2C62CFEE00394101 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
@@ -44,9 +44,7 @@
 		14B9509C2C45B62500E8A388 /* PingResponseModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PingResponseModel.swift; sourceTree = "<group>"; };
 		14B950A32C45C57E00E8A388 /* Network.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Network.swift; sourceTree = "<group>"; };
 		14FECBB72C4AFBC6009CBF07 /* MySegmentedControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MySegmentedControl.swift; sourceTree = "<group>"; };
-		14FECBB92C4EAC91009CBF07 /* VerticalItemGauge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerticalItemGauge.swift; sourceTree = "<group>"; };
 		14FECBBB2C4FAF59009CBF07 /* CircularGaugeItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircularGaugeItem.swift; sourceTree = "<group>"; };
-		14FECBBD2C502B6D009CBF07 /* PingProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PingProgressView.swift; sourceTree = "<group>"; };
 		14FECBBF2C5187F8009CBF07 /* PlayButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayButtonView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -128,11 +126,10 @@
 				14FECBBB2C4FAF59009CBF07 /* CircularGaugeItem.swift */,
 				14B9508F2C45AC4400E8A388 /* MainView.swift */,
 				14FECBB72C4AFBC6009CBF07 /* MySegmentedControl.swift */,
-				14FECBB92C4EAC91009CBF07 /* VerticalItemGauge.swift */,
-				14FECBBD2C502B6D009CBF07 /* PingProgressView.swift */,
 				14FECBBF2C5187F8009CBF07 /* PlayButtonView.swift */,
 				14B688942C63B9B900EDE689 /* LoadingBarView.swift */,
 				142C51B92C641EDF00492458 /* LogTableView.swift */,
+				140AFF672C6663BA00A4A2C8 /* SettingsView.swift */,
 			);
 			path = view;
 			sourceTree = "<group>";
@@ -223,7 +220,6 @@
 				14B950902C45AC4400E8A388 /* MainView.swift in Sources */,
 				1409322F2C52775B00D2C03F /* MeasurementModel.swift in Sources */,
 				14B9508E2C45AC4400E8A388 /* PingStatsApp.swift in Sources */,
-				14FECBBA2C4EAC91009CBF07 /* VerticalItemGauge.swift in Sources */,
 				14FECBBC2C4FAF59009CBF07 /* CircularGaugeItem.swift in Sources */,
 				14B950A42C45C57E00E8A388 /* Network.swift in Sources */,
 				142C51BC2C64240100492458 /* LogTextModel.swift in Sources */,
@@ -231,8 +227,8 @@
 				14FECBC02C5187F8009CBF07 /* PlayButtonView.swift in Sources */,
 				14FECBB82C4AFBC6009CBF07 /* MySegmentedControl.swift in Sources */,
 				14B688952C63B9B900EDE689 /* LoadingBarView.swift in Sources */,
-				14FECBBE2C502B6D009CBF07 /* PingProgressView.swift in Sources */,
 				140932322C528BEA00D2C03F /* MainViewModel.swift in Sources */,
+				140AFF682C6663BA00A4A2C8 /* SettingsView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

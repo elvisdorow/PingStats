@@ -17,10 +17,10 @@ struct LogTableView: View {
                 ForEach(logs) { l in
                     Text(l.text)
                         .frame(maxWidth: .infinity, alignment: .leading)
-                        .frame(height: 7.7)
+                        .frame(maxHeight: /*@START_MENU_TOKEN@*/.infinity/*@END_MENU_TOKEN@*/)
                         .foregroundColor( (l.type == .error) ? .red : .primary )
                         .fontDesign(.monospaced)
-                        .font(.system(size: 10))
+                        .font(.system(size: 9))
                         .id(l.id)
                 }
             }

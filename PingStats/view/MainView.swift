@@ -13,6 +13,8 @@ struct MainView: View {
     @State private var selectedSegment = 1
     @State private var showLogs = false
     
+    @State private var showSettingsView: Bool = false
+    
     @StateObject var viewModel: MainViewModel = MainViewModel()
     
     var body: some View {
@@ -26,14 +28,21 @@ struct MainView: View {
                 
                 VStack(spacing: 0) {
                     MySegmentedControl(selected: $viewModel.chartType)
-                        .padding(.top, 20)
+                        .padding(.top, 15)
                         .padding(.leading, 10)
                     
                     ChartLogView()
                         .frame(height: UIScreen.main.bounds.height * 0.15)
                         .padding(.horizontal)
                         .padding(.bottom)
-
+                    
+                    Text("\(viewModel.statusMessage)")
+                            .font(.caption)
+                            .foregroundColor(.primary.opacity(0.6))
+                            .frame(maxWidth: /*@START_MENU_TOKEN@*/.infinity/*@END_MENU_TOKEN@*/, alignment: .leading)
+                            .padding(.horizontal)
+                    
+                    Spacer()
 
                     VStack(alignment: .leading) {
                         Label(
@@ -48,7 +57,7 @@ struct MainView: View {
                         HStack {
                             ConnectionQuality()
                             Text("\(formatNumbers(viewModel.stat.generalNetQuality, fraction: 0, unit: "%"))")
-                                .frame(width: 50)
+                                .frame(width: 55)
                         }
                     }
                     .padding()
@@ -62,8 +71,9 @@ struct MainView: View {
                     Spacer()
                     
                     NetQualityView()
-                    .frame(height: UIScreen.main.bounds.height * 0.14)
-                    .padding(.top, 15)
+                    .frame(height: UIScreen.main.bounds.height * 0.145)
+                    .padding(.horizontal)
+                    .padding(.top, 6)
                     
                     Spacer()
                     
@@ -76,21 +86,53 @@ struct MainView: View {
                 }
                 .environmentObject(viewModel)
                 .toolbar(content: {
+                    
                     ToolbarItem(placement: .topBarLeading) {
-                                       HStack {
-                                           Text("Ping Stats")
-                                               .font(.title)
-                                               .fontWeight(.bold)
-                                       }
-                                   }
+                        HStack {
+                            Image("logo")
+                        }
+                    }
                     ToolbarItem(placement: .topBarTrailing) {
-                        Button(action: {}, label: {
-                            Image(systemName: "gear")
-                        })
+                        Menu {
+                            Button(action: {
+                                showSettingsView.toggle()
+                            },
+                            label: {
+                                Label(
+                                    title: { Text("Settings") },
+                                    icon: { Image(systemName: "gear") }
+                                )
+                            })
+                            Button(action: {},
+                            label: {
+                                Label(
+                                    title: { Text("Results") },
+                                    icon: { Image(systemName: "list.bullet.rectangle.portrait") }
+                                )
+                            })
+                            Button(action: {},
+                            label: {
+                                Label(
+                                    title: { Text("About") },
+                                    icon: { Image(systemName: "info.circle") }
+                                )
+                            })
+
+                        } label: {
+                            Label(
+                                title: { Text("Menu") },
+                                icon: { Image("menuDotsIcon") }
+                            )
+                        }
+
                     }
                     }).accentColor(.primary)
-
             }
+            .popover(isPresented: $showSettingsView) {
+                SettingsView()
+                    .presentationCompactAdaptation(.fullScreenCover)
+            }
+            
         }
     }
 }
@@ -142,7 +184,7 @@ struct ChartLogView: View {
                                 y: .value("ms", data.duration.scaled(by: 1000)),
                                 width: 4
                             )
-                            .foregroundStyle(Color.accent)
+                            .foregroundStyle(Color.accent.gradient)
                             .clipShape(RoundedBottomRectangle(cornerRadius: 3))
                             .cornerRadius(3)
                             
@@ -217,12 +259,14 @@ struct NetQualityView: View {
                 value: $viewModel.stat.gamingScore,
                 status: $viewModel.stat.gamingStatus
             )
+            Spacer()
             CircularGaugeItem(
                 type: "Video Call",
                 icon: "video.badge.waveform.fill",
                 value: $viewModel.stat.videoCallScore,
                 status: $viewModel.stat.videoCallStatus
             )
+            Spacer()
             CircularGaugeItem(
                 type: "Streaming",
                 icon: "play.tv.fill",
@@ -237,6 +281,7 @@ struct NetQualityView: View {
 struct DetailedStatsView: View {
     
     @EnvironmentObject var viewModel: MainViewModel
+    let lineHeight = 40.0
     
     var body: some View {
         
@@ -246,13 +291,13 @@ struct DetailedStatsView: View {
                     statusTitle: "Best Ping",
                     pingValue: "\(formatNumbers(viewModel.stat.bestPing, fraction: 0, unit: "ms"))")
 
-                Rectangle().fill(Color.gray.opacity(0.2)).frame(width: 1, height: 60)
+                Rectangle().fill(Color.gray.opacity(0.2)).frame(width: 1, height: lineHeight)
                 
                 PingStatBlock(
                     statusTitle: "Avarage Ping",
                     pingValue: "\(formatNumbers(viewModel.stat.avaragePing, fraction: 0, unit: "ms"))")
 
-                Rectangle().fill(Color.gray.opacity(0.2)).frame(width: 1, height: 60)
+                Rectangle().fill(Color.gray.opacity(0.2)).frame(width: 1, height: lineHeight)
                 
                 PingStatBlock(
                     statusTitle: "Worst Ping",
@@ -260,8 +305,8 @@ struct DetailedStatsView: View {
                 )
 
             }
-            .frame(minHeight: 50, alignment: .center)
-            .frame(maxHeight: .infinity)
+            .frame(minHeight: lineHeight, alignment: .center)
+            .frame(maxHeight: 80)
 
             Rectangle().fill(Color.gray.opacity(0.2))
                 .frame(height: 1)
@@ -271,13 +316,13 @@ struct DetailedStatsView: View {
                     statusTitle: "Package Loss",
                     pingValue: "\(formatNumbers(viewModel.stat.packageLoss, fraction: 1, unit: "%"))")
                 
-                Rectangle().fill(Color.gray.opacity(0.1)).frame(width: 1, height: 60)
+                Rectangle().fill(Color.gray.opacity(0.1)).frame(width: 1, height: lineHeight)
                 
                 PingStatBlock(
                     statusTitle: "Jitter",
                     pingValue: "\(formatNumbers(viewModel.stat.jitter, fraction: 0, unit: "ms"))")
                 
-                Rectangle().fill(Color.gray.opacity(0.1)).frame(width: 1, height: 60)
+                Rectangle().fill(Color.gray.opacity(0.1)).frame(width: 1, height: lineHeight)
                 
                 PingStatBlock(
                     statusTitle: "Elapsed Time",
@@ -289,8 +334,8 @@ struct DetailedStatsView: View {
 
 
             }
-            .frame(minHeight: 50, alignment: .center)
-            .frame(maxHeight: /*@START_MENU_TOKEN@*/.infinity/*@END_MENU_TOKEN@*/)
+            .frame(minHeight: lineHeight, alignment: .center)
+            .frame(maxHeight: 80)
         }
     }
         

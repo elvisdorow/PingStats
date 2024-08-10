@@ -27,6 +27,9 @@ struct CircularGaugeItem: View {
     let type: String
     let icon: String
     
+    let iconSize = UIScreen.main.bounds.height * 0.02
+
+    
     @Binding var value: Double
     @Binding var status: MeasurementModel.Status
 
@@ -40,6 +43,7 @@ struct CircularGaugeItem: View {
                 currentValueLabel: {
                     Image(systemName: "\(icon)")
                         .foregroundColor(Color("IconColor"))
+                        .frame(height: iconSize)
                 },
                 minimumValueLabel: {
                     Text("")
@@ -52,12 +56,15 @@ struct CircularGaugeItem: View {
                 .tint(Color.accent)
                 .frame(maxWidth: .infinity)
         }
+        .frame(maxWidth: UIScreen.main.bounds.width * 0.25) 
     }
 }
 
 
 struct SpeedometerGaugeStyle: GaugeStyle {
 
+    let lineWith = UIScreen.main.bounds.height * 0.012
+    
     func makeBody(configuration: Configuration) -> some View {
         VStack(spacing:0) {
             ZStack {
@@ -65,17 +72,19 @@ struct SpeedometerGaugeStyle: GaugeStyle {
                     .trim(from: 0, to: 0.75 * configuration.value)
                     .stroke(
                         LinearGradient(
-                            gradient: Gradient(colors: [.accent, .accent.opacity(0.75)]),
+                            gradient: Gradient(colors: [.blue, .accent]),
                             startPoint: .topLeading,
                             endPoint: .bottomTrailing),
-                            style: StrokeStyle(lineWidth: 8, lineCap: .round))
+                            style: StrokeStyle(lineWidth: lineWith, lineCap: .round))
                     .rotationEffect(.degrees(135))
                     .animation(/*@START_MENU_TOKEN@*/.easeIn/*@END_MENU_TOKEN@*/)
 
                 Circle()
                     .trim(from: 0, to: 0.75)
-                    .stroke(.accent,
-                            style: StrokeStyle(lineWidth: 8, lineCap: .round))
+                    .stroke(.gray.gradient,
+                            style: StrokeStyle(lineWidth: lineWith, lineCap: .round))
+
+
                     .rotationEffect(.degrees(135))
                     .opacity(0.3)
 
@@ -97,8 +106,12 @@ struct SpeedometerGaugeStyle: GaugeStyle {
 
 }
 
-/*
- #Preview {
- GaugeTestView()
- }
- */
+struct CircularGaugePreview: PreviewProvider {
+    @State static var status: MeasurementModel.Status = .excelent
+    @State static var value = 0.30
+    
+    static var previews: some View {
+        CircularGaugeItem(type: "Gaming", icon: "gamecontroller.fill", value: $value, status: $status)
+            .frame(height: 120)
+    }
+}

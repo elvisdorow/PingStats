@@ -49,13 +49,13 @@ struct DotMark: View {
         let dotColor: Color = valueRepresented < currentValue ? onColor : offColor
  
         Rectangle()
-            .fill(dotColor)
+            .fill(dotColor.gradient)
             .cornerRadius(7)
     }
 }
 
 struct LoadingBarPreview: PreviewProvider {
-    @State static var currentValue = 40.0
+    @State static var currentValue = 87.0
     
     static var previews: some View {
         LoadingBarView(currentValue: $currentValue).frame(height: 20)

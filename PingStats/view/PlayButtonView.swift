@@ -13,7 +13,7 @@ struct PlayButtonView: View {
     
     var body: some View {
         Circle()
-            .fill(.accent)
+            .fill(.accent.gradient)
             .frame(width: 60, height: 60)
             .shadow(radius: 4, x: 2, y: 4)
             .overlay(alignment: .center) {
