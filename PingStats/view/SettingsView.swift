@@ -8,30 +8,26 @@
 import SwiftUI
 
 struct SettingsView: View {
+    
+    @Environment(\.presentationMode) var presentationMode
+    
     @State private var pingInterval: Double = 0.5
     @State private var pingSample: Double = 60
-    @State private var selectedTheme: Theme = .system
-    enum Theme: String, CaseIterable, Identifiable {
-        case light = "Light"
-        case dark = "Dark"
-        case system = "System"
-        
-        var id: String { self.rawValue }
-    }
-
+    
+    @StateObject var settingsViewModel: SettingsViewModel = SettingsViewModel()
     
     var body: some View {
         NavigationView {
-            Form{
-                
+            Form{                
                 Section {
                     NavigationLink(
-                        destination: Text("Host manager screen"),
+                        destination: IPAddressesView().environmentObject(settingsViewModel),
                         label: {
-                            Text("1.1.1.1")
+                            Text("\(settingsViewModel.selectedIpAddress)")
                         })
+
                 } header: {
-                    Text("Host Name or IP Address")
+                    Text("IP Address or Host Name")
                 }
 
                 Section {
@@ -71,20 +67,19 @@ struct SettingsView: View {
                 }
 
                 Section {
-                    HStack {
-                        Text("System")
-                        Spacer()
-                        Image(systemName: "checkmark")
-                    }
-                    HStack {
-                        Text("Light")
-                        Spacer()
-                        Image(systemName: "")
-                    }
-                    HStack {
-                        Text("Dark")
-                        Spacer()
-                        Image(systemName: "")
+                    ForEach(Theme.allCases, id: \.self) { theme in
+                        Button(action: {
+                            settingsViewModel.theme = theme
+                        }, label: {
+                            HStack {
+                                Text(theme.rawValue)
+                                Spacer()
+                                if settingsViewModel.theme == theme {
+                                    Image(systemName: "checkmark")
+                                        .foregroundColor(.accentColor)
+                                }
+                            }
+                        })
                     }
                 } header: {
                     Text("Theme")
@@ -92,24 +87,24 @@ struct SettingsView: View {
 
                 
             }
-            .formStyle(.automatic)
-            .toolbar(content: {
-                ToolbarItem(placement: .automatic) {
-                    Button(action: /*@START_MENU_TOKEN@*/{}/*@END_MENU_TOKEN@*/, label: {
+            .toolbar {
+                ToolbarItem {
+                    Button(action: {
+                        presentationMode.wrappedValue.dismiss()
+                    }, label: {
                         Text("OK")
                     })
                 }
-
-            })
+            }
+            .preferredColorScheme(settingsViewModel.theme != .system ? (settingsViewModel.theme == .darkMode ? .dark : .light) : nil)
             .navigationTitle("Settings")
             .toolbarTitleDisplayMode(.inline)
             .foregroundColor(.primary)
-
         }
     }
-
 }
 
 #Preview {
     SettingsView()
 }
+

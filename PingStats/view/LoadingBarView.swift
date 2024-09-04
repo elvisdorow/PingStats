@@ -12,7 +12,7 @@ struct LoadingBarView: View {
     @Binding var currentValue: Double
     
     var body: some View {
-        HStack(spacing: UIScreen.main.bounds.width * 0.008) {
+        HStack(spacing: UIScreen.main.bounds.width * 0.005) {
             ForEach(0..<40) { idx in
                 DotMark(index: idx, currVal: currentValue)
             }

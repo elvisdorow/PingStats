@@ -14,8 +14,8 @@
             filePath = "PingStats/view/MainView.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "286"
-            endingLineNumber = "286"
+            startingLineNumber = "292"
+            endingLineNumber = "292"
             landmarkName = "body"
             landmarkType = "24">
          </BreakpointContent>
@@ -30,9 +30,9 @@
             filePath = "PingStats/viewModel/MainViewModel.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "69"
-            endingLineNumber = "69"
-            landmarkName = "start()"
+            startingLineNumber = "70"
+            endingLineNumber = "70"
+            landmarkName = "start(settingsViewModel:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -55,17 +55,49 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "B203E880-05DE-457F-97AA-091EEA62AB61"
+            uuid = "B511B2C6-F9F1-4806-B1FF-460553EDB25A"
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "PingStats/view/MainView.swift"
+            filePath = "PingStats/view/SettingsView.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "47"
-            endingLineNumber = "47"
+            startingLineNumber = "21"
+            endingLineNumber = "21"
             landmarkName = "body"
             landmarkType = "24">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "AA9C9BCB-DC89-4E0A-BCF1-E48EDACB13C3"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "PingStats/viewModel/SettingsViewModel.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "41"
+            endingLineNumber = "41"
+            landmarkName = "ipAddresses"
+            landmarkType = "24">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "EBF00DD7-12D2-4A51-AB2E-6BAC79D9B57E"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "PingStats/view/IPAddressesView.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "108"
+            endingLineNumber = "108"
+            landmarkName = "validateIPAddressOrHostname()"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

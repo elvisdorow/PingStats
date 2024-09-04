@@ -16,6 +16,11 @@ struct MainView: View {
     @State private var showSettingsView: Bool = false
     
     @StateObject var viewModel: MainViewModel = MainViewModel()
+    @StateObject var settingsViewModel = SettingsViewModel()
+
+    init() {
+        viewModel.host = settingsViewModel.selectedIpAddress
+    }
     
     var body: some View {
         NavigationStack {
@@ -85,6 +90,7 @@ struct MainView: View {
 
                 }
                 .environmentObject(viewModel)
+                .environmentObject(settingsViewModel)
                 .toolbar(content: {
                     
                     ToolbarItem(placement: .topBarLeading) {
@@ -133,7 +139,7 @@ struct MainView: View {
                     .presentationCompactAdaptation(.fullScreenCover)
             }
             
-        }
+        }.preferredColorScheme(settingsViewModel.theme != .system ? (settingsViewModel.theme == .darkMode ? .dark : .light) : nil)
     }
 }
 
@@ -293,7 +299,7 @@ struct DetailedStatsView: View {
 
                 Rectangle().fill(Color.gray.opacity(0.2)).frame(width: 1, height: lineHeight)
                 
-                PingStatBlock(
+                PingStatAvgBlock(
                     statusTitle: "Avarage Ping",
                     pingValue: "\(formatNumbers(viewModel.stat.avaragePing, fraction: 0, unit: "ms"))")
 
@@ -371,13 +377,35 @@ struct PingStatBlock: View {
     
     var body: some View {
         VStack(alignment: .center, spacing: 4) {
-            Text(statusTitle)
-                .font(.caption)
             
             Text("\(pingValue)")
-                .font(.system(size: 23, weight: .light))
+                .font(.system(size: 23, weight: .light, design: .rounded))
+            
+            Text(statusTitle)
+                .font(.custom("Inter-Regular", size: 13))
+
         }
         .frame(maxWidth: .infinity, alignment: .center)
+
+    }
+}
+
+struct PingStatAvgBlock: View {
+    
+    var statusTitle: String
+    var pingValue: String
+    
+    var body: some View {
+        VStack(alignment: .center, spacing: 0) {
+            
+            Text("\(pingValue)")
+                .font(.system(size: 30, weight: .regular, design: .rounded))
+
+            Text(statusTitle)
+                .font(.custom("Inter-Regular", size: 13))
+
+        }
+        .frame(maxWidth: .infinity, alignment: .top)
 
     }
 }
@@ -440,6 +468,7 @@ struct VerticalAccessoryGaugeStyle: GaugeStyle {
 struct ActionControlView: View {
     
     @EnvironmentObject var viewModel: MainViewModel
+    @EnvironmentObject var settingsViewModel: SettingsViewModel
     
     var body: some View {
         HStack(spacing: 30) {
@@ -450,7 +479,7 @@ struct ActionControlView: View {
                 
                 HStack {
                     Image(systemName: "pc").opacity(0.6)
-                    TextField(text: $viewModel.host, label:  {
+                    TextField(text: $settingsViewModel.selectedIpAddress, label:  {
                         Text("0.0.0.0")
                     })
                     .foregroundColor(viewModel.isAnalysisRunning ? .primary.opacity(0.3) : .primary)
@@ -471,7 +500,7 @@ struct ActionControlView: View {
                         if viewModel.isAnalysisRunning {
                             viewModel.stop()
                         } else {
-                            viewModel.start()
+                            viewModel.start(settingsViewModel)
                         }
                     }
             }

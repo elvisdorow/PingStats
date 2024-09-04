@@ -63,7 +63,7 @@ struct CircularGaugeItem: View {
 
 struct SpeedometerGaugeStyle: GaugeStyle {
 
-    let lineWith = UIScreen.main.bounds.height * 0.012
+    let lineWith = UIScreen.main.bounds.height * 0.010
     
     func makeBody(configuration: Configuration) -> some View {
         VStack(spacing:0) {
@@ -72,17 +72,18 @@ struct SpeedometerGaugeStyle: GaugeStyle {
                     .trim(from: 0, to: 0.75 * configuration.value)
                     .stroke(
                         LinearGradient(
-                            gradient: Gradient(colors: [.blue, .accent]),
+                            gradient: Gradient(colors: [.accent, .accent.opacity(0.8)]),
                             startPoint: .topLeading,
                             endPoint: .bottomTrailing),
-                            style: StrokeStyle(lineWidth: lineWith, lineCap: .round))
+                        style: StrokeStyle(lineWidth: lineWith, lineCap: .round, lineJoin: .round))
+                
                     .rotationEffect(.degrees(135))
-                    .animation(/*@START_MENU_TOKEN@*/.easeIn/*@END_MENU_TOKEN@*/)
+                    .animation(.easeIn)
 
                 Circle()
                     .trim(from: 0, to: 0.75)
                     .stroke(.gray.gradient,
-                            style: StrokeStyle(lineWidth: lineWith, lineCap: .round))
+                            style: StrokeStyle(lineWidth: lineWith, lineCap: .round, lineJoin: .round))
 
 
                     .rotationEffect(.degrees(135))

@@ -13,6 +13,14 @@
 		141D46792C5425BA0087C124 /* SwiftUICharts in Frameworks */ = {isa = PBXBuildFile; productRef = 141D46782C5425BA0087C124 /* SwiftUICharts */; };
 		142C51BA2C641EDF00492458 /* LogTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 142C51B92C641EDF00492458 /* LogTableView.swift */; };
 		142C51BC2C64240100492458 /* LogTextModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 142C51BB2C64240100492458 /* LogTextModel.swift */; };
+		1436956A2C8735C8005CC2B3 /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 143695692C8735C8005CC2B3 /* Theme.swift */; };
+		1436956C2C87454E005CC2B3 /* SettingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1436956B2C87454E005CC2B3 /* SettingsViewModel.swift */; };
+		1436956E2C8750E8005CC2B3 /* IPAddressesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1436956D2C8750E8005CC2B3 /* IPAddressesView.swift */; };
+		1477566D2C88A0F3003D7573 /* CustomAlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1477566C2C88A0F3003D7573 /* CustomAlertView.swift */; };
+		1485A9612C87A67F00FDC0AC /* Inter-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 1485A9602C87A67F00FDC0AC /* Inter-SemiBold.ttf */; };
+		1485A9632C87A69800FDC0AC /* Inter-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 1485A9622C87A69800FDC0AC /* Inter-Regular.ttf */; };
+		1485A9662C87AC6D00FDC0AC /* Inter-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 1485A9642C87AC6D00FDC0AC /* Inter-Light.ttf */; };
+		1485A9672C87AC6D00FDC0AC /* Inter-Black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 1485A9652C87AC6D00FDC0AC /* Inter-Black.ttf */; };
 		14B688952C63B9B900EDE689 /* LoadingBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14B688942C63B9B900EDE689 /* LoadingBarView.swift */; };
 		14B9508E2C45AC4400E8A388 /* PingStatsApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14B9508D2C45AC4400E8A388 /* PingStatsApp.swift */; };
 		14B950902C45AC4400E8A388 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14B9508F2C45AC4400E8A388 /* MainView.swift */; };
@@ -34,6 +42,14 @@
 		140AFF672C6663BA00A4A2C8 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		142C51B92C641EDF00492458 /* LogTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogTableView.swift; sourceTree = "<group>"; };
 		142C51BB2C64240100492458 /* LogTextModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogTextModel.swift; sourceTree = "<group>"; };
+		143695692C8735C8005CC2B3 /* Theme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Theme.swift; sourceTree = "<group>"; };
+		1436956B2C87454E005CC2B3 /* SettingsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewModel.swift; sourceTree = "<group>"; };
+		1436956D2C8750E8005CC2B3 /* IPAddressesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IPAddressesView.swift; sourceTree = "<group>"; };
+		1477566C2C88A0F3003D7573 /* CustomAlertView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomAlertView.swift; sourceTree = "<group>"; };
+		1485A9602C87A67F00FDC0AC /* Inter-SemiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Inter-SemiBold.ttf"; sourceTree = "<group>"; };
+		1485A9622C87A69800FDC0AC /* Inter-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Inter-Regular.ttf"; sourceTree = "<group>"; };
+		1485A9642C87AC6D00FDC0AC /* Inter-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Inter-Light.ttf"; sourceTree = "<group>"; };
+		1485A9652C87AC6D00FDC0AC /* Inter-Black.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Inter-Black.ttf"; sourceTree = "<group>"; };
 		14862A5C2C62CFEE00394101 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		14B688942C63B9B900EDE689 /* LoadingBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingBarView.swift; sourceTree = "<group>"; };
 		14B9508A2C45AC4400E8A388 /* PingStats.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PingStats.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -67,8 +83,36 @@
 			isa = PBXGroup;
 			children = (
 				140932312C528BEA00D2C03F /* MainViewModel.swift */,
+				1436956B2C87454E005CC2B3 /* SettingsViewModel.swift */,
 			);
 			path = viewModel;
+			sourceTree = "<group>";
+		};
+		143695682C8735B7005CC2B3 /* helper */ = {
+			isa = PBXGroup;
+			children = (
+				143695692C8735C8005CC2B3 /* Theme.swift */,
+			);
+			path = helper;
+			sourceTree = "<group>";
+		};
+		1477566B2C88A0D5003D7573 /* utils */ = {
+			isa = PBXGroup;
+			children = (
+				1477566C2C88A0F3003D7573 /* CustomAlertView.swift */,
+			);
+			path = utils;
+			sourceTree = "<group>";
+		};
+		1485A95F2C87A62000FDC0AC /* fonts */ = {
+			isa = PBXGroup;
+			children = (
+				1485A9652C87AC6D00FDC0AC /* Inter-Black.ttf */,
+				1485A9642C87AC6D00FDC0AC /* Inter-Light.ttf */,
+				1485A9622C87A69800FDC0AC /* Inter-Regular.ttf */,
+				1485A9602C87A67F00FDC0AC /* Inter-SemiBold.ttf */,
+			);
+			path = fonts;
 			sourceTree = "<group>";
 		};
 		14B950812C45AC4400E8A388 = {
@@ -90,6 +134,9 @@
 		14B9508C2C45AC4400E8A388 /* PingStats */ = {
 			isa = PBXGroup;
 			children = (
+				1477566B2C88A0D5003D7573 /* utils */,
+				1485A95F2C87A62000FDC0AC /* fonts */,
+				143695682C8735B7005CC2B3 /* helper */,
 				14862A5C2C62CFEE00394101 /* Info.plist */,
 				140932302C52778F00D2C03F /* viewModel */,
 				14B950A52C46938900E8A388 /* view */,
@@ -130,6 +177,7 @@
 				14B688942C63B9B900EDE689 /* LoadingBarView.swift */,
 				142C51B92C641EDF00492458 /* LogTableView.swift */,
 				140AFF672C6663BA00A4A2C8 /* SettingsView.swift */,
+				1436956D2C8750E8005CC2B3 /* IPAddressesView.swift */,
 			);
 			path = view;
 			sourceTree = "<group>";
@@ -204,7 +252,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1485A9662C87AC6D00FDC0AC /* Inter-Light.ttf in Resources */,
+				1485A9672C87AC6D00FDC0AC /* Inter-Black.ttf in Resources */,
+				1485A9612C87A67F00FDC0AC /* Inter-SemiBold.ttf in Resources */,
 				14B950952C45AC4600E8A388 /* Preview Assets.xcassets in Resources */,
+				1485A9632C87A69800FDC0AC /* Inter-Regular.ttf in Resources */,
 				14B950922C45AC4600E8A388 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -216,11 +268,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1477566D2C88A0F3003D7573 /* CustomAlertView.swift in Sources */,
 				142C51BA2C641EDF00492458 /* LogTableView.swift in Sources */,
 				14B950902C45AC4400E8A388 /* MainView.swift in Sources */,
+				1436956E2C8750E8005CC2B3 /* IPAddressesView.swift in Sources */,
 				1409322F2C52775B00D2C03F /* MeasurementModel.swift in Sources */,
 				14B9508E2C45AC4400E8A388 /* PingStatsApp.swift in Sources */,
 				14FECBBC2C4FAF59009CBF07 /* CircularGaugeItem.swift in Sources */,
+				1436956C2C87454E005CC2B3 /* SettingsViewModel.swift in Sources */,
 				14B950A42C45C57E00E8A388 /* Network.swift in Sources */,
 				142C51BC2C64240100492458 /* LogTextModel.swift in Sources */,
 				14B9509D2C45B62500E8A388 /* PingResponseModel.swift in Sources */,
@@ -229,6 +284,7 @@
 				14B688952C63B9B900EDE689 /* LoadingBarView.swift in Sources */,
 				140932322C528BEA00D2C03F /* MainViewModel.swift in Sources */,
 				140AFF682C6663BA00A4A2C8 /* SettingsView.swift in Sources */,
+				1436956A2C8735C8005CC2B3 /* Theme.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

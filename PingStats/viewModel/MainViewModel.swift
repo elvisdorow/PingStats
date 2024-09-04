@@ -26,7 +26,7 @@ class MainViewModel: ObservableObject {
     var timerCancellable: Cancellable? = nil
 
     @Published var chartType: MySegmentedControl.SelectedControl = .barChart
-    
+
     var logs: [LogTextModel] = []
 
     var hostName: String?
@@ -43,7 +43,8 @@ class MainViewModel: ObservableObject {
     }
     
     
-    func start() {
+    func start(_ settingsViewModel: SettingsViewModel) {
+        
         stat.responses.removeAll()
         errors.removeAll()
         
@@ -67,7 +68,9 @@ class MainViewModel: ObservableObject {
         var config: PingConfiguration = PingConfiguration(interval: 1.0, with: 5)
         config.payloadSize = 64
         config.timeToLive = 55
-                
+        
+        host = settingsViewModel.selectedIpAddress
+        
         if self.isValidIPAddress(host) {
             self.hostIP = host
             
