@@ -11,12 +11,12 @@
 		1409322F2C52775B00D2C03F /* MeasurementModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1409322E2C52775B00D2C03F /* MeasurementModel.swift */; };
 		140932322C528BEA00D2C03F /* MainViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 140932312C528BEA00D2C03F /* MainViewModel.swift */; };
 		140AFF682C6663BA00A4A2C8 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 140AFF672C6663BA00A4A2C8 /* SettingsView.swift */; };
-		141D46792C5425BA0087C124 /* SwiftUICharts in Frameworks */ = {isa = PBXBuildFile; productRef = 141D46782C5425BA0087C124 /* SwiftUICharts */; };
 		142C51BA2C641EDF00492458 /* LogTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 142C51B92C641EDF00492458 /* LogTableView.swift */; };
 		142C51BC2C64240100492458 /* LogTextModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 142C51BB2C64240100492458 /* LogTextModel.swift */; };
 		1436956A2C8735C8005CC2B3 /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 143695692C8735C8005CC2B3 /* Theme.swift */; };
 		1436956C2C87454E005CC2B3 /* SettingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1436956B2C87454E005CC2B3 /* SettingsViewModel.swift */; };
 		1436956E2C8750E8005CC2B3 /* IPAddressesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1436956D2C8750E8005CC2B3 /* IPAddressesView.swift */; };
+		144D60B42C90966A009B7D9C /* SwiftyPing in Frameworks */ = {isa = PBXBuildFile; productRef = 144D60B32C90966A009B7D9C /* SwiftyPing */; };
 		1477566D2C88A0F3003D7573 /* CustomAlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1477566C2C88A0F3003D7573 /* CustomAlertView.swift */; };
 		1485A9612C87A67F00FDC0AC /* Inter-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 1485A9602C87A67F00FDC0AC /* Inter-SemiBold.ttf */; };
 		1485A9632C87A69800FDC0AC /* Inter-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 1485A9622C87A69800FDC0AC /* Inter-Regular.ttf */; };
@@ -28,10 +28,7 @@
 		14B950922C45AC4600E8A388 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 14B950912C45AC4600E8A388 /* Assets.xcassets */; };
 		14B950952C45AC4600E8A388 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 14B950942C45AC4600E8A388 /* Preview Assets.xcassets */; };
 		14B9509D2C45B62500E8A388 /* PingResponseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14B9509C2C45B62500E8A388 /* PingResponseModel.swift */; };
-		14B950A02C45C18200E8A388 /* SwiftyPing in Frameworks */ = {isa = PBXBuildFile; productRef = 14B9509F2C45C18200E8A388 /* SwiftyPing */; };
 		14B950A42C45C57E00E8A388 /* Network.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14B950A32C45C57E00E8A388 /* Network.swift */; };
-		14B950A82C47025C00E8A388 /* GaugeKit in Frameworks */ = {isa = PBXBuildFile; productRef = 14B950A72C47025C00E8A388 /* GaugeKit */; };
-		14FECBB62C4AF500009CBF07 /* SegmentedPicker in Frameworks */ = {isa = PBXBuildFile; productRef = 14FECBB52C4AF500009CBF07 /* SegmentedPicker */; };
 		14FECBB82C4AFBC6009CBF07 /* MySegmentedControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14FECBB72C4AFBC6009CBF07 /* MySegmentedControl.swift */; };
 		14FECBBC2C4FAF59009CBF07 /* CircularGaugeItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14FECBBB2C4FAF59009CBF07 /* CircularGaugeItem.swift */; };
 		14FECBC02C5187F8009CBF07 /* PlayButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14FECBBF2C5187F8009CBF07 /* PlayButtonView.swift */; };
@@ -71,10 +68,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				14B950A02C45C18200E8A388 /* SwiftyPing in Frameworks */,
-				141D46792C5425BA0087C124 /* SwiftUICharts in Frameworks */,
-				14B950A82C47025C00E8A388 /* GaugeKit in Frameworks */,
-				14FECBB62C4AF500009CBF07 /* SegmentedPicker in Frameworks */,
+				144D60B42C90966A009B7D9C /* SwiftyPing in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -202,10 +196,7 @@
 			);
 			name = PingStats;
 			packageProductDependencies = (
-				14B9509F2C45C18200E8A388 /* SwiftyPing */,
-				14B950A72C47025C00E8A388 /* GaugeKit */,
-				14FECBB52C4AF500009CBF07 /* SegmentedPicker */,
-				141D46782C5425BA0087C124 /* SwiftUICharts */,
+				144D60B32C90966A009B7D9C /* SwiftyPing */,
 			);
 			productName = PingStats;
 			productReference = 14B9508A2C45AC4400E8A388 /* PingStats.app */;
@@ -236,10 +227,7 @@
 			);
 			mainGroup = 14B950812C45AC4400E8A388;
 			packageReferences = (
-				14B9509E2C45C18200E8A388 /* XCRemoteSwiftPackageReference "SwiftyPing" */,
-				14B950A62C47025C00E8A388 /* XCRemoteSwiftPackageReference "gaugekit" */,
-				14FECBB42C4AF500009CBF07 /* XCRemoteSwiftPackageReference "SwiftySegmentedPicker" */,
-				141D46772C5425B90087C124 /* XCRemoteSwiftPackageReference "ChartView" */,
+				144D60B22C90966A009B7D9C /* XCRemoteSwiftPackageReference "SwiftyPing" */,
 			);
 			productRefGroup = 14B9508B2C45AC4400E8A388 /* Products */;
 			projectDirPath = "";
@@ -506,60 +494,21 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		141D46772C5425B90087C124 /* XCRemoteSwiftPackageReference "ChartView" */ = {
+		144D60B22C90966A009B7D9C /* XCRemoteSwiftPackageReference "SwiftyPing" */ = {
 			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/AppPear/ChartView";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 1.5.5;
-			};
-		};
-		14B9509E2C45C18200E8A388 /* XCRemoteSwiftPackageReference "SwiftyPing" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/samiyr/SwiftyPing.git";
+			repositoryURL = "https://github.com/samiyr/SwiftyPing";
 			requirement = {
 				branch = master;
 				kind = branch;
 			};
 		};
-		14B950A62C47025C00E8A388 /* XCRemoteSwiftPackageReference "gaugekit" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/antonmartinsson/gaugekit.git";
-			requirement = {
-				branch = main;
-				kind = branch;
-			};
-		};
-		14FECBB42C4AF500009CBF07 /* XCRemoteSwiftPackageReference "SwiftySegmentedPicker" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/KazaiMazai/SwiftySegmentedPicker.git";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 0.0.4;
-			};
-		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		141D46782C5425BA0087C124 /* SwiftUICharts */ = {
+		144D60B32C90966A009B7D9C /* SwiftyPing */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 141D46772C5425B90087C124 /* XCRemoteSwiftPackageReference "ChartView" */;
-			productName = SwiftUICharts;
-		};
-		14B9509F2C45C18200E8A388 /* SwiftyPing */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 14B9509E2C45C18200E8A388 /* XCRemoteSwiftPackageReference "SwiftyPing" */;
+			package = 144D60B22C90966A009B7D9C /* XCRemoteSwiftPackageReference "SwiftyPing" */;
 			productName = SwiftyPing;
-		};
-		14B950A72C47025C00E8A388 /* GaugeKit */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 14B950A62C47025C00E8A388 /* XCRemoteSwiftPackageReference "gaugekit" */;
-			productName = GaugeKit;
-		};
-		14FECBB52C4AF500009CBF07 /* SegmentedPicker */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 14FECBB42C4AF500009CBF07 /* XCRemoteSwiftPackageReference "SwiftySegmentedPicker" */;
-			productName = SegmentedPicker;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
