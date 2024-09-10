@@ -42,8 +42,6 @@ struct IPAddressesView: View {
                     }
                 }
             }
-            .navigationTitle("Hosts")
-            .navigationBarTitleDisplayMode(.automatic)
             .toolbar(content: {
                 ToolbarItem(placement: .topBarTrailing) {
                     Button(action: {

@@ -18,10 +18,6 @@ struct MainView: View {
     @StateObject var viewModel: MainViewModel = MainViewModel()
     @StateObject var settingsViewModel = SettingsViewModel()
 
-    init() {
-        viewModel.host = settingsViewModel.selectedIpAddress
-    }
-    
     var body: some View {
         NavigationStack {
             
@@ -66,12 +62,6 @@ struct MainView: View {
                         }
                     }
                     .padding()
-                    .padding(.bottom, 4)
-                    .background(Color(.secondarySystemBackground))
-                    .cornerRadius(14)
-                    .frame(minHeight: 100)
-                    .frame(maxHeight: UIScreen.main.bounds.height * 0.12)
-                    .padding(.horizontal)
 
                     Spacer()
                     
@@ -136,6 +126,7 @@ struct MainView: View {
             }
             .popover(isPresented: $showSettingsView) {
                 SettingsView()
+                    .environmentObject(settingsViewModel)  
                     .presentationCompactAdaptation(.fullScreenCover)
             }
             
@@ -470,6 +461,8 @@ struct ActionControlView: View {
     @EnvironmentObject var viewModel: MainViewModel
     @EnvironmentObject var settingsViewModel: SettingsViewModel
     
+    @State var showHostList: Bool = false
+    
     var body: some View {
         HStack(spacing: 30) {
             
@@ -477,26 +470,51 @@ struct ActionControlView: View {
                 Text("IP Address or Host Name:")
                     .font(.caption)
                 
-                HStack {
-                    Image(systemName: "pc").opacity(0.6)
-                    TextField(text: $settingsViewModel.selectedIpAddress, label:  {
-                        Text("0.0.0.0")
-                    })
-                    .foregroundColor(viewModel.isAnalysisRunning ? .primary.opacity(0.3) : .primary)
-                    .disabled(viewModel.isAnalysisRunning)
+                HStack(alignment: .firstTextBaseline) {
+                    Image(systemName: "server.rack").opacity(0.6)
+                    Text("\(settingsViewModel.selectedIpAddress)")
+                        .foregroundColor(viewModel.isAnalysisRunning ? .primary.opacity(0.3) : .primary)
+                        . multilineTextAlignment(.leading)
                 }
                 .padding(.leading, 8)
                 .frame(height: 40)
-                .frame(maxWidth: /*@START_MENU_TOKEN@*/.infinity/*@END_MENU_TOKEN@*/)
+                .frame(maxWidth: /*@START_MENU_TOKEN@*/.infinity/*@END_MENU_TOKEN@*/, alignment: .leading)
                 .background(viewModel.isAnalysisRunning ? Color(.systemGray4).opacity(0.4): Color(.systemGray4))
                 .cornerRadius(5.0)
-                .overlay {
+                .onTapGesture {
+                    if !viewModel.isAnalysisRunning {
+                        showHostList.toggle()
+                    }
+                }
+                .sheet(isPresented: $showHostList) {
+                    NavigationView {
+                        IPAddressesView()
+                            .environmentObject(settingsViewModel)
+                            .navigationTitle("Hosts")
+                            .navigationBarTitleDisplayMode(.inline)
+                            .toolbar(content: {
+                                ToolbarItem(placement: .cancellationAction) {
+                                    Button {
+                                        showHostList = false
+                                    } label: {
+                                        Text("Done")
+                                    }
+                                }
+                            })
+                            .onAppear {
+                                settingsViewModel.objectWillChange.send()
+                            }
+                    }
                 }
             }
             HStack {
                 PlayButtonView(running: $viewModel.isAnalysisRunning)
                     .offset(y: 8)
                     .onTapGesture {
+                        let generator = UIImpactFeedbackGenerator(style: .light)
+                        generator.prepare()
+                        generator.impactOccurred()
+                        
                         if viewModel.isAnalysisRunning {
                             viewModel.stop()
                         } else {

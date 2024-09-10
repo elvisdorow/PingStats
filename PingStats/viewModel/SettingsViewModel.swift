@@ -23,6 +23,10 @@ class SettingsViewModel: ObservableObject {
 
     // Store the array as Data
     @AppStorage("ipAddressesData") private var ipAddressesData: Data = Data()
+            
+    @Published var showAddForm: Bool = false
+    @Published var addFormError: String = ""
+    @Published var newIpAddress: String = ""
 
     var ipAddresses: [String] {
         get {
