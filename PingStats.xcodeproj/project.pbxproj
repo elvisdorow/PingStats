@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		14053FD42C8A625200C24018 /* NetworkMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14053FD32C8A625200C24018 /* NetworkMonitor.swift */; };
 		1409322F2C52775B00D2C03F /* MeasurementModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1409322E2C52775B00D2C03F /* MeasurementModel.swift */; };
 		140932322C528BEA00D2C03F /* MainViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 140932312C528BEA00D2C03F /* MainViewModel.swift */; };
 		140AFF682C6663BA00A4A2C8 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 140AFF672C6663BA00A4A2C8 /* SettingsView.swift */; };
@@ -37,6 +38,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		14053FD32C8A625200C24018 /* NetworkMonitor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkMonitor.swift; sourceTree = "<group>"; };
 		1409322E2C52775B00D2C03F /* MeasurementModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeasurementModel.swift; sourceTree = "<group>"; };
 		140932312C528BEA00D2C03F /* MainViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewModel.swift; sourceTree = "<group>"; };
 		140AFF672C6663BA00A4A2C8 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
@@ -92,6 +94,7 @@
 			isa = PBXGroup;
 			children = (
 				143695692C8735C8005CC2B3 /* Theme.swift */,
+				14053FD32C8A625200C24018 /* NetworkMonitor.swift */,
 			);
 			path = helper;
 			sourceTree = "<group>";
@@ -275,6 +278,7 @@
 				1409322F2C52775B00D2C03F /* MeasurementModel.swift in Sources */,
 				14B9508E2C45AC4400E8A388 /* PingStatsApp.swift in Sources */,
 				14FECBBC2C4FAF59009CBF07 /* CircularGaugeItem.swift in Sources */,
+				14053FD42C8A625200C24018 /* NetworkMonitor.swift in Sources */,
 				1436956C2C87454E005CC2B3 /* SettingsViewModel.swift in Sources */,
 				14B950A42C45C57E00E8A388 /* Network.swift in Sources */,
 				142C51BC2C64240100492458 /* LogTextModel.swift in Sources */,

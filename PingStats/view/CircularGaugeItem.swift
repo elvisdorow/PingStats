@@ -63,13 +63,13 @@ struct CircularGaugeItem: View {
 
 struct SpeedometerGaugeStyle: GaugeStyle {
 
-    let lineWith = UIScreen.main.bounds.height * 0.010
+    let lineWith = UIScreen.main.bounds.height * 0.012
     
     func makeBody(configuration: Configuration) -> some View {
         VStack(spacing:0) {
             ZStack {
                 Circle()
-                    .trim(from: 0, to: 0.75 * configuration.value)
+                    .trim(from: 0.09, to: 0.66 * configuration.value)
                     .stroke(
                         LinearGradient(
                             gradient: Gradient(colors: [.accent, .accent.opacity(0.8)]),
@@ -79,9 +79,8 @@ struct SpeedometerGaugeStyle: GaugeStyle {
                 
                     .rotationEffect(.degrees(135))
                     .animation(.easeIn)
-
                 Circle()
-                    .trim(from: 0, to: 0.75)
+                    .trim(from: 0.09, to: 0.66)
                     .stroke(.gray.gradient,
                             style: StrokeStyle(lineWidth: lineWith, lineCap: .round, lineJoin: .round))
 
@@ -109,7 +108,7 @@ struct SpeedometerGaugeStyle: GaugeStyle {
 
 struct CircularGaugePreview: PreviewProvider {
     @State static var status: MeasurementModel.Status = .excelent
-    @State static var value = 0.30
+    @State static var value = 0.97
     
     static var previews: some View {
         CircularGaugeItem(type: "Gaming", icon: "gamecontroller.fill", value: $value, status: $status)

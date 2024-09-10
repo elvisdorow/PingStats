@@ -14,14 +14,17 @@ struct SettingsView: View {
     @State private var pingInterval: Double = 0.5
     @State private var pingSample: Double = 60
     
-    @StateObject var settingsViewModel: SettingsViewModel = SettingsViewModel()
-    
+    @EnvironmentObject var settingsViewModel: SettingsViewModel
+
     var body: some View {
         NavigationView {
             Form{                
                 Section {
                     NavigationLink(
-                        destination: IPAddressesView().environmentObject(settingsViewModel),
+                        destination: IPAddressesView()
+                            .environmentObject(settingsViewModel)
+                            .navigationTitle("Hosts")
+                            .navigationBarTitleDisplayMode(.automatic),
                         label: {
                             Text("\(settingsViewModel.selectedIpAddress)")
                         })
@@ -90,6 +93,7 @@ struct SettingsView: View {
             .toolbar {
                 ToolbarItem {
                     Button(action: {
+                        settingsViewModel.objectWillChange.send()
                         presentationMode.wrappedValue.dismiss()
                     }, label: {
                         Text("OK")
