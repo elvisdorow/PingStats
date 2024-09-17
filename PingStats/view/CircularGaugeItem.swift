@@ -69,29 +69,29 @@ struct SpeedometerGaugeStyle: GaugeStyle {
         VStack(spacing:0) {
             ZStack {
                 Circle()
-                    .trim(from: 0.09, to: 0.66 * configuration.value)
+                    .trim(from: 0.038, to: 0.72 * configuration.value)
                     .stroke(
                         LinearGradient(
-                            gradient: Gradient(colors: [.accent, .accent.opacity(0.8)]),
+                            gradient: Gradient(colors: [.accent, .accent.opacity(1.0)]),
                             startPoint: .topLeading,
                             endPoint: .bottomTrailing),
                         style: StrokeStyle(lineWidth: lineWith, lineCap: .round, lineJoin: .round))
                 
-                    .rotationEffect(.degrees(135))
+                    .rotationEffect(.degrees(134))
                     .animation(.easeIn)
                 Circle()
-                    .trim(from: 0.09, to: 0.66)
+                    .trim(from: 0.038, to: 0.72)
                     .stroke(.gray.gradient,
                             style: StrokeStyle(lineWidth: lineWith, lineCap: .round, lineJoin: .round))
 
 
-                    .rotationEffect(.degrees(135))
+                    .rotationEffect(.degrees(134))
                     .opacity(0.3)
 
                 
                 VStack(spacing: 5) {
                     configuration.currentValueLabel
-                        .font(.system(size: 20, weight: .bold, design: .rounded))
+                        .font(.system(size: 23, weight: .bold, design: .rounded))
                         .foregroundColor(.primary.opacity(0.8))
                     configuration.label.font(.caption2)
                     

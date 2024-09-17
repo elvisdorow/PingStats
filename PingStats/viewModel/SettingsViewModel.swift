@@ -8,7 +8,6 @@
 import Foundation
 import SwiftUI
 
-
 enum IpValidationError: Error {
     case invalid
     case emptyValue
@@ -16,8 +15,9 @@ enum IpValidationError: Error {
 
 class SettingsViewModel: ObservableObject {
     @AppStorage("theme") var theme: Theme = .system
-    @AppStorage("pingInterval") var pingInterval: Double = 0.5
-    @AppStorage("pingSample") var pingSample: Double = 60
+    @AppStorage("pingInterval") var pingInterval: Double = 1.0
+    @AppStorage("pingSample") var pingSample: Double = 60.0
+    @AppStorage("maxPingCount") var maxPingCount: Double = 120.0
 
     @AppStorage("selectedIpAddress") var selectedIpAddress: String = "1.1.1.1"
 
@@ -27,7 +27,7 @@ class SettingsViewModel: ObservableObject {
     @Published var showAddForm: Bool = false
     @Published var addFormError: String = ""
     @Published var newIpAddress: String = ""
-
+    
     var ipAddresses: [String] {
         get {
             // Deserialize the Data back to an array of Strings

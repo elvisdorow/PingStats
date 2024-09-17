@@ -11,9 +11,6 @@ struct SettingsView: View {
     
     @Environment(\.presentationMode) var presentationMode
     
-    @State private var pingInterval: Double = 0.5
-    @State private var pingSample: Double = 60
-    
     @EnvironmentObject var settingsViewModel: SettingsViewModel
 
     var body: some View {
@@ -35,8 +32,8 @@ struct SettingsView: View {
 
                 Section {
                     HStack {
-                        Slider(value: $pingInterval, in: 0...1)
-                        Text("\(String(format: "%0.2f", pingInterval)) sec ")
+                        Slider(value: $settingsViewModel.pingInterval, in: 0.5...4, step: 0.5)
+                        Text("\(String(format: "%0.2f", settingsViewModel.pingInterval)) sec ")
                             .frame(width: 80)
                     }
                 } header: {
@@ -47,8 +44,8 @@ struct SettingsView: View {
 
                 Section {
                     HStack(spacing: 10) {
-                        Slider(value: $pingSample, in: 30...200, step: 10.0)
-                        Text("\(String(format: "%0.0f", pingSample))")
+                        Slider(value: $settingsViewModel.pingSample, in: 30...200, step: 10.0)
+                        Text("\(String(format: "%0.0f", settingsViewModel.pingSample))")
                             .frame(width: 50)
                     }
                 } header: {
@@ -59,8 +56,8 @@ struct SettingsView: View {
 
                 Section {
                     HStack(spacing: 10) {
-                        Slider(value: $pingSample, in: 30...200, step: 10.0)
-                        Text("\(String(format: "%0.0f", pingSample))")
+                        Slider(value: $settingsViewModel.maxPingCount, in: 30...200, step: 10)
+                        Text("\(String(format: "%0.0f", settingsViewModel.maxPingCount))")
                             .frame(width: 50)
                     }
                 } header: {
@@ -109,6 +106,6 @@ struct SettingsView: View {
 }
 
 #Preview {
-    SettingsView()
+    SettingsView().environmentObject(SettingsViewModel())
 }
 

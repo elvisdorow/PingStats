@@ -21,7 +21,7 @@ struct MeasurementModel: Identifiable {
     var avaragePing: Double = -0.1
     var packageLoss: Double = -0.1
     var jitter: Double = -0.1
-    var elapsedTime: DateInterval?
+    var elapsedTime: TimeInterval?
     
     var generalNetQuality: Double = 0.0
     

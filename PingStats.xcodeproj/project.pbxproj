@@ -17,11 +17,14 @@
 		1436956C2C87454E005CC2B3 /* SettingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1436956B2C87454E005CC2B3 /* SettingsViewModel.swift */; };
 		1436956E2C8750E8005CC2B3 /* IPAddressesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1436956D2C8750E8005CC2B3 /* IPAddressesView.swift */; };
 		144D60B42C90966A009B7D9C /* SwiftyPing in Frameworks */ = {isa = PBXBuildFile; productRef = 144D60B32C90966A009B7D9C /* SwiftyPing */; };
+		144D60B62C909B3A009B7D9C /* GaugeItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 144D60B52C909B3A009B7D9C /* GaugeItem.swift */; };
 		1477566D2C88A0F3003D7573 /* CustomAlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1477566C2C88A0F3003D7573 /* CustomAlertView.swift */; };
 		1485A9612C87A67F00FDC0AC /* Inter-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 1485A9602C87A67F00FDC0AC /* Inter-SemiBold.ttf */; };
 		1485A9632C87A69800FDC0AC /* Inter-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 1485A9622C87A69800FDC0AC /* Inter-Regular.ttf */; };
 		1485A9662C87AC6D00FDC0AC /* Inter-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 1485A9642C87AC6D00FDC0AC /* Inter-Light.ttf */; };
 		1485A9672C87AC6D00FDC0AC /* Inter-Black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 1485A9652C87AC6D00FDC0AC /* Inter-Black.ttf */; };
+		14AAA2502C92491A00DF83F0 /* ResultListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14AAA24F2C92491A00DF83F0 /* ResultListView.swift */; };
+		14AAA2522C924B3300DF83F0 /* ResultViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14AAA2512C924B3300DF83F0 /* ResultViewModel.swift */; };
 		14B688952C63B9B900EDE689 /* LoadingBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14B688942C63B9B900EDE689 /* LoadingBarView.swift */; };
 		14B9508E2C45AC4400E8A388 /* PingStatsApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14B9508D2C45AC4400E8A388 /* PingStatsApp.swift */; };
 		14B950902C45AC4400E8A388 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14B9508F2C45AC4400E8A388 /* MainView.swift */; };
@@ -29,10 +32,28 @@
 		14B950952C45AC4600E8A388 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 14B950942C45AC4600E8A388 /* Preview Assets.xcassets */; };
 		14B9509D2C45B62500E8A388 /* PingResponseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14B9509C2C45B62500E8A388 /* PingResponseModel.swift */; };
 		14B950A42C45C57E00E8A388 /* Network.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14B950A32C45C57E00E8A388 /* Network.swift */; };
+		14BBA22D2C98B49400438D2D /* Formatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14BBA22C2C98B49400438D2D /* Formatter.swift */; };
+		14E283482C9216AE0086E36F /* MeasurementResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14E283472C9216AE0086E36F /* MeasurementResult.swift */; };
+		14E929E72C9239BD0088EA79 /* Realm in Frameworks */ = {isa = PBXBuildFile; productRef = 14E929E62C9239BD0088EA79 /* Realm */; };
+		14E929E92C9239BD0088EA79 /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 14E929E82C9239BD0088EA79 /* RealmSwift */; };
+		14F54FF32C986FEA005260E5 /* ResultDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14F54FF22C986FEA005260E5 /* ResultDetailView.swift */; };
 		14FECBB82C4AFBC6009CBF07 /* MySegmentedControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14FECBB72C4AFBC6009CBF07 /* MySegmentedControl.swift */; };
 		14FECBBC2C4FAF59009CBF07 /* CircularGaugeItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14FECBBB2C4FAF59009CBF07 /* CircularGaugeItem.swift */; };
 		14FECBC02C5187F8009CBF07 /* PlayButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14FECBBF2C5187F8009CBF07 /* PlayButtonView.swift */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		14E929D22C9233800088EA79 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 11;
+			files = (
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		14053FD32C8A625200C24018 /* NetworkMonitor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkMonitor.swift; sourceTree = "<group>"; };
@@ -44,12 +65,15 @@
 		143695692C8735C8005CC2B3 /* Theme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Theme.swift; sourceTree = "<group>"; };
 		1436956B2C87454E005CC2B3 /* SettingsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewModel.swift; sourceTree = "<group>"; };
 		1436956D2C8750E8005CC2B3 /* IPAddressesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IPAddressesView.swift; sourceTree = "<group>"; };
+		144D60B52C909B3A009B7D9C /* GaugeItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GaugeItem.swift; sourceTree = "<group>"; };
 		1477566C2C88A0F3003D7573 /* CustomAlertView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomAlertView.swift; sourceTree = "<group>"; };
 		1485A9602C87A67F00FDC0AC /* Inter-SemiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Inter-SemiBold.ttf"; sourceTree = "<group>"; };
 		1485A9622C87A69800FDC0AC /* Inter-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Inter-Regular.ttf"; sourceTree = "<group>"; };
 		1485A9642C87AC6D00FDC0AC /* Inter-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Inter-Light.ttf"; sourceTree = "<group>"; };
 		1485A9652C87AC6D00FDC0AC /* Inter-Black.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Inter-Black.ttf"; sourceTree = "<group>"; };
 		14862A5C2C62CFEE00394101 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		14AAA24F2C92491A00DF83F0 /* ResultListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultListView.swift; sourceTree = "<group>"; };
+		14AAA2512C924B3300DF83F0 /* ResultViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultViewModel.swift; sourceTree = "<group>"; };
 		14B688942C63B9B900EDE689 /* LoadingBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingBarView.swift; sourceTree = "<group>"; };
 		14B9508A2C45AC4400E8A388 /* PingStats.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PingStats.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		14B9508D2C45AC4400E8A388 /* PingStatsApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PingStatsApp.swift; sourceTree = "<group>"; };
@@ -58,6 +82,10 @@
 		14B950942C45AC4600E8A388 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		14B9509C2C45B62500E8A388 /* PingResponseModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PingResponseModel.swift; sourceTree = "<group>"; };
 		14B950A32C45C57E00E8A388 /* Network.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Network.swift; sourceTree = "<group>"; };
+		14BBA22C2C98B49400438D2D /* Formatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Formatter.swift; sourceTree = "<group>"; };
+		14E283472C9216AE0086E36F /* MeasurementResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeasurementResult.swift; sourceTree = "<group>"; };
+		14E929DA2C9236860088EA79 /* PingStats.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; path = PingStats.xcodeproj; sourceTree = "<group>"; };
+		14F54FF22C986FEA005260E5 /* ResultDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultDetailView.swift; sourceTree = "<group>"; };
 		14FECBB72C4AFBC6009CBF07 /* MySegmentedControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MySegmentedControl.swift; sourceTree = "<group>"; };
 		14FECBBB2C4FAF59009CBF07 /* CircularGaugeItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircularGaugeItem.swift; sourceTree = "<group>"; };
 		14FECBBF2C5187F8009CBF07 /* PlayButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayButtonView.swift; sourceTree = "<group>"; };
@@ -68,6 +96,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				14E929E92C9239BD0088EA79 /* RealmSwift in Frameworks */,
+				14E929E72C9239BD0088EA79 /* Realm in Frameworks */,
 				144D60B42C90966A009B7D9C /* SwiftyPing in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -80,6 +110,7 @@
 			children = (
 				140932312C528BEA00D2C03F /* MainViewModel.swift */,
 				1436956B2C87454E005CC2B3 /* SettingsViewModel.swift */,
+				14AAA2512C924B3300DF83F0 /* ResultViewModel.swift */,
 			);
 			path = viewModel;
 			sourceTree = "<group>";
@@ -97,6 +128,7 @@
 			isa = PBXGroup;
 			children = (
 				1477566C2C88A0F3003D7573 /* CustomAlertView.swift */,
+				14BBA22C2C98B49400438D2D /* Formatter.swift */,
 			);
 			path = utils;
 			sourceTree = "<group>";
@@ -115,8 +147,10 @@
 		14B950812C45AC4400E8A388 = {
 			isa = PBXGroup;
 			children = (
+				14E929DA2C9236860088EA79 /* PingStats.xcodeproj */,
 				14B9508C2C45AC4400E8A388 /* PingStats */,
 				14B9508B2C45AC4400E8A388 /* Products */,
+				14E929BE2C9225750088EA79 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -160,6 +194,7 @@
 				14B9509C2C45B62500E8A388 /* PingResponseModel.swift */,
 				1409322E2C52775B00D2C03F /* MeasurementModel.swift */,
 				142C51BB2C64240100492458 /* LogTextModel.swift */,
+				14E283472C9216AE0086E36F /* MeasurementResult.swift */,
 			);
 			path = model;
 			sourceTree = "<group>";
@@ -167,16 +202,39 @@
 		14B950A52C46938900E8A388 /* view */ = {
 			isa = PBXGroup;
 			children = (
+				14E283492C921E250086E36F /* settings */,
 				14FECBBB2C4FAF59009CBF07 /* CircularGaugeItem.swift */,
 				14B9508F2C45AC4400E8A388 /* MainView.swift */,
 				14FECBB72C4AFBC6009CBF07 /* MySegmentedControl.swift */,
 				14FECBBF2C5187F8009CBF07 /* PlayButtonView.swift */,
 				14B688942C63B9B900EDE689 /* LoadingBarView.swift */,
 				142C51B92C641EDF00492458 /* LogTableView.swift */,
-				140AFF672C6663BA00A4A2C8 /* SettingsView.swift */,
-				1436956D2C8750E8005CC2B3 /* IPAddressesView.swift */,
+				144D60B52C909B3A009B7D9C /* GaugeItem.swift */,
 			);
 			path = view;
+			sourceTree = "<group>";
+		};
+		14E283492C921E250086E36F /* settings */ = {
+			isa = PBXGroup;
+			children = (
+				140AFF672C6663BA00A4A2C8 /* SettingsView.swift */,
+				1436956D2C8750E8005CC2B3 /* IPAddressesView.swift */,
+				14AAA24F2C92491A00DF83F0 /* ResultListView.swift */,
+				14F54FF22C986FEA005260E5 /* ResultDetailView.swift */,
+			);
+			path = settings;
+			sourceTree = "<group>";
+		};
+		14E929BE2C9225750088EA79 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		14E929DB2C9236860088EA79 /* Products */ = {
+			isa = PBXGroup;
+			name = Products;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -189,6 +247,7 @@
 				14B950862C45AC4400E8A388 /* Sources */,
 				14B950872C45AC4400E8A388 /* Frameworks */,
 				14B950882C45AC4400E8A388 /* Resources */,
+				14E929D22C9233800088EA79 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -197,6 +256,8 @@
 			name = PingStats;
 			packageProductDependencies = (
 				144D60B32C90966A009B7D9C /* SwiftyPing */,
+				14E929E62C9239BD0088EA79 /* Realm */,
+				14E929E82C9239BD0088EA79 /* RealmSwift */,
 			);
 			productName = PingStats;
 			productReference = 14B9508A2C45AC4400E8A388 /* PingStats.app */;
@@ -228,9 +289,16 @@
 			mainGroup = 14B950812C45AC4400E8A388;
 			packageReferences = (
 				144D60B22C90966A009B7D9C /* XCRemoteSwiftPackageReference "SwiftyPing" */,
+				14E929E52C9239BD0088EA79 /* XCRemoteSwiftPackageReference "realm-swift" */,
 			);
 			productRefGroup = 14B9508B2C45AC4400E8A388 /* Products */;
 			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = 14E929DB2C9236860088EA79 /* Products */;
+					ProjectRef = 14E929DA2C9236860088EA79 /* PingStats.xcodeproj */;
+				},
+			);
 			projectRoot = "";
 			targets = (
 				14B950892C45AC4400E8A388 /* PingStats */,
@@ -262,16 +330,22 @@
 				1477566D2C88A0F3003D7573 /* CustomAlertView.swift in Sources */,
 				142C51BA2C641EDF00492458 /* LogTableView.swift in Sources */,
 				14B950902C45AC4400E8A388 /* MainView.swift in Sources */,
+				14AAA2522C924B3300DF83F0 /* ResultViewModel.swift in Sources */,
+				14E283482C9216AE0086E36F /* MeasurementResult.swift in Sources */,
 				1436956E2C8750E8005CC2B3 /* IPAddressesView.swift in Sources */,
+				14BBA22D2C98B49400438D2D /* Formatter.swift in Sources */,
 				1409322F2C52775B00D2C03F /* MeasurementModel.swift in Sources */,
 				14B9508E2C45AC4400E8A388 /* PingStatsApp.swift in Sources */,
+				14AAA2502C92491A00DF83F0 /* ResultListView.swift in Sources */,
 				14FECBBC2C4FAF59009CBF07 /* CircularGaugeItem.swift in Sources */,
+				144D60B62C909B3A009B7D9C /* GaugeItem.swift in Sources */,
 				14053FD42C8A625200C24018 /* NetworkMonitor.swift in Sources */,
 				1436956C2C87454E005CC2B3 /* SettingsViewModel.swift in Sources */,
 				14B950A42C45C57E00E8A388 /* Network.swift in Sources */,
 				142C51BC2C64240100492458 /* LogTextModel.swift in Sources */,
 				14B9509D2C45B62500E8A388 /* PingResponseModel.swift in Sources */,
 				14FECBC02C5187F8009CBF07 /* PlayButtonView.swift in Sources */,
+				14F54FF32C986FEA005260E5 /* ResultDetailView.swift in Sources */,
 				14FECBB82C4AFBC6009CBF07 /* MySegmentedControl.swift in Sources */,
 				14B688952C63B9B900EDE689 /* LoadingBarView.swift in Sources */,
 				140932322C528BEA00D2C03F /* MainViewModel.swift in Sources */,
@@ -335,7 +409,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 17.5;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
@@ -343,6 +417,7 @@
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
 			};
 			name = Debug;
 		};
@@ -392,12 +467,13 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 17.5;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
 				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_VERSION = 5.0;
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
@@ -502,6 +578,14 @@
 				kind = branch;
 			};
 		};
+		14E929E52C9239BD0088EA79 /* XCRemoteSwiftPackageReference "realm-swift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/realm/realm-swift";
+			requirement = {
+				kind = exactVersion;
+				version = 10.43.1;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -509,6 +593,16 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 144D60B22C90966A009B7D9C /* XCRemoteSwiftPackageReference "SwiftyPing" */;
 			productName = SwiftyPing;
+		};
+		14E929E62C9239BD0088EA79 /* Realm */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 14E929E52C9239BD0088EA79 /* XCRemoteSwiftPackageReference "realm-swift" */;
+			productName = Realm;
+		};
+		14E929E82C9239BD0088EA79 /* RealmSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 14E929E52C9239BD0088EA79 /* XCRemoteSwiftPackageReference "realm-swift" */;
+			productName = RealmSwift;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

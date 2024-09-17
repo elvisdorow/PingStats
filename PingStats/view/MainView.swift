@@ -7,6 +7,7 @@
 
 import SwiftUI
 import Charts
+import RealmSwift
 
 struct MainView: View {
     
@@ -14,10 +15,11 @@ struct MainView: View {
     @State private var showLogs = false
     
     @State private var showSettingsView: Bool = false
+    @State private var showResultsView: Bool = false
     
-    @StateObject var viewModel: MainViewModel = MainViewModel()
+    @StateObject var viewModel = MainViewModel()
     @StateObject var settingsViewModel = SettingsViewModel()
-
+    
     var body: some View {
         NavigationStack {
             
@@ -57,7 +59,7 @@ struct MainView: View {
                         )
                         HStack {
                             ConnectionQuality()
-                            Text("\(formatNumbers(viewModel.stat.generalNetQuality, fraction: 0, unit: "%"))")
+                            Text("\(Formatter.number(viewModel.stat.generalNetQuality, fraction: 0, unit: "%"))")
                                 .frame(width: 55)
                         }
                     }
@@ -99,7 +101,9 @@ struct MainView: View {
                                     icon: { Image(systemName: "gear") }
                                 )
                             })
-                            Button(action: {},
+                            Button(action: {
+                                showResultsView.toggle()
+                            },
                             label: {
                                 Label(
                                     title: { Text("Results") },
@@ -127,6 +131,10 @@ struct MainView: View {
             .popover(isPresented: $showSettingsView) {
                 SettingsView()
                     .environmentObject(settingsViewModel)  
+                    .presentationCompactAdaptation(.fullScreenCover)
+            }
+            .popover(isPresented: $showResultsView) {
+                ResultListView()
                     .presentationCompactAdaptation(.fullScreenCover)
             }
             
@@ -170,7 +178,7 @@ struct ChartLogView: View {
                             )
                             .interpolationMethod(.catmullRom)
                             .foregroundStyle(LinearGradient(
-                                gradient: Gradient(colors: [.accent.opacity(0.3), .accent.opacity(0.05)]),
+                                gradient: Gradient(colors: [Color("DarkAccentColor").opacity(0.3), Color("DarkAccentColor").opacity(0.05)]),
                                 startPoint: .top,
                                 endPoint: .bottom
                             ))
@@ -181,7 +189,7 @@ struct ChartLogView: View {
                                 y: .value("ms", data.duration.scaled(by: 1000)),
                                 width: 4
                             )
-                            .foregroundStyle(Color.accent.gradient)
+                            .foregroundStyle(.accent)
                             .clipShape(RoundedBottomRectangle(cornerRadius: 3))
                             .cornerRadius(3)
                             
@@ -286,19 +294,19 @@ struct DetailedStatsView: View {
             HStack {
                 PingStatBlock(
                     statusTitle: "Best Ping",
-                    pingValue: "\(formatNumbers(viewModel.stat.bestPing, fraction: 0, unit: "ms"))")
+                    pingValue: "\(Formatter.number(viewModel.stat.bestPing, fraction: 0, unit: "ms"))")
 
                 Rectangle().fill(Color.gray.opacity(0.2)).frame(width: 1, height: lineHeight)
                 
                 PingStatAvgBlock(
                     statusTitle: "Avarage Ping",
-                    pingValue: "\(formatNumbers(viewModel.stat.avaragePing, fraction: 0, unit: "ms"))")
+                    pingValue: "\(Formatter.number(viewModel.stat.avaragePing, fraction: 0, unit: "ms"))")
 
                 Rectangle().fill(Color.gray.opacity(0.2)).frame(width: 1, height: lineHeight)
                 
                 PingStatBlock(
                     statusTitle: "Worst Ping",
-                    pingValue: "\(formatNumbers(viewModel.stat.worstPing, fraction: 0, unit: "ms"))"
+                    pingValue: "\(Formatter.number(viewModel.stat.worstPing, fraction: 0, unit: "ms"))"
                 )
 
             }
@@ -311,52 +319,28 @@ struct DetailedStatsView: View {
             HStack {
                 PingStatBlock(
                     statusTitle: "Package Loss",
-                    pingValue: "\(formatNumbers(viewModel.stat.packageLoss, fraction: 1, unit: "%"))")
+                    pingValue: "\(Formatter.number(viewModel.stat.packageLoss, fraction: 1, unit: "%"))")
                 
                 Rectangle().fill(Color.gray.opacity(0.1)).frame(width: 1, height: lineHeight)
                 
                 PingStatBlock(
                     statusTitle: "Jitter",
-                    pingValue: "\(formatNumbers(viewModel.stat.jitter, fraction: 0, unit: "ms"))")
+                    pingValue: "\(Formatter.number(viewModel.stat.jitter, fraction: 0, unit: "ms"))")
                 
                 Rectangle().fill(Color.gray.opacity(0.1)).frame(width: 1, height: lineHeight)
                 
                 PingStatBlock(
                     statusTitle: "Elapsed Time",
-                    pingValue: "\(formattedElapsedTime(viewModel.elapsedTime))"
+                    pingValue: "\(Formatter.elapsedTime(viewModel.elapsedTime))"
                 )
                 .onReceive(viewModel.timer) { _ in
                     viewModel.elapsedTime = Date().timeIntervalSince(viewModel.startTime)
                 }
-
-
             }
             .frame(minHeight: lineHeight, alignment: .center)
             .frame(maxHeight: 80)
         }
     }
-        
-    func formattedElapsedTime(_ timeInterval: TimeInterval) -> String {
-        let hours = Int(timeInterval) / 3600
-        let minutes = (Int(timeInterval) % 3600) / 60
-        let seconds = Int(timeInterval) % 60
-        return String(format: "%02d:%02d:%02d", hours, minutes, seconds)
-    }
-}
-
-func formatNumbers(_ number: Double, fraction: Int, unit: String, separator: String = ".") -> String {
-    if number >= 0 {
-        let formatter = NumberFormatter()
-        formatter.minimumFractionDigits = fraction
-        formatter.maximumFractionDigits = fraction
-        formatter.decimalSeparator = separator
-        let formattedNumber = formatter.string(from: NSNumber(value: number))
-        
-        if let strNumber = formattedNumber {
-            return "\(strNumber) \(unit)"
-        }
-    }
-    return "--"
 }
 
 

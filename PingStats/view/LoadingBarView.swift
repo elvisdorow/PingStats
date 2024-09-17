@@ -49,7 +49,7 @@ struct DotMark: View {
         let dotColor: Color = valueRepresented < currentValue ? onColor : offColor
  
         Rectangle()
-            .fill(dotColor.gradient)
+            .fill(dotColor)
             .cornerRadius(7)
     }
 }

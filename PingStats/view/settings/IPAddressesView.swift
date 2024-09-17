@@ -40,6 +40,10 @@ struct IPAddressesView: View {
                             settingsViewModel.ipAddresses.remove(at: idx)
                         }
                     }
+                    .onMove(perform: { indices, newOffset in
+                        settingsViewModel.ipAddresses.move(
+                            fromOffsets: indices, toOffset: newOffset)
+                    })
                 }
             }
             .toolbar(content: {
@@ -51,7 +55,10 @@ struct IPAddressesView: View {
                     }, label: {
                         Image(systemName: "plus")
                     })
+                }
                 
+                ToolbarItem(placement: .topBarTrailing) {
+                    EditButton()
                 }
             })
             

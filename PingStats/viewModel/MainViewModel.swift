@@ -7,14 +7,16 @@
 
 import Foundation
 import SwiftyPing
+import RealmSwift
 import Combine
+import SwiftUI
 
 class MainViewModel: ObservableObject {
-    
     @Published var stat: MeasurementModel = MeasurementModel()
     
     @Published var isAnalysisRunning = false
-    @Published var host = "1.1.1.1"
+
+    @AppStorage("selectedIpAddress") var host: String = "1.1.1.1"
     
     @Published var statusMessage = "No data"
 
@@ -54,16 +56,12 @@ class MainViewModel: ObservableObject {
         stat.hostAddress = host
         
         startTime = Date()
+        stat.dateStart = startTime
+        
         elapsedTime = 0
         
         timer = Timer.publish(every: 1, on: .main, in: .common)
         timerCancellable = timer.connect()
-        
-        /*
-        if logs.count > 0 {
-            logs.removeSubrange(1..<logs.count)
-        }
-         */
         
         var config: PingConfiguration = PingConfiguration(interval: 1.0, with: 5)
         config.payloadSize = 64
@@ -74,9 +72,13 @@ class MainViewModel: ObservableObject {
         if self.isValidIPAddress(host) {
             self.hostIP = host
             
+            stat.ipAddress = host
+            
             resolveHostname(for: host) { hostname in
                 if let hostname = hostname {
                     self.hostName = hostname
+                    
+                    self.stat.hostAddress = hostname
                 }
             }
         } else {
@@ -134,6 +136,16 @@ class MainViewModel: ObservableObject {
     }
     
     func stop() {
+        stat.dateEnd = Date()
+        
+        var measurementResult: MeasurementResult = MeasurementResult()
+        measurementResult.fromModel(model: stat)
+        
+        let realm = try! Realm()
+        try! realm.write {
+            realm.add(measurementResult)
+        }
+        
         pinger?.haltPinging(resetSequence: true)
         counter = 0
         isAnalysisRunning = false
