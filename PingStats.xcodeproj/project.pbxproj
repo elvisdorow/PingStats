@@ -34,7 +34,6 @@
 		14B950A42C45C57E00E8A388 /* Network.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14B950A32C45C57E00E8A388 /* Network.swift */; };
 		14BBA22D2C98B49400438D2D /* Formatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14BBA22C2C98B49400438D2D /* Formatter.swift */; };
 		14E283482C9216AE0086E36F /* MeasurementResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14E283472C9216AE0086E36F /* MeasurementResult.swift */; };
-		14E929E72C9239BD0088EA79 /* Realm in Frameworks */ = {isa = PBXBuildFile; productRef = 14E929E62C9239BD0088EA79 /* Realm */; };
 		14E929E92C9239BD0088EA79 /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 14E929E82C9239BD0088EA79 /* RealmSwift */; };
 		14F54FF32C986FEA005260E5 /* ResultDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14F54FF22C986FEA005260E5 /* ResultDetailView.swift */; };
 		14FECBB82C4AFBC6009CBF07 /* MySegmentedControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14FECBB72C4AFBC6009CBF07 /* MySegmentedControl.swift */; };
@@ -97,7 +96,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				14E929E92C9239BD0088EA79 /* RealmSwift in Frameworks */,
-				14E929E72C9239BD0088EA79 /* Realm in Frameworks */,
 				144D60B42C90966A009B7D9C /* SwiftyPing in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -256,7 +254,6 @@
 			name = PingStats;
 			packageProductDependencies = (
 				144D60B32C90966A009B7D9C /* SwiftyPing */,
-				14E929E62C9239BD0088EA79 /* Realm */,
 				14E929E82C9239BD0088EA79 /* RealmSwift */,
 			);
 			productName = PingStats;
@@ -593,11 +590,6 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 144D60B22C90966A009B7D9C /* XCRemoteSwiftPackageReference "SwiftyPing" */;
 			productName = SwiftyPing;
-		};
-		14E929E62C9239BD0088EA79 /* Realm */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 14E929E52C9239BD0088EA79 /* XCRemoteSwiftPackageReference "realm-swift" */;
-			productName = Realm;
 		};
 		14E929E82C9239BD0088EA79 /* RealmSwift */ = {
 			isa = XCSwiftPackageProductDependency;
