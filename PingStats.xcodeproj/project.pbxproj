@@ -13,6 +13,7 @@
 		140AFF682C6663BA00A4A2C8 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 140AFF672C6663BA00A4A2C8 /* SettingsView.swift */; };
 		142C51BA2C641EDF00492458 /* LogTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 142C51B92C641EDF00492458 /* LogTableView.swift */; };
 		142C51BC2C64240100492458 /* LogTextModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 142C51BB2C64240100492458 /* LogTextModel.swift */; };
+		143391DA2C9A365300ED8CDB /* PingInterval.swift in Sources */ = {isa = PBXBuildFile; fileRef = 143391D92C9A365300ED8CDB /* PingInterval.swift */; };
 		1436956A2C8735C8005CC2B3 /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 143695692C8735C8005CC2B3 /* Theme.swift */; };
 		1436956C2C87454E005CC2B3 /* SettingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1436956B2C87454E005CC2B3 /* SettingsViewModel.swift */; };
 		1436956E2C8750E8005CC2B3 /* IPAddressesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1436956D2C8750E8005CC2B3 /* IPAddressesView.swift */; };
@@ -61,6 +62,7 @@
 		140AFF672C6663BA00A4A2C8 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		142C51B92C641EDF00492458 /* LogTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogTableView.swift; sourceTree = "<group>"; };
 		142C51BB2C64240100492458 /* LogTextModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogTextModel.swift; sourceTree = "<group>"; };
+		143391D92C9A365300ED8CDB /* PingInterval.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PingInterval.swift; sourceTree = "<group>"; };
 		143695692C8735C8005CC2B3 /* Theme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Theme.swift; sourceTree = "<group>"; };
 		1436956B2C87454E005CC2B3 /* SettingsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewModel.swift; sourceTree = "<group>"; };
 		1436956D2C8750E8005CC2B3 /* IPAddressesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IPAddressesView.swift; sourceTree = "<group>"; };
@@ -111,6 +113,14 @@
 				14AAA2512C924B3300DF83F0 /* ResultViewModel.swift */,
 			);
 			path = viewModel;
+			sourceTree = "<group>";
+		};
+		143391D82C9A363000ED8CDB /* controls */ = {
+			isa = PBXGroup;
+			children = (
+				143391D92C9A365300ED8CDB /* PingInterval.swift */,
+			);
+			path = controls;
 			sourceTree = "<group>";
 		};
 		143695682C8735B7005CC2B3 /* helper */ = {
@@ -215,6 +225,7 @@
 		14E283492C921E250086E36F /* settings */ = {
 			isa = PBXGroup;
 			children = (
+				143391D82C9A363000ED8CDB /* controls */,
 				140AFF672C6663BA00A4A2C8 /* SettingsView.swift */,
 				1436956D2C8750E8005CC2B3 /* IPAddressesView.swift */,
 				14AAA24F2C92491A00DF83F0 /* ResultListView.swift */,
@@ -332,6 +343,7 @@
 				1436956E2C8750E8005CC2B3 /* IPAddressesView.swift in Sources */,
 				14BBA22D2C98B49400438D2D /* Formatter.swift in Sources */,
 				1409322F2C52775B00D2C03F /* MeasurementModel.swift in Sources */,
+				143391DA2C9A365300ED8CDB /* PingInterval.swift in Sources */,
 				14B9508E2C45AC4400E8A388 /* PingStatsApp.swift in Sources */,
 				14AAA2502C92491A00DF83F0 /* ResultListView.swift in Sources */,
 				14FECBBC2C4FAF59009CBF07 /* CircularGaugeItem.swift in Sources */,

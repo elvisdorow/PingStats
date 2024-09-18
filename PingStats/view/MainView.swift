@@ -124,9 +124,8 @@ struct MainView: View {
                                 icon: { Image("menuDotsIcon") }
                             )
                         }
-
                     }
-                    }).accentColor(.primary)
+                })
             }
             .popover(isPresented: $showSettingsView) {
                 SettingsView()

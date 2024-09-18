@@ -14,10 +14,10 @@
             filePath = "PingStats/view/MainView.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "291"
-            endingLineNumber = "291"
-            landmarkName = "body"
-            landmarkType = "24">
+            startingLineNumber = "290"
+            endingLineNumber = "290"
+            landmarkName = "DetailedStatsView"
+            landmarkType = "14">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy

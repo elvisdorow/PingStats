@@ -31,11 +31,8 @@ struct SettingsView: View {
                 }
 
                 Section {
-                    HStack {
-                        Slider(value: $settingsViewModel.pingInterval, in: 0.5...4, step: 0.5)
-                        Text("\(String(format: "%0.2f", settingsViewModel.pingInterval)) sec ")
-                            .frame(width: 80)
-                    }
+                    PingInterval(pingIntervalValue: $settingsViewModel.pingInterval)
+                    
                 } header: {
                     Text("Ping Interval")
                 } footer: {
@@ -100,10 +97,10 @@ struct SettingsView: View {
             .preferredColorScheme(settingsViewModel.theme != .system ? (settingsViewModel.theme == .darkMode ? .dark : .light) : nil)
             .navigationTitle("Settings")
             .toolbarTitleDisplayMode(.inline)
-            .foregroundColor(.primary)
         }
     }
 }
+
 
 #Preview {
     SettingsView().environmentObject(SettingsViewModel())

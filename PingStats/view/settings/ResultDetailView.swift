@@ -10,20 +10,14 @@ import RealmSwift
 
 struct ResultDetailView: View {
     
-    let result: MeasurementResult
-
-    @Environment(\.presentationMode) var presentationMode
+    var result: MeasurementResult
     
-    @State var formattedElapsedTime: String
+    @Environment(\.presentationMode) var presentationMode
     
     @State var showDeleteConfirmation: Bool = false
     
     init(result: MeasurementResult) {
-        
         self.result = result
-        
-        let elapsedTime = result.dateEnd.timeIntervalSince(result.dateStart)
-        self.formattedElapsedTime = Formatter.elapsedTime(elapsedTime)
     }
     
     var body: some View {
@@ -37,6 +31,7 @@ struct ResultDetailView: View {
                             .font(.title)
                         Text("\(result.hostAddress)")
                             .font(.subheadline)
+                            .foregroundColor(.secondary)
                     } else {
                         Text(result.hostAddress)
                             .font(.title)
@@ -47,7 +42,7 @@ struct ResultDetailView: View {
                 
                 VStack(alignment: .leading, spacing: 6) {
                     Text(result.dateStart.formatted(date: .abbreviated, time: .standard))
-                        .font(.system(size: 12))
+                        .font(.system(size: 12)).foregroundColor(.primary.opacity(0.75))
                     
                 }
             }
@@ -75,7 +70,7 @@ struct ResultDetailView: View {
                 HStack(spacing: 30) {
                     VStack(alignment: .center, spacing: 6) {
                         Text("Elapsed Time").font(.caption)
-                        Text("\(formattedElapsedTime)").font(.title3)
+                        Text("\(result.elapsedTime)").font(.title3)
                     }
                     VStack(alignment: .center, spacing: 6) {
                         Text("Ping Count ").font(.caption)
@@ -103,7 +98,7 @@ struct ResultDetailView: View {
                     HStack {
                         Image(systemName: "square.and.arrow.down.fill")
                             .imageScale(.large)
-                        Text("Download Result")
+                        Text("Save Result")
                     }
                 })
             }
@@ -129,8 +124,9 @@ struct ResultDetailView: View {
                     do {
                         let realm = try! Realm()
 
+                        guard let measureResult = realm.object(ofType: MeasurementResult.self, forPrimaryKey: result._id) else { return }
                         try realm.write {
-                            realm.delete(result)
+                            realm.delete(measureResult)
                         }
                     } catch {
                         print(error)
@@ -163,8 +159,8 @@ struct card: View {
 
     var body: some View {
         VStack(alignment: .center, spacing: 6) {
-            Text(title).font(.caption)
-            Text(value).font(.title2)
+            Text(title).font(.subheadline).foregroundColor(.secondary)
+            Text(value).font(.title).foregroundColor(.primary.opacity(0.75))
         }
         .padding()
         .frame(maxWidth: /*@START_MENU_TOKEN@*/.infinity/*@END_MENU_TOKEN@*/, alignment: .center)

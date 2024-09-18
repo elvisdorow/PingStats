@@ -30,6 +30,13 @@ final class MeasurementResult: Object, ObjectKeyIdentifiable {
     @Persisted var streamingScore: Double
     @Persisted var videoCallScore: Double
     
+    var elapsedTime: String {
+        get {
+            let elapsedTime = self.dateEnd.timeIntervalSince(self.dateStart)
+            return Formatter.elapsedTime(elapsedTime)
+        }
+    }
+    
     func fromModel(model: MeasurementModel) {
         self.dateStart = model.dateStart ?? Date()
         self.dateEnd = model.dateEnd ?? Date()

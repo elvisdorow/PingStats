@@ -16,12 +16,20 @@ struct ResultListView: View {
 
     var body: some View {
         NavigationView {
+            
             List {
-                ForEach(results, id: \.id) { result in
-                    NavigationLink {
-                        ResultDetailView(result: result)
-                    } label: {
-                        rowView(result: result)
+                if results.isEmpty {
+                    Text("No results found.")
+                        .foregroundColor(.secondary)
+                        .padding()
+                } else {
+                    ForEach(results, id: \.id) { result in
+                        NavigationLink {
+                            ResultDetailView(result: result)
+
+                        } label: {
+                            rowView(result: result)
+                        }
                     }
                 }
             }
