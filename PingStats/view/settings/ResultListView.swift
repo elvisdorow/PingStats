@@ -112,11 +112,6 @@ struct ResultListView: View {
 
 
 
-/*
 #Preview {
-    
-    
-    ResultListView()
+    ResultDetailView(result: MeasurementResult.mock)
 }
-
-*/
