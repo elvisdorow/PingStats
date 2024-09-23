@@ -28,13 +28,13 @@ struct ResultDetailView: View {
                 VStack(alignment: .leading) {
                     if !result.hostAddress.isEmpty && !result.ipAddress.isEmpty {
                         Text("IP: \(result.ipAddress)")
-                            .font(.title)
+                            .font(.title2)
                         Text("\(result.hostAddress)")
                             .font(.subheadline)
                             .foregroundColor(.secondary)
                     } else {
                         Text(result.hostAddress)
-                            .font(.title)
+                            .font(.title2)
                     }
                 }
                 

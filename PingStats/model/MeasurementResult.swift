@@ -69,23 +69,6 @@ final class MeasurementResult: Object, ObjectKeyIdentifiable {
         result.videoCallScore = 95.0
         return result
     }()
-    
-    static let mock: MeasurementResult = {
-        let result = MeasurementResult()
-        result.dateStart = Date().addingTimeInterval(-60)
-        result.dateEnd = Date()
-        result.ipAddress = "192.168.1.1"
-        result.hostAddress = "fritz.box"
-        result.bestPing = 2.1
-        result.worstPing = 5.0
-        result.avaragePing = 3.2
-        result.packageLoss = 0.0
-        result.jitter = 0.6
-        result.generalNetQuality = 92.0
-        result.gamingScore = 90.0
-        result.streamingScore = 95.0
-        result.videoCallScore = 98.0
-        return result
-    }()
+
 }
 

@@ -28,7 +28,7 @@ struct ResultListView: View {
                             ResultDetailView(result: result)
 
                         } label: {
-                            rowView(result: result)
+                            ResultRowView(result: result)
                         }
                     }
                 }
@@ -46,20 +46,24 @@ struct ResultListView: View {
             })
         }
     }
+}
+
+struct ResultRowView: View {
     
-    func rowView(result: MeasurementResult) -> some View {
+    var result: MeasurementResult
+    
+    var body: some View {
         HStack {
             VStack(alignment: .leading, spacing: 3) {
-                HStack(spacing: 4) {
-                    if !result.hostAddress.isEmpty && !result.ipAddress.isEmpty {
-                        Text("\(result.ipAddress)")
-                            .font(.system(size: 15))
-                        Text("\(result.hostAddress)").foregroundStyle(.secondary)
-                            .font(.system(size: 13))
-                    } else {
-                        Text(result.hostAddress)
-                            .font(.system(size: 15))
-                    }
+                if !result.hostAddress.isEmpty && !result.ipAddress.isEmpty {
+                    Text("\(result.ipAddress)")
+                        .font(.system(size: 18))
+
+                    Text("\(result.hostAddress)").foregroundStyle(.secondary)
+                        .font(.system(size: 18))
+                } else {
+                    Text(result.hostAddress)
+                        .font(.system(size: 18))
                 }
                 
                 Text(formattedRelativeDate(for: result.dateStart))
@@ -108,10 +112,10 @@ struct ResultListView: View {
             .foregroundColor(color)
             .frame(width: 10, height: 10)
     }
+
 }
 
 
-
 #Preview {
-    ResultDetailView(result: MeasurementResult.mock)
+    ResultRowView(result: MeasurementResult.example)
 }
