@@ -9,24 +9,27 @@ import SwiftUI
 
 
 struct PingIntervalSlider: View {
-    @Binding var intValue: PingIntervalEnum
+
+    @Binding var intervalValue: PingInterval
     
     var body: some View {
         HStack {
-            Slider(value: Binding(
+            Slider(value: Binding( 
                 get: {
-                    Double(self.intValue.toSliderValue())
+                    self.intervalValue.toSliderValue()
                 },
                 set: { newValue in
-                    self.intValue = PingIntervalEnum.fromSliderValue(val: newValue)
+                    self.intervalValue = PingInterval.fromSliderValue(val: newValue)
                 }
             ), in: 1...11, step: 1)
-            Text("\(intValue.getDescription())")
+            Text("\(intervalValue.toString())")
+                .frame(width: 65)
+
         }
     }
 }
 
-enum PingIntervalEnum: Int {
+enum PingInterval: Int {
     case ms100 = 100
     case ms200 = 200
     case ms500 = 500
@@ -39,7 +42,7 @@ enum PingIntervalEnum: Int {
     case min2 = 120000// 2 min
     case min5 = 360000// 5 min
 
-    static func fromSliderValue(val: Double) -> PingIntervalEnum {
+    static func fromSliderValue(val: Double) -> PingInterval {
         switch val {
             case 1.0:   return .ms100
             case 2.0:   return .ms200
@@ -72,7 +75,7 @@ enum PingIntervalEnum: Int {
         }
     }
     
-    func getDescription() -> String {
+    func toString() -> String {
         switch self {
             case .ms100:  return "100 ms"
             case .ms200:  return "200 ms"
@@ -91,6 +94,6 @@ enum PingIntervalEnum: Int {
 
 
 #Preview {
-    PingIntervalSlider(intValue: .constant(.min2))
+    PingIntervalSlider(intervalValue: .constant(.ms100))
         .padding()
 }

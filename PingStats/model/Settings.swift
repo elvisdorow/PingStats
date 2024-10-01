@@ -1,37 +1,20 @@
-//
-//  SettingsViewModel.swift
-//  PingStats
-//
-//  Created by Elvis Dorow on 03/09/24.
-//
-
-import Foundation
 import SwiftUI
 
-class SettingsViewModel: ObservableObject {
-
-    @Published var settingsModel: SettingsModel = .shared
+class Settings: ObservableObject {
     
-    init() {
-//        self.settingsModel = SettingsModel.shared
-    }
+    static let shared = Settings()
     
-    /*
     @AppStorage("theme") var theme: Theme = .system
     
     @AppStorage("pingInterval") var pingInterval: PingInterval = .sec1
     @AppStorage("pingCountStat") var pingCountStat: PingCountStat = .count30
     @AppStorage("pingMaxtime") var maxtimeSetting: PingMaxtime = .min5
     @AppStorage("pingTimeout") var pingTimeout: PingTimeout = .sec1 
-
     @AppStorage("selectedIpAddress") var selectedIpAddress: String = "1.1.1.1"
-
-    // Store the array as Data
-    @AppStorage("ipAddressesData") var ipAddressesData: Data = Data()
     
-    @Published var showAddForm: Bool = false
-    @Published var addFormError: String = ""
-    @Published var newIpAddress: String = ""
+    @AppStorage("ipAddressesData") var ipAddressesData: Data = Data()
+ 
+    private init() {}
     
     var ipAddresses: [String] {
         get {
@@ -52,8 +35,5 @@ class SettingsViewModel: ObservableObject {
             }
         }
     }
-    
-    */
-    
 
 }

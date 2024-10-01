@@ -13,9 +13,8 @@
 		140AFF682C6663BA00A4A2C8 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 140AFF672C6663BA00A4A2C8 /* SettingsView.swift */; };
 		142C51BA2C641EDF00492458 /* LogTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 142C51B92C641EDF00492458 /* LogTableView.swift */; };
 		142C51BC2C64240100492458 /* LogTextModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 142C51BB2C64240100492458 /* LogTextModel.swift */; };
-		143391DA2C9A365300ED8CDB /* PingInterval.swift in Sources */ = {isa = PBXBuildFile; fileRef = 143391D92C9A365300ED8CDB /* PingInterval.swift */; };
+		143391DA2C9A365300ED8CDB /* PingIntervalSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 143391D92C9A365300ED8CDB /* PingIntervalSlider.swift */; };
 		1436956A2C8735C8005CC2B3 /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 143695692C8735C8005CC2B3 /* Theme.swift */; };
-		1436956C2C87454E005CC2B3 /* SettingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1436956B2C87454E005CC2B3 /* SettingsViewModel.swift */; };
 		1436956E2C8750E8005CC2B3 /* IPAddressesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1436956D2C8750E8005CC2B3 /* IPAddressesView.swift */; };
 		144D60B42C90966A009B7D9C /* SwiftyPing in Frameworks */ = {isa = PBXBuildFile; productRef = 144D60B32C90966A009B7D9C /* SwiftyPing */; };
 		144D60B62C909B3A009B7D9C /* GaugeItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 144D60B52C909B3A009B7D9C /* GaugeItem.swift */; };
@@ -40,6 +39,12 @@
 		14FECBB82C4AFBC6009CBF07 /* MySegmentedControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14FECBB72C4AFBC6009CBF07 /* MySegmentedControl.swift */; };
 		14FECBBC2C4FAF59009CBF07 /* CircularGaugeItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14FECBBB2C4FAF59009CBF07 /* CircularGaugeItem.swift */; };
 		14FECBC02C5187F8009CBF07 /* PlayButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14FECBBF2C5187F8009CBF07 /* PlayButtonView.swift */; };
+		D527F7482CAB25A9001B428C /* IPValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D527F7472CAB25A9001B428C /* IPValidator.swift */; };
+		D527F74A2CAB290B001B428C /* IPAddressesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D527F7492CAB290B001B428C /* IPAddressesViewModel.swift */; };
+		D57F20782CA4453500676BDD /* PingTimeoutSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = D57F20772CA4453500676BDD /* PingTimeoutSlider.swift */; };
+		D57F207A2CA4498200676BDD /* PingMaxtimeSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = D57F20792CA4498200676BDD /* PingMaxtimeSlider.swift */; };
+		D5FB2D152CA6E1D1002C4AE3 /* PingCountStatSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5FB2D142CA6E1D1002C4AE3 /* PingCountStatSlider.swift */; };
+		D5FB2D172CA6FDA3002C4AE3 /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5FB2D162CA6FDA3002C4AE3 /* Settings.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -62,9 +67,8 @@
 		140AFF672C6663BA00A4A2C8 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		142C51B92C641EDF00492458 /* LogTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogTableView.swift; sourceTree = "<group>"; };
 		142C51BB2C64240100492458 /* LogTextModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogTextModel.swift; sourceTree = "<group>"; };
-		143391D92C9A365300ED8CDB /* PingInterval.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PingInterval.swift; sourceTree = "<group>"; };
+		143391D92C9A365300ED8CDB /* PingIntervalSlider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PingIntervalSlider.swift; sourceTree = "<group>"; };
 		143695692C8735C8005CC2B3 /* Theme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Theme.swift; sourceTree = "<group>"; };
-		1436956B2C87454E005CC2B3 /* SettingsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewModel.swift; sourceTree = "<group>"; };
 		1436956D2C8750E8005CC2B3 /* IPAddressesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IPAddressesView.swift; sourceTree = "<group>"; };
 		144D60B52C909B3A009B7D9C /* GaugeItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GaugeItem.swift; sourceTree = "<group>"; };
 		1477566C2C88A0F3003D7573 /* CustomAlertView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomAlertView.swift; sourceTree = "<group>"; };
@@ -90,6 +94,12 @@
 		14FECBB72C4AFBC6009CBF07 /* MySegmentedControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MySegmentedControl.swift; sourceTree = "<group>"; };
 		14FECBBB2C4FAF59009CBF07 /* CircularGaugeItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircularGaugeItem.swift; sourceTree = "<group>"; };
 		14FECBBF2C5187F8009CBF07 /* PlayButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayButtonView.swift; sourceTree = "<group>"; };
+		D527F7472CAB25A9001B428C /* IPValidator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IPValidator.swift; sourceTree = "<group>"; };
+		D527F7492CAB290B001B428C /* IPAddressesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IPAddressesViewModel.swift; sourceTree = "<group>"; };
+		D57F20772CA4453500676BDD /* PingTimeoutSlider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PingTimeoutSlider.swift; sourceTree = "<group>"; };
+		D57F20792CA4498200676BDD /* PingMaxtimeSlider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PingMaxtimeSlider.swift; sourceTree = "<group>"; };
+		D5FB2D142CA6E1D1002C4AE3 /* PingCountStatSlider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PingCountStatSlider.swift; sourceTree = "<group>"; };
+		D5FB2D162CA6FDA3002C4AE3 /* Settings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -109,8 +119,8 @@
 			isa = PBXGroup;
 			children = (
 				140932312C528BEA00D2C03F /* MainViewModel.swift */,
-				1436956B2C87454E005CC2B3 /* SettingsViewModel.swift */,
 				14AAA2512C924B3300DF83F0 /* ResultViewModel.swift */,
+				D527F7492CAB290B001B428C /* IPAddressesViewModel.swift */,
 			);
 			path = viewModel;
 			sourceTree = "<group>";
@@ -118,25 +128,22 @@
 		143391D82C9A363000ED8CDB /* controls */ = {
 			isa = PBXGroup;
 			children = (
-				143391D92C9A365300ED8CDB /* PingInterval.swift */,
+				143391D92C9A365300ED8CDB /* PingIntervalSlider.swift */,
+				D57F20772CA4453500676BDD /* PingTimeoutSlider.swift */,
+				D57F20792CA4498200676BDD /* PingMaxtimeSlider.swift */,
+				D5FB2D142CA6E1D1002C4AE3 /* PingCountStatSlider.swift */,
 			);
 			path = controls;
-			sourceTree = "<group>";
-		};
-		143695682C8735B7005CC2B3 /* helper */ = {
-			isa = PBXGroup;
-			children = (
-				143695692C8735C8005CC2B3 /* Theme.swift */,
-				14053FD32C8A625200C24018 /* NetworkMonitor.swift */,
-			);
-			path = helper;
 			sourceTree = "<group>";
 		};
 		1477566B2C88A0D5003D7573 /* utils */ = {
 			isa = PBXGroup;
 			children = (
+				14053FD32C8A625200C24018 /* NetworkMonitor.swift */,
+				143695692C8735C8005CC2B3 /* Theme.swift */,
 				1477566C2C88A0F3003D7573 /* CustomAlertView.swift */,
 				14BBA22C2C98B49400438D2D /* Formatter.swift */,
+				D527F7472CAB25A9001B428C /* IPValidator.swift */,
 			);
 			path = utils;
 			sourceTree = "<group>";
@@ -175,7 +182,6 @@
 			children = (
 				1477566B2C88A0D5003D7573 /* utils */,
 				1485A95F2C87A62000FDC0AC /* fonts */,
-				143695682C8735B7005CC2B3 /* helper */,
 				14862A5C2C62CFEE00394101 /* Info.plist */,
 				140932302C52778F00D2C03F /* viewModel */,
 				14B950A52C46938900E8A388 /* view */,
@@ -203,6 +209,7 @@
 				1409322E2C52775B00D2C03F /* MeasurementModel.swift */,
 				142C51BB2C64240100492458 /* LogTextModel.swift */,
 				14E283472C9216AE0086E36F /* MeasurementResult.swift */,
+				D5FB2D162CA6FDA3002C4AE3 /* Settings.swift */,
 			);
 			path = model;
 			sourceTree = "<group>";
@@ -210,6 +217,7 @@
 		14B950A52C46938900E8A388 /* view */ = {
 			isa = PBXGroup;
 			children = (
+				D55DD5372CAC332D00F94F83 /* results */,
 				14E283492C921E250086E36F /* settings */,
 				14FECBBB2C4FAF59009CBF07 /* CircularGaugeItem.swift */,
 				14B9508F2C45AC4400E8A388 /* MainView.swift */,
@@ -228,8 +236,6 @@
 				143391D82C9A363000ED8CDB /* controls */,
 				140AFF672C6663BA00A4A2C8 /* SettingsView.swift */,
 				1436956D2C8750E8005CC2B3 /* IPAddressesView.swift */,
-				14AAA24F2C92491A00DF83F0 /* ResultListView.swift */,
-				14F54FF22C986FEA005260E5 /* ResultDetailView.swift */,
 			);
 			path = settings;
 			sourceTree = "<group>";
@@ -244,6 +250,15 @@
 		14E929DB2C9236860088EA79 /* Products */ = {
 			isa = PBXGroup;
 			name = Products;
+			sourceTree = "<group>";
+		};
+		D55DD5372CAC332D00F94F83 /* results */ = {
+			isa = PBXGroup;
+			children = (
+				14AAA24F2C92491A00DF83F0 /* ResultListView.swift */,
+				14F54FF22C986FEA005260E5 /* ResultDetailView.swift */,
+			);
+			path = results;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -343,23 +358,28 @@
 				1436956E2C8750E8005CC2B3 /* IPAddressesView.swift in Sources */,
 				14BBA22D2C98B49400438D2D /* Formatter.swift in Sources */,
 				1409322F2C52775B00D2C03F /* MeasurementModel.swift in Sources */,
-				143391DA2C9A365300ED8CDB /* PingInterval.swift in Sources */,
+				143391DA2C9A365300ED8CDB /* PingIntervalSlider.swift in Sources */,
 				14B9508E2C45AC4400E8A388 /* PingStatsApp.swift in Sources */,
 				14AAA2502C92491A00DF83F0 /* ResultListView.swift in Sources */,
 				14FECBBC2C4FAF59009CBF07 /* CircularGaugeItem.swift in Sources */,
 				144D60B62C909B3A009B7D9C /* GaugeItem.swift in Sources */,
+				D5FB2D152CA6E1D1002C4AE3 /* PingCountStatSlider.swift in Sources */,
 				14053FD42C8A625200C24018 /* NetworkMonitor.swift in Sources */,
-				1436956C2C87454E005CC2B3 /* SettingsViewModel.swift in Sources */,
 				14B950A42C45C57E00E8A388 /* Network.swift in Sources */,
 				142C51BC2C64240100492458 /* LogTextModel.swift in Sources */,
 				14B9509D2C45B62500E8A388 /* PingResponseModel.swift in Sources */,
 				14FECBC02C5187F8009CBF07 /* PlayButtonView.swift in Sources */,
 				14F54FF32C986FEA005260E5 /* ResultDetailView.swift in Sources */,
 				14FECBB82C4AFBC6009CBF07 /* MySegmentedControl.swift in Sources */,
+				D527F74A2CAB290B001B428C /* IPAddressesViewModel.swift in Sources */,
 				14B688952C63B9B900EDE689 /* LoadingBarView.swift in Sources */,
+				D527F7482CAB25A9001B428C /* IPValidator.swift in Sources */,
 				140932322C528BEA00D2C03F /* MainViewModel.swift in Sources */,
 				140AFF682C6663BA00A4A2C8 /* SettingsView.swift in Sources */,
+				D5FB2D172CA6FDA3002C4AE3 /* Settings.swift in Sources */,
+				D57F20782CA4453500676BDD /* PingTimeoutSlider.swift in Sources */,
 				1436956A2C8735C8005CC2B3 /* Theme.swift in Sources */,
+				D57F207A2CA4498200676BDD /* PingMaxtimeSlider.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

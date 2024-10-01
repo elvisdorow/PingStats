@@ -17,8 +17,10 @@ struct MainView: View {
     @State private var showSettingsView: Bool = false
     @State private var showResultsView: Bool = false
     
-    @StateObject var viewModel = MainViewModel()
-    @StateObject var settingsViewModel = SettingsViewModel()
+    @StateObject var viewModel: MainViewModel = MainViewModel()
+    @StateObject var settings = Settings.shared
+    @StateObject var networkMonitor: NetworkMonitor = NetworkMonitor()
+
     
     var body: some View {
         NavigationStack {
@@ -51,12 +53,25 @@ struct MainView: View {
                         Label(
                             title: {
                                 Text("Network Quality")
-                                    .foregroundStyle(.primary.opacity(0.87))
-                                    .font(.subheadline)
+                                    .font(.callout)
+                                    .foregroundStyle(.primary.opacity(0.8))
                                     .fontWeight(.light)
                             },
-                            icon: { Image(systemName: "wifi") }
+                            icon: {
+                                switch networkMonitor.connectionType {
+                                case .wifi:
+                                    Image(systemName: "wifi")
+                                case .cellular:
+                                    Image(systemName: "cellularbars")
+                                case .ethernet:
+                                    Image(systemName: "cable.connector")
+                                case .unknown:
+                                    Image(systemName: "network.slash")
+
+                                }
+                            }
                         )
+                        .font(.title2)
                         HStack {
                             ConnectionQuality()
                             Text("\(Formatter.number(viewModel.stat.generalNetQuality, fraction: 0, unit: "%"))")
@@ -82,7 +97,6 @@ struct MainView: View {
 
                 }
                 .environmentObject(viewModel)
-                .environmentObject(settingsViewModel)
                 .toolbar(content: {
                     
                     ToolbarItem(placement: .topBarLeading) {
@@ -129,7 +143,6 @@ struct MainView: View {
             }
             .popover(isPresented: $showSettingsView) {
                 SettingsView()
-                    .environmentObject(settingsViewModel)  
                     .presentationCompactAdaptation(.fullScreenCover)
             }
             .popover(isPresented: $showResultsView) {
@@ -137,7 +150,7 @@ struct MainView: View {
                     .presentationCompactAdaptation(.fullScreenCover)
             }
             
-        }.preferredColorScheme(settingsViewModel.theme != .system ? (settingsViewModel.theme == .darkMode ? .dark : .light) : nil)
+        }.preferredColorScheme(settings.theme != .system ? (settings.theme == .darkMode ? .dark : .light) : nil)
     }
 }
 
@@ -200,7 +213,8 @@ struct ChartLogView: View {
                         AxisGridLine()
                     }
                 }
-                .chartXScale(domain: 1...(viewModel.chartItems.count))
+// TODO
+//                .chartXScale(domain: 1...viewModel.chartItems.count)
                 .chartYAxisLabel {
                     Text("ms")
                 }
@@ -442,7 +456,6 @@ struct VerticalAccessoryGaugeStyle: GaugeStyle {
 struct ActionControlView: View {
     
     @EnvironmentObject var viewModel: MainViewModel
-    @EnvironmentObject var settingsViewModel: SettingsViewModel
     
     @State var showHostList: Bool = false
     
@@ -451,11 +464,10 @@ struct ActionControlView: View {
             
             VStack(alignment: .leading) {
                 Text("IP Address or Host Name:")
-                    .font(.caption)
                 
                 HStack(alignment: .firstTextBaseline) {
                     Image(systemName: "server.rack").opacity(0.6)
-                    Text("\(settingsViewModel.selectedIpAddress)")
+                    Text("\(viewModel.settings.selectedIpAddress)")
                         .foregroundColor(viewModel.isAnalysisRunning ? .primary.opacity(0.3) : .primary)
                         . multilineTextAlignment(.leading)
                 }
@@ -471,8 +483,7 @@ struct ActionControlView: View {
                 }
                 .sheet(isPresented: $showHostList) {
                     NavigationView {
-                        IPAddressesView()
-                            .environmentObject(settingsViewModel)
+                        IPAddressesView(settings: viewModel.settings)
                             .navigationTitle("Hosts")
                             .navigationBarTitleDisplayMode(.inline)
                             .toolbar(content: {
@@ -485,7 +496,7 @@ struct ActionControlView: View {
                                 }
                             })
                             .onAppear {
-                                settingsViewModel.objectWillChange.send()
+                                self.viewModel.settings.objectWillChange.send()
                             }
                     }
                 }
@@ -501,7 +512,7 @@ struct ActionControlView: View {
                         if viewModel.isAnalysisRunning {
                             viewModel.stop()
                         } else {
-                            viewModel.start(settingsViewModel)
+                            viewModel.start()
                         }
                     }
             }

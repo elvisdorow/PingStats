@@ -21,34 +21,20 @@ struct ResultDetailView: View {
     }
     
     var body: some View {
-        VStack(spacing: 16) {
-            
-            HStack(alignment: .bottom) {
+        VStack(alignment: .leading, spacing: 16) {
 
-                VStack(alignment: .leading) {
-                    if !result.hostAddress.isEmpty && !result.ipAddress.isEmpty {
-                        Text("IP: \(result.ipAddress)")
-                            .font(.title2)
-                        Text("\(result.hostAddress)")
-                            .font(.subheadline)
-                            .foregroundColor(.secondary)
-                    } else {
-                        Text(result.hostAddress)
-                            .font(.title2)
-                    }
+            VStack(alignment: .leading) {
+                if !result.hostAddress.isEmpty && !result.ipAddress.isEmpty {
+                    Text("\(result.hostAddress)")
+                        .foregroundColor(.secondary)
                 }
                 
-                Spacer()
-                
-                VStack(alignment: .leading, spacing: 6) {
-                    Text(result.dateStart.formatted(date: .abbreviated, time: .standard))
-                        .font(.system(size: 12)).foregroundColor(.primary.opacity(0.75))
-                    
-                }
+                Text(result.dateStart.formatted(date: .abbreviated, time: .standard))
+                    .font(.system(size: 15)).foregroundColor(.primary.opacity(0.75))
+                    .padding(.top, 10)
             }
-            .padding(.trailing)
-            .padding(.leading, 5)
-            .padding(.vertical)
+            .padding(.horizontal, 4)
+
             
             
             VStack(spacing: 15) {
@@ -66,25 +52,34 @@ struct ResultDetailView: View {
                 }
             }
             
-            VStack(spacing: 20) {
-                HStack(spacing: 30) {
+            VStack(spacing: 33) {
+                HStack(spacing: 50) {
                     VStack(alignment: .center, spacing: 6) {
-                        Text("Elapsed Time").font(.caption)
+                        Text("Elapsed Time")
                         Text("\(result.elapsedTime)").font(.title3)
                     }
                     VStack(alignment: .center, spacing: 6) {
-                        Text("Ping Count ").font(.caption)
+                        Text("Ping Count ")
                         Text("\(result.pingCount)").font(.title3)
                     }
+                }.frame(maxWidth: /*@START_MENU_TOKEN@*/.infinity/*@END_MENU_TOKEN@*/, alignment: .center)
+                HStack(spacing: 50) {
                     VStack(alignment: .center, spacing: 6) {
-                        Text("Ping Interval").font(.caption)
-                        Text("120 ms").font(.title3)
+                        Text("Ping Interval")
+                        if let interval = PingInterval(rawValue: result.pingInterval) {
+                            Text("\(interval.toString())").font(.title3)
+                        }
                     }
-                    
+                    VStack(alignment: .center, spacing: 6) {
+                        Text("Ping Timeout")
+                        if let timeout = PingTimeout(rawValue: result.pingTimeout) {
+                            Text("\(timeout.toString())").font(.title3)
+                        }
+                    }
                 }.frame(maxWidth: /*@START_MENU_TOKEN@*/.infinity/*@END_MENU_TOKEN@*/, alignment: .center)
             }
-            .padding(20)
-            .padding(.vertical, 20)
+            .padding(10)
+            .padding(.vertical, 10)
             .frame(maxWidth: /*@START_MENU_TOKEN@*/.infinity/*@END_MENU_TOKEN@*/, alignment: .leading)
             .overlay(
                 RoundedRectangle(cornerRadius: 10)
@@ -92,62 +87,42 @@ struct ResultDetailView: View {
                     .background(.gray.opacity(0.1))
             )
 
-            VStack {
-                Button(action: {
-                }, label: {
-                    HStack {
-                        Image(systemName: "square.and.arrow.down.fill")
-                            .imageScale(.large)
-                        Text("Save Result")
-                    }
-                })
-            }
-            .padding()
-
-            VStack {
-                Button(action: {
-                    showDeleteConfirmation = true
-                }, label: {
-                    HStack {
-                        Image(systemName: "trash")
-                            .imageScale(.large)
-                        Text("Delete Result")
-                    }
-                })
-                .font(.system(size: 16))
-                .foregroundColor(.red)
-            }
-            .confirmationDialog("Are you sure you want to delete this result?", isPresented: $showDeleteConfirmation, titleVisibility: .visible) {
-                Button("Delete", role: .destructive) {
-                    showDeleteConfirmation = false
-                    
-                    do {
-                        let realm = try! Realm()
-
-                        guard let measureResult = realm.object(ofType: MeasurementResult.self, forPrimaryKey: result._id) else { return }
-                        try realm.write {
-                            realm.delete(measureResult)
-                        }
-                    } catch {
-                        print(error)
-                    }
-                    
-                    presentationMode.wrappedValue.dismiss()
-                }
-            }
-            .padding()
-
             
                 
             Spacer()
                 
         }
-        .padding()
-        .navigationTitle("Result")
-        .navigationBarTitleDisplayMode(.inline)
+        .padding(.horizontal)
+        .navigationTitle((!result.ipAddress.isEmpty) ? "\(result.ipAddress)" : "\(result.hostAddress)")
+        .navigationBarTitleDisplayMode(.large)
         .toolbar {
             ToolbarItem(placement: .navigationBarTrailing) {
                 ShareLink(item: "PingStats Result \(result.hostAddress)")
+            }
+            ToolbarItem(placement: .topBarTrailing) {
+                Menu {
+                    Button(action: {},
+                    label: {
+                        Label(
+                            title: { Text("Save") },
+                            icon: { Image(systemName: "square.and.arrow.down") }
+                        )
+                    })
+                    Button(action: {
+                        showDeleteConfirmation = true
+                    },
+                    label: {
+                        Label(
+                            title: { Text("Delete") },
+                            icon: { Image(systemName: "trash")  }
+                        )
+                    }).foregroundColor(.red)
+                } label: {
+                    Label(
+                        title: { Text("Menu") },
+                        icon: { Image(systemName: "ellipsis.circle") }
+                    )
+                }
             }
         }
     }

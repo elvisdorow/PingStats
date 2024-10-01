@@ -13,6 +13,8 @@ struct ResultListView: View {
     @ObservedResults(MeasurementResult.self, sortDescriptor: SortDescriptor(keyPath: "dateStart", ascending: false)) var results
 
     @Environment(\.presentationMode) var presentationMode
+    
+    @StateObject var settings = Settings.shared
 
     var body: some View {
         NavigationView {
@@ -28,11 +30,12 @@ struct ResultListView: View {
                             ResultDetailView(result: result)
 
                         } label: {
-                            ResultRowView(result: result)
+                            ResultRowView(result: result).frame(minHeight: 80)
                         }
                     }
                 }
             }
+            .preferredColorScheme(settings.theme != .system ? (settings.theme == .darkMode ? .dark : .light) : nil)
             .navigationTitle("Results")
             .toolbarTitleDisplayMode(.inline)
             .toolbar(content: {
@@ -59,10 +62,13 @@ struct ResultRowView: View {
                     Text("\(result.ipAddress)")
                         .font(.system(size: 18))
 
-                    Text("\(result.hostAddress)").foregroundStyle(.secondary)
+                    Text("\(result.hostAddress)")
+                        .lineLimit(1)
+                        .foregroundStyle(.secondary)
                         .font(.system(size: 18))
                 } else {
                     Text(result.hostAddress)
+                        .lineLimit(1)
                         .font(.system(size: 18))
                 }
                 
@@ -117,5 +123,9 @@ struct ResultRowView: View {
 
 
 #Preview {
-    ResultRowView(result: MeasurementResult.example)
+//        ResultRowView(result: MeasurementResult.example)
+    
+    Group {
+        ResultListView()
+    }
 }

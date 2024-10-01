@@ -11,19 +11,18 @@ struct SettingsView: View {
     
     @Environment(\.presentationMode) var presentationMode
     
-    @EnvironmentObject var settingsViewModel: SettingsViewModel
-
+    @StateObject var settings = Settings.shared
+    
     var body: some View {
         NavigationView {
             Form{                
                 Section {
                     NavigationLink(
-                        destination: IPAddressesView()
-                            .environmentObject(settingsViewModel)
+                        destination: IPAddressesView(settings: settings)
                             .navigationTitle("Hosts")
                             .navigationBarTitleDisplayMode(.automatic),
                         label: {
-                            Text("\(settingsViewModel.selectedIpAddress)")
+                            Text("\(settings.selectedIpAddress)")
                         })
 
                 } header: {
@@ -31,20 +30,24 @@ struct SettingsView: View {
                 }
 
                 Section {
-                    PingInterval(pingIntervalValue: $settingsViewModel.pingInterval)
+                    PingTimeoutSlider(pingTimeout: $settings.pingTimeout)
+                } header: {
+                    Text("Ping Timeout")
+                } footer: {
+                    Text("Maximum time to wait for a ping response before timing out.")
+                }
+
+                Section {
+                    PingIntervalSlider(intervalValue: $settings.pingInterval)
                     
                 } header: {
                     Text("Ping Interval")
                 } footer: {
-                    Text("Text explaining what this control does in this app")
+                    Text("Interval between consecutive ping requests.")
                 }
 
                 Section {
-                    HStack(spacing: 10) {
-                        Slider(value: $settingsViewModel.pingSample, in: 30...200, step: 10.0)
-                        Text("\(String(format: "%0.0f", settingsViewModel.pingSample))")
-                            .frame(width: 50)
-                    }
+                    PingCountStatSlider(countStat: $settings.pingCountStat)
                 } header: {
                     Text("Ping count in statistics")
                 } footer: {
@@ -52,26 +55,27 @@ struct SettingsView: View {
                 }
 
                 Section {
-                    HStack(spacing: 10) {
-                        Slider(value: $settingsViewModel.maxPingCount, in: 30...200, step: 10)
-                        Text("\(String(format: "%0.0f", settingsViewModel.maxPingCount))")
-                            .frame(width: 50)
-                    }
+                    
+                    PingMaxtimeSlider(maxtime: $settings.maxtimeSetting)
+       
                 } header: {
                     Text("Stop After")
                 } footer: {
-                    Text("Set the maximum time the test shoud run.")
+                    Text("Maximum duration for the test to run before it stops automatically.")
                 }
 
                 Section {
                     ForEach(Theme.allCases, id: \.self) { theme in
                         Button(action: {
-                            settingsViewModel.theme = theme
+                            settings.theme = theme
+                            settings.objectWillChange.send()
+//                            settingsViewModel.objectWillChange.send()
+//                            settingsViewModel.settingsModel.objectWillChange.send()
                         }, label: {
                             HStack {
                                 Text(theme.rawValue)
                                 Spacer()
-                                if settingsViewModel.theme == theme {
+                                if settings.theme == theme {
                                     Image(systemName: "checkmark")
                                         .foregroundColor(.accentColor)
                                 }
@@ -87,14 +91,14 @@ struct SettingsView: View {
             .toolbar {
                 ToolbarItem {
                     Button(action: {
-                        settingsViewModel.objectWillChange.send()
+//                        settingsViewModel.objectWillChange.send()
                         presentationMode.wrappedValue.dismiss()
                     }, label: {
                         Text("OK")
                     })
                 }
             }
-            .preferredColorScheme(settingsViewModel.theme != .system ? (settingsViewModel.theme == .darkMode ? .dark : .light) : nil)
+            .preferredColorScheme(settings.theme != .system ? (settings.theme == .darkMode ? .dark : .light) : nil)
             .navigationTitle("Settings")
             .toolbarTitleDisplayMode(.inline)
         }
@@ -103,6 +107,6 @@ struct SettingsView: View {
 
 
 #Preview {
-    SettingsView().environmentObject(SettingsViewModel())
+    SettingsView()
 }
 

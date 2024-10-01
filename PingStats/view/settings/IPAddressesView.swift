@@ -10,8 +10,9 @@ import SwiftUI
 struct IPAddressesView: View {
 
     @Environment(\.presentationMode) var presentationMode
-    @EnvironmentObject var settingsViewModel: SettingsViewModel
     
+    @ObservedObject var settings: Settings
+
     @State var showAddForm: Bool = false
     @State var errorMessage: String = ""
     @State var newIpAddress: String = ""
@@ -20,28 +21,28 @@ struct IPAddressesView: View {
         ZStack {
             List {
                 Section {
-                    ForEach(Array(settingsViewModel.ipAddresses.enumerated()), id: \.offset) { idx, ipAddress in
+                    ForEach(Array(settings.ipAddresses.enumerated()), id: \.offset) { idx, ipAddress in
                         HStack {
                             Text(ipAddress)
                             Spacer()
-                            if ipAddress == settingsViewModel.selectedIpAddress {
+                            if ipAddress == settings.selectedIpAddress {
                                 Image(systemName: "checkmark")
                                     .foregroundColor(.accentColor)
                             }
                         }
                         .contentShape(Rectangle())
                         .onTapGesture {
-                            settingsViewModel.selectedIpAddress = ipAddress
+                            settings.selectedIpAddress = ipAddress
                             presentationMode.wrappedValue.dismiss()
                         }
                     }
                     .onDelete { indexSet in
                         indexSet.forEach { idx in
-                            settingsViewModel.ipAddresses.remove(at: idx)
+                            settings.ipAddresses.remove(at: idx)
                         }
                     }
                     .onMove(perform: { indices, newOffset in
-                        settingsViewModel.ipAddresses.move(
+                        settings.ipAddresses.move(
                             fromOffsets: indices, toOffset: newOffset)
                     })
                 }
@@ -73,7 +74,12 @@ struct IPAddressesView: View {
                    },
                    cancelActionTitle: "Cancel",
                    primaryAction: {
-                       addIpAddress()
+                       
+                       if settings.ipAddresses.contains(newIpAddress) {
+                           errorMessage = "Host already exists"
+                       } else {
+                           addIpAddress()
+                       }
                        
                        if errorMessage.isEmpty {
                            withAnimation {
@@ -110,10 +116,8 @@ struct IPAddressesView: View {
     }
     
     func validateIPAddressOrHostname() {
-        print(newIpAddress )
-        print(settingsViewModel.validateIPAddressOrHostname(newIpAddress))
         
-        if !newIpAddress.isEmpty && !settingsViewModel.validateIPAddressOrHostname(newIpAddress) {
+        if !newIpAddress.isEmpty && !IPValidator.validateIPAddressOrHostname(newIpAddress) {
             errorMessage = "Invalid host"
         } else {
             errorMessage = ""
@@ -130,10 +134,21 @@ struct IPAddressesView: View {
         if newIpAddress.isEmpty {
             errorMessage = "Host cannot be empty"
         }
+
+        hostAlreadyExists()
         
         if errorMessage.isEmpty {
-            settingsViewModel.ipAddresses.append(newIpAddress)
+            settings.ipAddresses.append(newIpAddress)
             newIpAddress = ""
+        }
+    }
+    
+    func hostAlreadyExists() {
+        for ipAddress in settings.ipAddresses {
+            if ipAddress.lowercased() == newIpAddress.lowercased() {
+                errorMessage = "Host already exists"
+                break
+            }
         }
     }
 
@@ -155,9 +170,9 @@ func addIPAddress(_ address: String) -> Error {
 struct AddIPAddressView_Previews: PreviewProvider {
     
     static var previews: some View {
+        
         Group {
-            IPAddressesView()
-                .environmentObject(SettingsViewModel())
+//            IPAddressesView()
         }
     }
 }

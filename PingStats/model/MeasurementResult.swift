@@ -30,6 +30,11 @@ final class MeasurementResult: Object, ObjectKeyIdentifiable {
     @Persisted var streamingScore: Double
     @Persisted var videoCallScore: Double
     
+    @Persisted var pingInterval: Int
+    @Persisted var maxtimeSetting: Int
+    @Persisted var pingTimeout: Int
+
+    
     var elapsedTime: String {
         get {
             let elapsedTime = self.dateEnd.timeIntervalSince(self.dateStart)

@@ -12,7 +12,10 @@ import Combine
 import SwiftUI
 
 class MainViewModel: ObservableObject {
+    
     @Published var stat: MeasurementModel = MeasurementModel()
+    
+    @Published var settings: Settings
     
     @Published var isAnalysisRunning = false
 
@@ -28,7 +31,7 @@ class MainViewModel: ObservableObject {
     var timerCancellable: Cancellable? = nil
 
     @Published var chartType: MySegmentedControl.SelectedControl = .barChart
-
+    
     var logs: [LogTextModel] = []
 
     var hostName: String?
@@ -41,11 +44,10 @@ class MainViewModel: ObservableObject {
     private let numBarsInChart = 60
     
     init() {
-        resetChart()
+        self.settings = Settings.shared
     }
     
-    
-    func start(_ settingsViewModel: SettingsViewModel) {
+    func start() {
         
         stat.responses.removeAll()
         errors.removeAll()
@@ -63,11 +65,11 @@ class MainViewModel: ObservableObject {
         timer = Timer.publish(every: 1, on: .main, in: .common)
         timerCancellable = timer.connect()
         
-        var config: PingConfiguration = PingConfiguration(interval: 1.0, with: 5)
-        config.payloadSize = 64
-        config.timeToLive = 55
+        var config: PingConfiguration = PingConfiguration(
+            interval: Double(settings.pingInterval.rawValue) / 1000,
+            with: TimeInterval(settings.pingTimeout.rawValue))
         
-        host = settingsViewModel.selectedIpAddress
+        host = settings.selectedIpAddress
         
         if self.isValidIPAddress(host) {
             self.hostIP = host
@@ -141,6 +143,11 @@ class MainViewModel: ObservableObject {
         var measurementResult: MeasurementResult = MeasurementResult()
         measurementResult.fromModel(model: stat)
         
+        // save settings used
+        measurementResult.pingTimeout = settings.pingTimeout.rawValue
+        measurementResult.pingInterval = settings.pingInterval.rawValue
+        measurementResult.maxtimeSetting = settings.maxtimeSetting.rawValue        
+        
         let realm = try! Realm()
         try! realm.write {
             realm.add(measurementResult)
@@ -188,9 +195,12 @@ class MainViewModel: ObservableObject {
         
         // Uses all responses to calculate stats
 //        let roundtripTimes = stat.responses.map { $0.duration }
+        
+        let numResponses = (settings.pingCountStat == .countAll)
+        ? stat.responses.count : settings.pingCountStat.rawValue
+        
 
-        // Use the last 30 responses
-        let lastResponses = stat.responses.suffix(numBarsInChart)
+        let lastResponses = stat.responses.suffix(numResponses)
 
         let lastRoudtripTimes = lastResponses.map { $0.duration }
         let allRoudtripTimes = stat.responses.map { $0.duration }
