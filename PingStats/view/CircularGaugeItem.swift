@@ -78,7 +78,7 @@ struct SpeedometerGaugeStyle: GaugeStyle {
                         style: StrokeStyle(lineWidth: lineWith, lineCap: .round, lineJoin: .round))
                 
                     .rotationEffect(.degrees(134))
-                    .animation(.easeIn)
+                    .animation(.easeIn, value: configuration.value)
                 Circle()
                     .trim(from: 0.038, to: 0.72)
                     .stroke(.gray.gradient,

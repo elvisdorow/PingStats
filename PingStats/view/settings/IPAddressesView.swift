@@ -91,7 +91,7 @@ struct IPAddressesView: View {
                    customContent:
                     HStack(alignment: .center) {
                         TextField("0.0.0.0 or host.name", text: $newIpAddress)
-                            .onChange(of: newIpAddress) { _ in
+                            .onChange(of: newIpAddress) {
                                 validateIPAddressOrHostname()
                             }
                         .autocapitalization(.none)

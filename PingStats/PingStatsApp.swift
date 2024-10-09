@@ -11,6 +11,8 @@ import RealmSwift
 @main
 struct PingStatsApp: SwiftUI.App {
     
+    var settings: Settings = .shared
+    
     init() {
         configureRealm()
     }
@@ -18,18 +20,26 @@ struct PingStatsApp: SwiftUI.App {
     var body: some Scene {
         WindowGroup {
             MainView()
+                .onAppear {
+                    settings.theme = settings.theme
+                }
         }
     }
     
     func configureRealm() {
         let config = Realm.Configuration(
-            schemaVersion: 2, // Increment this whenever schema changes
+            schemaVersion: 3, // Increment this whenever schema changes
             migrationBlock: { migration, oldSchemaVersion in
                 if oldSchemaVersion < 2 {
                     migration.enumerateObjects(ofType: MeasurementResult.className()) { oldObject, newObject in
                         newObject!["pingInterval"] = 0
                         newObject!["maxtimeSetting"] = 0
                         newObject!["pingTimeout"] = 0
+                    }
+                }
+                if oldSchemaVersion < 3 {
+                    migration.enumerateObjects(ofType: MeasurementResult.className()) { oldObject, newObject in
+                        newObject!["connectionType"] = ""
                     }
                 }
             }

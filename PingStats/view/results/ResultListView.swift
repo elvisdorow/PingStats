@@ -35,7 +35,6 @@ struct ResultListView: View {
                     }
                 }
             }
-            .preferredColorScheme(settings.theme != .system ? (settings.theme == .darkMode ? .dark : .light) : nil)
             .navigationTitle("Results")
             .toolbarTitleDisplayMode(.inline)
             .toolbar(content: {
@@ -43,7 +42,10 @@ struct ResultListView: View {
                     Button(action: {
                         presentationMode.wrappedValue.dismiss()
                     }, label: {
-                        Image(systemName: "xmark")
+                        Label(
+                            title: { Text("Close") },
+                            icon: { Image(systemName: "xmark") }
+                        )
                     })
                 }
             })
@@ -54,9 +56,26 @@ struct ResultListView: View {
 struct ResultRowView: View {
     
     var result: MeasurementResult
-    
+
     var body: some View {
+        let connectionType = ConnectionType(rawValue: result.connectionType) ?? .unknown
+        
         HStack {
+            VStack {
+                switch connectionType {
+                case .wifi:
+                    Image(systemName: "wifi")
+                case .cellular:
+                    Image(systemName: "cellularbars")
+                case .ethernet:
+                    Image(systemName: "cable.connector")
+                case .unknown:
+                    Image(systemName: "network.slash")
+                }
+            }
+            .foregroundColor(.primary.opacity(0.6))
+            .padding(.trailing, 10)
+
             VStack(alignment: .leading, spacing: 3) {
                 if !result.hostAddress.isEmpty && !result.ipAddress.isEmpty {
                     Text("\(result.ipAddress)")
@@ -79,7 +98,7 @@ struct ResultRowView: View {
             }
             Spacer()
 
-            HStack {
+            HStack(spacing: 20) {
                 Text("\(result.generalNetQuality.formatted(.number.precision(.fractionLength(0))))%")
                 dotCircleStatus(quality: result.generalNetQuality)
                     .font(.caption)
@@ -123,9 +142,7 @@ struct ResultRowView: View {
 
 
 #Preview {
-//        ResultRowView(result: MeasurementResult.example)
+//    ResultRowView(result: MeasurementResult.example)
     
-    Group {
-        ResultListView()
-    }
+    ResultListView()
 }

@@ -21,17 +21,39 @@ struct ResultDetailView: View {
     }
     
     var body: some View {
+        
+        let connectionType = ConnectionType(rawValue: result.connectionType) ?? .unknown
+        
         VStack(alignment: .leading, spacing: 16) {
-
             VStack(alignment: .leading) {
                 if !result.hostAddress.isEmpty && !result.ipAddress.isEmpty {
                     Text("\(result.hostAddress)")
                         .foregroundColor(.secondary)
                 }
                 
-                Text(result.dateStart.formatted(date: .abbreviated, time: .standard))
-                    .font(.system(size: 15)).foregroundColor(.primary.opacity(0.75))
-                    .padding(.top, 10)
+                HStack(alignment: .firstTextBaseline) {
+                    HStack(alignment: .firstTextBaseline) {
+                        Text("\(connectionType.toString())")
+                        switch connectionType {
+                        case .wifi:
+                            Image(systemName: "wifi").font(.subheadline)
+                        case .cellular:
+                            Image(systemName: "cellularbars")
+                        case .ethernet:
+                            Image(systemName: "cable.connector")
+                        case .unknown:
+                            Image(systemName: "network.slash")
+                        }
+                    }
+                    .foregroundColor(.primary.opacity(0.9))
+
+                    Spacer()
+
+                    Text(result.dateStart.formatted(date: .abbreviated, time: .standard))
+                        .font(.system(size: 15)).foregroundColor(.primary.opacity(0.9))
+                        .padding(.top, 10)
+
+                }
             }
             .padding(.horizontal, 4)
 
@@ -104,19 +126,14 @@ struct ResultDetailView: View {
                     Button(action: {},
                     label: {
                         Label(
-                            title: { Text("Save") },
+                            title: { Text("Save to a file") },
                             icon: { Image(systemName: "square.and.arrow.down") }
                         )
                     })
-                    Button(action: {
-                        showDeleteConfirmation = true
-                    },
-                    label: {
-                        Label(
-                            title: { Text("Delete") },
-                            icon: { Image(systemName: "trash")  }
-                        )
-                    }).foregroundColor(.red)
+                    Button(role: .destructive, action: {}) {
+                        Label("Delete result", systemImage: "trash")
+                    }
+                    
                 } label: {
                     Label(
                         title: { Text("Menu") },

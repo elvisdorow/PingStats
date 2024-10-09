@@ -10,6 +10,9 @@ import SwiftyPing
 import RealmSwift
 import Combine
 import SwiftUI
+import Network
+
+
 
 class MainViewModel: ObservableObject {
     
@@ -29,6 +32,13 @@ class MainViewModel: ObservableObject {
     
     @Published var timer = Timer.publish(every: 1, on: .main, in: .common)
     var timerCancellable: Cancellable? = nil
+    
+    // Network detection properties
+    private var monitor: NWPathMonitor
+    private var queue = DispatchQueue.global(qos: .background)
+    
+    @Published var isConnected: Bool = false
+    @Published var connectionType: ConnectionType = .unknown
 
     @Published var chartType: MySegmentedControl.SelectedControl = .barChart
     
@@ -41,14 +51,22 @@ class MainViewModel: ObservableObject {
     private var errors: [PingError] = []
     private var counter: Int = 0
     
-    private let numBarsInChart = 60
+    private let numBarsInChart = 40
     
     init() {
         self.settings = Settings.shared
+        
+        monitor = NWPathMonitor()
+        monitor.pathUpdateHandler = { path in
+            DispatchQueue.main.async {
+                self.isConnected = path.status == .satisfied
+                self.updateConnectionType(path)
+            }
+        }
+        monitor.start(queue: queue)
     }
     
     func start() {
-        
         stat.responses.removeAll()
         errors.removeAll()
         
@@ -65,7 +83,7 @@ class MainViewModel: ObservableObject {
         timer = Timer.publish(every: 1, on: .main, in: .common)
         timerCancellable = timer.connect()
         
-        var config: PingConfiguration = PingConfiguration(
+        let config: PingConfiguration = PingConfiguration(
             interval: Double(settings.pingInterval.rawValue) / 1000,
             with: TimeInterval(settings.pingTimeout.rawValue))
         
@@ -97,63 +115,75 @@ class MainViewModel: ObservableObject {
             self.statusMessage = "Pinging \(self.host)"
         }
         
-        do {
-            let finalHostAddress = (self.hostName != nil ? self.hostName!: self.host)
-            pinger = try SwiftyPing(host: finalHostAddress, configuration: config, queue: DispatchQueue.global())
-
-        } catch {
-            print(error.localizedDescription)
-        }
-        
-        
         // Ping indefinitely
-        pinger?.observer = { (response) in
-            self.counter += 1
-            let idx = self.counter
-            
-            let pingStatResponse = PingStatResponse(
-                sequency: idx,
-                dateTime: Date(),
-                duration: response.duration,
-                error: nil)
-            
-            // Test network error
-            if self.counter == 4 {
-                //                self.errors.append(PingError.requestTimeout)
-            } else {
-                if let error = response.error {
-                    self.addError(error: error)
-                } else {
-                    self.addResponse(response: pingStatResponse)
-                }
+        // give 30 ms to pinger start
+            DispatchQueue.global(qos: .background).async {
+
+                do {
+                    let finalHostAddress = (self.hostName != nil ? self.hostName!: self.host)
+                    self.pinger = try SwiftyPing(host: finalHostAddress, configuration: config, queue: DispatchQueue.global(qos: .background))
+                        
+                    } catch {
+                        print(error.localizedDescription)
+                    }
+                    
+                    self.pinger?.observer = { (response) in
+                        self.counter += 1
+                        let idx = self.counter
+                        
+                        let pingStatResponse = PingStatResponse(
+                            sequency: idx,
+                            dateTime: Date(),
+                            duration: response.duration,
+                            error: nil)
+                        
+                        // Test network error
+                        DispatchQueue.main.async {
+                            if self.counter == 4 {
+                                //                self.errors.append(PingError.requestTimeout)
+                            } else {
+                                if let error = response.error {
+                                    self.addError(error: error)
+                                } else {
+                                    self.addResponse(response: pingStatResponse)
+                                }
+                            }
+                        }
+                        
+                    }
+
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.03) {
+                        try? self.pinger?.startPinging()
+                    }
+                    self.pinger?.finished = { result in
+                    
             }
-            
-        }
-        try? pinger?.startPinging()
-        
-        pinger?.finished = { result in
-            //            print(result.roundtrip)
         }
         
     }
     
     func stop() {
-        stat.dateEnd = Date()
+        self.stat.dateEnd = Date()
+        self.stat.connectionType = self.connectionType
         
-        var measurementResult: MeasurementResult = MeasurementResult()
-        measurementResult.fromModel(model: stat)
-        
-        // save settings used
-        measurementResult.pingTimeout = settings.pingTimeout.rawValue
-        measurementResult.pingInterval = settings.pingInterval.rawValue
-        measurementResult.maxtimeSetting = settings.maxtimeSetting.rawValue        
-        
-        let realm = try! Realm()
-        try! realm.write {
-            realm.add(measurementResult)
+        DispatchQueue.global(qos: .background).async {
+            
+            let measurementResult: MeasurementResult = MeasurementResult()
+            measurementResult.fromModel(model: self.stat)
+            
+            // save settings used
+            measurementResult.pingTimeout = self.settings.pingTimeout.rawValue
+            measurementResult.pingInterval = self.settings.pingInterval.rawValue
+            measurementResult.maxtimeSetting = self.settings.maxtimeSetting.rawValue
+            
+            let realm = try! Realm()
+            try! realm.write {
+                realm.add(measurementResult)
+            }
+            
+            self.pinger?.haltPinging(resetSequence: true)
         }
         
-        pinger?.haltPinging(resetSequence: true)
         counter = 0
         isAnalysisRunning = false
         statusMessage = "Test finished"
@@ -190,7 +220,6 @@ class MainViewModel: ObservableObject {
     }
     
     private func calculateCurrentStats() {
-        print("Calculating stats...")
         isAnalysisRunning = true
         
         // Uses all responses to calculate stats
@@ -266,7 +295,7 @@ class MainViewModel: ObservableObject {
         case 20..<70:
             gamingStatus = .bad
         case 70..<85:
-            gamingStatus = .normal
+            gamingStatus = .avarage
         case 85..<95:
             gamingStatus = .good
         default:
@@ -287,7 +316,7 @@ class MainViewModel: ObservableObject {
         case 53..<65:
             videoCallStatus = .bad
         case 65..<77:
-            videoCallStatus = .normal
+            videoCallStatus = .avarage
         case 77..<87:
             videoCallStatus = .good
         default:
@@ -306,14 +335,14 @@ class MainViewModel: ObservableObject {
         case 0..<44:
             streamingStatus = .bad
         case 58..<75:
-            streamingStatus = .normal
+            streamingStatus = .avarage
         case 75..<83:
             streamingStatus = .good
         default:
             streamingStatus = .excelent
         }
         
-        if streamingStatus == .bad || streamingStatus == .normal {
+        if streamingStatus == .bad || streamingStatus == .avarage {
             if self.stat.packageLoss < 2.0 {
                 streamingStatus = .good
                 self.stat.streamingScore = 0.87
@@ -454,5 +483,38 @@ class MainViewModel: ObservableObject {
             return true
         }
         return false
+    }
+    
+    private func updateConnectionType(_ path: NWPath) {
+        if path.usesInterfaceType(.wifi) {
+            self.connectionType = .wifi
+        } else if path.usesInterfaceType(.cellular) {
+            self.connectionType = .cellular
+        } else if path.usesInterfaceType(.wiredEthernet) {
+            self.connectionType = .ethernet
+        } else {
+            self.connectionType = .unknown
+        }
+    }
+}
+
+
+enum ConnectionType: String {
+    case wifi
+    case cellular
+    case ethernet
+    case unknown
+    
+    func toString() -> String {
+        switch self {
+        case .wifi:
+            return "Wi-Fi"
+        case .cellular:
+            return "Cellular"
+        case .ethernet:
+            return "Ethernet"
+        case .unknown:
+            return "Unknown"
+        }
     }
 }

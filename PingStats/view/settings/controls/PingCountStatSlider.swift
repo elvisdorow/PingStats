@@ -13,7 +13,7 @@ struct PingCountStatSlider: View {
 
     var body: some View {
         HStack {
-            Slider(value: Binding(
+            Slider(value: Binding( 
                 get: {
                     Double(self.countStat.toSliderValue())
                 },

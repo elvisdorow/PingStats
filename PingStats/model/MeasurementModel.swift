@@ -33,20 +33,22 @@ struct MeasurementModel: Identifiable {
     var streamingScore: Double = 0.0
     var videoCallScore: Double = 0.0
     
+    var connectionType: ConnectionType = .unknown
+    
     var responses: [PingStatResponse] = []
     
     init() {
         dateStart = nil
         dateEnd = nil
         ipAddress = nil
-        hostAddress = nil        
+        hostAddress = nil
     }
     
     enum Status: String {
         case empty = "---",
              veryBad = "Very Bad",
              bad = "Bad",
-             normal = "Normal",
+             avarage = "Avarage",
              good = "Good",
              excelent = "Excelent"
     }

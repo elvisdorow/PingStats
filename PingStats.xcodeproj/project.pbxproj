@@ -7,14 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		14053FD42C8A625200C24018 /* NetworkMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14053FD32C8A625200C24018 /* NetworkMonitor.swift */; };
 		1409322F2C52775B00D2C03F /* MeasurementModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1409322E2C52775B00D2C03F /* MeasurementModel.swift */; };
 		140932322C528BEA00D2C03F /* MainViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 140932312C528BEA00D2C03F /* MainViewModel.swift */; };
 		140AFF682C6663BA00A4A2C8 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 140AFF672C6663BA00A4A2C8 /* SettingsView.swift */; };
 		142C51BA2C641EDF00492458 /* LogTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 142C51B92C641EDF00492458 /* LogTableView.swift */; };
 		142C51BC2C64240100492458 /* LogTextModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 142C51BB2C64240100492458 /* LogTextModel.swift */; };
 		143391DA2C9A365300ED8CDB /* PingIntervalSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 143391D92C9A365300ED8CDB /* PingIntervalSlider.swift */; };
-		1436956A2C8735C8005CC2B3 /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 143695692C8735C8005CC2B3 /* Theme.swift */; };
 		1436956E2C8750E8005CC2B3 /* IPAddressesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1436956D2C8750E8005CC2B3 /* IPAddressesView.swift */; };
 		144D60B42C90966A009B7D9C /* SwiftyPing in Frameworks */ = {isa = PBXBuildFile; productRef = 144D60B32C90966A009B7D9C /* SwiftyPing */; };
 		144D60B62C909B3A009B7D9C /* GaugeItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 144D60B52C909B3A009B7D9C /* GaugeItem.swift */; };
@@ -61,14 +59,12 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		14053FD32C8A625200C24018 /* NetworkMonitor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkMonitor.swift; sourceTree = "<group>"; };
 		1409322E2C52775B00D2C03F /* MeasurementModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeasurementModel.swift; sourceTree = "<group>"; };
 		140932312C528BEA00D2C03F /* MainViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewModel.swift; sourceTree = "<group>"; };
 		140AFF672C6663BA00A4A2C8 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		142C51B92C641EDF00492458 /* LogTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogTableView.swift; sourceTree = "<group>"; };
 		142C51BB2C64240100492458 /* LogTextModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogTextModel.swift; sourceTree = "<group>"; };
 		143391D92C9A365300ED8CDB /* PingIntervalSlider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PingIntervalSlider.swift; sourceTree = "<group>"; };
-		143695692C8735C8005CC2B3 /* Theme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Theme.swift; sourceTree = "<group>"; };
 		1436956D2C8750E8005CC2B3 /* IPAddressesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IPAddressesView.swift; sourceTree = "<group>"; };
 		144D60B52C909B3A009B7D9C /* GaugeItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GaugeItem.swift; sourceTree = "<group>"; };
 		1477566C2C88A0F3003D7573 /* CustomAlertView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomAlertView.swift; sourceTree = "<group>"; };
@@ -139,8 +135,6 @@
 		1477566B2C88A0D5003D7573 /* utils */ = {
 			isa = PBXGroup;
 			children = (
-				14053FD32C8A625200C24018 /* NetworkMonitor.swift */,
-				143695692C8735C8005CC2B3 /* Theme.swift */,
 				1477566C2C88A0F3003D7573 /* CustomAlertView.swift */,
 				14BBA22C2C98B49400438D2D /* Formatter.swift */,
 				D527F7472CAB25A9001B428C /* IPValidator.swift */,
@@ -364,7 +358,6 @@
 				14FECBBC2C4FAF59009CBF07 /* CircularGaugeItem.swift in Sources */,
 				144D60B62C909B3A009B7D9C /* GaugeItem.swift in Sources */,
 				D5FB2D152CA6E1D1002C4AE3 /* PingCountStatSlider.swift in Sources */,
-				14053FD42C8A625200C24018 /* NetworkMonitor.swift in Sources */,
 				14B950A42C45C57E00E8A388 /* Network.swift in Sources */,
 				142C51BC2C64240100492458 /* LogTextModel.swift in Sources */,
 				14B9509D2C45B62500E8A388 /* PingResponseModel.swift in Sources */,
@@ -378,7 +371,6 @@
 				140AFF682C6663BA00A4A2C8 /* SettingsView.swift in Sources */,
 				D5FB2D172CA6FDA3002C4AE3 /* Settings.swift in Sources */,
 				D57F20782CA4453500676BDD /* PingTimeoutSlider.swift in Sources */,
-				1436956A2C8735C8005CC2B3 /* Theme.swift in Sources */,
 				D57F207A2CA4498200676BDD /* PingMaxtimeSlider.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

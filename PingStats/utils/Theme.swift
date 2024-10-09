@@ -6,11 +6,5 @@
 //
 
 import Foundation
+import SwiftUI
 
-enum Theme: String, CaseIterable, Identifiable {
-    case system = "Device"
-    case lightMode = "Light"
-    case darkMode = "Dark"
-    
-    var id: String { self.rawValue }
-}

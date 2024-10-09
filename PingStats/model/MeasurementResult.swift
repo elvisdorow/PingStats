@@ -34,6 +34,7 @@ final class MeasurementResult: Object, ObjectKeyIdentifiable {
     @Persisted var maxtimeSetting: Int
     @Persisted var pingTimeout: Int
 
+    @Persisted var connectionType: String
     
     var elapsedTime: String {
         get {
@@ -54,6 +55,7 @@ final class MeasurementResult: Object, ObjectKeyIdentifiable {
         self.jitter = model.jitter
         self.generalNetQuality = model.generalNetQuality
         self.pingCount = model.responses.count
+        self.connectionType = model.connectionType.rawValue
     }
 
 
@@ -72,6 +74,7 @@ final class MeasurementResult: Object, ObjectKeyIdentifiable {
         result.gamingScore = 80.0
         result.streamingScore = 85.0
         result.videoCallScore = 95.0
+        result.connectionType = ConnectionType.wifi.rawValue
         return result
     }()
 

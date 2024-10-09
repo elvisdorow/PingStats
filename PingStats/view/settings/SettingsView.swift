@@ -10,7 +10,7 @@ import SwiftUI
 struct SettingsView: View {
     
     @Environment(\.presentationMode) var presentationMode
-    
+       
     @StateObject var settings = Settings.shared
     
     var body: some View {
@@ -68,12 +68,10 @@ struct SettingsView: View {
                     ForEach(Theme.allCases, id: \.self) { theme in
                         Button(action: {
                             settings.theme = theme
-                            settings.objectWillChange.send()
-//                            settingsViewModel.objectWillChange.send()
-//                            settingsViewModel.settingsModel.objectWillChange.send()
+                            
                         }, label: {
                             HStack {
-                                Text(theme.rawValue)
+                                Text("\(theme.name)")
                                 Spacer()
                                 if settings.theme == theme {
                                     Image(systemName: "checkmark")
@@ -91,14 +89,12 @@ struct SettingsView: View {
             .toolbar {
                 ToolbarItem {
                     Button(action: {
-//                        settingsViewModel.objectWillChange.send()
                         presentationMode.wrappedValue.dismiss()
                     }, label: {
                         Text("OK")
                     })
                 }
             }
-            .preferredColorScheme(settings.theme != .system ? (settings.theme == .darkMode ? .dark : .light) : nil)
             .navigationTitle("Settings")
             .toolbarTitleDisplayMode(.inline)
         }

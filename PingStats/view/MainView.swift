@@ -19,9 +19,7 @@ struct MainView: View {
     
     @StateObject var viewModel: MainViewModel = MainViewModel()
     @StateObject var settings = Settings.shared
-    @StateObject var networkMonitor: NetworkMonitor = NetworkMonitor()
 
-    
     var body: some View {
         NavigationStack {
             
@@ -50,28 +48,38 @@ struct MainView: View {
                     Spacer()
 
                     VStack(alignment: .leading) {
-                        Label(
-                            title: {
-                                Text("Network Quality")
-                                    .font(.callout)
-                                    .foregroundStyle(.primary.opacity(0.8))
-                                    .fontWeight(.light)
-                            },
-                            icon: {
-                                switch networkMonitor.connectionType {
-                                case .wifi:
-                                    Image(systemName: "wifi")
-                                case .cellular:
-                                    Image(systemName: "cellularbars")
-                                case .ethernet:
-                                    Image(systemName: "cable.connector")
-                                case .unknown:
-                                    Image(systemName: "network.slash")
+                        HStack(alignment: .firstTextBaseline, spacing: 15) {
+                            Text("Network Quality")
+                                .font(.callout)
+                                .foregroundStyle(.primary.opacity(0.8))
+                                .fontWeight(.light)
 
+                            Spacer()
+
+                            Label(
+                                title: {
+                                    Text("\(viewModel.connectionType.toString())")
+                                },
+                                icon: {
+                                    switch viewModel.connectionType {
+                                    case .wifi:
+                                        Image(systemName: "wifi")
+                                    case .cellular:
+                                        Image(systemName: "cellularbars")
+                                    case .ethernet:
+                                        Image(systemName: "cable.connector")
+                                    case .unknown:
+                                        Image(systemName: "network.slash")
+                                    }
                                 }
-                            }
-                        )
-                        .font(.title2)
+                            )
+                            .font(.system(size: 15))
+                            .foregroundStyle(.primary.opacity(0.9))
+                            .fontWeight(.light)
+                            .padding(.trailing, 0)
+
+
+                        }
                         HStack {
                             ConnectionQuality()
                             Text("\(Formatter.number(viewModel.stat.generalNetQuality, fraction: 0, unit: "%"))")
@@ -149,8 +157,8 @@ struct MainView: View {
                 ResultListView()
                     .presentationCompactAdaptation(.fullScreenCover)
             }
-            
-        }.preferredColorScheme(settings.theme != .system ? (settings.theme == .darkMode ? .dark : .light) : nil)
+
+        }
     }
 }
 
@@ -170,6 +178,8 @@ struct ConnectionQuality: View {
 struct ChartLogView: View {
 
     @EnvironmentObject var viewModel: MainViewModel
+    
+    @Environment(\.colorScheme) var colorScheme: ColorScheme
  
     var body: some View {
         HStack {
@@ -190,20 +200,38 @@ struct ChartLogView: View {
                             )
                             .interpolationMethod(.catmullRom)
                             .foregroundStyle(LinearGradient(
-                                gradient: Gradient(colors: [Color("DarkAccentColor").opacity(0.3), Color("DarkAccentColor").opacity(0.05)]),
+                                gradient: Gradient(colors: [Color("DarkAccentColor").opacity(1.0), Color("DarkAccentColor").opacity(0.2)]),
                                 startPoint: .top,
                                 endPoint: .bottom
                             ))
                             
                         } else {
-                            BarMark(
-                                x: .value("seq", data.sequency),
-                                y: .value("ms", data.duration.scaled(by: 1000)),
-                                width: 4
-                            )
-                            .foregroundStyle(.accent)
-                            .clipShape(RoundedBottomRectangle(cornerRadius: 3))
-                            .cornerRadius(3)
+                            if colorScheme == .dark {
+                                BarMark(
+                                    x: .value("seq", data.sequency),
+                                    y: .value("ms", data.duration.scaled(by: 1000)),
+                                    width: 7
+                                )
+                                .foregroundStyle(LinearGradient(
+                                    gradient: Gradient(colors: [Color("DarkAccentColor").opacity(1.0), Color("DarkAccentColor").opacity(0.8)]),
+                                    startPoint: .top,
+                                    endPoint: .bottom
+                                ))
+                                
+                                .clipShape(RoundedBottomRectangle(cornerRadius: 2))
+                                .cornerRadius(3)
+                            } else {
+                                BarMark(
+                                    x: .value("seq", data.sequency),
+                                    y: .value("ms", data.duration.scaled(by: 1000)),
+                                    width: 7
+                                )
+                                .foregroundStyle(.accent.gradient)
+                                
+                                .clipShape(RoundedBottomRectangle(cornerRadius: 2))
+                                .cornerRadius(3)
+
+                            }
                             
                         }
                     }

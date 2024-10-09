@@ -4,7 +4,11 @@ class Settings: ObservableObject {
     
     static let shared = Settings()
     
-    @AppStorage("theme") var theme: Theme = .system
+    @AppStorage("theme") var theme: Theme = .device {
+        didSet {
+            appearance = theme.rawValue
+        }
+    }
     
     @AppStorage("pingInterval") var pingInterval: PingInterval = .sec1
     @AppStorage("pingCountStat") var pingCountStat: PingCountStat = .count30
@@ -14,7 +18,9 @@ class Settings: ObservableObject {
     
     @AppStorage("ipAddressesData") var ipAddressesData: Data = Data()
  
-    private init() {}
+    private init() {
+        
+    }
     
     var ipAddresses: [String] {
         get {
@@ -35,5 +41,43 @@ class Settings: ObservableObject {
             }
         }
     }
+    
+    var window: UIWindow? {
+        guard let scene = UIApplication.shared.connectedScenes.first,
+              let windowSceneDelegate = scene.delegate as? UIWindowSceneDelegate,
+              let window = windowSceneDelegate.window else {
+            return nil
+        }
+        return window
+    }
+    
+    @Published var appearance: Int = 0 {
+        didSet {
+            print("apperance set to \(appearance)")
+            switch appearance {
+            case 1:
+                window?.overrideUserInterfaceStyle = .light
+            case 2:
+                window?.overrideUserInterfaceStyle = .dark
+            default:
+                window?.overrideUserInterfaceStyle = .unspecified
+            }
+        }
+    }
 
+}
+
+enum Theme: Int, CaseIterable, Identifiable {
+    case device = 0
+    case light = 1
+    case dark = 2
+    var id: Int { self.rawValue }
+
+    var name: String {
+        switch self {
+        case .device: return String("Device")
+        case .light: return String("Light")
+        case .dark: return String("Dark")
+        }
+    }
 }
