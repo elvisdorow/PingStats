@@ -80,4 +80,12 @@ enum Theme: Int, CaseIterable, Identifiable {
         case .dark: return String("Dark")
         }
     }
+    
+    var icon: Image {
+        switch self  {
+        case .device: return Image(systemName: "circle.lefthalf.filled")
+        case .light: return Image(systemName: "sun.max")
+        case .dark: return Image(systemName: "moon")
+        }
+    }
 }

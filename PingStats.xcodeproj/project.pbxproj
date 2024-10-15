@@ -43,6 +43,7 @@
 		D57F207A2CA4498200676BDD /* PingMaxtimeSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = D57F20792CA4498200676BDD /* PingMaxtimeSlider.swift */; };
 		D5FB2D152CA6E1D1002C4AE3 /* PingCountStatSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5FB2D142CA6E1D1002C4AE3 /* PingCountStatSlider.swift */; };
 		D5FB2D172CA6FDA3002C4AE3 /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5FB2D162CA6FDA3002C4AE3 /* Settings.swift */; };
+		D5FBEFF22CB6C43F0077CF0A /* PingSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5FBEFF12CB6C43F0077CF0A /* PingSettingsView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -96,6 +97,7 @@
 		D57F20792CA4498200676BDD /* PingMaxtimeSlider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PingMaxtimeSlider.swift; sourceTree = "<group>"; };
 		D5FB2D142CA6E1D1002C4AE3 /* PingCountStatSlider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PingCountStatSlider.swift; sourceTree = "<group>"; };
 		D5FB2D162CA6FDA3002C4AE3 /* Settings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
+		D5FBEFF12CB6C43F0077CF0A /* PingSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PingSettingsView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -230,6 +232,7 @@
 				143391D82C9A363000ED8CDB /* controls */,
 				140AFF672C6663BA00A4A2C8 /* SettingsView.swift */,
 				1436956D2C8750E8005CC2B3 /* IPAddressesView.swift */,
+				D5FBEFF12CB6C43F0077CF0A /* PingSettingsView.swift */,
 			);
 			path = settings;
 			sourceTree = "<group>";
@@ -348,6 +351,7 @@
 				142C51BA2C641EDF00492458 /* LogTableView.swift in Sources */,
 				14B950902C45AC4400E8A388 /* MainView.swift in Sources */,
 				14AAA2522C924B3300DF83F0 /* ResultViewModel.swift in Sources */,
+				D5FBEFF22CB6C43F0077CF0A /* PingSettingsView.swift in Sources */,
 				14E283482C9216AE0086E36F /* MeasurementResult.swift in Sources */,
 				1436956E2C8750E8005CC2B3 /* IPAddressesView.swift in Sources */,
 				14BBA22D2C98B49400438D2D /* Formatter.swift in Sources */,

@@ -13,6 +13,7 @@ struct PingMaxtimeSlider: View {
     
     var body: some View {
         HStack {
+            Image(systemName: "timer").opacity(0.6)
             Slider(value: Binding(
                 get: {
                     self.maxtime.toSliderValue()

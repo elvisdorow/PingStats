@@ -72,7 +72,7 @@ struct SpeedometerGaugeStyle: GaugeStyle {
                     .trim(from: 0.038, to: 0.72 * configuration.value)
                     .stroke(
                         LinearGradient(
-                            gradient: Gradient(colors: [.accent, .accent.opacity(1.0)]),
+                            gradient: Gradient(colors: [.accent.opacity(0.8), .accent]),
                             startPoint: .topLeading,
                             endPoint: .bottomTrailing),
                         style: StrokeStyle(lineWidth: lineWith, lineCap: .round, lineJoin: .round))

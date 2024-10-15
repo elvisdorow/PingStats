@@ -115,21 +115,21 @@ struct MainView: View {
                     ToolbarItem(placement: .topBarTrailing) {
                         Menu {
                             Button(action: {
-                                showSettingsView.toggle()
-                            },
-                            label: {
-                                Label(
-                                    title: { Text("Settings") },
-                                    icon: { Image(systemName: "gear") }
-                                )
-                            })
-                            Button(action: {
                                 showResultsView.toggle()
                             },
                             label: {
                                 Label(
                                     title: { Text("Results") },
                                     icon: { Image(systemName: "list.bullet.rectangle.portrait") }
+                                )
+                            })
+                            Button(action: {
+                                showSettingsView.toggle()
+                            },
+                            label: {
+                                Label(
+                                    title: { Text("Settings") },
+                                    icon: { Image(systemName: "gear") }
                                 )
                             })
                             Button(action: {},
@@ -376,6 +376,11 @@ struct DetailedStatsView: View {
                 )
                 .onReceive(viewModel.timer) { _ in
                     viewModel.elapsedTime = Date().timeIntervalSince(viewModel.startTime)
+
+                    if viewModel.elapsedTime >= TimeInterval(viewModel.settings.maxtimeSetting.rawValue) {
+                        viewModel.stop()
+                    }
+                    
                 }
             }
             .frame(minHeight: lineHeight, alignment: .center)
@@ -383,8 +388,6 @@ struct DetailedStatsView: View {
         }
     }
 }
-
-
 
 struct PingStatBlock: View {
     

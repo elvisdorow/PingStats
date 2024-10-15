@@ -35,7 +35,7 @@ class MainViewModel: ObservableObject {
     
     // Network detection properties
     private var monitor: NWPathMonitor
-    private var queue = DispatchQueue.global(qos: .background)
+    private var queueBackground = DispatchQueue.global(qos: .background)
     
     @Published var isConnected: Bool = false
     @Published var connectionType: ConnectionType = .unknown
@@ -63,7 +63,7 @@ class MainViewModel: ObservableObject {
                 self.updateConnectionType(path)
             }
         }
-        monitor.start(queue: queue)
+        monitor.start(queue: queueBackground)
     }
     
     func start() {
@@ -80,84 +80,71 @@ class MainViewModel: ObservableObject {
         
         elapsedTime = 0
         
-        timer = Timer.publish(every: 1, on: .main, in: .common)
-        timerCancellable = timer.connect()
-        
         let config: PingConfiguration = PingConfiguration(
             interval: Double(settings.pingInterval.rawValue) / 1000,
             with: TimeInterval(settings.pingTimeout.rawValue))
         
         host = settings.selectedIpAddress
         
+        
         if self.isValidIPAddress(host) {
             self.hostIP = host
-            
             stat.ipAddress = host
             
             resolveHostname(for: host) { hostname in
                 if let hostname = hostname {
                     self.hostName = hostname
-                    
                     self.stat.hostAddress = hostname
                 }
             }
+            
         } else {
             self.hostIP = nil
             self.hostName = host
         }
-        
-        print(self.hostIP ?? "")
-        print(self.hostName ?? "")
         
         if self.hostIP != nil && self.hostName != nil {
             self.statusMessage = "Pinging \(self.hostIP!) (\(self.hostName!))"
         } else {
             self.statusMessage = "Pinging \(self.host)"
         }
+
+        self.timer = Timer.publish(every: 1, on: .main, in: .common)
+        self.timerCancellable = self.timer.connect()
         
-        // Ping indefinitely
-        // give 30 ms to pinger start
-            DispatchQueue.global(qos: .background).async {
-
-                do {
-                    let finalHostAddress = (self.hostName != nil ? self.hostName!: self.host)
-                    self.pinger = try SwiftyPing(host: finalHostAddress, configuration: config, queue: DispatchQueue.global(qos: .background))
-                        
-                    } catch {
-                        print(error.localizedDescription)
-                    }
+        DispatchQueue.global(qos: .background).async {
+            do {
+                let finalHostAddress = (self.hostName != nil ? self.hostName!: self.host)
+                self.pinger = try SwiftyPing(host: finalHostAddress, configuration: config, queue: DispatchQueue.global(qos: .background))
                     
-                    self.pinger?.observer = { (response) in
-                        self.counter += 1
-                        let idx = self.counter
-                        
-                        let pingStatResponse = PingStatResponse(
-                            sequency: idx,
-                            dateTime: Date(),
-                            duration: response.duration,
-                            error: nil)
-                        
-                        // Test network error
-                        DispatchQueue.main.async {
-                            if self.counter == 4 {
-                                //                self.errors.append(PingError.requestTimeout)
-                            } else {
-                                if let error = response.error {
-                                    self.addError(error: error)
-                                } else {
-                                    self.addResponse(response: pingStatResponse)
-                                }
-                            }
-                        }
-                        
+                } catch {
+                    print(error.localizedDescription)
+                }
+                
+            self.pinger?.observer = { (response) in
+                self.counter += 1
+                let idx = self.counter
+                
+                let pingStatResponse = PingStatResponse(
+                    sequency: idx,
+                    dateTime: Date(),
+                    duration: response.duration,
+                    error: nil)
+                
+                if self.counter == 4 {
+                    //                self.errors.append(PingError.requestTimeout)
+                } else {
+                    if let error = response.error {
+                        self.addError(error: error)
+                    } else {
+                        self.addResponse(response: pingStatResponse)
                     }
-
-                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.03) {
-                        try? self.pinger?.startPinging()
-                    }
-                    self.pinger?.finished = { result in
-                    
+                }
             }
+
+            try? self.pinger?.startPinging()
+            
+//            self.pinger?.finished = { result in }
         }
         
     }
@@ -167,7 +154,8 @@ class MainViewModel: ObservableObject {
         self.stat.connectionType = self.connectionType
         
         DispatchQueue.global(qos: .background).async {
-            
+            self.pinger?.haltPinging(resetSequence: true)
+
             let measurementResult: MeasurementResult = MeasurementResult()
             measurementResult.fromModel(model: self.stat)
             
@@ -180,8 +168,6 @@ class MainViewModel: ObservableObject {
             try! realm.write {
                 realm.add(measurementResult)
             }
-            
-            self.pinger?.haltPinging(resetSequence: true)
         }
         
         counter = 0
