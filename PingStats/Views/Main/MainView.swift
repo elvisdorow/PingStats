@@ -219,62 +219,7 @@ extension MainView {
     }
     
     @ViewBuilder
-    var textStatsView_: some View {
-        let lineHeight = 40.0
-        
-        VStack(alignment: .center , spacing: 0) {
-            HStack {
-                TextStatInfo(
-                    statusTitle: "Best",
-                    pingValue: "\(Formatter.number(viewModel.pingStat.bestPing, fraction: 0, unit: "ms"))"
-                )
-                
-                Rectangle().fill(Color.gray.opacity(0.2)).frame(width: 1, height: lineHeight)
-                
-                TextStatInfo(
-                    statusTitle: "Avarage",
-                    pingValue: "\(Formatter.number(viewModel.pingStat.averagePing, fraction: 0, unit: "ms"))",
-                    fontSize: 30,
-                    fontWeight: .regular
-                )
-                
-                Rectangle().fill(Color.gray.opacity(0.2)).frame(width: 1, height: lineHeight)
-                
-                TextStatInfo(
-                    statusTitle: "Worst",
-                    pingValue: "\(Formatter.number(viewModel.pingStat.worstPing, fraction: 0, unit: "ms"))"
-                )
-                
-            }
-            .frame(minHeight: lineHeight, alignment: .center)
-            .frame(maxHeight: 80)
-            
-            HStack {
-                TextStatInfo(
-                    statusTitle: "Package Loss",
-                    pingValue: "\(Formatter.number(viewModel.pingStat.packageLoss, fraction: 1, unit: "%"))")
-                
-                Rectangle().fill(Color.gray.opacity(0.1)).frame(width: 1, height: lineHeight)
-                
-                TextStatInfo(
-                    statusTitle: "Jitter",
-                    pingValue: "\(Formatter.number(viewModel.pingStat.jitter, fraction: 0, unit: "ms"))")
-                
-                Rectangle().fill(Color.gray.opacity(0.1)).frame(width: 1, height: lineHeight)
-                
-                TextStatInfo(
-                    statusTitle: "Elapsed Time",
-                    pingValue: "\(Formatter.elapsedTime(viewModel.elapsedTime))"
-                )
-            }
-            .frame(minHeight: lineHeight, alignment: .center)
-            .frame(maxHeight: 80)
-        }
-    }
-
-    @ViewBuilder
     var textStatsView: some View {
-        let lineHeight = 40.0
         
         HStack(alignment: .center , spacing: 0) {
             VStack(spacing: 25) {
@@ -305,6 +250,7 @@ extension MainView {
                     statusTitle: "Jitter",
                     pingValue: "\(Formatter.number(viewModel.pingStat.jitter, fraction: 0, unit: "ms"))")
             }
+
             VStack {
                 Rectangle()
                     .fill(Color.gray.opacity(0.15))
@@ -321,6 +267,7 @@ extension MainView {
                     pingValue: "\(Formatter.elapsedTime(viewModel.elapsedTime))"
                 )
             }
+
         }
     }
 
