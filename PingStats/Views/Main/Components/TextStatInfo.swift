@@ -29,7 +29,6 @@ struct TextStatInfo: View {
             
             Text(statusTitle)
                 .font(.custom("Inter-Regular", size: 13))
-
         }
         .frame(maxWidth: .infinity, alignment: .center)
 

@@ -88,7 +88,7 @@ struct SpeedometerGaugeStyle: GaugeStyle {
 
 struct CircularGaugePreview: PreviewProvider {
     @State static var status: PingStat.Status = .excelent
-    @State static var value = 66.1
+    @State static var value = 40.0
     
     static var previews: some View {
         CircularGauge(type: "Gaming", icon: "gamecontroller.fill", value: $value, status: $status)

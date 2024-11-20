@@ -34,6 +34,8 @@ class MainViewModel: ObservableObject {
     var pingService = PingService.instance
     var cancellables: Set<AnyCancellable> = []
     
+    var sessionDataService = SessionDataService.instance
+    
     var session: Session?
     
     init() {
@@ -79,22 +81,16 @@ class MainViewModel: ObservableObject {
         
         timer?.cancel()
         timer = nil
+                
+        let endDate = Date()
         
-//        self.stat.dateEnd = Date()
-//        self.stat.connectionType = self.connectionType
-        
-//        DispatchQueue.global(qos: .background).async {
-//            self.pinger?.haltPinging(resetSequence: true)
-//
-//            let measurementResult: MeasurementResult = MeasurementResult()
-//            measurementResult.fromModel(model: self.stat)
-//            
-//            // save settings used
-//            measurementResult.pingTimeout = self.settings.pingTimeout.rawValue
-//            measurementResult.pingInterval = self.settings.pingInterval.rawValue
-//            measurementResult.maxtimeSetting = self.settings.maxtimeSetting.rawValue
-//            
-
+        if let session = session {
+            session.connectionType = connectionType.rawValue
+            session.endDate = endDate
+            session.elapsedTime = endDate.timeIntervalSince(session.startDate)
+            
+            sessionDataService.add(session: session)
+        }
     }
     
 

@@ -66,13 +66,14 @@ struct MainView: View {
                         menuItems
                     }
                 })
+                .accentColor(.accentColor)
             }
             .popover(isPresented: $showSettingsView) {
                 SettingsView()
                     .presentationCompactAdaptation(.fullScreenCover)
             }
             .popover(isPresented: $showResultsView) {
-                ResultListView()
+                SessionsListView()
                     .presentationCompactAdaptation(.fullScreenCover)
             }
 
@@ -218,14 +219,15 @@ extension MainView {
     }
     
     @ViewBuilder
-    var textStatsView: some View {
+    var textStatsView_: some View {
         let lineHeight = 40.0
         
         VStack(alignment: .center , spacing: 0) {
             HStack {
                 TextStatInfo(
                     statusTitle: "Best",
-                    pingValue: "\(Formatter.number(viewModel.pingStat.bestPing, fraction: 0, unit: "ms"))")
+                    pingValue: "\(Formatter.number(viewModel.pingStat.bestPing, fraction: 0, unit: "ms"))"
+                )
                 
                 Rectangle().fill(Color.gray.opacity(0.2)).frame(width: 1, height: lineHeight)
                 
@@ -246,9 +248,6 @@ extension MainView {
             }
             .frame(minHeight: lineHeight, alignment: .center)
             .frame(maxHeight: 80)
-            
-            Rectangle().fill(Color.gray.opacity(0.2))
-                .frame(height: 1)
             
             HStack {
                 TextStatInfo(
@@ -272,6 +271,59 @@ extension MainView {
             .frame(maxHeight: 80)
         }
     }
+
+    @ViewBuilder
+    var textStatsView: some View {
+        let lineHeight = 40.0
+        
+        HStack(alignment: .center , spacing: 0) {
+            VStack(spacing: 25) {
+                TextStatInfo(
+                    statusTitle: "Best",
+                    pingValue: "\(Formatter.number(viewModel.pingStat.bestPing, fraction: 0, unit: "ms"))"
+                )
+                
+                TextStatInfo(
+                    statusTitle: "Package Loss",
+                    pingValue: "\(Formatter.number(viewModel.pingStat.packageLoss, fraction: 1, unit: "%"))")
+                
+            }
+            VStack {
+                Rectangle()
+                    .fill(Color.gray.opacity(0.15))
+                    .frame(width: 1, height: 50)
+                          
+            }
+            VStack(spacing: 25) {
+                TextStatInfo(
+                    statusTitle: "Average",
+                    pingValue: "\(Formatter.number(viewModel.pingStat.averagePing, fraction: 0, unit: "ms"))",
+                    fontSize: 30,
+                    fontWeight: .regular
+                )
+                TextStatInfo(
+                    statusTitle: "Jitter",
+                    pingValue: "\(Formatter.number(viewModel.pingStat.jitter, fraction: 0, unit: "ms"))")
+            }
+            VStack {
+                Rectangle()
+                    .fill(Color.gray.opacity(0.15))
+                    .frame(width: 1, height: 50)
+                          
+            }
+            VStack(spacing: 25) {
+                TextStatInfo(
+                    statusTitle: "Worst",
+                    pingValue: "\(Formatter.number(viewModel.pingStat.worstPing, fraction: 0, unit: "ms"))"
+                )
+                TextStatInfo(
+                    statusTitle: "Elapsed Time",
+                    pingValue: "\(Formatter.elapsedTime(viewModel.elapsedTime))"
+                )
+            }
+        }
+    }
+
     
     @ViewBuilder
     var bottomActions: some View {

@@ -58,6 +58,8 @@ struct LoadingBarPreview: PreviewProvider {
     @State static var currentValue = 87.0
     
     static var previews: some View {
-        LoadingBar(currentValue: $currentValue).frame(height: 20)
+        LoadingBar(currentValue: $currentValue)
+            .frame(maxWidth: 80)
+            .frame(height: 7)
     }
 }

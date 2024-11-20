@@ -16,11 +16,11 @@ class PingStat {
     @Published var packageLoss: Double
     @Published var jitter: Double
     
-    @Published var generalScore: Double = -0.1
+    @Published var generalScore: Double = 0.0
     
-    @Published var gamingScore: Double = -0.1
-    @Published var videoCallScore: Double = -0.1
-    @Published var streamingScore: Double = -0.1
+    @Published var gamingScore: Double = 0.0
+    @Published var videoCallScore: Double = 0.0
+    @Published var streamingScore: Double = 0.0
     
     @Published var gamingStatus: Status = .empty
     @Published var videoCallStatus: Status = .empty

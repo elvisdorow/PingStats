@@ -9,18 +9,25 @@ import Foundation
 class Session {
     
     let parameters: SessionParam
+    var connectionType: String
+    
     var pingStat: PingStat? = nil
     
     private(set) var responses: [ICMPResponse]
     private(set) var pingLogs: [PingLog]
 
     let startDate: Date
+    var endDate: Date?
+    var elapsedTime: TimeInterval
     
     init(_ params: SessionParam) {
         parameters = params
         startDate = Date()
+        endDate = nil
+        elapsedTime = 0
         responses = []
         pingLogs = []
+        connectionType = ""
     }
     
     func addResponse(_ response: ICMPResponse) -> PingLog {
@@ -61,12 +68,16 @@ class Session {
         let lossPercentage = (Double(lost) / Double(responses.count) * 100)
         loss = lossPercentage
         
-        return .init(
+        let pingStat: PingStat = .init(
             best: best,
             worst: worst,
             average: average,
             loss: loss,
             jitter: jitter)
+        
+        self.pingStat = pingStat
+        
+        return pingStat
     }
     
     private func addPingLog(_ response: ICMPResponse) -> PingLog {        
@@ -87,6 +98,25 @@ class Session {
             return log
         }
     }
+    
+//    static let example: Sessions = {
+//        let result = Sessions()
+//        result.startDate = Date().addingTimeInterval(-116)
+//        result.endDate = Date()
+//        result.host = "1.1.1.1"
+//        result.hostname = "dns.google"
+//        result.bestPing = 28.9
+//        result.worstPing = 30.3
+//        result.averagePing = 29.6
+//        result.packageLoss = 0.0
+//        result.jitter = 0.3
+//        result.generalScore = 90.0
+//        result.gamingScore = 80.0
+//        result.streamingScore = 85.0
+//        result.videoCallScore = 95.0
+//        result.connectionType = ConnectionType.wifi.rawValue
+//        return result
+//    }()
 }
 
 
@@ -136,24 +166,7 @@ func fromModel(model: PingStat) {
 }
 
 
-static let example: SessionResult = {
-    let result = SessionResult()
-    result.dateStart = Date().addingTimeInterval(-116)
-    result.dateEnd = Date()
-    result.ipAddress = "1.1.1.1"
-    result.hostAddress = "dns.google"
-    result.bestPing = 28.9
-    result.worstPing = 30.3
-    result.avaragePing = 29.6
-    result.packageLoss = 0.0
-    result.jitter = 0.3
-    result.generalNetQuality = 90.0
-    result.gamingScore = 80.0
-    result.streamingScore = 85.0
-    result.videoCallScore = 95.0
-    result.connectionType = ConnectionType.wifi.rawValue
-    return result
-}()
  
  */
+
 
