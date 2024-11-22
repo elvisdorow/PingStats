@@ -30,5 +30,19 @@ class Formatter {
         let seconds = Int(timeInterval) % 60
         return String(format: "%02d:%02d:%02d", hours, minutes, seconds)
     }
+}
 
+extension Double {
+    func pingDurationFormat() -> String {
+        let formatter = NumberFormatter()
+        formatter.decimalSeparator = "."
+        if self < 1.0 {
+            formatter.minimumFractionDigits = 3
+            formatter.maximumFractionDigits = 3
+        } else {
+            formatter.minimumFractionDigits = 0
+            formatter.maximumFractionDigits = 0
+        }
+        return formatter.string(from: NSNumber(value: self)) ?? String(self)
+    }
 }

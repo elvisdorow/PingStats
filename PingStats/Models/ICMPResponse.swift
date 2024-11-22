@@ -11,7 +11,9 @@ import SwiftyPing
 struct ICMPResponse: Identifiable {
     let id: UUID = UUID()
     let sequence: Int
+    let bytes: Int
     let dateTime: Date
+    let timeToLive: Int
     let duration: TimeInterval
     let error: PingError?
 }

@@ -10,9 +10,6 @@ import Charts
 
 struct MainView: View {
     
-    // TODO: Fix bug - can change host and any configuration
-    // while test running
-    
     @State private var selectedSegment = 1
     @State private var showLogs = false
     
@@ -135,7 +132,7 @@ extension MainView {
             .padding(.bottom)
         
         Text("\(viewModel.statusMessage)")
-            .font(.caption)
+            .font(.footnote)
             .foregroundColor(.primary.opacity(0.6))
             .frame(maxWidth: /*@START_MENU_TOKEN@*/.infinity/*@END_MENU_TOKEN@*/, alignment: .leading)
             .padding(.horizontal)
@@ -267,7 +264,6 @@ extension MainView {
                     pingValue: "\(Formatter.elapsedTime(viewModel.elapsedTime))"
                 )
             }
-
         }
     }
 

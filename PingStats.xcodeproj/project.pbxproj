@@ -38,7 +38,9 @@
 		D527F74A2CAB290B001B428C /* TargetHostViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D527F7492CAB290B001B428C /* TargetHostViewModel.swift */; };
 		D52F61322CED18170056EFC5 /* MiniLoadingBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = D52F61312CED18170056EFC5 /* MiniLoadingBar.swift */; };
 		D52F61342CED3BEA0056EFC5 /* Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = D52F61332CED3BEA0056EFC5 /* Date.swift */; };
+		D549379A2CEF7AA800F777DD /* PingPayloadSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = D54937992CEF7AA800F777DD /* PingPayloadSlider.swift */; };
 		D551F5832CE7F60E0029800D /* SessionParam.swift in Sources */ = {isa = PBXBuildFile; fileRef = D551F5822CE7F60E0029800D /* SessionParam.swift */; };
+		D557AF842CF12A5C008ED94B /* SessionPingLogView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D557AF832CF12A5C008ED94B /* SessionPingLogView.swift */; };
 		D55D788F2CE392DF00C49190 /* PingService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D55D788E2CE392DF00C49190 /* PingService.swift */; };
 		D57F20782CA4453500676BDD /* PingTimeoutSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = D57F20772CA4453500676BDD /* PingTimeoutSlider.swift */; };
 		D57F207A2CA4498200676BDD /* PingMaxtimeSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = D57F20792CA4498200676BDD /* PingMaxtimeSlider.swift */; };
@@ -103,7 +105,9 @@
 		D527F7492CAB290B001B428C /* TargetHostViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TargetHostViewModel.swift; sourceTree = "<group>"; };
 		D52F61312CED18170056EFC5 /* MiniLoadingBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MiniLoadingBar.swift; sourceTree = "<group>"; };
 		D52F61332CED3BEA0056EFC5 /* Date.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Date.swift; sourceTree = "<group>"; };
+		D54937992CEF7AA800F777DD /* PingPayloadSlider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PingPayloadSlider.swift; sourceTree = "<group>"; };
 		D551F5822CE7F60E0029800D /* SessionParam.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionParam.swift; sourceTree = "<group>"; };
+		D557AF832CF12A5C008ED94B /* SessionPingLogView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionPingLogView.swift; sourceTree = "<group>"; };
 		D55D788E2CE392DF00C49190 /* PingService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PingService.swift; sourceTree = "<group>"; };
 		D57F20772CA4453500676BDD /* PingTimeoutSlider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PingTimeoutSlider.swift; sourceTree = "<group>"; };
 		D57F20792CA4498200676BDD /* PingMaxtimeSlider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PingMaxtimeSlider.swift; sourceTree = "<group>"; };
@@ -150,6 +154,7 @@
 				D57F20772CA4453500676BDD /* PingTimeoutSlider.swift */,
 				D57F20792CA4498200676BDD /* PingMaxtimeSlider.swift */,
 				D5FB2D142CA6E1D1002C4AE3 /* PingCountStatSlider.swift */,
+				D54937992CEF7AA800F777DD /* PingPayloadSlider.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -280,6 +285,7 @@
 				D52F61352CED51B20056EFC5 /* Components */,
 				14AAA24F2C92491A00DF83F0 /* SessionsListView.swift */,
 				14F54FF22C986FEA005260E5 /* SessionDetailView.swift */,
+				D557AF832CF12A5C008ED94B /* SessionPingLogView.swift */,
 			);
 			path = Results;
 			sourceTree = "<group>";
@@ -438,6 +444,7 @@
 				D52F61342CED3BEA0056EFC5 /* Date.swift in Sources */,
 				1436956E2C8750E8005CC2B3 /* TargetHostView.swift in Sources */,
 				D551F5832CE7F60E0029800D /* SessionParam.swift in Sources */,
+				D549379A2CEF7AA800F777DD /* PingPayloadSlider.swift in Sources */,
 				14BBA22D2C98B49400438D2D /* Formatter.swift in Sources */,
 				1409322F2C52775B00D2C03F /* PingStat.swift in Sources */,
 				143391DA2C9A365300ED8CDB /* PingIntervalSlider.swift in Sources */,
@@ -459,6 +466,7 @@
 				14B688952C63B9B900EDE689 /* LoadingBar.swift in Sources */,
 				D527F7482CAB25A9001B428C /* IPUtils.swift in Sources */,
 				140932322C528BEA00D2C03F /* MainViewModel.swift in Sources */,
+				D557AF842CF12A5C008ED94B /* SessionPingLogView.swift in Sources */,
 				D52F61322CED18170056EFC5 /* MiniLoadingBar.swift in Sources */,
 				140AFF682C6663BA00A4A2C8 /* SettingsView.swift in Sources */,
 				D5FB2D172CA6FDA3002C4AE3 /* Settings.swift in Sources */,

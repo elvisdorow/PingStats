@@ -17,7 +17,7 @@ struct PingSettingsView: View {
                 Section {
                     PingTimeoutSlider(pingTimeout: $settings.pingTimeout)
                 } header: {
-                    Text("Ping Timeout")
+                    Text("Timeout")
                 } footer: {
                     Text("Maximum time to wait for a ping response before timing out.")
                 }
@@ -26,9 +26,15 @@ struct PingSettingsView: View {
                     PingIntervalSlider(intervalValue: $settings.pingInterval)
                     
                 } header: {
-                    Text("Ping Interval")
+                    Text("Interval")
                 } footer: {
                     Text("Interval between consecutive ping requests.")
+                }
+                
+                Section {
+                    PingPayloadSlider(payload: $settings.pingPayload)
+                } header: {
+                    Text("Payload Size")
                 }
 
                 Section {

@@ -30,7 +30,9 @@ class SessionDataService: DataService {
     }
     
     func add(session: Session) {
+        
         let newSession: Sessions = Sessions(context: container.viewContext)
+        
         guard let pingStat = session.pingStat else { return }
         
         newSession.startDate = session.startDate
@@ -58,6 +60,20 @@ class SessionDataService: DataService {
         newSession.pingTimeout = Int16(session.parameters.pingTimeout.rawValue)
         newSession.pingInterval = Int16(session.parameters.pingInterval.rawValue)
         newSession.maxtimeSetting = Int16(session.parameters.maxtimeSetting.rawValue)
+
+        var logs: [SessionLog] = []
+        for pingLog in session.pingLogs {
+            let sessionLog = SessionLog(context: container.viewContext)
+            sessionLog.sequence = Int32(pingLog.sequence)
+            sessionLog.bytes = Int32(pingLog.bytes)
+            sessionLog.duration = pingLog.duration
+            sessionLog.timeToLive = Int32(pingLog.timeToLive)
+            sessionLog.dateTime = pingLog.dateTime
+            sessionLog.error = pingLog.error
+
+            logs.append(sessionLog)
+        }
+        newSession.logs = NSOrderedSet(array: logs)
 
         save()
     }

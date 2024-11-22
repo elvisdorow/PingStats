@@ -14,7 +14,9 @@ class Settings: ObservableObject {
     @AppStorage("pingInterval") var pingInterval: PingInterval = .sec1
     @AppStorage("pingCountStat") var pingCountStat: PingCountStat = .count30
     @AppStorage("pingMaxtime") var maxtimeSetting: PingMaxtime = .min5
-    @AppStorage("pingTimeout") var pingTimeout: PingTimeout = .sec1 
+    @AppStorage("pingTimeout") var pingTimeout: PingTimeout = .sec1
+    @AppStorage("pingPayload") var pingPayload: PingPayload = .bytes64
+    
     @AppStorage("host") var host: String = "1.1.1.1"
     @AppStorage("hostname") var hostname: String = "one.one.one.one"
     

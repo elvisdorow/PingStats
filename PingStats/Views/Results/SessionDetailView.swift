@@ -15,6 +15,7 @@ struct SessionDetailView: View {
 //    
 //    @State var showDeleteConfirmation: Bool = false
 //
+    @State var showSessionLogs: Bool = false
         
     init(session: Sessions) {
         self.session = session
@@ -114,8 +115,17 @@ struct SessionDetailView: View {
                     .fill(.gray.opacity(0.1))
             )
             
+            VStack(alignment: .center) {
+                buttonViewLogs
+            }
+            .sheet(isPresented: $showSessionLogs, content: {
+                SessionPingLogView(session: session)
+            })
+            .padding()
+            .padding(.vertical)
+            .frame(maxWidth: .infinity, alignment: .center)
+
             Spacer()
-            
         }
         .padding(.horizontal)
         .navigationTitle(session.host ?? "")
@@ -160,7 +170,28 @@ extension SessionDetailView {
         }
         return ""
     }
+    
+    @ViewBuilder
+    var buttonViewLogs: some View {
+        VStack {
+            Label {
+                Text("View Ping Logs")
+            } icon: {
+                Image(systemName: "text.alignleft")
+            }
+        }
+        .padding(.horizontal)
+        .frame(height: 50)
+        .frame(maxWidth: 230)
+        .background(Color.theme.accent)
+        .foregroundColor(Color.white)
+        .cornerRadius(10)
+        .onTapGesture {
+            showSessionLogs.toggle()
+        }
+    }
 }
+
 
 struct card<Content: View>: View {
     var title: String

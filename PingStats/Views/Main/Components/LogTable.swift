@@ -8,19 +8,22 @@
 import SwiftUI
 
 struct LogTable: View {
+    
     @Binding var logs: [PingLog]
+    
     var body: some View {
         ScrollViewReader { proxy in
             
             ScrollView {
                 
                 ForEach(logs) { l in
-                    Text(l.text)
+                    
+                    Text("\(l.bytes) bytes icmp_seq=\(l.sequence) ttl=\(l.timeToLive) time=\(l.duration.pingDurationFormat())ms")
                         .frame(maxWidth: .infinity, alignment: .leading)
                         .frame(maxHeight: /*@START_MENU_TOKEN@*/.infinity/*@END_MENU_TOKEN@*/)
-                        .foregroundColor( (l.type == .error) ? .red : .primary )
+                        .foregroundColor( (l.error != nil) ? .red : .primary )
                         .fontDesign(.monospaced)
-                        .font(.system(size: 9))
+                        .font(.caption2)
                         .id(l.id)
                 }
             }
@@ -44,19 +47,7 @@ struct LogTable: View {
 
 struct LogTableViewPreview: PreviewProvider {
     @State static var logs: [PingLog] = [
-        .init(type: .good, text: "1 - 12023 - 232232 2323123 332"),
-        .init(type: .good, text: "1 - 12023 - 232232 2323123 332"),
-        .init(type: .good, text: "1 - 12023 - 232232 2323123 332"),
-        .init(type: .good, text: "1 - 12023 - 232232 2323123 332"),
-        .init(type: .good, text: "1 - 12023 - 232232 2323123 332"),
-        .init(type: .good, text: "1 - 12023 - 232232 2323123 332"),
-        .init(type: .good, text: "1 - 12023 - 232232 2323123 332"),
-        .init(type: .error, text: "1 - 12023 - 232232 2323123 332"),
-        .init(type: .good, text: "1 - 12023 - 232232 2323123 332"),
-        .init(type: .good, text: "1 - 12023 - 232232 2323123 332"),
-        .init(type: .good, text: "1 - 12023 - 232232 2323123 332"),
-        .init(type: .good, text: "1 - 12023 - 232232 2323123 332"),
-        .init(type: .good, text: "1 - 12023 - 232232 2323123 332")
+ 
     ]
     
     static var previews: some View {

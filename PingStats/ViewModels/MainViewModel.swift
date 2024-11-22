@@ -93,11 +93,8 @@ class MainViewModel: ObservableObject {
         }
     }
     
-
-
     private func addSubscriptions() {
         pingService.$response
-            .dropFirst(2)
             .receive(on: DispatchQueue.main)
             .sink { [weak self] response in
                 guard
@@ -153,7 +150,6 @@ class MainViewModel: ObservableObject {
             self.connectionType = .unknown
         }
     }
-
 }
 
 enum ConnectionType: String {
