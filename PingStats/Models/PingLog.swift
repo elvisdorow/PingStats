@@ -16,6 +16,12 @@ struct PingLog: Identifiable, Hashable {
     let duration: Double
     let error: String?
     
+    var hourMinSec: String {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "HH:mm:ss"
+        return formatter.string(from: dateTime)
+    }
+    
     init(sequence: Int, error: String) {
         self.sequence = sequence
         self.error = error
@@ -35,4 +41,6 @@ struct PingLog: Identifiable, Hashable {
         self.duration = duration
         self.error = nil
     }
+    
+    
 }

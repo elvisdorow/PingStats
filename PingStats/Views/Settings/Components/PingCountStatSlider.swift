@@ -21,6 +21,7 @@ struct PingCountStatSlider: View {
                     self.countStat = PingCountStat.fromSliderValue(val: newValue)
                 }
             ), in: 1...7, step: 1)
+
             Text("\(countStat.toString())")
         }
     }

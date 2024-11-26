@@ -22,6 +22,7 @@ struct PingIntervalSlider: View {
                     self.intervalValue = PingInterval.fromSliderValue(val: newValue)
                 }
             ), in: 1...11, step: 1)
+
             Text("\(intervalValue.toString())")
                 .frame(width: 65)
 

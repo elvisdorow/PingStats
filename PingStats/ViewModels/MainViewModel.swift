@@ -72,15 +72,14 @@ class MainViewModel: ObservableObject {
     }
     
     func stop() {
-        pingService.stop()
         isAnalysisRunning = false
-        
         statusMessage = "Test finished"
-
         cancellables.forEach { $0.cancel() }
         
         timer?.cancel()
         timer = nil
+        
+        pingService.stop()
                 
         let endDate = Date()
         
@@ -102,7 +101,8 @@ class MainViewModel: ObservableObject {
                     let response = response,
                     let session = session else { return }
 
-                self.pingLogs.append(session.addResponse(response))
+                let pingLog = session.addResponse(response)                
+                self.pingLogs.append(pingLog)
                 self.pingStat = session.getPingStat()
                 
                 updateChart()

@@ -21,6 +21,7 @@ struct PingPayloadSlider: View {
                     self.payload = PingPayload.fromSliderValue(val: newValue)
                 }
             ), in: 1...6, step: 1)
+
             Text("\(payload.toString())")
                 .frame(width: 90)
         }

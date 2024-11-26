@@ -9,34 +9,53 @@ import SwiftUI
 
 struct SessionPingLogView: View {
     
-    let session: Sessions
+    @StateObject var vm: SessionPingLogViewModel
+    
+    @Environment(\.presentationMode) var presentationMode
+
+    init(session: Sessions) {
+        _vm = StateObject(wrappedValue: SessionPingLogViewModel(session: session))
+    }
     
     var body: some View {
-        Text("\(session.logs?.count ?? 0)")
-        ScrollView {
-            if let logs = session.logs {
-                let logsArray = logs.compactMap { $0 as? PingLog }
-                
-                ForEach(logsArray, id: \.self) { l in
-                    
-                    Text("\(l.bytes) bytes icmp_seq=\(l.sequence) ttl=\(l.timeToLive) time=\(l.duration.pingDurationFormat())ms")
-                        .frame(maxWidth: .infinity, alignment: .leading)
-                        .frame(maxHeight: /*@START_MENU_TOKEN@*/.infinity/*@END_MENU_TOKEN@*/)
-                        .foregroundColor( (l.error != nil) ? .red : .primary )
-                        .fontDesign(.monospaced)
-                        .font(.caption2)
-                        .id(l.id)
+        NavigationView {
+            VStack {
+                ScrollView {
+                    VStack {
+                        ForEach(vm.logs, id: \.self) { l in
+                            Text("\(l.bytes) bytes icmp_seq=\(l.sequence) ttl=\(l.timeToLive) time=\(l.duration.pingDurationFormat()) ms")
+                                .frame(maxHeight: /*@START_MENU_TOKEN@*/.infinity/*@END_MENU_TOKEN@*/)
+                                .foregroundColor( (l.error != nil) ? .red : .primary )
+                                .fontDesign(.monospaced)
+                                .font(.caption2)
+                                .id(l.id)
+                        }
+                    }
+                    .frame(maxWidth: /*@START_MENU_TOKEN@*/.infinity/*@END_MENU_TOKEN@*/, alignment: .center)
                 }
-
+                .padding()
+                .frame(maxWidth: .infinity, alignment: .center)
             }
+            .frame(maxWidth: /*@START_MENU_TOKEN@*/.infinity/*@END_MENU_TOKEN@*/, alignment: .center)
+           .toolbar {
+               ToolbarItem(placement: .navigationBarTrailing) {
+                   Button(action: {
+                       presentationMode.wrappedValue.dismiss()
+                   }) {
+                       Circle()
+                           .fill(Color.gray.opacity(0.15))
+                           .overlay {
+                               Image(systemName: "xmark")
+                                   .font(.system(size: 12))
+                                   .fontWeight(.semibold)
+                                   .foregroundColor(Color.gray.opacity(0.7))
+                           }
+                           .frame(width: 27)
+                   }
+                   .accessibilityLabel("Close")
+               }
+           }
         }
-        .frame(maxWidth: /*@START_MENU_TOKEN@*/.infinity/*@END_MENU_TOKEN@*/)
-        .padding(7)
-        .padding(.horizontal)
-        .overlay(
-            RoundedRectangle(cornerRadius: 10)
-                .stroke(Color(.systemGray5), lineWidth: 1) // Border color and width
-        )
     }
 }
 

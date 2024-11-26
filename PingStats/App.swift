@@ -18,7 +18,7 @@ struct App: SwiftUI.App {
                 .onAppear {
                     settings.theme = settings.theme
                 }
-                .accentColor(Color.theme.accent)
+                .tint(.primary)
         }
     }
 }

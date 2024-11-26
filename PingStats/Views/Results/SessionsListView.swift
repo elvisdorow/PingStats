@@ -38,14 +38,13 @@ struct SessionsListView: View {
                     Button(action: {
                         presentationMode.wrappedValue.dismiss()
                     }, label: {
-                        Label(
-                            title: { Text("Close") },
-                            icon: { Image(systemName: "xmark") }
-                        )
+                        Text("Close")
+                            .foregroundColor(.primary)
                     })
                 }
             })
         }
+        .toolbarColorScheme(.dark, for: .navigationBar)
     }
 }
 

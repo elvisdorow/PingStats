@@ -18,7 +18,7 @@ struct LogTable: View {
                 
                 ForEach(logs) { l in
                     
-                    Text("\(l.bytes) bytes icmp_seq=\(l.sequence) ttl=\(l.timeToLive) time=\(l.duration.pingDurationFormat())ms")
+                    Text("\(l.bytes) bytes icmp_seq=\(l.sequence) ttl=\(l.timeToLive) time=\(l.duration.pingDurationFormat()) ms")
                         .frame(maxWidth: .infinity, alignment: .leading)
                         .frame(maxHeight: /*@START_MENU_TOKEN@*/.infinity/*@END_MENU_TOKEN@*/)
                         .foregroundColor( (l.error != nil) ? .red : .primary )

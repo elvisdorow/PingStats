@@ -15,7 +15,7 @@ struct TargetHostView: View {
     
     var pingerService = PingService.instance
     
-    var settings: Settings = Settings.shared
+    var settings = Settings.shared
     
     @State var showAddForm: Bool = false
     @State var errorMessage: String = ""
@@ -42,7 +42,7 @@ struct TargetHostView: View {
                 }
             }
             .toolbar(content: {
-                ToolbarItem(placement: .topBarTrailing) {
+                ToolbarItem(placement: .primaryAction) {
                     Button(action: {
                         errorMessage = ""
                         newIpAddress = ""
@@ -52,7 +52,7 @@ struct TargetHostView: View {
                     })
                 }
                 
-                ToolbarItem(placement: .topBarTrailing) {
+                ToolbarItem(placement: .primaryAction) {
                     EditButton()
                 }
             })

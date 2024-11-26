@@ -44,6 +44,7 @@
 		D55D788F2CE392DF00C49190 /* PingService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D55D788E2CE392DF00C49190 /* PingService.swift */; };
 		D57F20782CA4453500676BDD /* PingTimeoutSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = D57F20772CA4453500676BDD /* PingTimeoutSlider.swift */; };
 		D57F207A2CA4498200676BDD /* PingMaxtimeSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = D57F20792CA4498200676BDD /* PingMaxtimeSlider.swift */; };
+		D5800BEB2CF4C58900687BFE /* SessionPingLogViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5800BEA2CF4C58900687BFE /* SessionPingLogViewModel.swift */; };
 		D58084DF2CE2B4D500DC7040 /* TextStatInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = D58084DE2CE2B4D500DC7040 /* TextStatInfo.swift */; };
 		D58084E12CE2BBCB00DC7040 /* ChartLogs.swift in Sources */ = {isa = PBXBuildFile; fileRef = D58084E02CE2BBCB00DC7040 /* ChartLogs.swift */; };
 		D5B7D0042CE636400031D761 /* StatCalculator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5B7D0032CE636400031D761 /* StatCalculator.swift */; };
@@ -111,6 +112,7 @@
 		D55D788E2CE392DF00C49190 /* PingService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PingService.swift; sourceTree = "<group>"; };
 		D57F20772CA4453500676BDD /* PingTimeoutSlider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PingTimeoutSlider.swift; sourceTree = "<group>"; };
 		D57F20792CA4498200676BDD /* PingMaxtimeSlider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PingMaxtimeSlider.swift; sourceTree = "<group>"; };
+		D5800BEA2CF4C58900687BFE /* SessionPingLogViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionPingLogViewModel.swift; sourceTree = "<group>"; };
 		D58084DE2CE2B4D500DC7040 /* TextStatInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextStatInfo.swift; sourceTree = "<group>"; };
 		D58084E02CE2BBCB00DC7040 /* ChartLogs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartLogs.swift; sourceTree = "<group>"; };
 		D5B7D0032CE636400031D761 /* StatCalculator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatCalculator.swift; sourceTree = "<group>"; };
@@ -143,6 +145,7 @@
 				140932312C528BEA00D2C03F /* MainViewModel.swift */,
 				14AAA2512C924B3300DF83F0 /* SessionListViewModel.swift */,
 				D527F7492CAB290B001B428C /* TargetHostViewModel.swift */,
+				D5800BEA2CF4C58900687BFE /* SessionPingLogViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -439,6 +442,7 @@
 				D5FA4E312CE4D15E0068CBC9 /* TargetHostDataService.swift in Sources */,
 				14AAA2522C924B3300DF83F0 /* SessionListViewModel.swift in Sources */,
 				D5FBEFF22CB6C43F0077CF0A /* PingSettingsView.swift in Sources */,
+				D5800BEB2CF4C58900687BFE /* SessionPingLogViewModel.swift in Sources */,
 				14E283482C9216AE0086E36F /* Session.swift in Sources */,
 				D5FA4E2F2CE4D09A0068CBC9 /* PingStatsContainer.xcdatamodeld in Sources */,
 				D52F61342CED3BEA0056EFC5 /* Date.swift in Sources */,

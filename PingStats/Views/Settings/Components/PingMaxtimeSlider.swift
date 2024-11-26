@@ -22,6 +22,7 @@ struct PingMaxtimeSlider: View {
                     self.maxtime = PingMaxtime.fromSliderValue(val: newValue)
                 }
             ), in: 1...9, step: 1)
+
             Text("\(maxtime.toString())")
                 .frame(width: 65)
         }

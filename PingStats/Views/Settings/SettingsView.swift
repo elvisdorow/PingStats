@@ -61,23 +61,22 @@ struct SettingsView: View {
                 }
 
                 Section {
-
                     ForEach(Theme.allCases) { theme in
                         ThemeButton(theme: theme, selected: settings.theme == theme)
                     }
-
                 } header: {
                     Text("Theme")
                 }
 
-                
             }
+            .tint(Color.theme.accent)
             .toolbar {
                 ToolbarItem {
                     Button(action: {
                         presentationMode.wrappedValue.dismiss()
                     }, label: {
                         Text("OK")
+                            .foregroundColor(.primary)
                     })
                 }
             }

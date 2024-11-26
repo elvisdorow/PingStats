@@ -21,6 +21,7 @@ struct PingTimeoutSlider: View {
                     self.pingTimeout = PingTimeout.fromSliderValue(val: newValue)
                 }
             ), in: 1...10, step: 1)
+            
             Text("\(pingTimeout.toString())")
                 .frame(width: 65)
 

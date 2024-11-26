@@ -32,7 +32,7 @@ class PingService {
         pinger?.observer = { (response) in
             let timeToLive = response.ipHeader?.timeToLive ?? 0
             let iCMPResponse = ICMPResponse(
-                sequence: Int(response.sequenceNumber),
+                sequence: Int(response.trueSequenceNumber),
                 bytes: response.byteCount ?? 0,
                 dateTime: Date(),
                 timeToLive: Int(timeToLive),
@@ -52,6 +52,7 @@ class PingService {
     func stop() {
         self.pinger?.haltPinging(resetSequence: true)
         self.pinger = nil
+        self.response = nil
     }
 
 }

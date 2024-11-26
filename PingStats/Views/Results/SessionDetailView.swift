@@ -57,7 +57,8 @@ struct SessionDetailView: View {
                     
                     if let startDate = session.startDate {
                         Text(startDate.formatted(date: .abbreviated, time: .standard))
-                            .font(.system(size: 15)).foregroundColor(.primary.opacity(0.9))
+                            .font(.callout)
+                            .foregroundColor(.primary.opacity(0.6))
                             .padding(.top, 10)
                     }
                 }
@@ -120,6 +121,8 @@ struct SessionDetailView: View {
             }
             .sheet(isPresented: $showSessionLogs, content: {
                 SessionPingLogView(session: session)
+                    .presentationDetents([.medium, .large])
+                    .presentationDragIndicator(.visible)
             })
             .padding()
             .padding(.vertical)
@@ -175,17 +178,15 @@ extension SessionDetailView {
     var buttonViewLogs: some View {
         VStack {
             Label {
-                Text("View Ping Logs")
+                Text("View Logs")
             } icon: {
                 Image(systemName: "text.alignleft")
             }
         }
+        .foregroundColor(.theme.accent)
         .padding(.horizontal)
         .frame(height: 50)
         .frame(maxWidth: 230)
-        .background(Color.theme.accent)
-        .foregroundColor(Color.white)
-        .cornerRadius(10)
         .onTapGesture {
             showSessionLogs.toggle()
         }

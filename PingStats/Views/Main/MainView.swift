@@ -302,7 +302,7 @@ extension MainView {
                                     Button {
                                         showHostList = false
                                     } label: {
-                                        Text("Done")
+                                        Text("Close")
                                     }
                                 }
                             })

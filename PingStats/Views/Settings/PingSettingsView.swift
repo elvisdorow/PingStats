@@ -46,6 +46,7 @@ struct PingSettingsView: View {
                 }
 
             }
+            .tint(.theme.accent)
         }
     }
 }
