@@ -85,7 +85,50 @@ class Session {
         let sequence = response.sequence
         
         if let error = response.error {
-            let log = PingLog(sequence: sequence, error: error.localizedDescription)
+            var errorMessage = ""
+            
+            switch error {
+                case .responseTimeout:
+                errorMessage = "Response timeout"
+                case .invalidLength(let received):
+                errorMessage = "Invalid length: \(received)"
+                case .checksumMismatch(let received, let calculated):
+                errorMessage = "Checksum mismatch: \(received) != \(calculated)"
+                case .invalidType(let received):
+                errorMessage = "Invalid type: \(received)"
+                case .invalidCode(let received):
+                errorMessage = "Invalid code: \(received)"
+                case .identifierMismatch(let received, let expected):
+                errorMessage = "Identifier mismatch: \(received) != \(expected)"
+                case .invalidSequenceIndex(let received, let expected):
+                errorMessage = "Invalid sequence index: \(received) != \(expected)"
+                case .unknownHostError:
+                errorMessage = "Unknown host error"
+                case .addressLookupError:
+                errorMessage = "Address lookup error"
+                case .hostNotFound:
+                errorMessage = "Host not found"
+                case .addressMemoryError:
+                errorMessage = "Address memory error"
+                case .requestError:
+                errorMessage = "Request error"
+                case .requestTimeout:
+                errorMessage = "Request timeout"
+                case .checksumOutOfBounds:
+                errorMessage = "Checksum out of bounds"
+                case .unexpectedPayloadLength:
+                errorMessage =  "Unexpected payload length"
+                case .packageCreationFailed:
+                errorMessage = "Package creation failed"
+                case .socketNil:
+                errorMessage = "Socket nil"
+                case .invalidHeaderOffset:
+                errorMessage = "Invalid header offset"
+                case .socketOptionsSetError(let err):
+                errorMessage = "Socket options set error: \(err)"
+            }
+                
+            let log = PingLog(sequence: sequence, error: errorMessage)            
             pingLogs.append(log)
             return log
         } else {

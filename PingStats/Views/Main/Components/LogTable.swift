@@ -17,14 +17,22 @@ struct LogTable: View {
             ScrollView {
                 
                 ForEach(logs) { l in
-                    
-                    Text("\(l.bytes) bytes icmp_seq=\(l.sequence) ttl=\(l.timeToLive) time=\(l.duration.pingDurationFormat()) ms")
-                        .frame(maxWidth: .infinity, alignment: .leading)
-                        .frame(maxHeight: /*@START_MENU_TOKEN@*/.infinity/*@END_MENU_TOKEN@*/)
-                        .foregroundColor( (l.error != nil) ? .red : .primary )
-                        .fontDesign(.monospaced)
-                        .font(.caption2)
-                        .id(l.id)
+                    if let error = l.error {
+                        Text("\(error)")
+                            .frame(maxWidth: .infinity, alignment: .leading)
+                            .frame(maxHeight: /*@START_MENU_TOKEN@*/.infinity/*@END_MENU_TOKEN@*/)
+                            .foregroundColor( (l.error != nil) ? .red : .primary )
+                            .fontDesign(.monospaced)
+                            .font(.caption)
+                            .id(l.id)
+                    } else {
+                        Text("\(l.bytes) bytes icmp_seq=\(l.sequence) ttl=\(l.timeToLive) time=\(l.duration.pingDurationFormat()) ms")
+                            .frame(maxWidth: .infinity, alignment: .leading)
+                            .frame(maxHeight: /*@START_MENU_TOKEN@*/.infinity/*@END_MENU_TOKEN@*/)
+                            .fontDesign(.monospaced)
+                            .font(.caption)
+                            .id(l.id)
+                    }
                 }
             }
             .frame(maxWidth: /*@START_MENU_TOKEN@*/.infinity/*@END_MENU_TOKEN@*/)

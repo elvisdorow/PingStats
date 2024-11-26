@@ -133,7 +133,8 @@ extension MainView {
         
         Text("\(viewModel.statusMessage)")
             .font(.footnote)
-            .foregroundColor(.primary.opacity(0.6))
+            .foregroundColor((!viewModel.hasNetworkError) ? .primary.opacity(0.6) : .red)
+            .fontWeight((!viewModel.hasNetworkError) ? .regular : .semibold)
             .frame(maxWidth: /*@START_MENU_TOKEN@*/.infinity/*@END_MENU_TOKEN@*/, alignment: .leading)
             .padding(.horizontal)
     }

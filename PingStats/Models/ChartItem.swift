@@ -10,6 +10,7 @@ import Foundation
 struct ChartItem: Identifiable, Hashable {
     let id: String = UUID().uuidString
     let sequence: Int
+    var error: Bool
     var duration: Double
 }
 

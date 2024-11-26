@@ -56,7 +56,7 @@ struct SessionDetailView: View {
                     Spacer()
                     
                     if let startDate = session.startDate {
-                        Text(startDate.formatted(date: .abbreviated, time: .standard))
+                        Text(startDate.formatted(date: .abbreviated, time: .shortened))
                             .font(.callout)
                             .foregroundColor(.primary.opacity(0.6))
                             .padding(.top, 10)

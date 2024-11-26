@@ -26,17 +26,17 @@ class PingService {
         )
         
         config.payloadSize = settings.pingPayload.rawValue - 28
-        config.timeToLive = 255
+        config.timeToLive = 2
         
         pinger = try? SwiftyPing(host: settings.host, configuration: config, queue: DispatchQueue.global(qos: .default))
-        pinger?.observer = { (response) in
+        pinger?.observer = { response in
             let timeToLive = response.ipHeader?.timeToLive ?? 0
             let iCMPResponse = ICMPResponse(
                 sequence: Int(response.trueSequenceNumber),
                 bytes: response.byteCount ?? 0,
                 dateTime: Date(),
                 timeToLive: Int(timeToLive),
-                duration: response.duration,
+                duration: (response.error == nil) ? response.duration : -0.1,
                 error: response.error
             )
             self.response = iCMPResponse

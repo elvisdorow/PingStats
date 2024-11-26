@@ -16,6 +16,7 @@ class MainViewModel: ObservableObject {
     
     @Published var isAnalysisRunning = false
     @Published var statusMessage = "No data"
+    @Published var hasNetworkError = false
 
     @Published var elapsedTime: TimeInterval = 0
     
@@ -64,6 +65,7 @@ class MainViewModel: ObservableObject {
         isAnalysisRunning = true
         elapsedTime = 0
         
+        hasNetworkError = false
         statusMessage = "Pinging \(sessionParams.host)..."
         
         if !sessionParams.hostname.isEmpty {
@@ -74,6 +76,8 @@ class MainViewModel: ObservableObject {
     func stop() {
         isAnalysisRunning = false
         statusMessage = "Test finished"
+        hasNetworkError = false
+        
         cancellables.forEach { $0.cancel() }
         
         timer?.cancel()
@@ -104,6 +108,12 @@ class MainViewModel: ObservableObject {
                 let pingLog = session.addResponse(response)                
                 self.pingLogs.append(pingLog)
                 self.pingStat = session.getPingStat()
+                self.hasNetworkError = false
+                
+                if response.error != nil {
+                    self.statusMessage = "Network error ⚠️"
+                    self.hasNetworkError = true
+                }
                 
                 updateChart()
         }
@@ -124,9 +134,13 @@ class MainViewModel: ObservableObject {
     private func updateChart() {
         if let session = self.session {
             let lastResponses = Array(session.responses.suffix(numBarsInChart))
-            
             for index in 0..<lastResponses.count {
-                chartItems[index].duration = lastResponses[index].duration
+                if lastResponses[index].error != nil {
+                    chartItems[index].duration = 0.0
+                    chartItems[index].error = true
+                } else {
+                    chartItems[index].duration = lastResponses[index].duration
+                }
             }
         }
     }
@@ -135,7 +149,7 @@ class MainViewModel: ObservableObject {
         pingLogs = []
         chartItems = []
         for idx in 1...numBarsInChart {
-            chartItems.append(.init(sequence: idx, duration: 0.0))
+            chartItems.append(.init(sequence: idx, error: false, duration: 0.0))
         }
     }
 

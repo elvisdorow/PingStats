@@ -23,12 +23,20 @@ struct SessionPingLogView: View {
                 ScrollView {
                     VStack {
                         ForEach(vm.logs, id: \.self) { l in
-                            Text("\(l.bytes) bytes icmp_seq=\(l.sequence) ttl=\(l.timeToLive) time=\(l.duration.pingDurationFormat()) ms")
-                                .frame(maxHeight: /*@START_MENU_TOKEN@*/.infinity/*@END_MENU_TOKEN@*/)
-                                .foregroundColor( (l.error != nil) ? .red : .primary )
-                                .fontDesign(.monospaced)
-                                .font(.caption2)
-                                .id(l.id)
+                            if let error = l.error {
+                                Text("\(l.bytes) bytes icmp_seq=\(l.sequence) \(error)")
+                                    .frame(maxHeight: /*@START_MENU_TOKEN@*/.infinity/*@END_MENU_TOKEN@*/)
+                                    .foregroundColor(.red)
+                                    .fontDesign(.monospaced)
+                                    .font(.caption)
+                                    .id(l.id)
+                            } else {
+                                Text("\(l.bytes) bytes icmp_seq=\(l.sequence) ttl=\(l.timeToLive) time=\(l.duration.pingDurationFormat()) ms")
+                                    .frame(maxHeight: /*@START_MENU_TOKEN@*/.infinity/*@END_MENU_TOKEN@*/)
+                                    .fontDesign(.monospaced)
+                                    .font(.caption)
+                                    .id(l.id)
+                            }
                         }
                     }
                     .frame(maxWidth: /*@START_MENU_TOKEN@*/.infinity/*@END_MENU_TOKEN@*/, alignment: .center)
