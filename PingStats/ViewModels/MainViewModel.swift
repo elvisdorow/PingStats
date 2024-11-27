@@ -111,7 +111,6 @@ class MainViewModel: ObservableObject {
                 self.hasNetworkError = false
                 
                 if response.error != nil {
-                    self.statusMessage = "Network error ⚠️"
                     self.hasNetworkError = true
                 }
                 

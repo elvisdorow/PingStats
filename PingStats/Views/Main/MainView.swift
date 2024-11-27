@@ -131,12 +131,22 @@ extension MainView {
             .padding(.horizontal)
             .padding(.bottom)
         
-        Text("\(viewModel.statusMessage)")
-            .font(.footnote)
-            .foregroundColor((!viewModel.hasNetworkError) ? .primary.opacity(0.6) : .red)
-            .fontWeight((!viewModel.hasNetworkError) ? .regular : .semibold)
-            .frame(maxWidth: /*@START_MENU_TOKEN@*/.infinity/*@END_MENU_TOKEN@*/, alignment: .leading)
-            .padding(.horizontal)
+        if viewModel.hasNetworkError {
+            Text("Network error ⚠️")
+                .font(.footnote)
+                .foregroundColor(.red)
+                .fontWeight(.semibold)
+                .frame(maxWidth: /*@START_MENU_TOKEN@*/.infinity/*@END_MENU_TOKEN@*/, alignment: .leading)
+                .padding(.horizontal)
+
+        } else {
+            Text("\(viewModel.statusMessage)")
+                .font(.footnote)
+                .foregroundColor(.primary.opacity(0.6))
+                .fontWeight(.regular)
+                .frame(maxWidth: /*@START_MENU_TOKEN@*/.infinity/*@END_MENU_TOKEN@*/, alignment: .leading)
+                .padding(.horizontal)
+        }
     }
     
     @ViewBuilder
