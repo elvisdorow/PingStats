@@ -18,7 +18,7 @@ class Settings: ObservableObject {
     @AppStorage("pingPayload") var pingPayload: PingPayload = .bytes64
     
     @AppStorage("host") var host: String = "1.1.1.1"
-    @AppStorage("hostname") var hostname: String = "one.one.one.one"
+    @AppStorage("hostType") var hostType: String = HostType.ip.rawValue
     
     var window: UIWindow? {
         guard let scene = UIApplication.shared.connectedScenes.first,
@@ -31,7 +31,6 @@ class Settings: ObservableObject {
     
     @Published var appearance: Int = 0 {
         didSet {
-            print("apperance set to \(appearance)")
             switch appearance {
             case 1:
                 window?.overrideUserInterfaceStyle = .light

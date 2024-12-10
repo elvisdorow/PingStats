@@ -38,7 +38,7 @@ class SessionDataService: DataService {
         newSession.startDate = session.startDate
         newSession.endDate = session.endDate
         newSession.host = session.parameters.host
-        newSession.hostname = session.parameters.hostname
+        newSession.resolvedIpOrHost = session.resolvedIpOrHost
         
         newSession.connectionType = session.connectionType
         

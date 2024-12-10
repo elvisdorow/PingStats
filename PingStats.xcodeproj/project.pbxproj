@@ -34,6 +34,7 @@
 		14FECBB82C4AFBC6009CBF07 /* SegmentedControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14FECBB72C4AFBC6009CBF07 /* SegmentedControl.swift */; };
 		14FECBBC2C4FAF59009CBF07 /* CircularGauge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14FECBBB2C4FAF59009CBF07 /* CircularGauge.swift */; };
 		14FECBC02C5187F8009CBF07 /* PlayButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14FECBBF2C5187F8009CBF07 /* PlayButton.swift */; };
+		D50C088A2CF90CD400D567AE /* Host.swift in Sources */ = {isa = PBXBuildFile; fileRef = D50C08892CF90CD400D567AE /* Host.swift */; };
 		D527F7482CAB25A9001B428C /* IPUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = D527F7472CAB25A9001B428C /* IPUtils.swift */; };
 		D527F74A2CAB290B001B428C /* TargetHostViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D527F7492CAB290B001B428C /* TargetHostViewModel.swift */; };
 		D52F61322CED18170056EFC5 /* MiniLoadingBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = D52F61312CED18170056EFC5 /* MiniLoadingBar.swift */; };
@@ -102,6 +103,7 @@
 		14FECBB72C4AFBC6009CBF07 /* SegmentedControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SegmentedControl.swift; sourceTree = "<group>"; };
 		14FECBBB2C4FAF59009CBF07 /* CircularGauge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircularGauge.swift; sourceTree = "<group>"; };
 		14FECBBF2C5187F8009CBF07 /* PlayButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayButton.swift; sourceTree = "<group>"; };
+		D50C08892CF90CD400D567AE /* Host.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Host.swift; sourceTree = "<group>"; };
 		D527F7472CAB25A9001B428C /* IPUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IPUtils.swift; sourceTree = "<group>"; };
 		D527F7492CAB290B001B428C /* TargetHostViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TargetHostViewModel.swift; sourceTree = "<group>"; };
 		D52F61312CED18170056EFC5 /* MiniLoadingBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MiniLoadingBar.swift; sourceTree = "<group>"; };
@@ -237,6 +239,7 @@
 				D551F5822CE7F60E0029800D /* SessionParam.swift */,
 				14E283472C9216AE0086E36F /* Session.swift */,
 				D5FB2D162CA6FDA3002C4AE3 /* Settings.swift */,
+				D50C08892CF90CD400D567AE /* Host.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -448,6 +451,7 @@
 				D52F61342CED3BEA0056EFC5 /* Date.swift in Sources */,
 				1436956E2C8750E8005CC2B3 /* TargetHostView.swift in Sources */,
 				D551F5832CE7F60E0029800D /* SessionParam.swift in Sources */,
+				D50C088A2CF90CD400D567AE /* Host.swift in Sources */,
 				D549379A2CEF7AA800F777DD /* PingPayloadSlider.swift in Sources */,
 				14BBA22D2C98B49400438D2D /* Formatter.swift in Sources */,
 				1409322F2C52775B00D2C03F /* PingStat.swift in Sources */,

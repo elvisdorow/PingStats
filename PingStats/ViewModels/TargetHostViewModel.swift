@@ -23,7 +23,7 @@ enum IpHostError: Error {
 
 class TargetHostViewModel: ObservableObject {
     
-    @Published var targetHosts: [TargetHost] = []
+    @Published var hosts: [Host] = []
     var cancellables: [AnyCancellable] = []
     
     var dataService: TargetHostDataService = TargetHostDataService()
@@ -33,35 +33,36 @@ class TargetHostViewModel: ObservableObject {
     }
     
     private func bindSubscribers() {
-        dataService.$targetHosts
+        dataService.$hosts
             .receive(on: DispatchQueue.main)
             .sink { [weak self] (returnedTargetHosts) in
-                self?.targetHosts = returnedTargetHosts
+                self?.hosts = returnedTargetHosts
             }
             .store(in: &cancellables)
     }
     
-    func addNew(host: String) async throws {
-        guard IPUtils.validateIPAddressOrHostname(host) else {
+    func addNew(ipOrHost: String) async throws {
+        
+        guard IPUtils.validateIPAddressOrHostname(ipOrHost) else {
             throw IpHostError.invalid
         }
         
-        guard dataService.get(host: host) == nil else {
+        let type: HostType = IPUtils.isValidIPv4(ipOrHost) ? .ip : .name
+        
+        guard dataService.get(host: ipOrHost, type: type) == nil else {
             throw IpHostError.alreadyExists
         }
         
-        let host: String = host
-        var hostname: String? = nil
+        let host: Host = Host()
+        host.host = ipOrHost
+        host.type = type
         
-        if IPUtils.isValidIPv4(host) {
-            // if address is an IP
-            hostname = await IPUtils.resolveHostname(for: host)
-        }
-        
-        dataService.add(host: host, hostname: hostname)
+        dataService.add(host: host)
     }
     
-    func delete(targetHost: TargetHost) {
-        dataService.delete(targetHost: targetHost)
+    func delete(host: Host) {
+        if let targetHost = dataService.get(host: host.host, type: host.type) {
+            dataService.delete(targetHost: targetHost)
+        }
     }
 }

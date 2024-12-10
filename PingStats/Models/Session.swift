@@ -8,7 +8,7 @@ import Foundation
 
 class Session {
     
-    let parameters: SessionParam
+    var parameters: SessionParam
     var connectionType: String
     
     var pingStat: PingStat? = nil
@@ -19,6 +19,8 @@ class Session {
     let startDate: Date
     var endDate: Date?
     var elapsedTime: TimeInterval
+    
+    var resolvedIpOrHost: String?
     
     init(_ params: SessionParam) {
         parameters = params
@@ -81,7 +83,6 @@ class Session {
     }
     
     private func addPingLog(_ response: ICMPResponse) -> PingLog {
-//        let sequence = response.sequence - Settings.shared.dropFirst
         let sequence = response.sequence
         
         if let error = response.error {

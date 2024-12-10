@@ -28,15 +28,13 @@ struct SessionDetailView: View {
         VStack(alignment: .leading, spacing: 8) {
             
             VStack(alignment: .leading) {
-                if let hostname = session.hostname {
-                    if !hostname.isEmpty {
-                        Text(hostname)
-                            .lineLimit(1)
-                            .foregroundStyle(.secondary)
-                            .font(.subheadline)
-                    }
+                if let resolvedIpOrHost = session.resolvedIpOrHost {
+                    Text(resolvedIpOrHost)
+                        .lineLimit(1)
+                        .foregroundStyle(.secondary)
+                        .font(.subheadline)
                 }
-                
+
                 HStack(alignment: .firstTextBaseline) {
                     HStack(alignment: .firstTextBaseline) {
                         Text("\(connectionType.toString())")

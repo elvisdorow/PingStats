@@ -17,8 +17,22 @@ struct App: SwiftUI.App {
             MainView()
                 .onAppear {
                     settings.theme = settings.theme
+                    insertDefaultHostIfNeeded()
                 }
                 .tint(.primary)
+        }
+    }
+    
+    
+    func insertDefaultHostIfNeeded() {
+        let db = TargetHostDataService()
+
+        if db.hosts.isEmpty {
+            let host = Host()
+            host.host = "1.1.1.1"
+            host.type = HostType.ip
+
+            db.add(host: host)
         }
     }
 }

@@ -10,6 +10,7 @@ import Combine
 import SwiftUI
 import Network
 
+@MainActor
 class MainViewModel: ObservableObject {
     
     var settings: Settings = .shared
@@ -49,28 +50,32 @@ class MainViewModel: ObservableObject {
         }
         monitor.start(queue: DispatchQueue.global())
     }
-    
-    
+        
     func start() {
+        resetChart()
         self.pingStat = PingStat()
+        addSubscriptions()
         
         let sessionParams = SessionParam(settings: .shared)
         session = Session(sessionParams)
-        
-        resetChart()
 
-        addSubscriptions()
+        statusMessage = "Pinging \(sessionParams.host)..."
+
+        if sessionParams.hostType == .ip {
+            IPUtils.resolveHostname(for: sessionParams.host) {[weak self] hostname in
+                if let hostname = hostname {
+                    self?.session?.resolvedIpOrHost = hostname
+                    self?.statusMessage = "Pinging \(sessionParams.host) (\(hostname))"
+                }
+            }
+        }
+
         pingService.start()
         
         isAnalysisRunning = true
         elapsedTime = 0
         
         hasNetworkError = false
-        statusMessage = "Pinging \(sessionParams.host)..."
-        
-        if !sessionParams.hostname.isEmpty {
-            statusMessage = "Pinging \(sessionParams.host) (\(sessionParams.hostname))..."
-        }
     }
     
     func stop() {
@@ -109,6 +114,13 @@ class MainViewModel: ObservableObject {
                 self.pingLogs.append(pingLog)
                 self.pingStat = session.getPingStat()
                 self.hasNetworkError = false
+                
+                if session.parameters.hostType == .name {
+                    if let ipaddress = response.ipv4Address {
+                        session.resolvedIpOrHost = ipaddress
+                        self.statusMessage = "Pinging \(session.parameters.host) (\(ipaddress))"
+                    }
+                }
                 
                 if response.error != nil {
                     self.hasNetworkError = true

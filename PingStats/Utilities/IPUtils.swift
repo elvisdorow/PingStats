@@ -6,7 +6,7 @@
 //
 
 import Foundation
-
+import SwiftyPing
 
 enum IpValidationError: Error {
     case invalid

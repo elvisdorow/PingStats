@@ -11,7 +11,7 @@ import CoreData
 class TargetHostDataService: DataService {
     
     private let entityName = "TargetHost"
-    @Published var targetHosts: [TargetHost] = []
+    @Published var hosts: [Host] = []
     
     override init() {
         super.init()
@@ -19,22 +19,31 @@ class TargetHostDataService: DataService {
     }
     
     private func load() {
+        hosts = []
         let request = NSFetchRequest<TargetHost>(entityName: entityName)
         do {
-            targetHosts = try container.viewContext.fetch(request)
+            let targetHosts = try container.viewContext.fetch(request)
+            
+            for targetHost in targetHosts {
+                let host = Host()
+                host.host = targetHost.host ?? ""
+                host.type = HostType(rawValue: targetHost.type ?? "ip") ?? .ip
+                hosts.append(host)
+            }
+            
         } catch let error {
             print("Error loading target hosts \(error)")
         }
     }
     
-    func add(host: String, hostname: String?) {
+    func add(host: Host) {
         let targetHost = TargetHost(context: container.viewContext)
-        targetHost.host = host
-        targetHost.hostname = hostname
+        targetHost.type = host.type.rawValue
+        targetHost.host = host.host        
         applyChanges()
     }
     
-    func get(host: String) -> TargetHost? {
+    func get(host: String, type: HostType) -> TargetHost? {
         let request = NSFetchRequest<TargetHost>(entityName: entityName)
         request.predicate = NSPredicate(format: "host == %@", host)
         

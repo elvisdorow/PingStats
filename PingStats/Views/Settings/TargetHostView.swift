@@ -25,18 +25,18 @@ struct TargetHostView: View {
         ZStack {
             List {
                 Section {
-                    ForEach(vm.targetHosts, id: \.self) { targetHost in
-                        targetHostRow(targetHost: targetHost)
+                    ForEach(vm.hosts, id: \.id) { host in
+                        targetHostRow(host: host)
                         .onTapGesture {
-                            settings.host = targetHost.host ?? ""
-                            settings.hostname = targetHost.hostname ?? ""
+                            settings.host = host.host
+                            settings.hostType = host.type.rawValue
                             presentationMode.wrappedValue.dismiss()
                         }
                     }
                     .onDelete { indexSet in
                         indexSet.forEach { idx in
-                            let targetHost = vm.targetHosts[idx]
-                            vm.delete(targetHost: targetHost)
+                            let host = vm.hosts[idx]
+                            vm.delete(host: host)
                         }
                     }
                 }
@@ -102,7 +102,7 @@ struct TargetHostView: View {
     
     func addNewTargetHost() async {
         do {
-            try await vm.addNew(host: newIpAddress)
+            try await vm.addNew(ipOrHost: newIpAddress)
             withAnimation {
                 showAddForm.toggle()
             }
@@ -128,19 +128,15 @@ struct TargetHostView: View {
 extension TargetHostView {
 
     @ViewBuilder
-    func targetHostRow(targetHost: TargetHost) -> some View {
+    func targetHostRow(host: Host) -> some View {
         HStack {
             VStack(alignment: .leading) {
-                Text(targetHost.host ?? "")
-                if let hostname = targetHost.hostname {
-                    Text(hostname)
-                        .font(.subheadline)
-                        .foregroundColor(.secondary)
-                }
+                Text(host.host)
             }
                 
             Spacer()
-            if targetHost.host == settings.host {
+            if (host.host == settings.host
+                && host.type.rawValue == settings.hostType) {
                 Image(systemName: "checkmark")
                     .foregroundColor(Color.theme.accent)
             }

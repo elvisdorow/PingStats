@@ -14,6 +14,7 @@ struct ICMPResponse: Identifiable {
     let bytes: Int
     let dateTime: Date
     let timeToLive: Int
+    let ipv4Address: String?
     let duration: TimeInterval
     let error: PingError?
 }

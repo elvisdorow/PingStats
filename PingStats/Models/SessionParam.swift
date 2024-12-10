@@ -7,22 +7,23 @@
 
 import Foundation
 
-struct SessionParam {
+class SessionParam {
     
     let pingInterval: PingInterval
     let pingCountStat: PingCountStat
     let maxtimeSetting: PingMaxtime
     let pingTimeout: PingTimeout
-    let host: String
-    let hostname: String
 
+    let hostType: HostType
+    let host: String
+    
     init(settings: Settings) {
         pingInterval = settings.pingInterval
         pingCountStat = settings.pingCountStat
         maxtimeSetting = settings.maxtimeSetting
         pingTimeout = settings.pingTimeout
         host = settings.host
-        hostname = settings.hostname
+        hostType = HostType(rawValue: settings.hostType) ?? .name
     }
     
 }

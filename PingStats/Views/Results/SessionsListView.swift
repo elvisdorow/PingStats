@@ -76,14 +76,13 @@ struct SessionRowView: View {
                 Text(session.host ?? "")
                     .font(.title3)
 
-                if let hostname = session.hostname {
-                    if !hostname.isEmpty {
-                        Text(hostname)
-                            .lineLimit(1)
-                            .foregroundStyle(.secondary)
-                            .font(.subheadline)
-                    }
+                if let resolvedIpOrHost = session.resolvedIpOrHost {
+                   Text(resolvedIpOrHost)
+                        .lineLimit(1)
+                        .foregroundStyle(.secondary)
+                        .font(.subheadline)
                 }
+                
                 if let startDate = session.startDate {
                     Text(formattedRelativeDate(for: startDate))
                         .foregroundColor(.secondary)
