@@ -39,7 +39,6 @@ struct SessionsListView: View {
                         presentationMode.wrappedValue.dismiss()
                     }, label: {
                         Text("Close")
-                            .foregroundColor(.primary)
                     })
                 }
             })

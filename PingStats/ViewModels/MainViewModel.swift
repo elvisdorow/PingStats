@@ -52,8 +52,10 @@ class MainViewModel: ObservableObject {
     }
         
     func start() {
+        UIApplication.shared.isIdleTimerDisabled = true
+
         resetChart()
-        self.pingStat = PingStat()
+        pingStat = PingStat()
         addSubscriptions()
         
         let sessionParams = SessionParam(settings: .shared)
@@ -79,6 +81,8 @@ class MainViewModel: ObservableObject {
     }
     
     func stop() {
+        UIApplication.shared.isIdleTimerDisabled = false
+
         isAnalysisRunning = false
         statusMessage = "Test finished"
         hasNetworkError = false

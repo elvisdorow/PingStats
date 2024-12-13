@@ -40,6 +40,8 @@
 		D52F61322CED18170056EFC5 /* MiniLoadingBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = D52F61312CED18170056EFC5 /* MiniLoadingBar.swift */; };
 		D52F61342CED3BEA0056EFC5 /* Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = D52F61332CED3BEA0056EFC5 /* Date.swift */; };
 		D549379A2CEF7AA800F777DD /* PingPayloadSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = D54937992CEF7AA800F777DD /* PingPayloadSlider.swift */; };
+		D54A65682D0B31F600121652 /* CloseButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = D54A65672D0B31F600121652 /* CloseButton.swift */; };
+		D54A656E2D0BA2AF00121652 /* AddHostFormView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D54A656D2D0BA2A800121652 /* AddHostFormView.swift */; };
 		D551F5832CE7F60E0029800D /* SessionParam.swift in Sources */ = {isa = PBXBuildFile; fileRef = D551F5822CE7F60E0029800D /* SessionParam.swift */; };
 		D557AF842CF12A5C008ED94B /* SessionPingLogView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D557AF832CF12A5C008ED94B /* SessionPingLogView.swift */; };
 		D55D788F2CE392DF00C49190 /* PingService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D55D788E2CE392DF00C49190 /* PingService.swift */; };
@@ -109,6 +111,8 @@
 		D52F61312CED18170056EFC5 /* MiniLoadingBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MiniLoadingBar.swift; sourceTree = "<group>"; };
 		D52F61332CED3BEA0056EFC5 /* Date.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Date.swift; sourceTree = "<group>"; };
 		D54937992CEF7AA800F777DD /* PingPayloadSlider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PingPayloadSlider.swift; sourceTree = "<group>"; };
+		D54A65672D0B31F600121652 /* CloseButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CloseButton.swift; sourceTree = "<group>"; };
+		D54A656D2D0BA2A800121652 /* AddHostFormView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddHostFormView.swift; sourceTree = "<group>"; };
 		D551F5822CE7F60E0029800D /* SessionParam.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionParam.swift; sourceTree = "<group>"; };
 		D557AF832CF12A5C008ED94B /* SessionPingLogView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionPingLogView.swift; sourceTree = "<group>"; };
 		D55D788E2CE392DF00C49190 /* PingService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PingService.swift; sourceTree = "<group>"; };
@@ -247,6 +251,7 @@
 		14B950A52C46938900E8A388 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				D54A65662D0B31E200121652 /* Components */,
 				D58084DA2CE2AE8D00DC7040 /* Main */,
 				D55DD5372CAC332D00F94F83 /* Results */,
 				14E283492C921E250086E36F /* Settings */,
@@ -257,6 +262,7 @@
 		14E283492C921E250086E36F /* Settings */ = {
 			isa = PBXGroup;
 			children = (
+				D54A656D2D0BA2A800121652 /* AddHostFormView.swift */,
 				143391D82C9A363000ED8CDB /* Components */,
 				140AFF672C6663BA00A4A2C8 /* SettingsView.swift */,
 				1436956D2C8750E8005CC2B3 /* TargetHostView.swift */,
@@ -281,6 +287,14 @@
 			isa = PBXGroup;
 			children = (
 				D52F61312CED18170056EFC5 /* MiniLoadingBar.swift */,
+			);
+			path = Components;
+			sourceTree = "<group>";
+		};
+		D54A65662D0B31E200121652 /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				D54A65672D0B31F600121652 /* CloseButton.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -450,6 +464,7 @@
 				D5FA4E2F2CE4D09A0068CBC9 /* PingStatsContainer.xcdatamodeld in Sources */,
 				D52F61342CED3BEA0056EFC5 /* Date.swift in Sources */,
 				1436956E2C8750E8005CC2B3 /* TargetHostView.swift in Sources */,
+				D54A656E2D0BA2AF00121652 /* AddHostFormView.swift in Sources */,
 				D551F5832CE7F60E0029800D /* SessionParam.swift in Sources */,
 				D50C088A2CF90CD400D567AE /* Host.swift in Sources */,
 				D549379A2CEF7AA800F777DD /* PingPayloadSlider.swift in Sources */,
@@ -466,6 +481,7 @@
 				14B9509D2C45B62500E8A388 /* ICMPResponse.swift in Sources */,
 				D58084DF2CE2B4D500DC7040 /* TextStatInfo.swift in Sources */,
 				D5FFFF262CDD6E070039D7DD /* Color.swift in Sources */,
+				D54A65682D0B31F600121652 /* CloseButton.swift in Sources */,
 				14FECBC02C5187F8009CBF07 /* PlayButton.swift in Sources */,
 				14F54FF32C986FEA005260E5 /* SessionDetailView.swift in Sources */,
 				14FECBB82C4AFBC6009CBF07 /* SegmentedControl.swift in Sources */,

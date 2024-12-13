@@ -37,7 +37,7 @@ struct SettingsView: View {
                 Section {
                     NavigationLink(
                         destination: PingSettingsView()
-                            .navigationTitle("Ping Settings")
+                            .navigationTitle("Ping Configuration")
                             .navigationBarTitleDisplayMode(.automatic),
 
                         label: {
@@ -69,14 +69,12 @@ struct SettingsView: View {
                 }
 
             }
-            .tint(Color.theme.accent)
             .toolbar {
                 ToolbarItem {
                     Button(action: {
                         presentationMode.wrappedValue.dismiss()
                     }, label: {
                         Text("OK")
-                            .foregroundColor(.primary)
                     })
                 }
             }

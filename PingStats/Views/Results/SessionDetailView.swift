@@ -136,16 +136,16 @@ struct SessionDetailView: View {
                 ShareLink(item: "PingStats Result \(session.host ?? "")")
             }
             ToolbarItem(placement: .topBarTrailing) {
-                Menu {
+                Menu {                    
                     Button(action: {},
                            label: {
                         Label(
-                            title: { Text("Save to a file") },
+                            title: { Text("Save") },
                             icon: { Image(systemName: "square.and.arrow.down") }
                         )
                     })
                     Button(role: .destructive, action: {}) {
-                        Label("Delete result", systemImage: "trash")
+                        Label("Delete", systemImage: "trash")
                     }
                     
                 } label: {

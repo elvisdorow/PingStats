@@ -10,6 +10,8 @@ import SwiftUI
 @main
 struct App: SwiftUI.App {
     
+    @AppStorage("isFirstTime") private var isFirstTime: Bool = true
+    
     var settings: Settings = .shared
 
     var body: some Scene {
@@ -19,20 +21,23 @@ struct App: SwiftUI.App {
                     settings.theme = settings.theme
                     insertDefaultHostIfNeeded()
                 }
-                .tint(.primary)
+                .tint(Color.theme.accent)
         }
     }
     
     
     func insertDefaultHostIfNeeded() {
-        let db = TargetHostDataService()
+        if isFirstTime {
+            let db = TargetHostDataService()
 
-        if db.hosts.isEmpty {
-            let host = Host()
-            host.host = "1.1.1.1"
-            host.type = HostType.ip
+            if db.hosts.isEmpty {
+                let host = Host()
+                host.host = "1.1.1.1"
+                host.type = HostType.ip
 
-            db.add(host: host)
+                db.add(host: host)
+            }            
+            isFirstTime = false
         }
     }
 }

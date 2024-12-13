@@ -48,7 +48,7 @@ class PingService {
                 error: response.error
             )
             self?.response = iCMPResponse
-        }
+         }
 
         // give some time to SwiftyPing to its thins before start pinging
         // if it starts right away, the first ping takes considerably longer time
@@ -60,10 +60,6 @@ class PingService {
                 print("Failed to start pinging: \(error.localizedDescription)")
             }
         }
-    }
-    
-    func pause() {
-        pinger?.stopPinging(resetSequence: false)
     }
     
     func stop() {

@@ -20,6 +20,8 @@ struct MainView: View {
     
     @StateObject var viewModel: MainViewModel = MainViewModel()
     @StateObject var settings = Settings.shared
+    
+    @Environment(\.scenePhase) var scenePhase
 
     var body: some View {
         NavigationStack {
@@ -73,7 +75,11 @@ struct MainView: View {
                 SessionsListView()
                     .presentationCompactAdaptation(.fullScreenCover)
             }
-
+        }
+        .onChange(of: scenePhase) { newValue in
+            if newValue == .background && viewModel.isAnalysisRunning {
+                viewModel.stop()
+            }
         }
     }
 }
@@ -310,10 +316,8 @@ extension MainView {
                             .navigationBarTitleDisplayMode(.inline)
                             .toolbar(content: {
                                 ToolbarItem(placement: .cancellationAction) {
-                                    Button {
+                                    CloseButton {
                                         showHostList = false
-                                    } label: {
-                                        Text("Close")
                                     }
                                 }
                             })
