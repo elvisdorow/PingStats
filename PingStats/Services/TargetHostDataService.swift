@@ -18,7 +18,7 @@ class TargetHostDataService: DataService {
         self.load()
     }
     
-    private func load() {
+    func load() {
         hosts = []
         let request = NSFetchRequest<TargetHost>(entityName: entityName)
         do {
@@ -40,7 +40,7 @@ class TargetHostDataService: DataService {
         let targetHost = TargetHost(context: container.viewContext)
         targetHost.type = host.type.rawValue
         targetHost.host = host.host        
-        applyChanges()
+        save()
     }
     
     func get(host: String, type: HostType) -> TargetHost? {
@@ -60,13 +60,6 @@ class TargetHostDataService: DataService {
     
     func delete(targetHost: TargetHost) {
         container.viewContext.delete(targetHost)
-        applyChanges()
-    }
-
-    
-    private func applyChanges() {
         save()
-        load()
     }
-    
 }

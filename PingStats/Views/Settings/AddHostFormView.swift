@@ -9,25 +9,30 @@ import SwiftUI
 struct AddHostFormView: View {
     @Binding var newIpAddress: String
     @Binding var errorMessage: String
-    @FocusState private var isTextFieldFocused: Bool
+    @FocusState var isTextFieldFocused: Bool
 
     var body: some View {
-        VStack(alignment: .center) {
-            Text("Enter an IP address or host name")
+        VStack(alignment: .leading) {
+            Text("Enter the address:")
+                .padding(.horizontal, 5)
             TextField("0.0.0.0 or host.name", text: $newIpAddress)
                 .onChange(of: newIpAddress) { _ in
                     validateIPAddressOrHostname()
                 }
                 .focused($isTextFieldFocused)
                 .onAppear {
-                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
                         isTextFieldFocused = true
                     }
                 }
                 .autocapitalization(.none)
                 .textFieldStyle(PlainTextFieldStyle())
+                .keyboardType(.default) // Set keyboard type
+                .textInputAutocapitalization(.never)
+                .autocorrectionDisabled()
                 .frame(height: 50)
-                .multilineTextAlignment(.center)
+                .multilineTextAlignment(.leading)
+                .padding(.horizontal)
                 .cornerRadius(10)
                 .background {
                     RoundedRectangle(cornerRadius: 10)
@@ -37,9 +42,15 @@ struct AddHostFormView: View {
                         .frame(height: 50)
                 }
                 .foregroundColor(errorMessage.isEmpty ? .primary : .red)
+                .popover(isPresented: .constant(!errorMessage.isEmpty)) {
+                        Text(errorMessage)
+                            .padding()
+                            .presentationCompactAdaptation(.popover)
+                    }
         }
         .padding(.horizontal, 30)
-    }
+        .frame(height: 150, alignment: .top)
+   }
 
     func validateIPAddressOrHostname() {
         if !newIpAddress.isEmpty && !IPUtils.validateIPAddressOrHostname(newIpAddress) {
@@ -52,4 +63,8 @@ struct AddHostFormView: View {
             errorMessage = ""
         }
     }
+}
+
+#Preview {
+    AddHostFormView(newIpAddress: .constant(""), errorMessage: .constant(""))
 }

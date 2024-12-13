@@ -41,7 +41,7 @@ class TargetHostViewModel: ObservableObject {
             .store(in: &cancellables)
     }
     
-    func addNew(ipOrHost: String) async throws {
+    func addNew(ipOrHost: String) async throws -> Host{
         
         guard IPUtils.validateIPAddressOrHostname(ipOrHost) else {
             throw IpHostError.invalid
@@ -58,11 +58,17 @@ class TargetHostViewModel: ObservableObject {
         host.type = type
         
         dataService.add(host: host)
+        
+        return host
     }
     
     func delete(host: Host) {
         if let targetHost = dataService.get(host: host.host, type: host.type) {
             dataService.delete(targetHost: targetHost)
         }
+    }
+    
+    func reload() {
+        dataService.load()
     }
 }

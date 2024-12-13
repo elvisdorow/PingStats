@@ -17,16 +17,10 @@ struct TargetHostView: View {
     var settings = Settings.shared
     
     @State var showAddForm: Bool = false
-    @State var errorMessage: String = ""
     @State var newIpAddress: String = ""
+    @State var errorMessage: String = ""
     
     @State var timer: Timer?
-    
-    enum FocusedTextField: Hashable {
-        case textField(String)
-    }
-    
-    @FocusState private var isTextFieldFocused: Bool
     
     var body: some View {
         ZStack {
@@ -44,141 +38,103 @@ struct TargetHostView: View {
                         indexSet.forEach { idx in
                             let host = vm.hosts[idx]
                             vm.delete(host: host)
+                            vm.reload()
                         }
                     }
                 }
             }
-            .toolbar(content: {
-                ToolbarItem(placement: .automatic) {
-                    Button(action: {
-                        errorMessage = ""
-                        newIpAddress = ""
-                        showAddForm.toggle()
-                    }, label: {
-                        
-                        Label {
-                            Text("Add host")
-                        } icon: {
-                            Image(systemName: "plus")
-                        }
-                    })
-                }
-                
-                ToolbarItem(placement: .primaryAction) {
-                    EditButton()
-                }
-            })
         }
         .sheet(isPresented: $showAddForm) {
             NavigationView {
-                VStack {
-                    Text("Teste")
-                        .navigationTitle("Add host")
-                        .navigationBarTitleDisplayMode(.inline)
-
-                    TextField("teste", text: $newIpAddress)
-                        .focused($isTextFieldFocused)
-                        .onAppear {
-    
-                            DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
-                                print("textfield appeard")
-                                isTextFieldFocused = true
+                AddHostFormView(newIpAddress: $newIpAddress, errorMessage: $errorMessage)
+                    .navigationTitle("New Host")
+                    .navigationBarTitleDisplayMode(.inline)
+                    .toolbar(content: {
+                        ToolbarItem(placement: .cancellationAction) {
+                            CloseButton {
+                                showAddForm = false
                             }
                         }
-                        .onDisappear {
-                            isTextFieldFocused = false
+                        ToolbarItem(placement: .confirmationAction) {
+                            Button {
+                                Task {
+                                    await addNewTargetHost()
+                                }
+                            } label: {
+                                Text("Save")
+                            }
                         }
-                }
-                
-                
-//                AddHostFormView()
-//                    .navigationTitle("Add host")
-//                    .navigationBarTitleDisplayMode(.inline)
-//                    .toolbar(content: {
-//                        ToolbarItem(placement: .cancellationAction) {
-//                            CloseButton {
-//                                showAddForm = false
-//                            }
-//                        }
-//                        if !newIpAddress.isEmpty && errorMessage.isEmpty {
-//                            ToolbarItem(placement: .confirmationAction) {
-//                                Button {
-//                                    Task {
-//                                        await addNewTargetHost()
-//                                    }
-//                                } label: {
-//                                    Text("Save")
-//                                }
-//                            }
-//                        }
-//                    })
-//                    .interactiveDismissDisabled(false)
-//
-            }
-            .presentationDetents([.height(210)])
-        }
-    }
+                    })
+                    .interactiveDismissDisabled(false)
 
-//    func AddHostFormView() -> some View {
-//        VStack(alignment: .center) {
-//            Text("Enter an IP address or host name")
-//            TextField("0.0.0.0 or host.name", text: $newIpAddress)
-//                .onChange(of: newIpAddress) {
-//                    validateIPAddressOrHostname()
-//                }
-//                .focused($isTextFieldFocused)
-//                .onAppear {
-//                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.8) {
-//                        print("show keyboard")
-//                        isTextFieldFocused = true
-//                    }
-//                }
-//                .autocapitalization(.none)
-//                .textFieldStyle(PlainTextFieldStyle())
-//                .frame(height: 50)
-//                .multilineTextAlignment(.center)
-//                .cornerRadius(10)
-//                .background {
-//                    RoundedRectangle(cornerRadius: 10)
-//                        .stroke(errorMessage.isEmpty ? Color(.systemGray4).opacity(0.3) : .red, lineWidth: 1)
-//                        .background(Color(.systemGray5).opacity(0.43))
-//                        .cornerRadius(10)
-//                        .frame(height: 50)
-//                    
-//                }
-//                .foregroundColor(errorMessage.isEmpty ? .primary : .red)
-//                .popover(isPresented: .constant(!errorMessage.isEmpty)) {
-//                    Text(errorMessage)
-//                        .padding()
-//                        .presentationCompactAdaptation(.popover)
-//                }
-//            }
-//            .padding(.horizontal, 30)
-//    }
+            }
+            .presentationDetents([.height(220)])
+        }
+        .toolbar(content: {
+            ToolbarItem(placement: .automatic) {
+                Button(action: {
+                    newIpAddress = ""
+                    showAddForm.toggle()
+                }, label: {
+                    
+                    Label {
+                        Text("New Host")
+                    } icon: {
+                        Image(systemName: "plus")
+                    }
+                })
+            }
+            
+            ToolbarItem(placement: .primaryAction) {
+                EditButton()
+            }
+        })
+    }
         
     func addNewTargetHost() async {
         do {
-            try await vm.addNew(ipOrHost: newIpAddress)
+            let host = try await vm.addNew(ipOrHost: newIpAddress)
+            settings.host = host.host
+            settings.hostType = host.type.rawValue
+            
+            vm.reload()
+            
             withAnimation {
                 showAddForm.toggle()
             }
-        } catch let error {
+        } catch IpHostError.alreadyExists {
+            errorMessage = "Host already exists"
+        } catch IpHostError.invalid {
+            errorMessage = "Invalid host"
+        } catch {
             errorMessage = error.localizedDescription
         }
     }
-    
-//    func validateIPAddressOrHostname() {
-//        if !newIpAddress.isEmpty && !IPUtils.validateIPAddressOrHostname(newIpAddress) {
-//            errorMessage = "Invalid host"
-//        } else {
-//            errorMessage = ""
-//        }
-//        
-//        if newIpAddress.isEmpty {
-//            errorMessage = ""
-//        }
-//    }
+}
 
+struct AddFormView: View {
+    @FocusState var isTextFieldFocused: Bool
+    
+    var body: some View {
+        VStack {
+            Text("Teste")
+                .navigationTitle("Add host")
+                .navigationBarTitleDisplayMode(.inline)
+
+            TextField("teste", text: .constant(""))
+                .focused($isTextFieldFocused)
+                .onAppear {
+
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.6) {
+                        print("textfield appeard")
+                        isTextFieldFocused = true
+                    }
+                }
+                .onDisappear {
+                    isTextFieldFocused = false
+                }
+        }
+    }
 }
 
 extension TargetHostView {
