@@ -46,8 +46,9 @@ class PingStat {
     }
     
     private func getScore() {
-        self.generalScore = (pingScore + jitterScore + packageLossScore) / 3
-        
+//        self.generalScore = (pingScore + jitterScore + packageLossScore) / 3
+        self.generalScore = Double(calculateNetworkQuality())
+
         // TODO - improve algorithm
         self.gamingScore = self.generalScore
         self.streamingScore = self.generalScore
@@ -212,4 +213,87 @@ class PingStat {
              good = "Good",
              excelent = "Excelent"
     }
+    
+    
+    func calculateNetworkQuality() -> Int {
+        // Define weights
+        let pingWeight = 0.4
+        let jitterWeight = 0.3
+        let packetLossWeight = 0.3
+        
+        // Normalize metrics (0-100 scale)
+        let pingScore = normalizePing(averagePing)
+        let jitterScore = normalizeJitter(jitter)
+        let packetLossScore = normalizePacketLoss(packageLoss)
+        
+        // Weighted score calculation
+        let weightedScore = (pingScore * pingWeight) + (jitterScore * jitterWeight) + (packetLossScore * packetLossWeight)
+        
+        // Return final grade (1-100%)
+        return Int(weightedScore.rounded())
+    }
+
+    // Helper functions to normalize each metric
+    func normalizePing(_ ping: Double) -> Double {
+        if ping < 32 && jitter < 8 && packageLoss == 0.0 { return 100 }
+        else if ping < 35 { return 95 }
+        else if ping < 38 { return 93 }
+        else if ping < 40 { return 90 }
+        else if ping < 42 { return 88 }
+        else if ping < 45 { return 85 }
+        else if ping < 48 { return 83 }
+        else if ping < 50 { return 80 }
+        else if ping < 52 { return 78 }
+        else if ping < 55 { return 75 }
+        else if ping < 58 { return 73 }
+        else if ping < 60 { return 70 }
+        else if ping < 62 { return 68 }
+        else if ping < 65 { return 65 }
+        else if ping < 68 { return 63 }
+        else if ping < 70 { return 60 }
+        else if ping < 72 { return 58 }
+        else if ping < 75 { return 55 }
+        else if ping < 78 { return 53 }
+        else if ping < 80 { return 50 }
+        else if ping < 82 { return 48 }
+        else if ping < 85 { return 45 }
+        else if ping < 88 { return 43 }
+        else if ping < 90 { return 40 }
+        else if ping < 92 { return 38 }
+        else if ping < 95 { return 35 }
+        else if ping < 98 { return 33 }
+        else if ping < 100 { return 30 }
+        else if ping < 105 { return 28 }
+        else if ping < 120 { return 25 }
+        else if ping < 130 { return 23 }
+        else if ping < 150 { return 20 }
+        else if ping < 180 { return 15 }
+        else if ping < 200 { return 13 }
+        else if ping < 300 { return 7 }
+        else { return 5 }
+    }
+
+    func normalizeJitter(_ jitter: Double) -> Double {
+        if jitter < 5 { return 100 }
+        else if jitter < 8 { return 95 }
+        else if jitter < 10 { return 90 }
+        else if jitter < 15 { return 75 }
+        else if jitter < 20 { return 50 }
+        else if jitter < 25 { return 40 }
+        else if jitter < 30 { return 30 }
+        else if jitter < 40 { return 20 }
+
+        else { return 10 }
+    }
+
+    func normalizePacketLoss(_ packetLoss: Double) -> Double {
+        if packetLoss == 0 { return 100 }
+        else if packetLoss < 1 { return 80 }
+        else if packetLoss < 2 { return 50 }
+        else if packetLoss < 5 { return 30 }
+        else if packetLoss < 10 { return 20 }
+        else if packetLoss < 20 { return 15 }
+        else { return 2 }
+    }
+
 }

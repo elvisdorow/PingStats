@@ -21,7 +21,7 @@ struct SessionPingLogView: View {
         NavigationView {
             VStack {
                 ScrollView {
-                    VStack {
+                    VStack(alignment: .leading) {
                         ForEach(vm.logs, id: \.self) { l in
                             if let error = l.error {
                                 Text("\(l.bytes) bytes icmp_seq=\(l.sequence) \(error)")
@@ -46,21 +46,10 @@ struct SessionPingLogView: View {
             }
             .frame(maxWidth: /*@START_MENU_TOKEN@*/.infinity/*@END_MENU_TOKEN@*/, alignment: .center)
            .toolbar {
-               ToolbarItem(placement: .navigationBarTrailing) {
-                   Button(action: {
+               ToolbarItem(placement: .navigationBarLeading) {
+                   CloseButton {
                        presentationMode.wrappedValue.dismiss()
-                   }) {
-                       Circle()
-                           .fill(Color.gray.opacity(0.15))
-                           .overlay {
-                               Image(systemName: "xmark")
-                                   .font(.system(size: 12))
-                                   .fontWeight(.semibold)
-                                   .foregroundColor(Color.gray.opacity(0.7))
-                           }
-                           .frame(width: 27)
                    }
-                   .accessibilityLabel("Close")
                }
            }
         }

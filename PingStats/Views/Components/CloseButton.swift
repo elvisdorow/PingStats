@@ -13,7 +13,7 @@ struct CloseButton: View {
     var body: some View {
         Button(action: action) {
             Image(systemName: "xmark")
-                .font(.system(size: 14, design: .rounded))
+                .font(.system(size: 15, design: .rounded))
                 .opacity(0.6)
                 .padding(5)
                 .background(.primary.opacity(0.04))
@@ -28,6 +28,6 @@ struct CloseButton_Previews: PreviewProvider {
         CloseButton {
             print("Close button tapped")
         }
-        .previewLayout(.sizeThatFits)
+        .frame(width: 100)
     }
 }

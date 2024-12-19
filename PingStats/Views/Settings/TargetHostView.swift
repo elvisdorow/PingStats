@@ -45,30 +45,15 @@ struct TargetHostView: View {
             }
         }
         .sheet(isPresented: $showAddForm) {
-            NavigationView {
-                AddHostFormView(newIpAddress: $newIpAddress, errorMessage: $errorMessage)
-                    .navigationTitle("New Host")
-                    .navigationBarTitleDisplayMode(.inline)
-                    .toolbar(content: {
-                        ToolbarItem(placement: .cancellationAction) {
-                            CloseButton {
-                                showAddForm = false
-                            }
-                        }
-                        ToolbarItem(placement: .confirmationAction) {
-                            Button {
-                                Task {
-                                    await addNewTargetHost()
-                                }
-                            } label: {
-                                Text("Save")
-                            }
-                        }
-                    })
-                    .interactiveDismissDisabled(false)
-
-            }
-            .presentationDetents([.height(220)])
+            AddHostFormView(
+                newIpAddress: $newIpAddress,
+                errorMessage: $errorMessage,
+                onSave: {
+                    Task {
+                        await addNewTargetHost()
+                    }
+                })
+            .presentationDetents([.height(240), .height(250)])
         }
         .toolbar(content: {
             ToolbarItem(placement: .automatic) {
@@ -93,9 +78,7 @@ struct TargetHostView: View {
         
     func addNewTargetHost() async {
         do {
-            let host = try await vm.addNew(ipOrHost: newIpAddress)
-            settings.host = host.host
-            settings.hostType = host.type.rawValue
+            let _ = try await vm.addNew(ipOrHost: newIpAddress)
             
             vm.reload()
             
@@ -112,31 +95,6 @@ struct TargetHostView: View {
     }
 }
 
-struct AddFormView: View {
-    @FocusState var isTextFieldFocused: Bool
-    
-    var body: some View {
-        VStack {
-            Text("Teste")
-                .navigationTitle("Add host")
-                .navigationBarTitleDisplayMode(.inline)
-
-            TextField("teste", text: .constant(""))
-                .focused($isTextFieldFocused)
-                .onAppear {
-
-                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.6) {
-                        print("textfield appeard")
-                        isTextFieldFocused = true
-                    }
-                }
-                .onDisappear {
-                    isTextFieldFocused = false
-                }
-        }
-    }
-}
-
 extension TargetHostView {
     @ViewBuilder
     func targetHostRow(host: Host) -> some View {
@@ -144,17 +102,34 @@ extension TargetHostView {
             VStack(alignment: .leading) {
                 Text(host.host)
             }
-                
             Spacer()
-            if (host.host == settings.host
-                && host.type.rawValue == settings.hostType) {
-                Image(systemName: "checkmark")
-                    .foregroundColor(Color.theme.accent)
+            RadioButton(isSelected: isSelected(host))
+        }
+        .frame(height: 38)
+        .contentShape(Rectangle()) // Improves tap area
+    }
+
+    private func isSelected(_ host: Host) -> Bool {
+        host.host == settings.host && host.type.rawValue == settings.hostType
+    }
+}
+
+// MARK: - Custom RadioButton View
+struct RadioButton: View {
+    let isSelected: Bool
+
+    var body: some View {
+        ZStack {
+            Circle()
+                .stroke(isSelected ? Color.theme.accent : .secondary.opacity(0.4), lineWidth: 2) // Outer circle
+                .frame(width: 18, height: 18)
+            
+            if isSelected {
+                Circle()
+                    .fill(Color.theme.accent) // Inner filled circle for selected state
+                    .frame(width: 12, height: 12)
             }
         }
-        .frame(maxWidth: .infinity)
-        .frame(height: 50)
-        .contentShape(Rectangle())
     }
 }
 
@@ -165,6 +140,10 @@ struct TargetHostView_Previews: PreviewProvider {
                 TargetHostView()
 
             }
+        }
+        
+        Group {
+            RadioButton(isSelected: true)
         }
     }
 }

@@ -76,7 +76,7 @@ struct MainView: View {
                     .presentationCompactAdaptation(.fullScreenCover)
             }
         }
-        .onChange(of: scenePhase) { newValue in
+        .onChange(of: scenePhase) { _, newValue in
             if newValue == .background && viewModel.isAnalysisRunning {
                 viewModel.stop()
             }
@@ -295,14 +295,14 @@ extension MainView {
                 
                 HStack(alignment: .firstTextBaseline) {
                     Image(systemName: "server.rack").opacity(0.6)
-                    Text("\(settings.host)")
-                        .foregroundColor(viewModel.isAnalysisRunning ? .primary.opacity(0.3) : .primary)
+                    Text("\(viewModel.hostTextBox)")
+                        .foregroundColor(viewModel.isAnalysisRunning ? .primary.opacity(0.8) : .primary)
                         . multilineTextAlignment(.leading)
                 }
                 .padding(.leading, 8)
                 .frame(height: 40)
                 .frame(maxWidth: /*@START_MENU_TOKEN@*/.infinity/*@END_MENU_TOKEN@*/, alignment: .leading)
-                .background(viewModel.isAnalysisRunning ? Color(.systemGray4).opacity(0.4): Color(.systemGray4))
+                .background(viewModel.isAnalysisRunning ? Color(.systemGray4).opacity(0.36): Color(.systemGray4))
                 .cornerRadius(5.0)
                 .onTapGesture {
                     if !viewModel.isAnalysisRunning {

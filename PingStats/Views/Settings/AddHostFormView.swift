@@ -9,49 +9,94 @@ import SwiftUI
 struct AddHostFormView: View {
     @Binding var newIpAddress: String
     @Binding var errorMessage: String
-    @FocusState var isTextFieldFocused: Bool
-
+    
+    var onSave: () -> Void
+    
+    @Environment(\.presentationMode) var presentationMode
+ 
     var body: some View {
-        VStack(alignment: .leading) {
-            Text("Enter the address:")
-                .padding(.horizontal, 5)
-            TextField("0.0.0.0 or host.name", text: $newIpAddress)
-                .onChange(of: newIpAddress) { _ in
-                    validateIPAddressOrHostname()
-                }
-                .focused($isTextFieldFocused)
-                .onAppear {
-                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
-                        isTextFieldFocused = true
+        VStack {
+            
+            ZStack(alignment: .top) {
+                
+                HStack(alignment: .top) {
+                    CloseButton {
+                        presentationMode.wrappedValue.dismiss()
                     }
                 }
-                .autocapitalization(.none)
-                .textFieldStyle(PlainTextFieldStyle())
-                .keyboardType(.default) // Set keyboard type
-                .textInputAutocapitalization(.never)
-                .autocorrectionDisabled()
-                .frame(height: 50)
-                .multilineTextAlignment(.leading)
-                .padding(.horizontal)
-                .cornerRadius(10)
-                .background {
-                    RoundedRectangle(cornerRadius: 10)
-                        .stroke(errorMessage.isEmpty ? Color(.systemGray4).opacity(0.3) : .red, lineWidth: 1)
-                        .background(Color(.systemGray5).opacity(0.43))
-                        .cornerRadius(10)
-                        .frame(height: 50)
-                }
-                .foregroundColor(errorMessage.isEmpty ? .primary : .red)
-                .popover(isPresented: .constant(!errorMessage.isEmpty)) {
-                        Text(errorMessage)
-                            .padding()
-                            .presentationCompactAdaptation(.popover)
-                    }
-        }
-        .padding(.horizontal, 30)
-        .frame(height: 150, alignment: .top)
-   }
+                .frame(maxWidth: .infinity, alignment: .leading)
+                .padding(12)
 
+                HStack(alignment: .bottom) {
+                    Text("Enter a host or IPv4 address")
+                        .font(.subheadline)
+                }
+                .padding(.vertical, 34)
+                .frame(maxWidth: .infinity, alignment: .center)
+            }
+            .frame(height: 60, alignment: .top)
+                
+            VStack(alignment: .center, spacing: 20) {
+                VStack {
+                    TextField("Example: 1.1.1.1 or google.com", text: $newIpAddress)
+                        .onChange(of: newIpAddress) { _, _ in
+                            validateIPAddressOrHostname()
+                        }
+                        .autocapitalization(.none)
+                        .textFieldStyle(PlainTextFieldStyle())
+                        .keyboardType(.asciiCapable)
+                        .textInputAutocapitalization(.never)
+                        .autocorrectionDisabled()
+                        .frame(height: 50)
+                        .multilineTextAlignment(.center)
+                        .padding(.horizontal)
+                        .cornerRadius(10)
+                        .background {
+                            RoundedRectangle(cornerRadius: 10)
+                                .stroke(errorMessage.isEmpty ? Color(.systemGray4).opacity(0.3) : .red, lineWidth: 1)
+                                .background(Color(.systemGray5).opacity(0.43))
+                                .cornerRadius(10)
+                                .frame(height: 50)
+                        }
+                        .foregroundColor(errorMessage.isEmpty ? .primary : .red)
+                    
+                    if !errorMessage.isEmpty {
+                        Text(errorMessage)
+                            .padding(.horizontal, 7)
+                            .foregroundColor(Color.theme.redError)
+                            .font(.caption)
+
+                    }
+                }
+
+                saveButton
+                    .onTapGesture {
+                        onSave()
+                    }
+
+                
+                Spacer()
+
+            }
+            .padding(.horizontal, 30)
+
+        }
+   }
+    
+    @ViewBuilder
+    var saveButton: some View {
+        VStack {
+            Text("Save")
+                .foregroundColor(.white)
+        }
+        .frame(maxWidth: .infinity)
+        .frame(height: 50)
+        .background {
+            RoundedRectangle(cornerRadius: 10)
+                .fill(Color.theme.accent)
+        }
+    }
+    
     func validateIPAddressOrHostname() {
         if !newIpAddress.isEmpty && !IPUtils.validateIPAddressOrHostname(newIpAddress) {
             errorMessage = "Invalid host"
@@ -66,5 +111,7 @@ struct AddHostFormView: View {
 }
 
 #Preview {
-    AddHostFormView(newIpAddress: .constant(""), errorMessage: .constant(""))
+    AddHostFormView(newIpAddress: .constant(""), errorMessage: .constant("")) {
+        print("onSave called")
+    }
 }

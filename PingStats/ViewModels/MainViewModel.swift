@@ -40,6 +40,13 @@ class MainViewModel: ObservableObject {
     
     var session: Session?
     
+    var hostTextBox: String {
+        if let session = session {
+            return session.parameters.host
+        }        
+        return settings.host
+    }
+    
     init() {
         let monitor = NWPathMonitor()
         monitor.pathUpdateHandler = { path in
@@ -100,7 +107,7 @@ class MainViewModel: ObservableObject {
             session.connectionType = connectionType.rawValue
             session.endDate = endDate
             session.elapsedTime = endDate.timeIntervalSince(session.startDate)
-            
+            session.generateFullTestPingStat()
             sessionDataService.add(session: session)
         }
     }
@@ -116,7 +123,7 @@ class MainViewModel: ObservableObject {
 
                 let pingLog = session.addResponse(response)                
                 self.pingLogs.append(pingLog)
-                self.pingStat = session.getPingStat()
+                self.pingStat = session.getInstantPingStat()
                 self.hasNetworkError = false
                 
                 if session.parameters.hostType == .name {
