@@ -107,7 +107,10 @@ class MainViewModel: ObservableObject {
             session.connectionType = connectionType.rawValue
             session.endDate = endDate
             session.elapsedTime = endDate.timeIntervalSince(session.startDate)
+            
             session.generateFullTestPingStat()
+            pingStat = session.pingStat!
+            
             sessionDataService.add(session: session)
         }
     }

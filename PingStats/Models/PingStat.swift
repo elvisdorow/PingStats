@@ -46,14 +46,11 @@ class PingStat {
     }
     
     private func getScore() {
-//        self.generalScore = (pingScore + jitterScore + packageLossScore) / 3
-        self.generalScore = Double(calculateNetworkQuality())
-
-        // TODO - improve algorithm
-        self.gamingScore = self.generalScore
-        self.streamingScore = self.generalScore
-        self.videoCallScore = self.generalScore
-
+        self.gamingScore = calculateScore(pingWeight: 0.34, jitterWeight: 0.33, packageLossWeight: 0.33)
+        self.streamingScore = calculateScore(pingWeight: 0.2, jitterWeight: 0.2, packageLossWeight: 0.6)
+        self.videoCallScore = calculateScore(pingWeight: 0.3, jitterWeight: 0.4, packageLossWeight: 0.3)
+        
+        self.generalScore = (gamingScore + streamingScore + videoCallScore) / 3
     }
     
     private func getStatus() {
@@ -214,24 +211,17 @@ class PingStat {
              excelent = "Excelent"
     }
     
-    
-    func calculateNetworkQuality() -> Int {
-        // Define weights
-        let pingWeight = 0.4
-        let jitterWeight = 0.3
-        let packetLossWeight = 0.3
-        
-        // Normalize metrics (0-100 scale)
+ 
+    func calculateScore(pingWeight: Double, jitterWeight: Double, packageLossWeight: Double) -> Double {
         let pingScore = normalizePing(averagePing)
         let jitterScore = normalizeJitter(jitter)
         let packetLossScore = normalizePacketLoss(packageLoss)
         
-        // Weighted score calculation
-        let weightedScore = (pingScore * pingWeight) + (jitterScore * jitterWeight) + (packetLossScore * packetLossWeight)
+        let weightedScore = (pingScore * pingWeight) + (jitterScore * jitterWeight) + (packetLossScore * packageLossWeight)
         
-        // Return final grade (1-100%)
-        return Int(weightedScore.rounded())
+        return weightedScore
     }
+
 
     // Helper functions to normalize each metric
     func normalizePing(_ ping: Double) -> Double {
