@@ -14,5 +14,9 @@
 		<string>Inter-Black.ttf</string>
 		<string>Inter-Light.ttf</string>
 	</array>
+    <key>UIFileSharingEnabled</key>
+    <true/>
+    <key>LSSupportsOpeningDocumentsInPlace</key>
+    <true/>
 </dict>
 </plist>

@@ -56,7 +56,7 @@ struct SessionRowView: View {
         let connectionType = ConnectionType(rawValue: connTypeDb) ?? .unknown
         
         HStack {
-            VStack {
+            VStack(spacing: 4) {
                 switch connectionType {
                 case .wifi:
                     Image(systemName: "wifi")
@@ -67,9 +67,12 @@ struct SessionRowView: View {
                 case .unknown:
                     Image(systemName: "network.slash")
                 }
+                Text("\(connectionType.rawValue.capitalized)")
+                    .font(.caption)
             }
             .foregroundColor(.primary.opacity(0.6))
-            .padding(.trailing, 10)
+            .frame(width: 50)
+            .padding(.trailing, 5)
 
             VStack(alignment: .leading, spacing: 3) {
                 Text(session.host ?? "")

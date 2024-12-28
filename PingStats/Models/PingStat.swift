@@ -280,10 +280,10 @@ class PingStat {
         if packetLoss == 0 { return 100 }
         else if packetLoss < 1 { return 80 }
         else if packetLoss < 2 { return 50 }
-        else if packetLoss < 5 { return 30 }
-        else if packetLoss < 10 { return 20 }
-        else if packetLoss < 20 { return 15 }
-        else { return 2 }
+        else if packetLoss < 5 { return 10 }
+        else if packetLoss < 10 { return 7 }
+        else if packetLoss < 20 { return 2 }
+        else { return 0.1 }
     }
 
 }

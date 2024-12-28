@@ -9,26 +9,27 @@ import SwiftUI
 
 struct SessionDetailView: View {
     
-    var session: Sessions
 //
 //    @Environment(\.presentationMode) var presentationMode
 //    
 //    @State var showDeleteConfirmation: Bool = false
 //
     @State var showSessionLogs: Bool = false
-        
+    
+    @StateObject var vm: SessionDetailViewModel
+    
     init(session: Sessions) {
-        self.session = session
+        self._vm = StateObject(wrappedValue: SessionDetailViewModel(session: session))
     }
     
     var body: some View {
-        let connTypeDb = session.connectionType ?? ConnectionType.unknown.rawValue
+        let connTypeDb = vm.session.connectionType ?? ConnectionType.unknown.rawValue
         let connectionType = ConnectionType(rawValue: connTypeDb) ?? .unknown
 
         VStack(alignment: .leading, spacing: 8) {
             
             VStack(alignment: .leading) {
-                if let resolvedIpOrHost = session.resolvedIpOrHost {
+                if let resolvedIpOrHost = vm.session.resolvedIpOrHost {
                     Text(resolvedIpOrHost)
                         .lineLimit(1)
                         .foregroundStyle(.secondary)
@@ -53,7 +54,7 @@ struct SessionDetailView: View {
                     .foregroundColor(.primary.opacity(0.8))
                     Spacer()
                     
-                    if let startDate = session.startDate {
+                    if let startDate = vm.session.startDate {
                         Text(startDate.formatted(date: .abbreviated, time: .shortened))
                             .font(.callout)
                             .foregroundColor(.primary.opacity(0.6))
@@ -66,16 +67,16 @@ struct SessionDetailView: View {
             
             VStack(spacing: 8) {
                 HStack(spacing: 8) {
-                    card(title: "Network Quality", value: String(format: "%.0f", session.generalScore) + "%")
-                    card(title: "Average", value: String(format: "%.0f ms", session.averagePing))
+                    card(title: "Network Quality", value: String(format: "%.0f", vm.session.generalScore) + "%")
+                    card(title: "Average", value: String(format: "%.0f ms", vm.session.averagePing))
                 }
                 HStack(spacing: 8) {
-                    card(title: "Jitter", value: String(format: "%.0f ms", session.jitter))
-                    card(title: "Packet Loss", value: String(format: "%.0f", session.packageLoss) + "%")
+                    card(title: "Jitter", value: String(format: "%.0f ms", vm.session.jitter))
+                    card(title: "Packet Loss", value: String(format: "%.0f", vm.session.packageLoss) + "%")
                 }
                 HStack(spacing: 8) {
-                    card(title: "Best Ping", value: String(format: "%.0f ms", session.bestPing))
-                    card(title: "Worst Ping", value: String(format: "%.0f ms", session.worstPing))
+                    card(title: "Best Ping", value: String(format: "%.0f ms", vm.session.bestPing))
+                    card(title: "Worst Ping", value: String(format: "%.0f ms", vm.session.worstPing))
                 }
             }
             
@@ -88,19 +89,19 @@ struct SessionDetailView: View {
                     }
                     VStack(alignment: .center, spacing: 6) {
                         Text("Ping Count ").font(.footnote).foregroundColor(.secondary)
-                        Text("\(session.pingCount)").font(.title3)
+                        Text("\(vm.session.pingCount)").font(.title3)
                     }
                 }.frame(maxWidth: /*@START_MENU_TOKEN@*/.infinity/*@END_MENU_TOKEN@*/, alignment: .center)
                 HStack(spacing: 50) {
                     VStack(alignment: .center, spacing: 6) {
                         Text("Ping Interval").font(.footnote).foregroundColor(.secondary)
-                        if let interval = PingInterval(rawValue: Int(session.pingInterval)) {
+                        if let interval = PingInterval(rawValue: Int(vm.session.pingInterval)) {
                             Text("\(interval.toString())").font(.title3)
                         }
                     }
                     VStack(alignment: .center, spacing: 6) {
                         Text("Ping Timeout").font(.footnote).foregroundColor(.secondary)
-                        if let timeout = PingTimeout(rawValue: Int(session.pingTimeout)) {
+                        if let timeout = PingTimeout(rawValue: Int(vm.session.pingTimeout)) {
                             Text("\(timeout.toString())").font(.title3)
                         }
                     }
@@ -118,7 +119,7 @@ struct SessionDetailView: View {
                 buttonViewLogs
             }
             .sheet(isPresented: $showSessionLogs, content: {
-                SessionPingLogView(session: session)
+                SessionPingLogView(session: vm.session)
                     .presentationDetents([.medium, .large])
                     .presentationDragIndicator(.visible)
             })
@@ -129,15 +130,26 @@ struct SessionDetailView: View {
             Spacer()
         }
         .padding(.horizontal)
-        .navigationTitle(session.host ?? "")
+        .navigationTitle(vm.session.host ?? "")
         .navigationBarTitleDisplayMode(.large)
         .toolbar {
             ToolbarItem(placement: .navigationBarTrailing) {
-                ShareLink(item: "PingStats Result \(session.host ?? "")")
+                // share session button
+                Button(action: {
+                    vm.shareSession()
+                },
+                       label: {
+                    Label(
+                        title: { Text("Share") },
+                        icon: { Image(systemName: "square.and.arrow.up") }
+                    )
+                })                
             }
             ToolbarItem(placement: .topBarTrailing) {
                 Menu {                    
-                    Button(action: {},
+                    Button(action: {
+                        vm.saveSessionToFile()
+                    },
                            label: {
                         Label(
                             title: { Text("Save") },
@@ -166,7 +178,7 @@ extension SessionDetailView {
         formatter.allowedUnits = [.hour, .minute, .second]
 
         // Format the TimeInterval
-        if let formattedString = formatter.string(from: self.session.elapsedTime) {
+        if let formattedString = formatter.string(from: vm.session.elapsedTime) {
             return formattedString
         }
         return ""
