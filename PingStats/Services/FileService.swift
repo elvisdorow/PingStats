@@ -20,7 +20,7 @@ class FileService {
         
         let sessionFile = createSessionFile(session: session)
         let text = sesstionToText(sessionTextFile: sessionFile)
-        let formatedDate = formatDateToString(session.startDate!, format: "yyyy-MM-dd_HH_mm_ss")
+        let formatedDate = formatDateToString(session.startDate!, format: "yyyy-MM-dd-HHmmss")
         let filename = "log_\(formatedDate).txt"
         
         do {

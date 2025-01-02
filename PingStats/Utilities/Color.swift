@@ -24,12 +24,12 @@ protocol ColorTheme {
 }
 
 struct DefaultColorTheme: ColorTheme {
-    var accent: Color = Color("accent")
-    var darkAccent: Color = Color("darkAccent")
-    var iconColor: Color = Color("iconColor")
-    var backgroundTop: Color = Color("backgroundTop")
-    var backgroundBottom: Color = Color("backgroundBottom")
-    var gaugeDarkColor: Color = Color("gaugeDarkColor")
-    var gaugeLightColor: Color = Color("gaugeLightColor")
-    var redError: Color = Color("redError")
+    var accent: Color = Color("AccentColor")
+    var darkAccent: Color = Color("DarkAccent")
+    var iconColor: Color = Color("IconColor")
+    var backgroundTop: Color = Color("BackgroundTop")
+    var backgroundBottom: Color = Color("BackgroundBottom")
+    var gaugeDarkColor: Color = Color("GaugeDarkColor")
+    var gaugeLightColor: Color = Color("GaugeLightColor")
+    var redError: Color = Color("RedError")
 }

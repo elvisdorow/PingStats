@@ -11,6 +11,8 @@ class SessionDetailViewModel: ObservableObject {
     
     let session: Sessions
     
+    var fileURL: URL?
+    
     init(session: Sessions) {
         self.session = session
     }
@@ -27,15 +29,15 @@ class SessionDetailViewModel: ObservableObject {
         do {
             let sessionFile = FileService.instance.createSessionFile(session: session)
             let text = FileService.instance.sesstionToText(sessionTextFile: sessionFile)
-            let formatedDate = FileService.instance.formatDateToString(session.startDate!, format: "yyyy-MM-ddHHmmss")
+            let formatedDate = FileService.instance.formatDateToString(session.startDate!, format: "yyyy-MM-dd-HHmmss")
             let filename = "log_\(formatedDate).txt"
             
             let documentsDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
-            let fileURL = documentsDirectory.appendingPathComponent(filename)
-            try text.write(to: fileURL, atomically: true, encoding: .utf8)
-            
-            let av = UIActivityViewController(activityItems: [fileURL], applicationActivities: nil)
-            UIApplication.shared.windows.first?.rootViewController?.present(av, animated: true, completion: nil)
+            fileURL = documentsDirectory.appendingPathComponent(filename)
+
+            if let fileURL = fileURL {
+                try text.write(to: fileURL, atomically: true, encoding: .utf8)
+            }
         } catch {
             print("Error sharing session: \(error)")
         }

@@ -9,12 +9,8 @@ import SwiftUI
 
 struct SessionDetailView: View {
     
-//
-//    @Environment(\.presentationMode) var presentationMode
-//    
-//    @State var showDeleteConfirmation: Bool = false
-//
     @State var showSessionLogs: Bool = false
+    @State var showShareSheet: Bool = false
     
     @StateObject var vm: SessionDetailViewModel
     
@@ -118,6 +114,9 @@ struct SessionDetailView: View {
             VStack(alignment: .center) {
                 buttonViewLogs
             }
+            .sheet(isPresented: $showShareSheet) {
+                ActivityView(activityItems: [vm.fileURL!as Any])
+            }
             .sheet(isPresented: $showSessionLogs, content: {
                 SessionPingLogView(session: vm.session)
                     .presentationDetents([.medium, .large])
@@ -137,13 +136,18 @@ struct SessionDetailView: View {
                 // share session button
                 Button(action: {
                     vm.shareSession()
+                    
+                    if vm.fileURL != nil {
+                        showShareSheet.toggle()
+                    }
                 },
-                       label: {
+                    label: {
                     Label(
                         title: { Text("Share") },
                         icon: { Image(systemName: "square.and.arrow.up") }
                     )
-                })                
+                })
+
             }
             ToolbarItem(placement: .topBarTrailing) {
                 Menu {                    
@@ -232,19 +236,3 @@ struct card<Content: View>: View {
         )
     }
 }
-
-/*
-struct ResultDetailView_Previews: PreviewProvider {
-    static var previews: some View {
-        Group {
-            NavigationView {
-                SessionDetailView(session: Session.example)
-            }
-        }
-
-        Group {
-            card(title: "Best Ping", value: "28.9 ms")
-        }
-    }
-}
-*/

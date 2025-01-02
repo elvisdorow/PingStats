@@ -15,7 +15,7 @@ struct SettingsView: View {
     
     var body: some View {
         
-        NavigationView {
+        NavigationStack {
             List {
                 Section {
                     NavigationLink(
@@ -100,7 +100,7 @@ struct ThemeButton: View {
                     Spacer()
                     if selected {
                         Image(systemName: "checkmark")
-                            .foregroundColor(.accentColor)
+                            .foregroundColor(Color.theme.accent)
                     }
                 }
             })

@@ -56,22 +56,15 @@ struct TargetHostView: View {
             .presentationDetents([.height(240), .height(250)])
         }
         .toolbar(content: {
-            ToolbarItem(placement: .automatic) {
-                Button(action: {
-                    newIpAddress = ""
-                    showAddForm.toggle()
-                }, label: {
-                    
-                    Label {
-                        Text("New Host")
-                    } icon: {
-                        Image(systemName: "plus")
-                    }
-                })
-            }
             
-            ToolbarItem(placement: .primaryAction) {
-                EditButton()
+            ToolbarItem(placement: .bottomBar) {
+                IconAndTitleButton(
+                    title: "New Host",
+                    systemImage: "plus.circle.fill",
+                    action: {
+                        newIpAddress = ""
+                        showAddForm.toggle()
+                    })
             }
         })
     }

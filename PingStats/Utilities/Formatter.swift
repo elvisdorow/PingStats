@@ -46,3 +46,11 @@ extension Double {
         return formatter.string(from: NSNumber(value: self)) ?? String(self)
     }
 }
+
+extension Date {
+    func formattedRelativeDate(for date: Date) -> String {
+        let formatter = RelativeDateTimeFormatter()
+        formatter.unitsStyle = .short
+        return formatter.localizedString(for: date, relativeTo: self)
+    }
+}

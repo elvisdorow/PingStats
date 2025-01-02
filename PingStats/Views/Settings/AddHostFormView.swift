@@ -24,15 +24,16 @@ struct AddHostFormView: View {
                         presentationMode.wrappedValue.dismiss()
                     }
                 }
-                .frame(maxWidth: .infinity, alignment: .leading)
+                .frame(maxWidth: .infinity, alignment: .trailing)
                 .padding(12)
 
                 HStack(alignment: .bottom) {
-                    Text("Enter a host or IPv4 address")
+                    Text("New host")
                         .font(.subheadline)
                 }
-                .padding(.vertical, 34)
-                .frame(maxWidth: .infinity, alignment: .center)
+                .padding(.vertical, 28)
+                .padding(.horizontal, 30)
+                .frame(maxWidth: .infinity, alignment: .leading)
             }
             .frame(height: 60, alignment: .top)
                 

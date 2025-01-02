@@ -65,7 +65,7 @@ struct MainView: View {
                         menuItems
                     }
                 })
-                .accentColor(.accentColor)
+                .accentColor(Color.theme.accent)
             }
             .popover(isPresented: $showSettingsView) {
                 SettingsView()

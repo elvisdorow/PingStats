@@ -35,11 +35,9 @@ struct SessionsListView: View {
             .toolbarTitleDisplayMode(.inline)
             .toolbar(content: {
                 ToolbarItem(placement: .topBarLeading) {
-                    Button(action: {
+                    IconAndTitleButton(title: "Back", systemImage: "chevron.backward") {
                         presentationMode.wrappedValue.dismiss()
-                    }, label: {
-                        Text("Close")
-                    })
+                    }
                 }
             })
         }
