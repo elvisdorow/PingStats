@@ -227,7 +227,8 @@ extension MainView {
                 status: $viewModel.pingStat.streamingStatus
             )
         }
-        .frame(height: UIScreen.main.bounds.height * 0.145)
+//        .frame(height: UIScreen.main.bounds.height * 0.145)
+        .frame(height: 120)
         .padding(.horizontal)
         .padding(.top, 6)
     }

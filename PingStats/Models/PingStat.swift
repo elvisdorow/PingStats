@@ -62,9 +62,9 @@ class PingStat {
     private func getGamingStatus() -> Status {
         switch generalScore {
         case 0..<20:
-            .veryBad
+            .veryPoor
         case 20..<70:
-            .bad
+            .poor
         case 70..<85:
             .average
         case 85..<95:
@@ -81,7 +81,7 @@ class PingStat {
         
         switch streamingScore {
         case 0..<44:
-            status = .bad
+            status = .poor
         case 58..<75:
             status = .average
         case 75..<83:
@@ -90,7 +90,7 @@ class PingStat {
             status = .excelent
         }
         
-        if status == .bad || status == .average {
+        if status == .poor || status == .average {
             if packageLoss < 2.0 {
                 status = .good
                 self.streamingScore = 87
@@ -108,9 +108,9 @@ class PingStat {
     private func getVideoCallStatus() -> Status {
         switch videoCallScore {
             case 0..<53:
-                .veryBad
+                .veryPoor
             case 53..<65:
-                .bad
+                .poor
             case 65..<77:
                 .average
             case 77..<87:
@@ -196,16 +196,20 @@ class PingStat {
             score = 75
         case 0.5..<1:
             score = 50
-        default:
+        case 1..<2:
+            score = 25
+        case 2..<5:
             score = 10
+        default:
+            score = 1
         }
         return score
     }
     
     enum Status: String {
         case empty = "---",
-             veryBad = "Very Bad",
-             bad = "Bad",
+             veryPoor = "Very Poor",
+             poor = "Poor",
              average = "Average",
              good = "Good",
              excelent = "Excelent"
@@ -279,10 +283,10 @@ class PingStat {
     func normalizePacketLoss(_ packetLoss: Double) -> Double {
         if packetLoss == 0 { return 100 }
         else if packetLoss < 1 { return 80 }
-        else if packetLoss < 2 { return 50 }
-        else if packetLoss < 5 { return 10 }
-        else if packetLoss < 10 { return 7 }
-        else if packetLoss < 20 { return 2 }
+        else if packetLoss < 2 { return 20 }
+        else if packetLoss < 5 { return 5 }
+        else if packetLoss < 10 { return 3 }
+        else if packetLoss < 20 { return 1 }
         else { return 0.1 }
     }
 
