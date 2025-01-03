@@ -31,7 +31,7 @@ struct AddHostFormView: View {
                     Text("New host")
                         .font(.subheadline)
                 }
-                .padding(.vertical, 28)
+                .padding(.vertical, 15)
                 .padding(.horizontal, 30)
                 .frame(maxWidth: .infinity, alignment: .leading)
             }
