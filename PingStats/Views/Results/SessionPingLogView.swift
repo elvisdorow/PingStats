@@ -19,9 +19,8 @@ struct SessionPingLogView: View {
     
     var body: some View {
         NavigationView {
-            VStack {
                 ScrollView {
-                    VStack(alignment: .leading) {
+                    LazyVStack(alignment: .leading) {
                         ForEach(vm.logs, id: \.self) { l in
                             if let error = l.error {
                                 Text("\(l.bytes) bytes icmp_seq=\(l.sequence) \(error)")
@@ -43,8 +42,6 @@ struct SessionPingLogView: View {
                 }
                 .padding()
                 .frame(maxWidth: .infinity, alignment: .center)
-            }
-            .frame(maxWidth: /*@START_MENU_TOKEN@*/.infinity/*@END_MENU_TOKEN@*/, alignment: .center)
            .toolbar {
                ToolbarItem(placement: .navigationBarLeading) {
                    CloseButton {

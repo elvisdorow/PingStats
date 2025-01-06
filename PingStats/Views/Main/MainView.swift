@@ -293,6 +293,10 @@ extension MainView {
             
             VStack(alignment: .leading) {
                 Text("Target Host:")
+                    .font(.subheadline)
+                    .fontWeight(.semibold)
+                    .foregroundColor(.secondary)
+                
                 
                 HStack(alignment: .firstTextBaseline) {
                     Image(systemName: "server.rack").opacity(0.6)

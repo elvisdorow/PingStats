@@ -46,9 +46,9 @@ class PingStat {
     }
     
     private func getScore() {
-        self.gamingScore = calculateScore(pingWeight: 0.34, jitterWeight: 0.33, packageLossWeight: 0.33)
+        self.gamingScore = calculateScore(pingWeight: 0.55, jitterWeight: 0.2, packageLossWeight: 0.25)
         self.streamingScore = calculateScore(pingWeight: 0.2, jitterWeight: 0.2, packageLossWeight: 0.6)
-        self.videoCallScore = calculateScore(pingWeight: 0.3, jitterWeight: 0.4, packageLossWeight: 0.3)
+        self.videoCallScore = calculateScore(pingWeight: 0.2, jitterWeight: 0.5, packageLossWeight: 0.3)
         
         self.generalScore = (gamingScore + streamingScore + videoCallScore) / 3
     }
@@ -107,18 +107,18 @@ class PingStat {
     
     private func getVideoCallStatus() -> Status {
         switch videoCallScore {
-            case 0..<53:
-                .veryPoor
-            case 53..<65:
-                .poor
-            case 65..<77:
-                .average
-            case 77..<87:
-                .good
-            case 87..<101:
-                .excelent
-            default:
-                .empty
+        case 0..<20:
+            .veryPoor
+        case 20..<50:
+            .poor
+        case 50..<75:
+            .average
+        case 75..<95:
+            .good
+        case 95..<101:
+            .excelent
+        default:
+            .empty
         }
     }
     
