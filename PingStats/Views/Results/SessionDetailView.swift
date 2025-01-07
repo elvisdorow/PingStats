@@ -181,7 +181,7 @@ struct SessionDetailView: View {
                 {
                     Label("Delete", systemImage: "trash")
                 }
-                .tint(Color.theme.red)
+                .tint(Color.theme.appRedColor)
             }
         }.background(Color(uiColor: .systemGray6))
     }

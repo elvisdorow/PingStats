@@ -65,7 +65,7 @@ struct AddHostFormView: View {
                     if !errorMessage.isEmpty {
                         Text(errorMessage)
                             .padding(.horizontal, 7)
-                            .foregroundColor(Color.theme.red)
+                            .foregroundColor(Color.theme.appRedColor)
                             .font(.caption)
 
                     }

@@ -25,7 +25,7 @@ struct LogTable: View {
                 RoundedRectangle(cornerRadius: 10)
                     .stroke(Color(.systemGray5), lineWidth: 1)
             )
-            .onChange(of: logs) { _ in
+            .onChange(of: logs) { _, _ in
                 if let lastItem = logs.last {
                     proxy.scrollTo(lastItem.id)
                 }
