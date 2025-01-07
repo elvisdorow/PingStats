@@ -20,7 +20,7 @@ protocol ColorTheme {
     var backgroundBottom: Color { get }
     var gaugeDarkColor: Color { get }
     var gaugeLightColor: Color { get }
-    var redError: Color { get }
+    var red: Color { get }
 }
 
 struct DefaultColorTheme: ColorTheme {
@@ -31,5 +31,5 @@ struct DefaultColorTheme: ColorTheme {
     var backgroundBottom: Color = Color("BackgroundBottom")
     var gaugeDarkColor: Color = Color("GaugeDarkColor")
     var gaugeLightColor: Color = Color("GaugeLightColor")
-    var redError: Color = Color("RedError")
+    var red: Color = Color("Red")
 }

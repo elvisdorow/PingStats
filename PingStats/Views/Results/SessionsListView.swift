@@ -14,7 +14,7 @@ struct SessionsListView: View {
     @StateObject var vm = SessionListViewModel()
     
     var body: some View {
-        NavigationView {            
+        NavigationView {
             List {
                 if vm.sessions.isEmpty {
                     Text("No results found.")
@@ -23,7 +23,7 @@ struct SessionsListView: View {
                 } else {
                     ForEach(vm.sessions, id: \.self) { session in
                         NavigationLink {
-                            SessionDetailView(session: session)
+                            SessionDetailView(session: session, sessions: $vm.sessions)
 
                         } label: {
                             SessionRowView(session: session).frame(minHeight: 80)
@@ -42,6 +42,12 @@ struct SessionsListView: View {
             })
         }
         .toolbarColorScheme(.dark, for: .navigationBar)
+        .onAppear {
+            print("onAppear called")
+        }
+        .onDisappear {
+            print("onDisappear called")
+        }
     }
 }
 

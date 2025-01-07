@@ -11,11 +11,18 @@ struct SessionDetailView: View {
     
     @State var showSessionLogs: Bool = false
     @State var showShareSheet: Bool = false
+    @State var showDeleteConfirmation: Bool = false
     
     @StateObject var vm: SessionDetailViewModel
     
-    init(session: Sessions) {
+    @Binding var sessions: [Sessions]
+    
+    @Environment(\.dismiss) var dismiss
+
+    
+    init(session: Sessions, sessions: Binding<[Sessions]>) {
         self._vm = StateObject(wrappedValue: SessionDetailViewModel(session: session))
+        self._sessions = sessions
     }
     
     var body: some View {
@@ -122,6 +129,24 @@ struct SessionDetailView: View {
                     .presentationDetents([.medium, .large])
                     .presentationDragIndicator(.visible)
             })
+            .confirmationDialog(
+                "Are you sure?",
+                isPresented: $showDeleteConfirmation) {
+              Button("Delete", role: .destructive) {
+                  showDeleteConfirmation.toggle()
+                  vm.deleteSession()
+                  
+                  // Remove the session from the binding list
+                  if let index = sessions.firstIndex(where: { $0 == vm.session }) {
+                      sessions.remove(at: index)
+                  }
+                  
+                  dismiss()
+              }
+            } message: {
+              Text("You cannot undo this action")
+            }
+
             .padding()
             .padding(.vertical)
             .frame(maxWidth: .infinity, alignment: .center)
@@ -150,26 +175,13 @@ struct SessionDetailView: View {
 
             }
             ToolbarItem(placement: .topBarTrailing) {
-                Menu {                    
-                    Button(action: {
-                        vm.saveSessionToFile()
-                    },
-                           label: {
-                        Label(
-                            title: { Text("Save") },
-                            icon: { Image(systemName: "square.and.arrow.down") }
-                        )
-                    })
-                    Button(role: .destructive, action: {}) {
-                        Label("Delete", systemImage: "trash")
-                    }
-                    
-                } label: {
-                    Label(
-                        title: { Text("Menu") },
-                        icon: { Image(systemName: "ellipsis.circle") }
-                    )
+                Button(role: .destructive, action: {
+                    showDeleteConfirmation.toggle()
+                })
+                {
+                    Label("Delete", systemImage: "trash")
                 }
+                .tint(Color.theme.red)
             }
         }.background(Color(uiColor: .systemGray6))
     }
@@ -206,7 +218,6 @@ extension SessionDetailView {
         }
     }
 }
-
 
 struct card<Content: View>: View {
     var title: String

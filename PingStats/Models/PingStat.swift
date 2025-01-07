@@ -53,6 +53,24 @@ class PingStat {
         self.generalScore = (gamingScore + streamingScore + videoCallScore) / 3
     }
     
+    private func calculateStatus(val: Double) -> Status {
+        switch val {
+        case 0..<25:
+            .veryPoor
+        case 25..<50:
+            .poor
+        case 50..<75:
+            .average
+        case 75..<90:
+            .good
+        case 95..<101:
+            .excellent
+        default:
+            .empty
+        }
+    }
+
+    
     private func getStatus() {
         self.gamingStatus = getGamingStatus()
         self.streamingStatus = getStreamingStatus()
@@ -60,35 +78,25 @@ class PingStat {
     }
 
     private func getGamingStatus() -> Status {
-        switch generalScore {
-        case 0..<20:
-            .veryPoor
-        case 20..<70:
-            .poor
-        case 70..<85:
-            .average
-        case 85..<95:
-            .good
-        case 95..<101:
-            .excelent
-        default:
-            .empty
-        }
+        return calculateStatus(val: gamingScore)
+//        switch gamingScore {
+//        case 0..<20:
+//            .veryPoor
+//        case 20..<70:
+//            .poor
+//        case 70..<85:
+//            .average
+//        case 85..<95:
+//            .good
+//        case 95..<101:
+//            .excelent
+//        default:
+//            .empty
+//        }
     }
 
     private func getStreamingStatus() -> Status {
-        var status: Status = .empty
-        
-        switch streamingScore {
-        case 0..<44:
-            status = .poor
-        case 58..<75:
-            status = .average
-        case 75..<83:
-            status = .good
-        default:
-            status = .excelent
-        }
+        var status: Status = calculateStatus(val: streamingScore)
         
         if status == .poor || status == .average {
             if packageLoss < 2.0 {
@@ -98,28 +106,30 @@ class PingStat {
         }
 
         if status == .good && packageLoss < 1.0 {
-            status = .excelent
+            status = .excellent
             self.streamingScore = 100.0
         }
 
         return status
     }
+ 
     
     private func getVideoCallStatus() -> Status {
-        switch videoCallScore {
-        case 0..<20:
-            .veryPoor
-        case 20..<50:
-            .poor
-        case 50..<75:
-            .average
-        case 75..<95:
-            .good
-        case 95..<101:
-            .excelent
-        default:
-            .empty
-        }
+        return calculateStatus(val: videoCallScore)
+//        switch videoCallScore {
+//        case 0..<20:
+//            .veryPoor
+//        case 20..<40:
+//            .poor
+//        case 40..<65:
+//            .average
+//        case 65..<85:
+//            .good
+//        case 85..<101:
+//            .excelent
+//        default:
+//            .empty
+//        }
     }
     
     // MARK: Computed properties
@@ -212,7 +222,7 @@ class PingStat {
              poor = "Poor",
              average = "Average",
              good = "Good",
-             excelent = "Excelent"
+             excellent = "Excellent"
     }
     
  

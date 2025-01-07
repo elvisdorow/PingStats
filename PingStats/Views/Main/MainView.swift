@@ -45,7 +45,7 @@ struct MainView: View {
                     gaugesView
                     
                     Spacer()
-                    
+
                     textStatsView
                     
                     Spacer()
@@ -292,10 +292,8 @@ extension MainView {
         HStack(spacing: 30) {
             
             VStack(alignment: .leading) {
-                Text("Target Host:")
+                Text("Target Host")
                     .font(.subheadline)
-                    .fontWeight(.semibold)
-                    .foregroundColor(.secondary)
                 
                 
                 HStack(alignment: .firstTextBaseline) {

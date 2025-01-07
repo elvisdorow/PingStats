@@ -13,6 +13,9 @@ class SessionDetailViewModel: ObservableObject {
     
     var fileURL: URL?
     
+    private var sessionDataService: SessionDataService = .instance
+        
+    
     init(session: Sessions) {
         self.session = session
     }
@@ -41,5 +44,9 @@ class SessionDetailViewModel: ObservableObject {
         } catch {
             print("Error sharing session: \(error)")
         }
+    }
+    
+    func deleteSession() {
+        sessionDataService.delete(session: session)
     }
 }

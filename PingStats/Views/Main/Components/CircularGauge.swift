@@ -140,7 +140,7 @@ struct SpeedometerGradientGaugeStyle: GaugeStyle {
 }
 
 struct CircularGaugePreview: PreviewProvider {
-    @State static var status: PingStat.Status = .excelent
+    @State static var status: PingStat.Status = .excellent
     @State static var value = 100.0
     
     static var previews: some View {

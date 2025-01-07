@@ -9,7 +9,10 @@ import Foundation
 import CoreData
 
 class SessionDataService: DataService {
+    
     private let entityName = "Sessions"
+    
+    @Published var sessions: [Sessions] = []
     
     static let instance = SessionDataService()
     
@@ -17,16 +20,18 @@ class SessionDataService: DataService {
         super.init()
     }
     
-    func load() -> [Sessions] {
+    func load() {
+        sessions = []
         let request = NSFetchRequest<Sessions>(entityName: entityName)
         request.sortDescriptors = [NSSortDescriptor(key: "startDate", ascending: false)]
         
         do {
-            return try container.viewContext.fetch(request)
+            sessions = try container.viewContext.fetch(request)
+            print("\(sessions.count) results found")
         } catch let error {
             print("Error loading sessions \(error)")
         }
-        return []
+        sessions = []
     }
     
     func add(session: Session) {
@@ -78,5 +83,9 @@ class SessionDataService: DataService {
         save()
     }
     
+    func delete(session: Sessions) {
+        container.viewContext.delete(session)
+        save()
+    }
 
 }
