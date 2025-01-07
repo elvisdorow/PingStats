@@ -42,12 +42,6 @@ struct SessionsListView: View {
             })
         }
         .toolbarColorScheme(.dark, for: .navigationBar)
-        .onAppear {
-            print("onAppear called")
-        }
-        .onDisappear {
-            print("onDisappear called")
-        }
     }
 }
 

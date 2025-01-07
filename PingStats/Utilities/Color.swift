@@ -31,5 +31,5 @@ struct DefaultColorTheme: ColorTheme {
     var backgroundBottom: Color = Color("BackgroundBottom")
     var gaugeDarkColor: Color = Color("GaugeDarkColor")
     var gaugeLightColor: Color = Color("GaugeLightColor")
-    var red: Color = Color("Red")
+    var red: Color = Color("RedColor")
 }

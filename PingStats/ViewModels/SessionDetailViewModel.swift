@@ -15,7 +15,6 @@ class SessionDetailViewModel: ObservableObject {
     
     private var sessionDataService: SessionDataService = .instance
         
-    
     init(session: Sessions) {
         self.session = session
     }

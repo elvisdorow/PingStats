@@ -6,7 +6,6 @@
 //
 
 import Foundation
-import Combine
 
 class SessionListViewModel: ObservableObject {
     
@@ -14,20 +13,8 @@ class SessionListViewModel: ObservableObject {
     
     @Published var sessions: [Sessions] = []
     
-    private var cancellables = Set<AnyCancellable>()
-    
     init() {
-        sessionDataService.$sessions.sink {[weak self] sessionsList in
-            print("session list changed")
-            for session in sessionsList {
-                if let self = self {
-                    self.sessions.append(session)
-                }
-            }
-        }
-        .store(in: &cancellables)
-        
-        sessionDataService.load()
+        sessions = sessionDataService.load()
     }
     
 }

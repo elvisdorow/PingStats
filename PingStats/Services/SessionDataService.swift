@@ -20,18 +20,16 @@ class SessionDataService: DataService {
         super.init()
     }
     
-    func load() {
-        sessions = []
+    func load() -> [Sessions] {
         let request = NSFetchRequest<Sessions>(entityName: entityName)
         request.sortDescriptors = [NSSortDescriptor(key: "startDate", ascending: false)]
         
         do {
-            sessions = try container.viewContext.fetch(request)
-            print("\(sessions.count) results found")
+            return try container.viewContext.fetch(request)
         } catch let error {
             print("Error loading sessions \(error)")
         }
-        sessions = []
+        return []
     }
     
     func add(session: Session) {
