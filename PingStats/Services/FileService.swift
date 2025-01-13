@@ -33,6 +33,28 @@ class FileService {
         }
     }
     
+    func deleteSessionFile(session: Sessions) {
+        print("deleting session file")
+        
+        let formatedDate = formatDateToString(session.startDate!, format: "yyyy-MM-dd-HHmmss")
+        
+        let filename = "log_\(formatedDate).txt"
+        
+        // check if file exists before deleting it
+        if !FileManager.default.fileExists(atPath: "\(FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!.path)/\(filename)") {
+            print("File does not exist")
+            return
+        }
+        
+        do {
+            let documentsDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
+            let fileURL = documentsDirectory.appendingPathComponent(filename)
+            try FileManager.default.removeItem(at: fileURL)
+        } catch {
+            print("Error deleting session file - \(error.localizedDescription)")
+        }
+    }
+    
     func createSessionFile(session: Sessions) -> SessionTextFile {
         var pingLogs: [PingLogTextFile] = []
         

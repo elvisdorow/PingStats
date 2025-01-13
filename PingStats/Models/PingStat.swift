@@ -50,7 +50,7 @@ class PingStat {
         self.streamingScore = calculateScore(pingWeight: 0.2, jitterWeight: 0.2, packageLossWeight: 0.6)
         self.videoCallScore = calculateScore(pingWeight: 0.2, jitterWeight: 0.5, packageLossWeight: 0.3)
         
-        self.generalScore = (gamingScore + streamingScore + videoCallScore) / 3
+        self.generalScore = ((gamingScore + streamingScore + videoCallScore) / 3) - packageLoss
     }
     
     private func calculateStatus(val: Double) -> Status {
@@ -60,10 +60,10 @@ class PingStat {
         case 25..<50:
             .poor
         case 50..<75:
-            .average
+            .acceptable
         case 75..<90:
             .good
-        case 95..<101:
+        case 90..<101:
             .excellent
         default:
             .empty
@@ -79,26 +79,12 @@ class PingStat {
 
     private func getGamingStatus() -> Status {
         return calculateStatus(val: gamingScore)
-//        switch gamingScore {
-//        case 0..<20:
-//            .veryPoor
-//        case 20..<70:
-//            .poor
-//        case 70..<85:
-//            .average
-//        case 85..<95:
-//            .good
-//        case 95..<101:
-//            .excelent
-//        default:
-//            .empty
-//        }
     }
 
     private func getStreamingStatus() -> Status {
         var status: Status = calculateStatus(val: streamingScore)
         
-        if status == .poor || status == .average {
+        if status == .poor || status == .             acceptable {
             if packageLoss < 2.0 {
                 status = .good
                 self.streamingScore = 87
@@ -116,20 +102,6 @@ class PingStat {
     
     private func getVideoCallStatus() -> Status {
         return calculateStatus(val: videoCallScore)
-//        switch videoCallScore {
-//        case 0..<20:
-//            .veryPoor
-//        case 20..<40:
-//            .poor
-//        case 40..<65:
-//            .average
-//        case 65..<85:
-//            .good
-//        case 85..<101:
-//            .excelent
-//        default:
-//            .empty
-//        }
     }
     
     // MARK: Computed properties
@@ -218,9 +190,9 @@ class PingStat {
     
     enum Status: String {
         case empty = "---",
-             veryPoor = "Very Poor",
+             veryPoor = "Bad",
              poor = "Poor",
-             average = "Average",
+             acceptable = "Acceptable",
              good = "Good",
              excellent = "Excellent"
     }
@@ -231,7 +203,7 @@ class PingStat {
         let jitterScore = normalizeJitter(jitter)
         let packetLossScore = normalizePacketLoss(packageLoss)
         
-        let weightedScore = (pingScore * pingWeight) + (jitterScore * jitterWeight) + (packetLossScore * packageLossWeight)
+        let weightedScore = (pingScore * pingWeight) + (jitterScore * jitterWeight) + (packetLossScore * packageLossWeight) - packageLoss
         
         return weightedScore
     }

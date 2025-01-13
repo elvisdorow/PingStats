@@ -25,7 +25,9 @@ struct StatCalculator {
         var loss = 0.0
         var jitter = 0.0
         
-        let roundTripTimes = responses.map { $0.duration }
+        // Filter responses to exclude those with errors
+        let validResponses = responses.filter { $0.error == nil }
+        let roundTripTimes = validResponses.map { $0.duration }
         
         if roundTripTimes.count != 0, let min = roundTripTimes.min(), let max = roundTripTimes.max() {
             let count = Double(roundTripTimes.count)

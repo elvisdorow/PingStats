@@ -46,6 +46,7 @@ class SessionDetailViewModel: ObservableObject {
     }
     
     func deleteSession() {
+        FileService.instance.deleteSessionFile(session: session)
         sessionDataService.delete(session: session)
     }
 }

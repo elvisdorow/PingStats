@@ -144,7 +144,7 @@ struct SessionDetailView: View {
                   dismiss()
               }
             } message: {
-              Text("You cannot undo this action")
+              Text("Are you sure you want to delete?")
             }
 
             .padding()
