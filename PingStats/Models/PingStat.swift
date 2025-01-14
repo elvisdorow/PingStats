@@ -188,7 +188,7 @@ class PingStat {
         return score
     }
     
-    enum Status: String {
+    enum Status: LocalizedStringResource {
         case empty = "---",
              veryPoor = "Bad",
              poor = "Poor",

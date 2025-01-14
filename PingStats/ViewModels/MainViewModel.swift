@@ -104,7 +104,7 @@ class MainViewModel: ObservableObject {
         let endDate = Date()
         
         if let session = session {
-            session.connectionType = connectionType.rawValue
+            session.connectionType = connectionType.toString()
             session.endDate = endDate
             session.elapsedTime = endDate.timeIntervalSince(session.startDate)
             
@@ -191,22 +191,65 @@ class MainViewModel: ObservableObject {
     }
 }
 
-enum ConnectionType: String {
+//enum ConnectionType: LocalizedStringKey {
+//    case wifi
+//    case cellular
+//    case ethernet
+//    case unknown
+//    
+//    func toString() -> String {
+//        switch self {
+//        case .wifi:
+//            return "Wi-Fi"
+//        case .cellular:
+//            return "Cellular"
+//        case .ethernet:
+//            return "Ethernet"
+//        case .unknown:
+//            return "Unknown"
+//        }
+//    }
+//}
+
+enum ConnectionType: LocalizedStringResource {
     case wifi
     case cellular
     case ethernet
     case unknown
     
-    func toString() -> String {
+    var localizedValue: LocalizedStringResource {
         switch self {
         case .wifi:
-            return "Wi-Fi"
+            return LocalizedStringResource("connection_type_wifi")
         case .cellular:
-            return "Cellular"
+            return LocalizedStringResource("connection_type_cellular")
         case .ethernet:
-            return "Ethernet"
+            return LocalizedStringResource("connection_type_ethernet")
         case .unknown:
-            return "Unknown"
+            return LocalizedStringResource("connection_type_unknown")
+        }
+    }
+    
+    func toString() -> String {
+        String(localized: localizedValue)
+    }
+    
+    func getKey() -> String {
+        localizedValue.key
+    }
+    
+    init(fromKey key: String) {
+        switch key {
+        case "connection_type_wifi":
+            self = .wifi
+        case "connection_type_cellular":
+            self = .cellular
+        case "connection_type_ethernet":
+            self = .ethernet
+        case "connection_type_unknown":
+            self = .unknown
+        default:
+            self = .unknown
         }
     }
 }

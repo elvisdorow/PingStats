@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct IconAndTitleButton: View {
-    let title: String
+    let title: LocalizedStringResource
     let systemImage: String
     let action: () -> Void
     

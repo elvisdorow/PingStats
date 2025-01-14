@@ -50,8 +50,8 @@ struct SessionRowView: View {
     @State var session: Sessions
 
     var body: some View {
-        let connTypeDb = session.connectionType ?? ConnectionType.unknown.rawValue
-        let connectionType = ConnectionType(rawValue: connTypeDb) ?? .unknown
+        let connTypeDb = session.connectionType ?? ConnectionType.unknown.toString()
+        let connectionType = ConnectionType(fromKey: connTypeDb)
         
         HStack {
             VStack(spacing: 4) {
@@ -65,7 +65,7 @@ struct SessionRowView: View {
                 case .unknown:
                     Image(systemName: "network.slash")
                 }
-                Text("\(connectionType.rawValue.capitalized)")
+                Text("\(connectionType.localizedValue)")
                     .font(.caption)
             }
             .foregroundColor(.primary.opacity(0.6))

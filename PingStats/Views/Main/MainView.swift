@@ -239,10 +239,10 @@ extension MainView {
         HStack(alignment: .center , spacing: 0) {
             VStack(spacing: 25) {
                 TextStatInfo(
-                    statusTitle: "Best",
-                    pingValue: "\(Formatter.number(viewModel.pingStat.bestPing, fraction: 0, unit: "ms"))"
+                    statusTitle: "Worst",
+                    pingValue: "\(Formatter.number(viewModel.pingStat.worstPing, fraction: 0, unit: "ms"))"
                 )
-                
+
                 TextStatInfo(
                     statusTitle: "Package Loss",
                     pingValue: "\(Formatter.number(viewModel.pingStat.packageLoss, fraction: 1, unit: "%"))")
@@ -274,9 +274,10 @@ extension MainView {
             }
             VStack(spacing: 25) {
                 TextStatInfo(
-                    statusTitle: "Worst",
-                    pingValue: "\(Formatter.number(viewModel.pingStat.worstPing, fraction: 0, unit: "ms"))"
+                    statusTitle: "Best",
+                    pingValue: "\(Formatter.number(viewModel.pingStat.bestPing, fraction: 0, unit: "ms"))"
                 )
+            
                 TextStatInfo(
                     statusTitle: "Elapsed Time",
                     pingValue: "\(Formatter.elapsedTime(viewModel.elapsedTime))"
@@ -362,4 +363,9 @@ extension MainView {
 
 #Preview {
     MainView().preferredColorScheme(.dark)
+}
+
+#Preview("EN") {
+    MainView()
+        .environment(\.locale, Locale(identifier: "EN"))
 }

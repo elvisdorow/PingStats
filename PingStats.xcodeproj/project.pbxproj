@@ -35,6 +35,7 @@
 		14FECBC02C5187F8009CBF07 /* PlayButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14FECBBF2C5187F8009CBF07 /* PlayButton.swift */; };
 		D504B6D22D2749810054FEB6 /* IconAndTitleButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = D504B6D12D2749810054FEB6 /* IconAndTitleButton.swift */; };
 		D50C088A2CF90CD400D567AE /* Host.swift in Sources */ = {isa = PBXBuildFile; fileRef = D50C08892CF90CD400D567AE /* Host.swift */; };
+		D51B56E82D3590D6002B39B2 /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = D51B56E72D3590D6002B39B2 /* Localizable.xcstrings */; };
 		D527F7482CAB25A9001B428C /* IPUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = D527F7472CAB25A9001B428C /* IPUtils.swift */; };
 		D527F74A2CAB290B001B428C /* TargetHostViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D527F7492CAB290B001B428C /* TargetHostViewModel.swift */; };
 		D52F61322CED18170056EFC5 /* MiniLoadingBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = D52F61312CED18170056EFC5 /* MiniLoadingBar.swift */; };
@@ -102,7 +103,6 @@
 		14B950942C45AC4600E8A388 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		14B9509C2C45B62500E8A388 /* ICMPResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ICMPResponse.swift; sourceTree = "<group>"; };
 		14BBA22C2C98B49400438D2D /* Formatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Formatter.swift; sourceTree = "<group>"; };
-		14E152882D358B54008CDFB2 /* Localizable.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Localizable.xcstrings; sourceTree = "<group>"; };
 		14E283472C9216AE0086E36F /* Session.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Session.swift; sourceTree = "<group>"; };
 		14E929DA2C9236860088EA79 /* PingStats.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; path = PingStats.xcodeproj; sourceTree = "<group>"; };
 		14F54FF22C986FEA005260E5 /* SessionDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionDetailView.swift; sourceTree = "<group>"; };
@@ -111,6 +111,7 @@
 		14FECBBF2C5187F8009CBF07 /* PlayButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayButton.swift; sourceTree = "<group>"; };
 		D504B6D12D2749810054FEB6 /* IconAndTitleButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IconAndTitleButton.swift; sourceTree = "<group>"; };
 		D50C08892CF90CD400D567AE /* Host.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Host.swift; sourceTree = "<group>"; };
+		D51B56E72D3590D6002B39B2 /* Localizable.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Localizable.xcstrings; sourceTree = "<group>"; };
 		D527F7472CAB25A9001B428C /* IPUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IPUtils.swift; sourceTree = "<group>"; };
 		D527F7492CAB290B001B428C /* TargetHostViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TargetHostViewModel.swift; sourceTree = "<group>"; };
 		D52F61312CED18170056EFC5 /* MiniLoadingBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MiniLoadingBar.swift; sourceTree = "<group>"; };
@@ -204,7 +205,7 @@
 		14B950812C45AC4400E8A388 = {
 			isa = PBXGroup;
 			children = (
-				14E152882D358B54008CDFB2 /* Localizable.xcstrings */,
+				D51B56E72D3590D6002B39B2 /* Localizable.xcstrings */,
 				14E929DA2C9236860088EA79 /* PingStats.xcodeproj */,
 				14B9508C2C45AC4400E8A388 /* PingStats */,
 				14B9508B2C45AC4400E8A388 /* Products */,
@@ -409,7 +410,7 @@
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
 				LastSwiftUpdateCheck = 1540;
-				LastUpgradeCheck = 1540;
+				LastUpgradeCheck = 1620;
 				TargetAttributes = {
 					14B950892C45AC4400E8A388 = {
 						CreatedOnToolsVersion = 15.4;
@@ -422,7 +423,6 @@
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
-				Base,
 				"pt-BR",
 			);
 			mainGroup = 14B950812C45AC4400E8A388;
@@ -454,6 +454,7 @@
 				1485A9612C87A67F00FDC0AC /* Inter-SemiBold.ttf in Resources */,
 				14B950952C45AC4600E8A388 /* Preview Assets.xcassets in Resources */,
 				1485A9632C87A69800FDC0AC /* Inter-Regular.ttf in Resources */,
+				D51B56E82D3590D6002B39B2 /* Localizable.xcstrings in Resources */,
 				14B950922C45AC4600E8A388 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -526,6 +527,7 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
@@ -591,6 +593,7 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";

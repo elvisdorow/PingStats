@@ -9,7 +9,7 @@ import SwiftUI
 		
 
 struct CircularGauge: View {
-    let type: String
+    let type: LocalizedStringResource
     let icon: String
     
     let iconSize = UIScreen.main.bounds.height * 0.013

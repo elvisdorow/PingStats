@@ -26,8 +26,8 @@ struct SessionDetailView: View {
     }
     
     var body: some View {
-        let connTypeDb = vm.session.connectionType ?? ConnectionType.unknown.rawValue
-        let connectionType = ConnectionType(rawValue: connTypeDb) ?? .unknown
+        let connTypeDb = vm.session.connectionType ?? ConnectionType.unknown.toString()
+        let connectionType = ConnectionType(fromKey: connTypeDb)
 
         VStack(alignment: .leading, spacing: 8) {
             

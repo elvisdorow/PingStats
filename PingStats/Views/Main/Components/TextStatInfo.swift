@@ -9,12 +9,12 @@ import SwiftUI
 
 struct TextStatInfo: View {
     
-    var statusTitle: String
+    var statusTitle: LocalizedStringKey
     var pingValue: String
     var fontSize: CGFloat
     var fontWeight: Font.Weight
     
-    init(statusTitle: String, pingValue: String, fontSize: CGFloat = 23, fontWeight: Font.Weight = .light) {
+    init(statusTitle: LocalizedStringKey, pingValue: String, fontSize: CGFloat = 23, fontWeight: Font.Weight = .light) {
         self.statusTitle = statusTitle
         self.pingValue = pingValue
         self.fontSize = fontSize
