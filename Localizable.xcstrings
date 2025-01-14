@@ -87,7 +87,14 @@
       }
     },
     "About PingStats" : {
-
+      "localizations" : {
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sobre PingStats"
+          }
+        }
+      }
     },
     "Acceptable" : {
       "localizations" : {
@@ -169,9 +176,6 @@
         }
       }
     },
-    "Build: %@" : {
-
-    },
     "cellular" : {
       "localizations" : {
         "pt-BR" : {
@@ -252,6 +256,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Wi-Fi"
+          }
+        }
+      }
+    },
+    "Contact Support" : {
+      "localizations" : {
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Contactar Suporte"
           }
         }
       }
@@ -486,22 +500,18 @@
         }
       }
     },
-    "New host" : {
-      "localizations" : {
-        "pt-BR" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Novo host"
-          }
-        }
-      }
-    },
     "New Host" : {
       "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "New Host"
+          }
+        },
         "pt-BR" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Novo host"
+            "value" : "Novo Host"
           }
         }
       }
@@ -522,16 +532,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Nenhum resultado encontrado."
-          }
-        }
-      }
-    },
-    "Ok" : {
-      "localizations" : {
-        "pt-BR" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Ok"
           }
         }
       }
@@ -663,7 +663,14 @@
       }
     },
     "PingStat is a network monitoring app that helps you analyze network performance by providing detailed latency statistics, jitter analysis, and packet loss measurements." : {
-
+      "localizations" : {
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "PingStat é um aplicativo de monitoramento de rede que ajuda a analisar o desempenho da rede, fornecendo estatísticas detalhadas de latência, análise de jitter e medições de perda de pacotes."
+          }
+        }
+      }
     },
     "PingStats" : {
       "localizations" : {
@@ -685,8 +692,15 @@
         }
       }
     },
-    "Privacy Policy" : {
-
+    "Reset to defaults" : {
+      "localizations" : {
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Restaurar padrões"
+          }
+        }
+      }
     },
     "Resolved IP or Host" : {
       "localizations" : {
@@ -788,9 +802,6 @@
         }
       }
     },
-    "Terms of Service" : {
-
-    },
     "Test finished" : {
       "localizations" : {
         "pt-BR" : {
@@ -876,9 +887,6 @@
           }
         }
       }
-    },
-    "Visit Website" : {
-
     },
     "wifi" : {
       "localizations" : {

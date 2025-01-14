@@ -28,7 +28,7 @@ struct AddHostFormView: View {
                 .padding(12)
 
                 HStack(alignment: .bottom) {
-                    Text("New host")
+                    Text("New Host")
                         .fontWeight(.semibold)
                         .font(.subheadline)
                 }

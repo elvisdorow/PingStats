@@ -23,10 +23,11 @@ struct AboutView: View {
         NavigationView {
             VStack(spacing: 20) {
                 // App Icon
-                Image(systemName: "wifi")
+                Image("LogoAbout")
                     .resizable()
                     .scaledToFit()
-                    .frame(width: 100, height: 100)
+                    .clipShape(RoundedRectangle(cornerRadius: 20))
+                    .frame(width: 140, height: 140)
                     .foregroundColor(.blue)
                     .padding(.top, 40)
 
@@ -53,9 +54,10 @@ struct AboutView: View {
 
                 // Links
                 VStack(spacing: 15) {
-                    Link("Privacy Policy", destination: URL(string: "https://yourwebsite.com/privacy-policy")!)
-                    Link("Terms of Service", destination: URL(string: "https://yourwebsite.com/terms-of-service")!)
-                    Link("Visit Website", destination: URL(string: "https://yourwebsite.com")!)
+                    Link("Contact Support", destination: URL(string: "mailto:edorow@gmail.com?subject=PingStats Support")!)
+//                    Link("Privacy Policy", destination: URL(string: "https://yourwebsite.com/privacy-policy")!)
+//                    Link("Terms of Service", destination: URL(string: "https://yourwebsite.com/terms-of-service")!)
+//                    Link("Visit Website", destination: URL(string: "https://yourwebsite.com")!)
                 }
                 .font(.body)
                 .padding(.bottom, 40)
@@ -71,4 +73,14 @@ struct AboutView: View {
             }
         }
     }
+}
+
+#Preview("EN") {
+    AboutView()
+        .environment(\.locale, Locale(identifier: "EN"))
+}
+
+#Preview("PT") {
+    AboutView()
+        .environment(\.locale, Locale(identifier: "PT"))
 }

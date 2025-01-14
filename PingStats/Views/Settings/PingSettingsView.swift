@@ -44,10 +44,29 @@ struct PingSettingsView: View {
                 } footer: {
                     Text("The number of pings in a moving sample utilized to evaluate network performance in real-time.")
                 }
+                
+                Button {
+                    resetToDefaults()
+                    
+                } label: {
+                    Text("Reset to defaults")
+                        .frame(maxWidth: .infinity, alignment: .center)
+                        .frame(height: 40)
+                }
+                .buttonStyle(.borderless)
 
             }
             .tint(.theme.accent)
         }
+        
+    }
+    
+    func resetToDefaults() {
+        settings.pingInterval = .sec1
+        settings.pingCountStat = .count50
+        settings.maxtimeSetting = .min5
+        settings.pingTimeout = .sec2
+        settings.pingPayload = .bytes64
     }
 }
 

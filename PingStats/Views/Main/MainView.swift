@@ -277,7 +277,7 @@ extension MainView {
                     .fill(Color.gray.opacity(0.15))
                     .frame(width: 1, height: 50)
                           
-            }
+            	}
             VStack(spacing: 25) {
                 TextStatInfo(
                     statusTitle: "Best",
