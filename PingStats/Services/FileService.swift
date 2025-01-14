@@ -97,26 +97,29 @@ class FileService {
     }
     
     func sesstionToText(sessionTextFile: SessionTextFile) -> String {
+        
+        let connType = ConnectionType(fromKey: sessionTextFile.connectionType).toString()
+                
         var text = """
 
-        Started: \(formatDateToString(sessionTextFile.startDate, format: "yyyy-MM-dd HH:mm:ss"))
-        Host: \(sessionTextFile.host)
-        Resolved IP or Host: \(sessionTextFile.resolvedIpOrHost)
-        Connection Type: \(sessionTextFile.connectionType)
+        \(NSLocalizedString("Started", comment: "")): \(formatDateToString(sessionTextFile.startDate, format: "yyyy-MM-dd HH:mm:ss"))
+        \(NSLocalizedString("Host", comment: "")): \(sessionTextFile.host)
+        \(NSLocalizedString("Resolved IP or Host", comment: "")): \(sessionTextFile.resolvedIpOrHost)
+        \(NSLocalizedString("Connection Type", comment: "")): \(connType)
 
-        Best Ping: \(sessionTextFile.bestPing.pingDurationFormat()) ms
-        Worst Ping: \(sessionTextFile.worstPing.pingDurationFormat()) ms
+        \(NSLocalizedString("Best Ping", comment: "")): \(sessionTextFile.bestPing.pingDurationFormat()) ms
+        \(NSLocalizedString("Worst Ping", comment: "")): \(sessionTextFile.worstPing.pingDurationFormat()) ms
         Jitter: \(sessionTextFile.jitter.pingDurationFormat()) ms
 
-        Average: \(sessionTextFile.averagePing.pingDurationFormat()) ms
-        Package Loss: \(sessionTextFile.packageLoss) %
+        \(NSLocalizedString("Average", comment: "")): \(sessionTextFile.averagePing.pingDurationFormat()) ms
+        \(NSLocalizedString("Package Loss", comment: "")): \(sessionTextFile.packageLoss) %
 
-        Ping Count: \(sessionTextFile.pingCount)
-        Elapsed Time: \(Formatter.elapsedTime(sessionTextFile.elapsedTime))
+        \(NSLocalizedString("Ping Count", comment: "")): \(sessionTextFile.pingCount)
+        \(NSLocalizedString("Elapsed Time", comment: "")): \(Formatter.elapsedTime(sessionTextFile.elapsedTime))
 
-        Ping Timeout: \(sessionTextFile.pingTimeout)
-        Ping Interval: \(sessionTextFile.pingInterval)
-        Max timeout: \(sessionTextFile.maxtimeSetting)
+        \(NSLocalizedString("Ping Timeout", comment: "")): \(sessionTextFile.pingTimeout)
+        \(NSLocalizedString("Ping Interval", comment: "")): \(sessionTextFile.pingInterval)
+        \(NSLocalizedString("Max Timeout", comment: "")): \(sessionTextFile.maxtimeSetting)
         
         -----------------\n\n
         """

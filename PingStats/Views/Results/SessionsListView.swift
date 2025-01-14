@@ -52,9 +52,9 @@ struct SessionRowView: View {
     var body: some View {
         let connTypeDb = session.connectionType ?? ConnectionType.unknown.toString()
         let connectionType = ConnectionType(fromKey: connTypeDb)
-        
+                    
         HStack {
-            VStack(spacing: 4) {
+            VStack(spacing: 4) {                
                 switch connectionType {
                 case .wifi:
                     Image(systemName: "wifi")

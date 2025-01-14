@@ -29,7 +29,7 @@ struct SessionDetailView: View {
         let connTypeDb = vm.session.connectionType ?? ConnectionType.unknown.toString()
         let connectionType = ConnectionType(fromKey: connTypeDb)
 
-        VStack(alignment: .leading, spacing: 8) {
+        VStack(alignment: .leading, spacing: 10) {
             
             VStack(alignment: .leading) {
                 if let resolvedIpOrHost = vm.session.resolvedIpOrHost {
@@ -64,12 +64,13 @@ struct SessionDetailView: View {
                             .padding(.top, 10)
                     }
                 }
-                .padding(.top, 25)
+                .padding(.top, 15)
+                .padding(.bottom, 10)
             }
             .padding(.horizontal, 4)
             
-            VStack(spacing: 8) {
-                HStack(spacing: 8) {
+            VStack(spacing: 10) {
+                HStack(spacing: 10) {
                     card(title: "Network Quality", value: String(format: "%.0f", vm.session.generalScore) + "%")
                     card(title: "Average", value: String(format: "%.0f ms", vm.session.averagePing))
                 }
@@ -84,31 +85,38 @@ struct SessionDetailView: View {
             }
             
             VStack(spacing: 33) {
-                HStack(spacing: 50) {
-                    VStack(alignment: .center, spacing: 6) {
-                        Text("Elapsed Time").font(.footnote).foregroundColor(.secondary)
-                        Text(formattedElapsedTime())
-                            .font(.title3)
-                    }
-                    VStack(alignment: .center, spacing: 6) {
-                        Text("Ping Count ").font(.footnote).foregroundColor(.secondary)
-                        Text("\(vm.session.pingCount)").font(.title3)
-                    }
-                }.frame(maxWidth: /*@START_MENU_TOKEN@*/.infinity/*@END_MENU_TOKEN@*/, alignment: .center)
-                HStack(spacing: 50) {
-                    VStack(alignment: .center, spacing: 6) {
-                        Text("Ping Interval").font(.footnote).foregroundColor(.secondary)
-                        if let interval = PingInterval(rawValue: Int(vm.session.pingInterval)) {
-                            Text("\(interval.toString())").font(.title3)
+                
+                Grid(alignment: .center, horizontalSpacing: 20, verticalSpacing: 20) {
+                    GridRow {
+                        VStack(alignment: .center, spacing: 6) {
+                            Text("Elapsed Time").font(.footnote).foregroundColor(.secondary)
+                            Text(formattedElapsedTime())
+                                .font(.title3)
+                        }
+                        VStack(alignment: .center, spacing: 6) {
+                            Text("Ping Count ").font(.footnote).foregroundColor(.secondary)
+                            Text("\(vm.session.pingCount)").font(.title3)
                         }
                     }
-                    VStack(alignment: .center, spacing: 6) {
-                        Text("Ping Timeout").font(.footnote).foregroundColor(.secondary)
-                        if let timeout = PingTimeout(rawValue: Int(vm.session.pingTimeout)) {
-                            Text("\(timeout.toString())").font(.title3)
+                    
+                    GridRow {
+                        VStack(alignment: .center, spacing: 6) {
+                            Text("Ping Interval").font(.footnote).foregroundColor(.secondary)
+                            if let interval = PingInterval(rawValue: Int(vm.session.pingInterval)) {
+                                Text("\(interval.toString())").font(.title3)
+                            }
                         }
+                        VStack(alignment: .center, spacing: 6) {
+                            Text("Ping Timeout").font(.footnote).foregroundColor(.secondary)
+                            if let timeout = PingTimeout(rawValue: Int(vm.session.pingTimeout)) {
+                                Text("\(timeout.toString())").font(.title3)
+                            }
+                        }
+
                     }
-                }.frame(maxWidth: /*@START_MENU_TOKEN@*/.infinity/*@END_MENU_TOKEN@*/, alignment: .center)
+                }
+                .frame(maxWidth: .infinity)
+
             }
             .padding(10)
             .padding(.vertical, 10)
@@ -220,12 +228,12 @@ extension SessionDetailView {
 }
 
 struct card<Content: View>: View {
-    var title: String
+    var title: LocalizedStringKey
     var value: String
 
     let content: Content
     
-    init(title: String, value: String, @ViewBuilder content: () -> Content = { EmptyView() }) {
+    init(title: LocalizedStringKey, value: String, @ViewBuilder content: () -> Content = { EmptyView() }) {
         self.title = title
         self.value = value
         self.content = content()

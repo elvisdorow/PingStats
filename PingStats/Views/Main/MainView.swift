@@ -15,6 +15,7 @@ struct MainView: View {
     
     @State private var showSettingsView: Bool = false
     @State private var showResultsView: Bool = false
+    @State private var showAboutView: Bool = false
     
     @State private var showHostList: Bool = false
     
@@ -75,6 +76,10 @@ struct MainView: View {
                 SessionsListView()
                     .presentationCompactAdaptation(.fullScreenCover)
             }
+            .popover(isPresented: $showAboutView) {
+                AboutView()
+                    .presentationCompactAdaptation(.automatic)
+            }
         }
         .onChange(of: scenePhase) { _, newValue in
             if newValue == .background && viewModel.isAnalysisRunning {
@@ -109,7 +114,9 @@ extension MainView {
                     icon: { Image(systemName: "gear") }
                 )
             })
-            Button(action: {},
+            Button(action: {
+                showAboutView.toggle()
+            },
                    label: {
                 Label(
                     title: { Text("About") },
@@ -227,7 +234,6 @@ extension MainView {
                 status: $viewModel.pingStat.streamingStatus
             )
         }
-//        .frame(height: UIScreen.main.bounds.height * 0.145)
         .frame(height: 120)
         .padding(.horizontal)
         .padding(.top, 6)
@@ -351,7 +357,6 @@ extension MainView {
         .padding(.horizontal)
         .padding(.bottom)
         .frame(maxWidth: .infinity)
-
     }
 
 }

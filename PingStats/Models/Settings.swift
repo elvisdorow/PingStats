@@ -52,9 +52,9 @@ enum Theme: Int, CaseIterable, Identifiable {
 
     var name: String {
         switch self {
-        case .device: return String("Device")
-        case .light: return String("Light")
-        case .dark: return String("Dark")
+        case .device: return NSLocalizedString("Device", comment: "")
+        case .light: return NSLocalizedString("Light", comment: "")
+        case .dark: return NSLocalizedString("Dark", comment: "")
         }
     }
     

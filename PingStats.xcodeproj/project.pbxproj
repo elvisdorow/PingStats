@@ -30,6 +30,7 @@
 		14BBA22D2C98B49400438D2D /* Formatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14BBA22C2C98B49400438D2D /* Formatter.swift */; };
 		14E283482C9216AE0086E36F /* Session.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14E283472C9216AE0086E36F /* Session.swift */; };
 		14F54FF32C986FEA005260E5 /* SessionDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14F54FF22C986FEA005260E5 /* SessionDetailView.swift */; };
+		14FB80AE2D36A3A800D3214B /* AboutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14FB80AD2D36A3A800D3214B /* AboutView.swift */; };
 		14FECBB82C4AFBC6009CBF07 /* SegmentedControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14FECBB72C4AFBC6009CBF07 /* SegmentedControl.swift */; };
 		14FECBBC2C4FAF59009CBF07 /* CircularGauge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14FECBBB2C4FAF59009CBF07 /* CircularGauge.swift */; };
 		14FECBC02C5187F8009CBF07 /* PlayButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14FECBBF2C5187F8009CBF07 /* PlayButton.swift */; };
@@ -106,6 +107,7 @@
 		14E283472C9216AE0086E36F /* Session.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Session.swift; sourceTree = "<group>"; };
 		14E929DA2C9236860088EA79 /* PingStats.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; path = PingStats.xcodeproj; sourceTree = "<group>"; };
 		14F54FF22C986FEA005260E5 /* SessionDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionDetailView.swift; sourceTree = "<group>"; };
+		14FB80AD2D36A3A800D3214B /* AboutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutView.swift; sourceTree = "<group>"; };
 		14FECBB72C4AFBC6009CBF07 /* SegmentedControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SegmentedControl.swift; sourceTree = "<group>"; };
 		14FECBBB2C4FAF59009CBF07 /* CircularGauge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircularGauge.swift; sourceTree = "<group>"; };
 		14FECBBF2C5187F8009CBF07 /* PlayButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayButton.swift; sourceTree = "<group>"; };
@@ -264,6 +266,7 @@
 		14B950A52C46938900E8A388 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				14FB80AC2D36A39600D3214B /* About */,
 				D54A65662D0B31E200121652 /* Components */,
 				D58084DA2CE2AE8D00DC7040 /* Main */,
 				D55DD5372CAC332D00F94F83 /* Results */,
@@ -294,6 +297,14 @@
 		14E929DB2C9236860088EA79 /* Products */ = {
 			isa = PBXGroup;
 			name = Products;
+			sourceTree = "<group>";
+		};
+		14FB80AC2D36A39600D3214B /* About */ = {
+			isa = PBXGroup;
+			children = (
+				14FB80AD2D36A3A800D3214B /* AboutView.swift */,
+			);
+			path = About;
 			sourceTree = "<group>";
 		};
 		D52F61352CED51B20056EFC5 /* Components */ = {
@@ -485,6 +496,7 @@
 				D56AC7FA2D1F65AA00A0B307 /* SessionDetailViewModel.swift in Sources */,
 				D549379A2CEF7AA800F777DD /* PingPayloadSlider.swift in Sources */,
 				14BBA22D2C98B49400438D2D /* Formatter.swift in Sources */,
+				14FB80AE2D36A3A800D3214B /* AboutView.swift in Sources */,
 				1409322F2C52775B00D2C03F /* PingStat.swift in Sources */,
 				143391DA2C9A365300ED8CDB /* PingIntervalSlider.swift in Sources */,
 				14B9508E2C45AC4400E8A388 /* App.swift in Sources */,

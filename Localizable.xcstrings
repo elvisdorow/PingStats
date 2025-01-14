@@ -5,22 +5,56 @@
 
     },
     "---" : {
-
+      "localizations" : {
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "—"
+          }
+        }
+      }
     },
     "%@" : {
-
+      "localizations" : {
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@"
+          }
+        }
+      }
     },
     "%@%%" : {
-
+      "localizations" : {
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@%%"
+          }
+        }
+      }
     },
     "%d" : {
-
+      "localizations" : {
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%d"
+          }
+        }
+      }
     },
     "%lld bytes icmp_seq=%lld %@" : {
       "localizations" : {
         "en" : {
           "stringUnit" : {
             "state" : "new",
+            "value" : "%1$lld bytes icmp_seq=%2$lld %3$@"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
             "value" : "%1$lld bytes icmp_seq=%2$lld %3$@"
           }
         }
@@ -31,6 +65,12 @@
         "en" : {
           "stringUnit" : {
             "state" : "new",
+            "value" : "%1$lld bytes icmp_seq=%2$lld ttl=%3$lld time=%4$@ ms"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
             "value" : "%1$lld bytes icmp_seq=%2$lld ttl=%3$lld time=%4$@ ms"
           }
         }
@@ -45,6 +85,9 @@
           }
         }
       }
+    },
+    "About PingStats" : {
+
     },
     "Acceptable" : {
       "localizations" : {
@@ -116,6 +159,113 @@
         }
       }
     },
+    "Best Ping" : {
+      "localizations" : {
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Melhor Ping"
+          }
+        }
+      }
+    },
+    "Build: %@" : {
+
+    },
+    "cellular" : {
+      "localizations" : {
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Celular"
+          }
+        }
+      }
+    },
+    "Connection Type" : {
+      "localizations" : {
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tipo de Conexão"
+          }
+        }
+      }
+    },
+    "connection_type_cellular" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cellular"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Celular"
+          }
+        }
+      }
+    },
+    "connection_type_ethernet" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ethernet"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cabo"
+          }
+        }
+      }
+    },
+    "connection_type_unknown" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Disconnected"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Desconectado"
+          }
+        }
+      }
+    },
+    "connection_type_wifi" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Wi-Fi"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Wi-Fi"
+          }
+        }
+      }
+    },
+    "Dark" : {
+      "localizations" : {
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Escuro"
+          }
+        }
+      }
+    },
     "Delete" : {
       "localizations" : {
         "pt-BR" : {
@@ -126,12 +276,32 @@
         }
       }
     },
+    "Device" : {
+      "localizations" : {
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dispositivo"
+          }
+        }
+      }
+    },
     "Elapsed Time" : {
       "localizations" : {
         "pt-BR" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Duração"
+          }
+        }
+      }
+    },
+    "ethernet" : {
+      "localizations" : {
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ethernet"
           }
         }
       }
@@ -172,6 +342,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Bom"
+          }
+        }
+      }
+    },
+    "Host" : {
+      "localizations" : {
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Host"
           }
         }
       }
@@ -222,6 +402,26 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Jitter"
+          }
+        }
+      }
+    },
+    "Light" : {
+      "localizations" : {
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Claro"
+          }
+        }
+      }
+    },
+    "Max Timeout" : {
+      "localizations" : {
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tempo Máximo do Teste"
           }
         }
       }
@@ -306,12 +506,32 @@
         }
       }
     },
+    "No data" : {
+      "localizations" : {
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sem dados"
+          }
+        }
+      }
+    },
     "No results found." : {
       "localizations" : {
         "pt-BR" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Nenhum resultado encontrado."
+          }
+        }
+      }
+    },
+    "Ok" : {
+      "localizations" : {
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ok"
           }
         }
       }
@@ -327,6 +547,16 @@
       }
     },
     "Package Loss" : {
+      "localizations" : {
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Perda de Pacotes"
+          }
+        }
+      }
+    },
+    "Packet Loss" : {
       "localizations" : {
         "pt-BR" : {
           "stringUnit" : {
@@ -352,6 +582,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Configuração do Ping"
+          }
+        }
+      }
+    },
+    "Ping Count" : {
+      "localizations" : {
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Contagem de Pings"
           }
         }
       }
@@ -396,12 +636,64 @@
         }
       }
     },
+    "Pinging %@ (%@)" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Pinging %1$@ (%2$@)"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pingando %1$@ (%2$@)"
+          }
+        }
+      }
+    },
+    "Pinging %@..." : {
+      "localizations" : {
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pingando %@..."
+          }
+        }
+      }
+    },
+    "PingStat is a network monitoring app that helps you analyze network performance by providing detailed latency statistics, jitter analysis, and packet loss measurements." : {
+
+    },
+    "PingStats" : {
+      "localizations" : {
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "PingStats"
+          }
+        }
+      }
+    },
     "Poor" : {
       "localizations" : {
         "pt-BR" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Ruim"
+          }
+        }
+      }
+    },
+    "Privacy Policy" : {
+
+    },
+    "Resolved IP or Host" : {
+      "localizations" : {
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "IP ou Host"
           }
         }
       }
@@ -456,6 +748,16 @@
         }
       }
     },
+    "Started" : {
+      "localizations" : {
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Iniciado"
+          }
+        }
+      }
+    },
     "Stop After" : {
       "localizations" : {
         "pt-BR" : {
@@ -482,6 +784,19 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Host de Destino"
+          }
+        }
+      }
+    },
+    "Terms of Service" : {
+
+    },
+    "Test finished" : {
+      "localizations" : {
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Teste finalizado"
           }
         }
       }
@@ -516,18 +831,38 @@
         }
       }
     },
+    "unknown" : {
+      "localizations" : {
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "desconhecido"
+          }
+        }
+      }
+    },
+    "Version: %@" : {
+      "localizations" : {
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Versão: %@"
+          }
+        }
+      }
+    },
     "Video Call" : {
       "localizations" : {
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Zoom / Skype"
+            "value" : "Video Call"
           }
         },
         "pt-BR" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Zoom / Skype"
+            "state" : "translated",
+            "value" : "Chamadas"
           }
         }
       }
@@ -542,12 +877,35 @@
         }
       }
     },
+    "Visit Website" : {
+
+    },
+    "wifi" : {
+      "localizations" : {
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Wi-Fi"
+          }
+        }
+      }
+    },
     "Worst" : {
       "localizations" : {
         "pt-BR" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Pior"
+          }
+        }
+      }
+    },
+    "Worst Ping" : {
+      "localizations" : {
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pior Ping"
           }
         }
       }

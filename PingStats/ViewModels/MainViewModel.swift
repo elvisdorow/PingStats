@@ -16,7 +16,7 @@ class MainViewModel: ObservableObject {
     var settings: Settings = .shared
     
     @Published var isAnalysisRunning = false
-    @Published var statusMessage = "No data"
+    @Published var statusMessage: LocalizedStringResource = "No data"
     @Published var hasNetworkError = false
 
     @Published var elapsedTime: TimeInterval = 0
@@ -104,7 +104,7 @@ class MainViewModel: ObservableObject {
         let endDate = Date()
         
         if let session = session {
-            session.connectionType = connectionType.toString()
+            session.connectionType = connectionType.getKey()
             session.endDate = endDate
             session.elapsedTime = endDate.timeIntervalSince(session.startDate)
             
@@ -190,26 +190,6 @@ class MainViewModel: ObservableObject {
         }
     }
 }
-
-//enum ConnectionType: LocalizedStringKey {
-//    case wifi
-//    case cellular
-//    case ethernet
-//    case unknown
-//    
-//    func toString() -> String {
-//        switch self {
-//        case .wifi:
-//            return "Wi-Fi"
-//        case .cellular:
-//            return "Cellular"
-//        case .ethernet:
-//            return "Ethernet"
-//        case .unknown:
-//            return "Unknown"
-//        }
-//    }
-//}
 
 enum ConnectionType: LocalizedStringResource {
     case wifi
