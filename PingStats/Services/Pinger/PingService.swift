@@ -66,5 +66,19 @@ class PingService {
         pinger?.haltPinging(resetSequence: true)
         pinger = nil
         response = nil
-    }	    
+    }
+    
+    func pause() {
+        pinger?.stopPinging(resetSequence: false)
+    }
+    
+    func resume() {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
+            do {
+                try self.pinger?.startPinging()
+            } catch {
+                print("Failed to resume pinging: \(error.localizedDescription)")
+            }
+        }
+    }
 }

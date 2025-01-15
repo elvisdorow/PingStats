@@ -83,6 +83,7 @@ struct MainView: View {
         }
         .onChange(of: scenePhase) { _, newValue in
             if newValue == .background && viewModel.isAnalysisRunning {
+                viewModel.pa
                 viewModel.stop()
             }
         }

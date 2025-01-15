@@ -15,7 +15,13 @@ class MainViewModel: ObservableObject {
     
     var settings: Settings = .shared
     
-    @Published var isAnalysisRunning = false
+    @Published var isAnalysisRunning: Bool = false
+    @Published var appState: AppState = .empty {
+        didSet {
+            isAnalysisRunning = (appState == .running)
+        }
+    }
+    
     @Published var statusMessage: LocalizedStringResource = "No data"
     @Published var hasNetworkError = false
 
@@ -81,7 +87,7 @@ class MainViewModel: ObservableObject {
 
         pingService.start()
         
-        isAnalysisRunning = true
+        appState = .running
         elapsedTime = 0
         
         hasNetworkError = false
@@ -90,7 +96,7 @@ class MainViewModel: ObservableObject {
     func stop() {
         UIApplication.shared.isIdleTimerDisabled = false
 
-        isAnalysisRunning = false
+        appState = .stopped
         statusMessage = "Test finished"
         hasNetworkError = false
         
@@ -106,13 +112,25 @@ class MainViewModel: ObservableObject {
         if let session = session {
             session.connectionType = connectionType.getKey()
             session.endDate = endDate
-            session.elapsedTime = endDate.timeIntervalSince(session.startDate)
+            session.elapsedTime = elapsedTime
             
             session.generateFullTestPingStat()
             pingStat = session.pingStat!
             
             sessionDataService.add(session: session)
         }
+    }
+    
+    func pause() {
+        appState = .paused
+        statusMessage = "Test paused"
+
+        timer?.cancel()
+        timer = nil
+    }
+    
+    func resume() {
+        appState = .running
     }
     
     private func addSubscriptions() {
@@ -148,7 +166,9 @@ class MainViewModel: ObservableObject {
             .autoconnect()
             .sink {[weak self] _ in
                 if let self = self, let session = self.session {
-                    self.elapsedTime = Date().timeIntervalSince(session.startDate)
+//                    self.elapsedTime = Date().timeIntervalSince(session.startDate)
+                    self.elapsedTime = self.elapsedTime + 1.0
+                    
                     if self.elapsedTime >= TimeInterval(session.parameters.maxtimeSetting.rawValue) {
                         self.stop()
                     }
@@ -189,6 +209,13 @@ class MainViewModel: ObservableObject {
             self.connectionType = .unknown
         }
     }
+}
+
+enum AppState: String {
+    case empty
+    case running
+    case paused
+    case stopped
 }
 
 enum ConnectionType: LocalizedStringResource {
