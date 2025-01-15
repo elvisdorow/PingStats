@@ -83,7 +83,7 @@ struct MainView: View {
         }
         .onChange(of: scenePhase) { _, newValue in
             if newValue == .background && viewModel.isAnalysisRunning {
-                viewModel.stop()
+                viewModel.pause()
             }
         }
     }
@@ -153,12 +153,7 @@ extension MainView {
                 .padding(.horizontal)
 
         } else {
-            Text("\(viewModel.statusMessage)")
-                .font(.footnote)
-                .foregroundColor(.primary.opacity(0.6))
-                .fontWeight(.regular)
-                .frame(maxWidth: /*@START_MENU_TOKEN@*/.infinity/*@END_MENU_TOKEN@*/, alignment: .leading)
-                .padding(.horizontal)
+            StatusMessage(text: $viewModel.statusMessage, appState: $viewModel.appState)
         }
     }
     
@@ -338,18 +333,28 @@ extension MainView {
                 }
             }
             HStack {
-                PlayButton(running: $viewModel.isAnalysisRunning)
+                PlayButton(appState: viewModel.appState)
                     .offset(y: 8)
                     .onTapGesture {
                         let generator = UIImpactFeedbackGenerator(style: .light)
                         generator.prepare()
                         generator.impactOccurred()
                         
-                        if viewModel.isAnalysisRunning {
-                            viewModel.stop()
-                        } else {
+                        switch viewModel.appState {
+                        case .empty, .stopped:
                             viewModel.start()
+                            
+                        case .paused:
+                            viewModel.resume()
+                        case .running:
+                            viewModel.stop()
                         }
+//                        
+//                        if viewModel.isAnalysisRunning {
+//                            viewModel.stop()
+//                        } else {
+//                            viewModel.start()
+//                        }
                     }
             }
 

@@ -62,9 +62,9 @@ class PingService {
         }
     }
     
-    func stop() {
-        pinger?.haltPinging(resetSequence: true)
+    func stop(resetSequence: Bool) {
+        pinger?.haltPinging(resetSequence: resetSequence)
         pinger = nil
         response = nil
-    }	    
+    }
 }
