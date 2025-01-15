@@ -812,6 +812,16 @@
         }
       }
     },
+    "Test paused" : {
+      "localizations" : {
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Teste pausado"
+          }
+        }
+      }
+    },
     "The number of pings in a moving sample utilized to evaluate network performance in real-time." : {
       "localizations" : {
         "pt-BR" : {

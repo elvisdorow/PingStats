@@ -18,6 +18,16 @@
 		1485A9632C87A69800FDC0AC /* Inter-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 1485A9622C87A69800FDC0AC /* Inter-Regular.ttf */; };
 		1485A9662C87AC6D00FDC0AC /* Inter-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 1485A9642C87AC6D00FDC0AC /* Inter-Light.ttf */; };
 		1485A9672C87AC6D00FDC0AC /* Inter-Black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 1485A9652C87AC6D00FDC0AC /* Inter-Black.ttf */; };
+		14A072B62D38035F002F7A5E /* ChartLogs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14A072AE2D38035F002F7A5E /* ChartLogs.swift */; };
+		14A072B72D38035F002F7A5E /* CircularGauge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14A072AF2D38035F002F7A5E /* CircularGauge.swift */; };
+		14A072B82D38035F002F7A5E /* SegmentedControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14A072B42D38035F002F7A5E /* SegmentedControl.swift */; };
+		14A072B92D38035F002F7A5E /* LoadingBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14A072B12D38035F002F7A5E /* LoadingBar.swift */; };
+		14A072BA2D38035F002F7A5E /* LogTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14A072B22D38035F002F7A5E /* LogTable.swift */; };
+		14A072BB2D38035F002F7A5E /* DashedGauge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14A072B02D38035F002F7A5E /* DashedGauge.swift */; };
+		14A072BC2D38035F002F7A5E /* TextStatInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14A072B52D38035F002F7A5E /* TextStatInfo.swift */; };
+		14A072BD2D38035F002F7A5E /* PlayButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14A072B32D38035F002F7A5E /* PlayButton.swift */; };
+		14A072BF2D382495002F7A5E /* BlinkingText.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14A072BE2D382495002F7A5E /* BlinkingText.swift */; };
+		14A072C12D382712002F7A5E /* StatusMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14A072C02D382712002F7A5E /* StatusMessage.swift */; };
 		14AAA2502C92491A00DF83F0 /* SessionsListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14AAA24F2C92491A00DF83F0 /* SessionsListView.swift */; };
 		14AAA2522C924B3300DF83F0 /* SessionListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14AAA2512C924B3300DF83F0 /* SessionListViewModel.swift */; };
 		14B9508E2C45AC4400E8A388 /* App.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14B9508D2C45AC4400E8A388 /* App.swift */; };
@@ -85,6 +95,16 @@
 		1485A9642C87AC6D00FDC0AC /* Inter-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Inter-Light.ttf"; sourceTree = "<group>"; };
 		1485A9652C87AC6D00FDC0AC /* Inter-Black.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Inter-Black.ttf"; sourceTree = "<group>"; };
 		14862A5C2C62CFEE00394101 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		14A072AE2D38035F002F7A5E /* ChartLogs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartLogs.swift; sourceTree = "<group>"; };
+		14A072AF2D38035F002F7A5E /* CircularGauge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircularGauge.swift; sourceTree = "<group>"; };
+		14A072B02D38035F002F7A5E /* DashedGauge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashedGauge.swift; sourceTree = "<group>"; };
+		14A072B12D38035F002F7A5E /* LoadingBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingBar.swift; sourceTree = "<group>"; };
+		14A072B22D38035F002F7A5E /* LogTable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogTable.swift; sourceTree = "<group>"; };
+		14A072B32D38035F002F7A5E /* PlayButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayButton.swift; sourceTree = "<group>"; };
+		14A072B42D38035F002F7A5E /* SegmentedControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SegmentedControl.swift; sourceTree = "<group>"; };
+		14A072B52D38035F002F7A5E /* TextStatInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextStatInfo.swift; sourceTree = "<group>"; };
+		14A072BE2D382495002F7A5E /* BlinkingText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlinkingText.swift; sourceTree = "<group>"; };
+		14A072C02D382712002F7A5E /* StatusMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusMessage.swift; sourceTree = "<group>"; };
 		14AAA24F2C92491A00DF83F0 /* SessionsListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionsListView.swift; sourceTree = "<group>"; };
 		14AAA2512C924B3300DF83F0 /* SessionListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionListViewModel.swift; sourceTree = "<group>"; };
 		14B9508A2C45AC4400E8A388 /* PingStats.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PingStats.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -191,6 +211,16 @@
 		14A072AB2D38020E002F7A5E /* Components */ = {
 			isa = PBXGroup;
 			children = (
+				14A072AE2D38035F002F7A5E /* ChartLogs.swift */,
+				14A072AF2D38035F002F7A5E /* CircularGauge.swift */,
+				14A072B02D38035F002F7A5E /* DashedGauge.swift */,
+				14A072B12D38035F002F7A5E /* LoadingBar.swift */,
+				14A072B22D38035F002F7A5E /* LogTable.swift */,
+				14A072B32D38035F002F7A5E /* PlayButton.swift */,
+				14A072B42D38035F002F7A5E /* SegmentedControl.swift */,
+				14A072B52D38035F002F7A5E /* TextStatInfo.swift */,
+				14A072BE2D382495002F7A5E /* BlinkingText.swift */,
+				14A072C02D382712002F7A5E /* StatusMessage.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -478,6 +508,16 @@
 				14AAA2502C92491A00DF83F0 /* SessionsListView.swift in Sources */,
 				D5BC7BB22CE7E37800D1359A /* ChartItem.swift in Sources */,
 				D5FB2D152CA6E1D1002C4AE3 /* PingCountStatSlider.swift in Sources */,
+				14A072C12D382712002F7A5E /* StatusMessage.swift in Sources */,
+				14A072B62D38035F002F7A5E /* ChartLogs.swift in Sources */,
+				14A072B72D38035F002F7A5E /* CircularGauge.swift in Sources */,
+				14A072B82D38035F002F7A5E /* SegmentedControl.swift in Sources */,
+				14A072BF2D382495002F7A5E /* BlinkingText.swift in Sources */,
+				14A072B92D38035F002F7A5E /* LoadingBar.swift in Sources */,
+				14A072BA2D38035F002F7A5E /* LogTable.swift in Sources */,
+				14A072BB2D38035F002F7A5E /* DashedGauge.swift in Sources */,
+				14A072BC2D38035F002F7A5E /* TextStatInfo.swift in Sources */,
+				14A072BD2D38035F002F7A5E /* PlayButton.swift in Sources */,
 				142C51BC2C64240100492458 /* PingLog.swift in Sources */,
 				D5FA4E332CE4D8870068CBC9 /* DataService.swift in Sources */,
 				14B9509D2C45B62500E8A388 /* ICMPResponse.swift in Sources */,

@@ -105,7 +105,7 @@ class MainViewModel: ObservableObject {
         timer?.cancel()
         timer = nil
         
-        pingService.stop()
+        pingService.stop(resetSequence: true)
                 
         let endDate = Date()
         
@@ -122,16 +122,37 @@ class MainViewModel: ObservableObject {
     }
     
     func pause() {
+        UIApplication.shared.isIdleTimerDisabled = false
         appState = .paused
         statusMessage = "Test paused"
-
+        pingService.stop(resetSequence: false)
+        
         timer?.cancel()
         timer = nil
     }
     
     func resume() {
+        UIApplication.shared.isIdleTimerDisabled = true
+        addSubscriptions()
+        
+        let sessionParams = SessionParam(settings: .shared)
+        session = Session(sessionParams)
+
+        statusMessage = "Pinging \(sessionParams.host)..."
+
+        if sessionParams.hostType == .ip {
+            IPUtils.resolveHostname(for: sessionParams.host) {[weak self] hostname in
+                if let hostname = hostname {
+                    self?.session?.resolvedIpOrHost = hostname
+                    self?.statusMessage = "Pinging \(sessionParams.host) (\(hostname))"
+                }
+            }
+        }
+
+        pingService.start()
+        
         appState = .running
-    }
+     }
     
     private func addSubscriptions() {
         pingService.$response
