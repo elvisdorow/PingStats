@@ -7,6 +7,7 @@
 
 import SwiftUI
 import Charts
+import FullscreenPopup
 
 struct MainView: View {
     
@@ -18,6 +19,7 @@ struct MainView: View {
     @State private var showAboutView: Bool = false
     
     @State private var showHostList: Bool = false
+    @State private var showPauseInBG: Bool = false
     
     @StateObject var viewModel: MainViewModel = MainViewModel()
     @StateObject var settings = Settings.shared
@@ -54,6 +56,9 @@ struct MainView: View {
                     bottomActions
 
                 }
+                .popup(isPresented: $showPauseInBG, content: {
+                    Text("Olá")
+                })
                 .environmentObject(viewModel)
                 .toolbar(content: {
                     
@@ -286,7 +291,6 @@ extension MainView {
             }
         }
     }
-
     
     @ViewBuilder
     var bottomActions: some View {
@@ -349,14 +353,17 @@ extension MainView {
                         case .running:
                             viewModel.stop()
                         }
-//                        
-//                        if viewModel.isAnalysisRunning {
-//                            viewModel.stop()
-//                        } else {
-//                            viewModel.start()
-//                        }
+                    }
+                    .onLongPressGesture {
+                        if viewModel.appState == .paused {
+                            viewModel.stop()
+                        }
+                        if viewModel.appState == .stopped {
+                            showPauseInBG.toggle()
+                        }
                     }
             }
+            
 
         }
         .padding(.horizontal)

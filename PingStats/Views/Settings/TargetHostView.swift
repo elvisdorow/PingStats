@@ -18,7 +18,7 @@ struct TargetHostView: View {
     
     @State var showAddForm: Bool = false
     @State var newIpAddress: String = ""
-    @State var errorMessage: String = ""
+    @State var errorMessage: LocalizedStringResource?
     
     @State var timer: Timer?
     
@@ -83,7 +83,7 @@ struct TargetHostView: View {
         } catch IpHostError.invalid {
             errorMessage = "Invalid host"
         } catch {
-            errorMessage = error.localizedDescription
+            errorMessage = "Unknown error"
         }
     }
 }

@@ -69,7 +69,9 @@ class MainViewModel: ObservableObject {
 
         resetChart()
         pingStat = PingStat()
-        addSubscriptions()
+        
+        addPingerSubscription()
+        addTimerSubscription()
         
         let sessionParams = SessionParam(settings: .shared)
         session = Session(sessionParams)
@@ -133,10 +135,8 @@ class MainViewModel: ObservableObject {
     
     func resume() {
         UIApplication.shared.isIdleTimerDisabled = true
-        addSubscriptions()
         
         let sessionParams = SessionParam(settings: .shared)
-        session = Session(sessionParams)
 
         statusMessage = "Pinging \(sessionParams.host)..."
 
@@ -150,11 +150,11 @@ class MainViewModel: ObservableObject {
         }
 
         pingService.start()
-        
+        addTimerSubscription()
         appState = .running
      }
     
-    private func addSubscriptions() {
+    private func addPingerSubscription() {
         pingService.$response
             .receive(on: DispatchQueue.main)
             .sink { [weak self] response in
@@ -182,12 +182,13 @@ class MainViewModel: ObservableObject {
                 updateChart()
         }
         .store(in: &cancellables)
-        
+    }
+    
+    private func addTimerSubscription() {
         timer = Timer.publish(every: 1.0, on: .main, in: .common)
             .autoconnect()
             .sink {[weak self] _ in
                 if let self = self, let session = self.session {
-//                    self.elapsedTime = Date().timeIntervalSince(session.startDate)
                     self.elapsedTime = self.elapsedTime + 1.0
                     
                     if self.elapsedTime >= TimeInterval(session.parameters.maxtimeSetting.rawValue) {
@@ -196,6 +197,7 @@ class MainViewModel: ObservableObject {
                 }
             }
     }
+    
     
     private func updateChart() {
         if let session = self.session {

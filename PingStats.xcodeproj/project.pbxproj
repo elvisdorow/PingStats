@@ -36,6 +36,8 @@
 		14B950952C45AC4600E8A388 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 14B950942C45AC4600E8A388 /* Preview Assets.xcassets */; };
 		14B9509D2C45B62500E8A388 /* ICMPResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14B9509C2C45B62500E8A388 /* ICMPResponse.swift */; };
 		14BBA22D2C98B49400438D2D /* Formatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14BBA22C2C98B49400438D2D /* Formatter.swift */; };
+		14CD07CD2D3A9A95009D2AAF /* FullscreenPopup in Frameworks */ = {isa = PBXBuildFile; productRef = 14CD07CC2D3A9A95009D2AAF /* FullscreenPopup */; };
+		14CD07CF2D3AA8CA009D2AAF /* AlertPauseBgView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14CD07CE2D3AA8CA009D2AAF /* AlertPauseBgView.swift */; };
 		14E283482C9216AE0086E36F /* Session.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14E283472C9216AE0086E36F /* Session.swift */; };
 		14F54FF32C986FEA005260E5 /* SessionDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14F54FF22C986FEA005260E5 /* SessionDetailView.swift */; };
 		14FB80AE2D36A3A800D3214B /* AboutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14FB80AD2D36A3A800D3214B /* AboutView.swift */; };
@@ -114,6 +116,7 @@
 		14B950942C45AC4600E8A388 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		14B9509C2C45B62500E8A388 /* ICMPResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ICMPResponse.swift; sourceTree = "<group>"; };
 		14BBA22C2C98B49400438D2D /* Formatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Formatter.swift; sourceTree = "<group>"; };
+		14CD07CE2D3AA8CA009D2AAF /* AlertPauseBgView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertPauseBgView.swift; sourceTree = "<group>"; };
 		14E283472C9216AE0086E36F /* Session.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Session.swift; sourceTree = "<group>"; };
 		14E929DA2C9236860088EA79 /* PingStats.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; path = PingStats.xcodeproj; sourceTree = "<group>"; };
 		14F54FF22C986FEA005260E5 /* SessionDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionDetailView.swift; sourceTree = "<group>"; };
@@ -154,6 +157,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				14CD07CD2D3A9A95009D2AAF /* FullscreenPopup in Frameworks */,
 				144D60B42C90966A009B7D9C /* SwiftyPing in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -360,6 +364,7 @@
 			children = (
 				14A072AB2D38020E002F7A5E /* Components */,
 				14B9508F2C45AC4400E8A388 /* MainView.swift */,
+				14CD07CE2D3AA8CA009D2AAF /* AlertPauseBgView.swift */,
 			);
 			path = Main;
 			sourceTree = "<group>";
@@ -414,6 +419,7 @@
 			name = PingStats;
 			packageProductDependencies = (
 				144D60B32C90966A009B7D9C /* SwiftyPing */,
+				14CD07CC2D3A9A95009D2AAF /* FullscreenPopup */,
 			);
 			productName = PingStats;
 			productReference = 14B9508A2C45AC4400E8A388 /* PingStats.app */;
@@ -445,6 +451,7 @@
 			mainGroup = 14B950812C45AC4400E8A388;
 			packageReferences = (
 				144D60B22C90966A009B7D9C /* XCRemoteSwiftPackageReference "SwiftyPing" */,
+				14CD07CB2D3A9A95009D2AAF /* XCRemoteSwiftPackageReference "swift-fullscreen-popup" */,
 			);
 			productRefGroup = 14B9508B2C45AC4400E8A388 /* Products */;
 			projectDirPath = "";
@@ -514,6 +521,7 @@
 				14A072B82D38035F002F7A5E /* SegmentedControl.swift in Sources */,
 				14A072BF2D382495002F7A5E /* BlinkingText.swift in Sources */,
 				14A072B92D38035F002F7A5E /* LoadingBar.swift in Sources */,
+				14CD07CF2D3AA8CA009D2AAF /* AlertPauseBgView.swift in Sources */,
 				14A072BA2D38035F002F7A5E /* LogTable.swift in Sources */,
 				14A072BB2D38035F002F7A5E /* DashedGauge.swift in Sources */,
 				14A072BC2D38035F002F7A5E /* TextStatInfo.swift in Sources */,
@@ -767,6 +775,14 @@
 				kind = branch;
 			};
 		};
+		14CD07CB2D3A9A95009D2AAF /* XCRemoteSwiftPackageReference "swift-fullscreen-popup" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Ryu0118/swift-fullscreen-popup";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.3.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -774,6 +790,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 144D60B22C90966A009B7D9C /* XCRemoteSwiftPackageReference "SwiftyPing" */;
 			productName = SwiftyPing;
+		};
+		14CD07CC2D3A9A95009D2AAF /* FullscreenPopup */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 14CD07CB2D3A9A95009D2AAF /* XCRemoteSwiftPackageReference "swift-fullscreen-popup" */;
+			productName = FullscreenPopup;
 		};
 /* End XCSwiftPackageProductDependency section */
 

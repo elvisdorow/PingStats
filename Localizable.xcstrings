@@ -310,6 +310,16 @@
         }
       }
     },
+    "Enter an IP Address or Hostname" : {
+      "localizations" : {
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Digite um endereço IP ou nome do host"
+          }
+        }
+      }
+    },
     "ethernet" : {
       "localizations" : {
         "pt-BR" : {
@@ -370,6 +380,16 @@
         }
       }
     },
+    "Host already exists" : {
+      "localizations" : {
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Host já adicionado"
+          }
+        }
+      }
+    },
     "Hosts" : {
       "localizations" : {
         "pt-BR" : {
@@ -396,6 +416,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Intervalo entre requisições de ping consecutivas."
+          }
+        }
+      }
+    },
+    "Invalid host" : {
+      "localizations" : {
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Host Inválido"
           }
         }
       }
@@ -545,6 +575,9 @@
           }
         }
       }
+    },
+    "Olá" : {
+
     },
     "Package Loss" : {
       "localizations" : {
@@ -832,6 +865,16 @@
         }
       }
     },
+    "The test has been paused because the app was moved to the background. The test will only run while the app is active in the foreground." : {
+      "localizations" : {
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "O teste foi pausado porque o aplicativo foi colocado em segundo plano. O teste só será executado enquanto o aplicativo estiver ativo em primeiro plano."
+          }
+        }
+      }
+    },
     "Theme" : {
       "localizations" : {
         "pt-BR" : {
@@ -852,12 +895,32 @@
         }
       }
     },
+    "Understood" : {
+      "localizations" : {
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Entendido"
+          }
+        }
+      }
+    },
     "unknown" : {
       "localizations" : {
         "pt-BR" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "desconhecido"
+          }
+        }
+      }
+    },
+    "Unknown error" : {
+      "localizations" : {
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Erro desconhecido"
           }
         }
       }
@@ -894,6 +957,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Ver Logs"
+          }
+        }
+      }
+    },
+    "Warning" : {
+      "localizations" : {
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Aviso"
           }
         }
       }

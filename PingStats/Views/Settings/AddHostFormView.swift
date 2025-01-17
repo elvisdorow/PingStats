@@ -8,7 +8,7 @@ import SwiftUI
 
 struct AddHostFormView: View {
     @Binding var newIpAddress: String
-    @Binding var errorMessage: String
+    @Binding var errorMessage: LocalizedStringResource?
     
     var onSave: () -> Void
     
@@ -37,7 +37,10 @@ struct AddHostFormView: View {
                 .frame(maxWidth: .infinity, alignment: .leading)
             }
             .frame(height: 60, alignment: .top)
-                
+            Text("Enter an IP Address or Hostname")
+                .font(.subheadline)
+            
+            
             VStack(alignment: .center, spacing: 20) {
                 VStack {
                     TextField("Example: 1.1.1.1 or google.com", text: $newIpAddress)
@@ -55,15 +58,17 @@ struct AddHostFormView: View {
                         .cornerRadius(10)
                         .background {
                             RoundedRectangle(cornerRadius: 10)
-                                .stroke(errorMessage.isEmpty ? Color(.systemGray4).opacity(0.3) : .red, lineWidth: 1)
+                                .stroke(errorMessage == nil ? Color(.systemGray4).opacity(0.3) : .red, lineWidth: 1)
                                 .background(Color(.systemGray5).opacity(0.43))
                                 .cornerRadius(10)
                                 .frame(height: 50)
                         }
-                        .foregroundColor(errorMessage.isEmpty ? .primary : .red)
+                        .foregroundColor(errorMessage == nil ? .primary : .red)
                     
-                    if !errorMessage.isEmpty {
-                        Text(errorMessage)
+                    if let err = errorMessage {
+                        let localizedErrorMessage = String(localized: err)
+                        
+                        Text(localizedErrorMessage)
                             .padding(.horizontal, 7)
                             .foregroundColor(Color.theme.appRedColor)
                             .font(.caption)
@@ -79,6 +84,9 @@ struct AddHostFormView: View {
                 
                 Spacer()
 
+            }
+            .onAppear {
+                errorMessage = nil
             }
             .padding(.horizontal, 30)
 
@@ -103,11 +111,11 @@ struct AddHostFormView: View {
         if !newIpAddress.isEmpty && !IPUtils.validateIPAddressOrHostname(newIpAddress) {
             errorMessage = "Invalid host"
         } else {
-            errorMessage = ""
+            errorMessage = nil
         }
 
         if newIpAddress.isEmpty {
-            errorMessage = ""
+            errorMessage = nil
         }
     }
 }
