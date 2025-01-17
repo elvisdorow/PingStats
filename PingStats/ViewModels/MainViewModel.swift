@@ -15,6 +15,8 @@ class MainViewModel: ObservableObject {
     
     var settings: Settings = .shared
     
+    @AppStorage("isMessageBgPausedShown") var isMessageBgPausedShown: Bool = false
+    
     @Published var isAnalysisRunning: Bool = false
     @Published var appState: AppState = .empty {
         didSet {

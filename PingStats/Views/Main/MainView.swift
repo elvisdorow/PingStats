@@ -19,7 +19,8 @@ struct MainView: View {
     @State private var showAboutView: Bool = false
     
     @State private var showHostList: Bool = false
-    @State private var showPauseInBG: Bool = false
+    
+    @State private var showAlertPausedBg: Bool = false
     
     @StateObject var viewModel: MainViewModel = MainViewModel()
     @StateObject var settings = Settings.shared
@@ -56,9 +57,15 @@ struct MainView: View {
                     bottomActions
 
                 }
-                .popup(isPresented: $showPauseInBG, content: {
-                    Text("Olá")
-                })
+                .popup(isPresented: $showAlertPausedBg, delay: .seconds(1)) { isPresented in
+                    Color.gray.opacity(0.5)
+                }
+                       content: {
+                    AlertPauseBgView {
+                        showAlertPausedBg = false
+                        viewModel.isMessageBgPausedShown = true
+                    }
+                }
                 .environmentObject(viewModel)
                 .toolbar(content: {
                     
@@ -89,6 +96,12 @@ struct MainView: View {
         .onChange(of: scenePhase) { _, newValue in
             if newValue == .background && viewModel.isAnalysisRunning {
                 viewModel.pause()
+            }
+            
+            if newValue == .active && viewModel.appState == .paused {
+                if viewModel.isMessageBgPausedShown == false {
+                    showAlertPausedBg = true
+                }
             }
         }
     }
@@ -347,7 +360,6 @@ extension MainView {
                         switch viewModel.appState {
                         case .empty, .stopped:
                             viewModel.start()
-                            
                         case .paused:
                             viewModel.resume()
                         case .running:
@@ -357,9 +369,6 @@ extension MainView {
                     .onLongPressGesture {
                         if viewModel.appState == .paused {
                             viewModel.stop()
-                        }
-                        if viewModel.appState == .stopped {
-                            showPauseInBG.toggle()
                         }
                     }
             }

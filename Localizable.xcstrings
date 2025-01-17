@@ -576,9 +576,6 @@
         }
       }
     },
-    "Olá" : {
-
-    },
     "Package Loss" : {
       "localizations" : {
         "pt-BR" : {
@@ -870,7 +867,7 @@
         "pt-BR" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "O teste foi pausado porque o aplicativo foi colocado em segundo plano. O teste só será executado enquanto o aplicativo estiver ativo em primeiro plano."
+            "value" : "Teste pausado porque o aplicativo foi colocado em segundo plano. O teste só será executado enquanto o aplicativo estiver ativo em primeiro plano."
           }
         }
       }
