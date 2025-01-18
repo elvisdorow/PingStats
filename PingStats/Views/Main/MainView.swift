@@ -59,8 +59,7 @@ struct MainView: View {
                 }
                 .popup(isPresented: $showAlertPausedBg, delay: .seconds(1)) { isPresented in
                     Color.gray.opacity(0.5)
-                }
-                       content: {
+                } content: {
                     AlertPauseBgView {
                         showAlertPausedBg = false
                         viewModel.isMessageBgPausedShown = true
@@ -353,10 +352,6 @@ extension MainView {
                 PlayButton(appState: viewModel.appState)
                     .offset(y: 8)
                     .onTapGesture {
-                        let generator = UIImpactFeedbackGenerator(style: .light)
-                        generator.prepare()
-                        generator.impactOccurred()
-                        
                         switch viewModel.appState {
                         case .empty, .stopped:
                             viewModel.start()
@@ -365,10 +360,17 @@ extension MainView {
                         case .running:
                             viewModel.stop()
                         }
+                        triggerHaptic(style: .medium)
                     }
                     .onLongPressGesture {
                         if viewModel.appState == .paused {
                             viewModel.stop()
+                            triggerHaptic(style: .medium)
+                        }
+                        
+                        if viewModel.appState == .running {
+                            viewModel.pause()
+                            triggerHaptic(style: .medium)
                         }
                     }
             }
@@ -378,6 +380,12 @@ extension MainView {
         .padding(.horizontal)
         .padding(.bottom)
         .frame(maxWidth: .infinity)
+    }
+    
+    func triggerHaptic(style: UIImpactFeedbackGenerator.FeedbackStyle) {
+        let generator = UIImpactFeedbackGenerator(style: style)
+        generator.prepare()
+        generator.impactOccurred()
     }
 
 }

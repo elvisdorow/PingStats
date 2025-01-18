@@ -21,9 +21,9 @@ struct AlertPauseBgView: View {
             VStack(alignment: .leading, spacing: 20, content: {
                 
                 Label {
-                    Text("Warning")
+                    Text("Test Paused")
                 } icon: {
-                    Image(systemName: "eye.slash")
+                    Image(systemName: "pause.fill")
                 }
                 .font(.headline)
                 .frame(maxWidth: .infinity, alignment: .leading)
@@ -41,21 +41,20 @@ struct AlertPauseBgView: View {
                         } icon: {
                             Image(systemName: "hand.thumbsup.fill")
                         }
-                        .padding(.horizontal)
+                        .padding(.horizontal, 15)
                         .padding(.vertical, 7)
 
                     }
                     .buttonStyle(.borderedProminent)
                 }
                 .frame(maxWidth: .infinity, alignment: .center)
-                .padding()
+                .padding(.top, 5)
 
             })
-            .frame(alignment: .leading)
         }
-        .padding()
+        .padding(.horizontal, 20)
         
-        .frame(width: 340, height: 300)
+        .frame(width: 340, height: 300, alignment: .center)
         .background {
             Color.theme.backgroundTop
         }
@@ -63,8 +62,29 @@ struct AlertPauseBgView: View {
     }
 }
 
-#Preview {
-    AlertPauseBgView {
-        print("alert pause bg")
+#Preview("PT") {
+    ZStack {
+        Color.gray.opacity(0.5)
+        
+        
+        AlertPauseBgView {
+            print("alert pause bg")
+        }
+        .environment(\.locale, .init(identifier: "pt"))
+
     }
+    .ignoresSafeArea()
+}
+
+#Preview("EN") {
+    ZStack {
+        Color.gray.opacity(0.5)
+        
+        
+        AlertPauseBgView {
+            print("alert pause bg")
+        }
+        .environment(\.locale, .init(identifier: "en"))
+    }
+    .ignoresSafeArea()
 }

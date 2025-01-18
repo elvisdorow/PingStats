@@ -13,9 +13,9 @@ struct StatusMessage: View {
     @Binding var appState: AppState
     
     var body: some View {
-        VStack {
+        HStack(spacing: 5) {
             if appState == .paused {
-                BlinkingText(text: $text)
+                BlinkingText(text: $text, icon: Image(systemName: "pause.circle.fill"))
             } else {
                 Text("\(text)")
             }
@@ -30,5 +30,5 @@ struct StatusMessage: View {
 }
 
 #Preview {
-    StatusMessage(text: .constant("teste"), appState: .constant(.running))
+    StatusMessage(text: .constant("Test paused"), appState: .constant(.paused))
 }

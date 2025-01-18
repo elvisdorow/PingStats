@@ -10,18 +10,24 @@ import SwiftUI
 struct BlinkingText: View {
     
     @Binding var text: LocalizedStringResource
+    var icon: Image?
     @State private var isVisible = true
     @State private var timer: Timer? = nil
     
     var body: some View {
-        Text(text)
-            .opacity(isVisible ? 1 : 0)
-            .onAppear {
-                startBlinking()
+        HStack {
+            Text(text)
+            if let icon = icon {
+                icon
             }
-            .onDisappear {
-                stopBlinking()
-            }
+        }
+        .opacity(isVisible ? 1 : 0)
+        .onAppear {
+            startBlinking()
+        }
+        .onDisappear {
+            stopBlinking()
+        }
     }
     
     private func startBlinking() {

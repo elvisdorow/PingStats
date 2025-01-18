@@ -225,6 +225,7 @@
 				14A072B52D38035F002F7A5E /* TextStatInfo.swift */,
 				14A072BE2D382495002F7A5E /* BlinkingText.swift */,
 				14A072C02D382712002F7A5E /* StatusMessage.swift */,
+				14CD07CE2D3AA8CA009D2AAF /* AlertPauseBgView.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -364,7 +365,6 @@
 			children = (
 				14A072AB2D38020E002F7A5E /* Components */,
 				14B9508F2C45AC4400E8A388 /* MainView.swift */,
-				14CD07CE2D3AA8CA009D2AAF /* AlertPauseBgView.swift */,
 			);
 			path = Main;
 			sourceTree = "<group>";
