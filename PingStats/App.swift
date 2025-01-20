@@ -28,6 +28,8 @@ struct App: SwiftUI.App {
     
     func insertDefaultHostIfNeeded() {
         if isFirstTime {
+            
+            // setup database
             let db = TargetHostDataService()
 
             if db.hosts.isEmpty {
@@ -36,9 +38,14 @@ struct App: SwiftUI.App {
                 host.type = HostType.ip
 
                 db.add(host: host)
-            }            
+            }
+            
+            // ask for notification permission
+            NotificationService.instance.checkNotificationPermission()
+            
             isFirstTime = false
         }
     }
+    
 }
 

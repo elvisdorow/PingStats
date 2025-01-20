@@ -43,6 +43,7 @@
 		14FB80AE2D36A3A800D3214B /* AboutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14FB80AD2D36A3A800D3214B /* AboutView.swift */; };
 		D504B6D22D2749810054FEB6 /* IconAndTitleButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = D504B6D12D2749810054FEB6 /* IconAndTitleButton.swift */; };
 		D50C088A2CF90CD400D567AE /* Host.swift in Sources */ = {isa = PBXBuildFile; fileRef = D50C08892CF90CD400D567AE /* Host.swift */; };
+		D5161EDA2D3EE10900E6F75B /* NotificationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5161ED92D3EE10900E6F75B /* NotificationService.swift */; };
 		D51B56E82D3590D6002B39B2 /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = D51B56E72D3590D6002B39B2 /* Localizable.xcstrings */; };
 		D527F7482CAB25A9001B428C /* IPUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = D527F7472CAB25A9001B428C /* IPUtils.swift */; };
 		D527F74A2CAB290B001B428C /* TargetHostViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D527F7492CAB290B001B428C /* TargetHostViewModel.swift */; };
@@ -123,6 +124,7 @@
 		14FB80AD2D36A3A800D3214B /* AboutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutView.swift; sourceTree = "<group>"; };
 		D504B6D12D2749810054FEB6 /* IconAndTitleButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IconAndTitleButton.swift; sourceTree = "<group>"; };
 		D50C08892CF90CD400D567AE /* Host.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Host.swift; sourceTree = "<group>"; };
+		D5161ED92D3EE10900E6F75B /* NotificationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationService.swift; sourceTree = "<group>"; };
 		D51B56E72D3590D6002B39B2 /* Localizable.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Localizable.xcstrings; sourceTree = "<group>"; };
 		D527F7472CAB25A9001B428C /* IPUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IPUtils.swift; sourceTree = "<group>"; };
 		D527F7492CAB290B001B428C /* TargetHostViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TargetHostViewModel.swift; sourceTree = "<group>"; };
@@ -396,6 +398,7 @@
 				D5FA4E322CE4D8870068CBC9 /* DataService.swift */,
 				D5FBDDE72CEC066C0097898A /* SessionDataService.swift */,
 				D56AC7F52D1F5E3100A0B307 /* FileService.swift */,
+				D5161ED92D3EE10900E6F75B /* NotificationService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -513,6 +516,7 @@
 				143391DA2C9A365300ED8CDB /* PingIntervalSlider.swift in Sources */,
 				14B9508E2C45AC4400E8A388 /* App.swift in Sources */,
 				14AAA2502C92491A00DF83F0 /* SessionsListView.swift in Sources */,
+				D5161EDA2D3EE10900E6F75B /* NotificationService.swift in Sources */,
 				D5BC7BB22CE7E37800D1359A /* ChartItem.swift in Sources */,
 				D5FB2D152CA6E1D1002C4AE3 /* PingCountStatSlider.swift in Sources */,
 				14A072C12D382712002F7A5E /* StatusMessage.swift in Sources */,

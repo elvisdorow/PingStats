@@ -95,6 +95,17 @@ struct MainView: View {
         .onChange(of: scenePhase) { _, newValue in
             if newValue == .background && viewModel.isAnalysisRunning {
                 viewModel.pause()
+                
+                if !viewModel.isMessageBgPausedShown {
+                    NotificationService.instance.sendAppInBackgroundNotification { scheduled in
+                        if scheduled {
+                            print("Notification scheduled")
+//                            DispatchQueue.main.async {
+//                                 viewModel.isMessageBgPausedShown = true
+//                            }
+                        }
+                    }
+                }
             }
             
             if newValue == .active && viewModel.appState == .paused {

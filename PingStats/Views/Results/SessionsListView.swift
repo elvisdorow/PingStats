@@ -14,6 +14,7 @@ struct SessionsListView: View {
     @StateObject var vm = SessionListViewModel()
     
     var body: some View {
+        
         NavigationView {
             List {
                 if vm.sessions.isEmpty {
@@ -21,14 +22,27 @@ struct SessionsListView: View {
                         .foregroundColor(.secondary)
                         .padding()
                 } else {
-                    ForEach(vm.sessions, id: \.self) { session in
-                        NavigationLink {
-                            SessionDetailView(session: session, sessions: $vm.sessions)
+                    Section {
+                        ForEach(vm.sessions, id: \.self) { session in
+                            NavigationLink {
+                                SessionDetailView(session: session, sessions: $vm.sessions)
 
-                        } label: {
-                            SessionRowView(session: session).frame(minHeight: 80)
+                            } label: {
+                                SessionRowView(session: session).frame(minHeight: 80)
+                            }
                         }
+                    } header: {
+                        HStack {
+                            Text("Results found: \(vm.sessions.count)")
+                                .font(.subheadline)
+                                .padding(.horizontal, 0)
+
+                        }
+                        .padding(.vertical, 7)
+                        .textCase(nil)
+                        
                     }
+
                 }
             }
             .navigationTitle("Results")

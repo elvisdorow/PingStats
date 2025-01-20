@@ -752,6 +752,16 @@
         }
       }
     },
+    "Results found: %lld" : {
+      "localizations" : {
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Resultados encontrados: %lld"
+          }
+        }
+      }
+    },
     "Save" : {
       "localizations" : {
         "pt-BR" : {

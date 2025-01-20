@@ -51,10 +51,10 @@ class SessionDataService: DataService {
         newSession.averagePing = pingStat.averagePing
         newSession.packageLoss = pingStat.packageLoss
         
-        newSession.generalScore = pingStat.generalScore
-        newSession.streamingScore = pingStat.streamingScore
-        newSession.videoCallScore = pingStat.videoCallScore
-        newSession.gamingScore = pingStat.gamingScore
+        newSession.generalScore = (pingStat.generalScore > 0) ? pingStat.generalScore : 0.0
+        newSession.streamingScore = (pingStat.streamingScore > 0) ? pingStat.streamingScore : 0.0
+        newSession.videoCallScore = (pingStat.videoCallScore > 0) ? pingStat.videoCallScore : 0.0
+        newSession.gamingScore = (pingStat.gamingScore > 0) ? pingStat.gamingScore : 0.0
         
         newSession.pingCount = Int16(session.responses.count)
         
