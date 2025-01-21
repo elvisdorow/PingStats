@@ -162,8 +162,7 @@ extension MainView {
     
     @ViewBuilder
     var chartLogView: some View {
-        
-        SegmentedControl(selected: $viewModel.chartType)
+        SegmentedControl2(selected: $viewModel.chartType, width: 230)
             .padding(.top, 15)
             .padding(.leading, 10)
         

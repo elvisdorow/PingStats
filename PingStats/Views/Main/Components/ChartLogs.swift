@@ -30,7 +30,10 @@ struct Charts: View {
     
     @EnvironmentObject var viewModel: MainViewModel
     @Environment(\.colorScheme) var colorScheme: ColorScheme
-
+    
+    let barChartGradient = Gradient(colors: [Color.theme.chartColor.opacity(0.7), Color.theme.chartColor.opacity(0.5)])
+    let areaChartGradient = Gradient(colors: [Color.theme.chartColor.opacity(0.6), Color.theme.chartColor.opacity(0.2)])
+    
     var body: some View {
         Chart {
             ForEach(viewModel.chartItems) { data in
@@ -40,50 +43,40 @@ struct Charts: View {
                         y: .value("ms", data.duration.scaled(by: 1000))
                     )
                     .lineStyle(StrokeStyle(lineWidth: 2))
-                    .foregroundStyle(.blue.opacity(0.7))
-                    .interpolationMethod(.catmullRom)
+                    .foregroundStyle(Color.theme.chartColor)
+                    .interpolationMethod(.linear)
+                    .opacity(data.duration > 0 ? 1.0 : 0.0)
                     AreaMark(
                         x: .value("seq", data.sequence),
                         y: .value("ms", data.duration.scaled(by: 1000))
                     )
-                    .interpolationMethod(.catmullRom)
+                    .interpolationMethod(.linear)
                     .foregroundStyle(LinearGradient(
-                        gradient: Gradient(colors: [Color.theme.darkAccent.opacity(1.0), Color.theme.darkAccent.opacity(0.2)]),
+                        gradient: areaChartGradient,
                         startPoint: .top,
                         endPoint: .bottom
                     ))
-                    
+                    .opacity(data.duration > 0 ? 1.0 : 0.0)
+
                 } else {
-                    if colorScheme == .dark {
                         BarMark(
                             x: .value("seq", data.sequence),
                             y: .value("ms", data.duration.scaled(by: 1000)),
                             width: 7
                         )
                         .foregroundStyle(LinearGradient(
-                            gradient: Gradient(colors: [Color.theme.darkAccent.opacity(1.0), Color.theme.darkAccent.opacity(0.8)]),
+                            gradient: barChartGradient,
                             startPoint: .top,
                             endPoint: .bottom
                         ))
                         
                         .clipShape(RoundedBottomRectangle(cornerRadius: 2))
                         .cornerRadius(3)
-                    } else {
-                        BarMark(
-                            x: .value("seq", data.sequence),
-                            y: .value("ms", data.duration.scaled(by: 1000)),
-                            width: 7
-                        )
-                        .foregroundStyle(.accent.gradient)
-                        
-                        .clipShape(RoundedBottomRectangle(cornerRadius: 2))
-                        .cornerRadius(3)
-
-                    }
                     
                 }
             }
         }
+        .chartXScale(domain: 0...viewModel.numBarsInChart)
         .chartXAxis {
             AxisMarks {
                 AxisGridLine()
@@ -92,6 +85,7 @@ struct Charts: View {
         .chartYAxisLabel {
             Text("ms")
         }
+        
     }
 }
 

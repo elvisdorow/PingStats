@@ -656,6 +656,16 @@
         }
       }
     },
+    "Ping Test Paused" : {
+      "localizations" : {
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Teste de Ping Pausado"
+          }
+        }
+      }
+    },
     "Ping Timeout" : {
       "localizations" : {
         "pt-BR" : {
@@ -882,12 +892,22 @@
         }
       }
     },
-    "The test has been paused because the app was moved to the background. The test will only run while the app is active in the foreground." : {
+    "The test has been paused because the app was moved to the background. Tests will only run while the app is active in the foreground." : {
       "localizations" : {
         "pt-BR" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Teste pausado porque o aplicativo foi colocado em segundo plano. O teste só será executado enquanto o aplicativo estiver ativo em primeiro plano."
+            "value" : "Teste pausado porque o aplicativo foi colocado em segundo plano. Mantenha o aplicativo aberto para finalizar o teste."
+          }
+        }
+      }
+    },
+    "The test paused as the app moved to the background. Open the app to resume." : {
+      "localizations" : {
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "O teste de ping foi pausado. Abra o aplicativo para continuar o teste."
           }
         }
       }

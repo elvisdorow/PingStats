@@ -9,8 +9,10 @@ import SwiftUI
 
 struct SegmentedControl: View {
     
-    enum SelectedControl {
-        case areaChart, barChart, logs
+    enum SelectedControl: String {
+        case areaChart = "areaChartIcon"
+        case barChart = "barChartIcon"
+        case logs = "logsChartIcon"
     }
     
     @Binding
@@ -70,11 +72,82 @@ struct SegmentedControl: View {
     }
 }
 
-struct SegmentControlPreview: PreviewProvider {
-    @State static var type = SegmentedControl.SelectedControl.areaChart
-    static var previews: some View {
-        SegmentedControl(selected: $type)
 
+
+struct SegmentedControl2: View {
+    enum SegmentedOptions: String, CaseIterable {
+        case barChart = "barChartIcon"
+        case areaChart = "areaChartIcon"
+        case logs = "logsChartIcon"
+    }
+
+    @Binding var selected: SegmentedOptions
+    
+    let width: CGFloat
+
+    private var itemWidth: CGFloat {
+        width / CGFloat(SegmentedOptions.allCases.count)
+    }
+
+    var body: some View {
+        let selectedItem = SegmentedOptions.allCases.firstIndex(of: selected) ?? 0
+        let underlineWidth = itemWidth * 0.5
+
+        VStack(spacing: 0) {
+            // Segmented buttons
+            HStack(spacing: 0) {
+                ForEach(SegmentedOptions.allCases, id: \.self) { item in
+                    segmentedButton(option: item)
+                        .onTapGesture {
+                            self.selected = item // Update the selected item
+                        }
+                }
+            }
+            .frame(width: width)
+
+            // Underline
+            RoundedRectangle(cornerRadius: 2)
+                .frame(width: underlineWidth, height: 3)
+                .foregroundColor(.primary)
+                .offset(x: CGFloat(selectedItem) * itemWidth - (width / 2) + (itemWidth / 2))
+                .animation(.spring(duration: 0.1), value: selected)
+        }
+        .frame(height: 50)
+    }
+
+    func segmentedButton(option: SegmentedOptions) -> some View {
+        VStack {
+            Image(option.rawValue)
+                .resizable()
+                .scaledToFit()
+                .frame(width: 27, height: 27)
+                .foregroundColor(option == selected ? .blue : .gray)
+                .opacity(option == selected ? 1.0 : 0.4)
+        }
+        .frame(width: itemWidth, height: 30)
     }
 }
+
+struct SegmentedControl2_Previews: PreviewProvider {
+    @State static var selected = SegmentedControl2.SegmentedOptions.barChart
+
+    static var previews: some View {
+        SegmentedControl2(selected: $selected, width: 250)
+            .previewLayout(.sizeThatFits)
+            .padding()
+    }
+}
+
+
+//struct SegmentControlPreview: PreviewProvider {
+//    @State static var type = SegmentedControl.SelectedControl.areaChart
+//    
+//    static var previews: some View {
+//        Group {
+//            SegmentedControl(selected: $type)
+//                .frame(maxWidth: 200)
+//        }
+//            
+//    }
+//}
 

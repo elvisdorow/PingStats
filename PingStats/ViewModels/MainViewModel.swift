@@ -34,9 +34,9 @@ class MainViewModel: ObservableObject {
     @Published var isConnected: Bool = false
     @Published var connectionType: ConnectionType = .unknown
 
-    @Published var chartType: SegmentedControl.SelectedControl = .barChart
+    @Published var chartType: SegmentedControl2.SegmentedOptions = .barChart
     @Published var chartItems: [ChartItem] = []
-    private let numBarsInChart = 40
+    let numBarsInChart = 40
     
     @Published var pingStat: PingStat = .init()
     @Published var pingLogs: [PingLog] = []
@@ -199,12 +199,16 @@ class MainViewModel: ObservableObject {
                 }
             }
     }
-    
-    
+        
     private func updateChart() {
         if let session = self.session {
             let lastResponses = Array(session.responses.suffix(numBarsInChart))
             for index in 0..<lastResponses.count {
+                
+                if index >= chartItems.count {
+                    chartItems.append(.init(sequence: index, error: false, duration: 0.0))
+                }
+                
                 if lastResponses[index].error != nil {
                     chartItems[index].duration = 0.0
                     chartItems[index].error = true
@@ -218,9 +222,9 @@ class MainViewModel: ObservableObject {
     private func resetChart() {
         pingLogs = []
         chartItems = []
-        for idx in 1...numBarsInChart {
-            chartItems.append(.init(sequence: idx, error: false, duration: 0.0))
-        }
+//        for idx in 1...numBarsInChart {
+//            chartItems.append(.init(sequence: idx, error: false, duration: 0.0))
+//        }
     }
 
     private func updateConnectionType(_ path: NWPath) {

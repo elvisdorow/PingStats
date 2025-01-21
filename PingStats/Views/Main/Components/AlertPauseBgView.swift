@@ -29,7 +29,7 @@ struct AlertPauseBgView: View {
                 .frame(maxWidth: .infinity, alignment: .leading)
 
                 
-                Text("The test has been paused because the app was moved to the background. The test will only run while the app is active in the foreground.")
+                Text("The test has been paused because the app was moved to the background. Tests will only run while the app is active in the foreground.")
                 
                 VStack {
                     Button {

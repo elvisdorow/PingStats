@@ -50,8 +50,8 @@ class NotificationService {
                 
                 // Create the notification content
                 let content = UNMutableNotificationContent()
-                content.title = "Ping Test Paused"
-                content.body = "The ongoing ping test has been paused because the app is in the background. Please return to the app to resume and complete the test."
+                content.title = String(localized: "Ping Test Paused")
+                content.body = String(localized: "The test paused as the app moved to the background. Open the app to resume.")
                 content.sound = .default
 
                 // Set a trigger for the notification (e.g., after 5 seconds)
