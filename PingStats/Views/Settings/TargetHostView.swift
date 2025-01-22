@@ -53,7 +53,7 @@ struct TargetHostView: View {
                         await addNewTargetHost()
                     }
                 })
-            .presentationDetents([.height(240), .height(250)])
+            .presentationDetents([.height(280), .height(290)])
         }
         .toolbar(content: {
             

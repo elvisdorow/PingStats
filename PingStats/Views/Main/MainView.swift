@@ -100,9 +100,6 @@ struct MainView: View {
                     NotificationService.instance.sendAppInBackgroundNotification { scheduled in
                         if scheduled {
                             print("Notification scheduled")
-//                            DispatchQueue.main.async {
-//                                 viewModel.isMessageBgPausedShown = true
-//                            }
                         }
                     }
                 }
@@ -282,7 +279,7 @@ extension MainView {
                     .frame(width: 1, height: 50)
                           
             }
-            VStack(spacing: 25) {
+            VStack(alignment: .leading, spacing: 30) {
                 TextStatInfo(
                     statusTitle: "Average",
                     pingValue: "\(Formatter.number(viewModel.pingStat.averagePing, fraction: 0, unit: "ms"))",
@@ -293,14 +290,17 @@ extension MainView {
                     statusTitle: "Jitter",
                     pingValue: "\(Formatter.number(viewModel.pingStat.jitter, fraction: 0, unit: "ms"))")
             }
-
+            .frame(
+                maxHeight: .infinity
+            )
+            
             VStack {
                 Rectangle()
                     .fill(Color.gray.opacity(0.15))
                     .frame(width: 1, height: 50)
                           
             	}
-            VStack(spacing: 25) {
+            VStack(spacing: 30) {
                 TextStatInfo(
                     statusTitle: "Best",
                     pingValue: "\(Formatter.number(viewModel.pingStat.bestPing, fraction: 0, unit: "ms"))"
@@ -312,6 +312,7 @@ extension MainView {
                 )
             }
         }
+        .padding(.horizontal, 5)
     }
     
     @ViewBuilder
@@ -320,17 +321,32 @@ extension MainView {
         HStack(spacing: 30) {
             
             VStack(alignment: .leading) {
-                Text("Target Host")
-                    .font(.subheadline)
+//                Text("Target Host")
+//                    .font(.subheadline)
                 
                 
                 HStack(alignment: .firstTextBaseline) {
-                    Image(systemName: "server.rack").opacity(0.6)
+                    HStack(spacing: 3) {
+                        Image(systemName: "server.rack")
+                            .opacity(0.6)
+                        Text("Target Host")
+                            .opacity(0.6)
+                            .font(.subheadline)
+                            .lineLimit(1)
+                    }
+                    .fixedSize(
+                        horizontal: true,
+                        vertical: true
+                    )
                     Text("\(viewModel.hostTextBox)")
                         .foregroundColor(viewModel.isAnalysisRunning ? .primary.opacity(0.8) : .primary)
-                        . multilineTextAlignment(.leading)
+                        .lineLimit(1)
+                        .font(.subheadline)
+
+                        
                 }
                 .padding(.leading, 8)
+                .padding(.trailing, 8)
                 .frame(height: 40)
                 .frame(maxWidth: /*@START_MENU_TOKEN@*/.infinity/*@END_MENU_TOKEN@*/, alignment: .leading)
                 .background(viewModel.isAnalysisRunning ? Color(.systemGray4).opacity(0.36): Color(.systemGray4))

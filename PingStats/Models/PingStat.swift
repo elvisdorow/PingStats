@@ -51,6 +51,10 @@ class PingStat {
         self.videoCallScore = calculateScore(pingWeight: 0.2, jitterWeight: 0.5, packageLossWeight: 0.3)
         
         self.generalScore = ((gamingScore + streamingScore + videoCallScore) / 3) - packageLoss
+        
+        if self.generalScore < 0 {
+            self.generalScore = 0
+        }
     }
     
     private func calculateStatus(val: Double) -> Status {
@@ -103,8 +107,6 @@ class PingStat {
     private func getVideoCallStatus() -> Status {
         return calculateStatus(val: videoCallScore)
     }
-    
-    // MARK: Computed properties
     
     var pingScore: Double {
         var score = 0.0

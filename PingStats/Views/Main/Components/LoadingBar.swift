@@ -56,7 +56,7 @@ struct DotMark: View {
 
 struct LoadingBarPreview: PreviewProvider {
     @State static var currentValue = 87.0
-    
+     
     static var previews: some View {
         LoadingBar(currentValue: $currentValue)
             .frame(maxWidth: 80)
