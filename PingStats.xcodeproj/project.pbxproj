@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		1403D4AF2D413E800021E9A0 /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1403D4AE2D413E800021E9A0 /* Launch Screen.storyboard */; };
 		1409322F2C52775B00D2C03F /* PingStat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1409322E2C52775B00D2C03F /* PingStat.swift */; };
 		140932322C528BEA00D2C03F /* MainViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 140932312C528BEA00D2C03F /* MainViewModel.swift */; };
 		140AFF682C6663BA00A4A2C8 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 140AFF672C6663BA00A4A2C8 /* SettingsView.swift */; };
@@ -88,7 +87,6 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		1403D4AE2D413E800021E9A0 /* Launch Screen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
 		1409322E2C52775B00D2C03F /* PingStat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PingStat.swift; sourceTree = "<group>"; };
 		140932312C528BEA00D2C03F /* MainViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewModel.swift; sourceTree = "<group>"; };
 		140AFF672C6663BA00A4A2C8 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
@@ -265,7 +263,6 @@
 				D5FFFF1E2CDD51840039D7DD /* Services */,
 				D5F38B9E2CDD07E50037FBD3 /* Resources */,
 				14B950932C45AC4600E8A388 /* Preview Content */,
-				1403D4AE2D413E800021E9A0 /* Launch Screen.storyboard */,
 			);
 			path = PingStats;
 			sourceTree = "<group>";
@@ -481,7 +478,6 @@
 			files = (
 				1485A9662C87AC6D00FDC0AC /* Inter-Light.ttf in Resources */,
 				1485A9672C87AC6D00FDC0AC /* Inter-Black.ttf in Resources */,
-				1403D4AF2D413E800021E9A0 /* Launch Screen.storyboard in Resources */,
 				1485A9612C87A67F00FDC0AC /* Inter-SemiBold.ttf in Resources */,
 				14B950952C45AC4600E8A388 /* Preview Assets.xcassets in Resources */,
 				1485A9632C87A69800FDC0AC /* Inter-Regular.ttf in Resources */,
@@ -701,7 +697,6 @@
 				INFOPLIST_KEY_LSSupportsOpeningDocumentsInPlace = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
-				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
@@ -737,7 +732,6 @@
 				INFOPLIST_KEY_LSSupportsOpeningDocumentsInPlace = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
-				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				IPHONEOS_DEPLOYMENT_TARGET = 17.0;

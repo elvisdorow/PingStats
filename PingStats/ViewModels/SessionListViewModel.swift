@@ -13,8 +13,19 @@ class SessionListViewModel: ObservableObject {
     
     @Published var sessions: [Sessions] = []
     
+    var selectedSession: Sessions?
+    
     init() {
         sessions = sessionDataService.load()
     }
     
+    
+    func deleteSession() {
+        guard let session = selectedSession else { return }
+        FileService.instance.deleteSessionFile(session: session)
+        sessionDataService.delete(session: session)
+        
+        sessions = sessionDataService.load()
+    }
+
 }

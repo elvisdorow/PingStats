@@ -318,13 +318,9 @@ extension MainView {
     @ViewBuilder
     var bottomActions: some View {
         
-        HStack(spacing: 30) {
+        HStack(alignment:.center, spacing: 30) {
             
             VStack(alignment: .leading) {
-//                Text("Target Host")
-//                    .font(.subheadline)
-                
-                
                 HStack(alignment: .firstTextBaseline) {
                     HStack(spacing: 3) {
                         Image(systemName: "server.rack")
@@ -374,7 +370,7 @@ extension MainView {
                     }
                 }
             }
-            HStack {
+            VStack(spacing: 10) {
                 PlayButton(appState: viewModel.appState)
                     .offset(y: 8)
                     .onTapGesture {
@@ -399,12 +395,15 @@ extension MainView {
                             triggerHaptic(style: .medium)
                         }
                     }
+                
+                Text("\(viewModel.actionButtonTitle)")
+                    .font(.caption)
+                    .foregroundColor(.primary.opacity(0.8))
+                    .padding(.top, 5)
             }
-            
-
         }
+        .padding(.vertical, 5)
         .padding(.horizontal)
-        .padding(.bottom)
         .frame(maxWidth: .infinity)
     }
     

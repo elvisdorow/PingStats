@@ -13,6 +13,8 @@ struct SessionsListView: View {
     
     @StateObject var vm = SessionListViewModel()
     
+    @State var showDeleteConfirmation: Bool = false
+    
     var body: some View {
         
         NavigationView {
@@ -29,6 +31,13 @@ struct SessionsListView: View {
 
                             } label: {
                                 SessionRowView(session: session).frame(minHeight: 80)
+                            }
+                        }
+                        .onDelete { indexSet in
+                            indexSet.forEach { idx in
+                                let session = vm.sessions[idx]
+                                vm.selectedSession = session
+                                showDeleteConfirmation.toggle()
                             }
                         }
                     } header: {
@@ -54,6 +63,17 @@ struct SessionsListView: View {
                     }
                 }
             })
+            .confirmationDialog(
+                "Are you sure?",
+                isPresented: $showDeleteConfirmation) {
+              Button("Delete", role: .destructive) {
+                  vm.deleteSession()
+                  vm.selectedSession = nil
+                  showDeleteConfirmation.toggle()
+              }
+            } message: {
+              Text("Are you sure you want to delete?")
+            }
         }
         .toolbarColorScheme(.dark, for: .navigationBar)
     }

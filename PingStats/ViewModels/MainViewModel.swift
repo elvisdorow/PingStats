@@ -24,6 +24,17 @@ class MainViewModel: ObservableObject {
         }
     }
     
+    var actionButtonTitle: LocalizedStringResource {
+        switch appState {
+        case .empty, .stopped:
+            return "Start"
+        case .running:
+            return "Stop"
+        case .paused:
+            return "Resume"
+        }
+    }
+    
     @Published var statusMessage: LocalizedStringResource = "No data"
     @Published var hasNetworkError = false
 

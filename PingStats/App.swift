@@ -19,16 +19,15 @@ struct App: SwiftUI.App {
             MainView()
                 .onAppear {
                     settings.theme = settings.theme
-                    insertDefaultHostIfNeeded()
+                    initialSetup()
                 }
                 .tint(Color.theme.accent)
         }
     }
     
     
-    func insertDefaultHostIfNeeded() {
+    func initialSetup() {
         if isFirstTime {
-            
             // setup database
             let db = TargetHostDataService()
 
