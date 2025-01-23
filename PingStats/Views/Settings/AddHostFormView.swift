@@ -5,6 +5,7 @@
 //  Created by Elvis Dorow on 12/12/24.
 //
 import SwiftUI
+import FirebaseAnalytics
 
 struct AddHostFormView: View {
     @Binding var newIpAddress: String
@@ -91,6 +92,7 @@ struct AddHostFormView: View {
             .padding(.horizontal, 30)
 
         }
+        .analyticsScreen(name: "Add Host Form")
    }
     
     @ViewBuilder

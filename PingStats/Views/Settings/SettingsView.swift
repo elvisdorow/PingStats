@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import FirebaseAnalytics
 
 struct SettingsView: View {
     
@@ -80,6 +81,7 @@ struct SettingsView: View {
             }
             .navigationTitle("Settings")
             .toolbarTitleDisplayMode(.inline)
+            .analyticsScreen(name: "Settings")
         }
     }
 }

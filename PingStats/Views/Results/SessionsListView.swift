@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import FirebaseAnalytics
 
 struct SessionsListView: View {
     
@@ -76,6 +77,7 @@ struct SessionsListView: View {
             }
         }
         .toolbarColorScheme(.dark, for: .navigationBar)
+        .analyticsScreen(name: "Sessions List")
     }
 }
 

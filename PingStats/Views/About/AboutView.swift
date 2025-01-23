@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import FirebaseAnalytics
 
 struct AboutView: View {
     
@@ -71,6 +72,7 @@ struct AboutView: View {
                     }
                 }
             }
+            .analyticsScreen(name: "About")
         }
     }
 }

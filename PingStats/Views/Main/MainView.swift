@@ -8,6 +8,7 @@
 import SwiftUI
 import Charts
 import FullscreenPopup
+import FirebaseAnalytics
 
 struct MainView: View {
     
@@ -111,6 +112,7 @@ struct MainView: View {
                 }
             }
         }
+        .analyticsScreen(name: "MainView")
     }
 }
 

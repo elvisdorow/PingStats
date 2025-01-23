@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import FirebaseAnalytics
 
 struct SessionDetailView: View {
     
@@ -192,6 +193,8 @@ struct SessionDetailView: View {
                 .tint(Color.theme.appRedColor)
             }
         }.background(Color(uiColor: .systemGray6))
+        .analyticsScreen(name: "Session Detail")
+
     }
 }
 

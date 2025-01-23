@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import FirebaseAnalytics
 
 struct PingSettingsView: View {
     
@@ -58,6 +59,7 @@ struct PingSettingsView: View {
             }
             .tint(.theme.accent)
         }
+        .analyticsScreen(name: "Ping Settings")
         
     }
     

@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import FirebaseAnalytics
 
 struct TargetHostView: View {
 
@@ -67,6 +68,7 @@ struct TargetHostView: View {
                     })
             }
         })
+        .analyticsScreen(name: "Target Hosts")
     }
         
     func addNewTargetHost() async {

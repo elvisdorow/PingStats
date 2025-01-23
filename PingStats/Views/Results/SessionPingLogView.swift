@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import FirebaseAnalytics
 
 struct SessionPingLogView: View {
     
@@ -49,6 +50,7 @@ struct SessionPingLogView: View {
                    }
                }
            }
+           .analyticsScreen(name: "Session Ping Logs")
         }
     }
 }
