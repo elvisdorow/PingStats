@@ -26,6 +26,8 @@ class SessionListViewModel: ObservableObject {
         sessionDataService.delete(session: session)
         
         sessions = sessionDataService.load()
+        
+        AnalyticsService.instance.logEvent(name: "session_deleted")
     }
 
 }

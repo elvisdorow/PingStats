@@ -59,12 +59,16 @@ class TargetHostViewModel: ObservableObject {
         
         dataService.add(host: host)
         
+        AnalyticsService.instance.logEvent(name: "add_target_host", parameters: ["host": ipOrHost])
+        
         return host
     }
     
     func delete(host: Host) {
         if let targetHost = dataService.get(host: host.host, type: host.type) {
             dataService.delete(targetHost: targetHost)
+            
+            AnalyticsService.instance.logEvent(name: "delete_target_host", parameters: ["host": host.host])
         }
     }
     

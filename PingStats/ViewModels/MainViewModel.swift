@@ -106,6 +106,8 @@ class MainViewModel: ObservableObject {
         elapsedTime = 0
         
         hasNetworkError = false
+        
+        AnalyticsService.instance.logEvent(name: "start_test", parameters: ["host": sessionParams.host])
     }
     
     func stop() {
@@ -134,6 +136,8 @@ class MainViewModel: ObservableObject {
             
             sessionDataService.add(session: session)
         }
+        
+        AnalyticsService.instance.logEvent(name: "stop_test", parameters: ["host": session?.parameters.host ?? ""])
     }
     
     func pause() {
@@ -144,6 +148,8 @@ class MainViewModel: ObservableObject {
         
         timer?.cancel()
         timer = nil
+        
+        AnalyticsService.instance.logEvent(name: "pause_test", parameters: ["host": session?.parameters.host ?? ""])
     }
     
     func resume() {
@@ -165,6 +171,8 @@ class MainViewModel: ObservableObject {
         pingService.start()
         addTimerSubscription()
         appState = .running
+        
+        AnalyticsService.instance.logEvent(name: "resume_test", parameters: ["host": sessionParams.host])
      }
     
     private func addPingerSubscription() {

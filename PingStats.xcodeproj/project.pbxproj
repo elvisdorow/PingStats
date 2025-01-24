@@ -65,6 +65,7 @@
 		D5ABB79B2D428FEF00B2B69B /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = D5ABB79A2D428FEF00B2B69B /* FirebaseAnalytics */; };
 		D5B7D0042CE636400031D761 /* StatCalculator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5B7D0032CE636400031D761 /* StatCalculator.swift */; };
 		D5BC7BB22CE7E37800D1359A /* ChartItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5BC7BB12CE7E37800D1359A /* ChartItem.swift */; };
+		D5DDABD62D43C83100BC93A5 /* AnalyticsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5DDABD52D43C82900BC93A5 /* AnalyticsService.swift */; };
 		D5FA4E2F2CE4D09A0068CBC9 /* PingStatsContainer.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = D5FA4E2D2CE4D09A0068CBC9 /* PingStatsContainer.xcdatamodeld */; };
 		D5FA4E312CE4D15E0068CBC9 /* TargetHostDataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5FA4E302CE4D15E0068CBC9 /* TargetHostDataService.swift */; };
 		D5FA4E332CE4D8870068CBC9 /* DataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5FA4E322CE4D8870068CBC9 /* DataService.swift */; };
@@ -147,6 +148,7 @@
 		D5ABB7972D428F6700B2B69B /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		D5B7D0032CE636400031D761 /* StatCalculator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatCalculator.swift; sourceTree = "<group>"; };
 		D5BC7BB12CE7E37800D1359A /* ChartItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartItem.swift; sourceTree = "<group>"; };
+		D5DDABD52D43C82900BC93A5 /* AnalyticsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalyticsService.swift; sourceTree = "<group>"; };
 		D5FA4E2E2CE4D09A0068CBC9 /* PingStatsContainer.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = PingStatsContainer.xcdatamodel; sourceTree = "<group>"; };
 		D5FA4E302CE4D15E0068CBC9 /* TargetHostDataService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TargetHostDataService.swift; sourceTree = "<group>"; };
 		D5FA4E322CE4D8870068CBC9 /* DataService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataService.swift; sourceTree = "<group>"; };
@@ -399,6 +401,7 @@
 			isa = PBXGroup;
 			children = (
 				D59E52152CE5640300F8AD6D /* Pinger */,
+				D5DDABD52D43C82900BC93A5 /* AnalyticsService.swift */,
 				D5FA4E302CE4D15E0068CBC9 /* TargetHostDataService.swift */,
 				D5FA4E322CE4D8870068CBC9 /* DataService.swift */,
 				D5FBDDE72CEC066C0097898A /* SessionDataService.swift */,
@@ -527,6 +530,7 @@
 				D5161EDA2D3EE10900E6F75B /* NotificationService.swift in Sources */,
 				D5BC7BB22CE7E37800D1359A /* ChartItem.swift in Sources */,
 				D5FB2D152CA6E1D1002C4AE3 /* PingCountStatSlider.swift in Sources */,
+				D5DDABD62D43C83100BC93A5 /* AnalyticsService.swift in Sources */,
 				14A072C12D382712002F7A5E /* StatusMessage.swift in Sources */,
 				14A072B62D38035F002F7A5E /* ChartLogs.swift in Sources */,
 				14A072B72D38035F002F7A5E /* CircularGauge.swift in Sources */,

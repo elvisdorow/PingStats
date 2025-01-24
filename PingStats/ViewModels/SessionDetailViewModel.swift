@@ -40,6 +40,8 @@ class SessionDetailViewModel: ObservableObject {
             if let fileURL = fileURL {
                 try text.write(to: fileURL, atomically: true, encoding: .utf8)
             }
+            
+            AnalyticsService.instance.logEvent(name: "session_shared")
         } catch {
             print("Error sharing session: \(error)")
         }
@@ -48,5 +50,7 @@ class SessionDetailViewModel: ObservableObject {
     func deleteSession() {
         FileService.instance.deleteSessionFile(session: session)
         sessionDataService.delete(session: session)
+        
+        AnalyticsService.instance.logEvent(name: "session_deleted_from_detail_view")
     }
 }
