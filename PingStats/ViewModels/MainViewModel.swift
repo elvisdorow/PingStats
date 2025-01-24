@@ -79,7 +79,7 @@ class MainViewModel: ObservableObject {
         
     func start() {
         UIApplication.shared.isIdleTimerDisabled = true
-
+        
         resetChart()
         pingStat = PingStat()
         

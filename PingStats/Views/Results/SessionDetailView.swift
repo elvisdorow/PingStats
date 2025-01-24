@@ -174,6 +174,7 @@ struct SessionDetailView: View {
                     if vm.fileURL != nil {
                         showShareSheet.toggle()
                     }
+
                 },
                     label: {
                     Label(

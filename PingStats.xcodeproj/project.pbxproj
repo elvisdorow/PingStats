@@ -66,6 +66,7 @@
 		D5B7D0042CE636400031D761 /* StatCalculator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5B7D0032CE636400031D761 /* StatCalculator.swift */; };
 		D5BC7BB22CE7E37800D1359A /* ChartItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5BC7BB12CE7E37800D1359A /* ChartItem.swift */; };
 		D5DDABD62D43C83100BC93A5 /* AnalyticsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5DDABD52D43C82900BC93A5 /* AnalyticsService.swift */; };
+		D5DDABD82D43D29800BC93A5 /* FirebaseCrashlytics in Frameworks */ = {isa = PBXBuildFile; productRef = D5DDABD72D43D29800BC93A5 /* FirebaseCrashlytics */; };
 		D5FA4E2F2CE4D09A0068CBC9 /* PingStatsContainer.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = D5FA4E2D2CE4D09A0068CBC9 /* PingStatsContainer.xcdatamodeld */; };
 		D5FA4E312CE4D15E0068CBC9 /* TargetHostDataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5FA4E302CE4D15E0068CBC9 /* TargetHostDataService.swift */; };
 		D5FA4E332CE4D8870068CBC9 /* DataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5FA4E322CE4D8870068CBC9 /* DataService.swift */; };
@@ -165,6 +166,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				14CD07CD2D3A9A95009D2AAF /* FullscreenPopup in Frameworks */,
+				D5DDABD82D43D29800BC93A5 /* FirebaseCrashlytics in Frameworks */,
 				144D60B42C90966A009B7D9C /* SwiftyPing in Frameworks */,
 				D5ABB79B2D428FEF00B2B69B /* FirebaseAnalytics in Frameworks */,
 			);
@@ -422,6 +424,7 @@
 				14B950872C45AC4400E8A388 /* Frameworks */,
 				14B950882C45AC4400E8A388 /* Resources */,
 				14E929D22C9233800088EA79 /* Embed Frameworks */,
+				D5DDABD92D43D37900BC93A5 /* Crashlytics */,
 			);
 			buildRules = (
 			);
@@ -432,6 +435,7 @@
 				144D60B32C90966A009B7D9C /* SwiftyPing */,
 				14CD07CC2D3A9A95009D2AAF /* FullscreenPopup */,
 				D5ABB79A2D428FEF00B2B69B /* FirebaseAnalytics */,
+				D5DDABD72D43D29800BC93A5 /* FirebaseCrashlytics */,
 			);
 			productName = PingStats;
 			productReference = 14B9508A2C45AC4400E8A388 /* PingStats.app */;
@@ -498,6 +502,33 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		D5DDABD92D43D37900BC93A5 /* Crashlytics */ = {
+			isa = PBXShellScriptBuildPhase;
+			alwaysOutOfDate = 1;
+			buildActionMask = 12;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${DWARF_DSYM_FOLDER_PATH}/${DWARF_DSYM_FILE_NAME}",
+				"${DWARF_DSYM_FOLDER_PATH}/${DWARF_DSYM_FILE_NAME}/Contents/Resources/DWARF/${PRODUCT_NAME}",
+				"${DWARF_DSYM_FOLDER_PATH}/${DWARF_DSYM_FILE_NAME}/Contents/Info.plist",
+				"$(TARGET_BUILD_DIR)/$(UNLOCALIZED_RESOURCES_FOLDER_PATH)/GoogleService-Info.plist",
+				"$(TARGET_BUILD_DIR)/$(EXECUTABLE_PATH)",
+			);
+			name = Crashlytics;
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\n\"${BUILD_DIR%/Build/*}/SourcePackages/checkouts/firebase-ios-sdk/Crashlytics/run\"\n";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		14B950862C45AC4400E8A388 /* Sources */ = {
@@ -699,7 +730,9 @@
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = NO;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
+				COPY_PHASE_STRIP = YES;
 				CURRENT_PROJECT_VERSION = 2;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_ASSET_PATHS = "\"PingStats/Preview Content\"";
 				DEVELOPMENT_TEAM = EZ733NNPCJ;
 				ENABLE_PREVIEWS = YES;
@@ -734,7 +767,9 @@
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = NO;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
+				COPY_PHASE_STRIP = YES;
 				CURRENT_PROJECT_VERSION = 2;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_ASSET_PATHS = "\"PingStats/Preview Content\"";
 				DEVELOPMENT_TEAM = EZ733NNPCJ;
 				ENABLE_PREVIEWS = YES;
@@ -826,6 +861,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = D5ABB7992D428FEF00B2B69B /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = FirebaseAnalytics;
+		};
+		D5DDABD72D43D29800BC93A5 /* FirebaseCrashlytics */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = D5ABB7992D428FEF00B2B69B /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseCrashlytics;
 		};
 /* End XCSwiftPackageProductDependency section */
 
