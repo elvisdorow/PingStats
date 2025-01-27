@@ -17,23 +17,23 @@ class PingService {
     
     @Published var response: ICMPResponse?
     
-    private var settings: Settings = Settings.shared
+//    private var settings: Settings = Settings.shared
     
-    func start() {
+    func start(param: SessionParam) {
         var config: PingConfiguration = PingConfiguration(
-            interval: Double(settings.pingInterval.rawValue) / 1000,
-            with: TimeInterval(settings.pingTimeout.rawValue)
+            interval: Double(param.pingInterval.rawValue) / 1000,
+            with: TimeInterval(param.pingTimeout.rawValue)
         )
         
-        config.payloadSize = settings.pingPayload.rawValue - 28
+        config.payloadSize = param.pingPayload.rawValue - 28
         config.timeToLive = 255
         
-        if settings.hostType == HostType.name.rawValue {
-            pinger = try? SwiftyPing(host: settings.host, configuration: config, queue: DispatchQueue.global())
-            print("pinging host \(settings.host)")
+        if param.hostType == HostType.name {
+            pinger = try? SwiftyPing(host: param.host, configuration: config, queue: DispatchQueue.global())
+            print("pinging host \(param.host)")
         } else {
-            pinger = try? SwiftyPing(ipv4Address: settings.host, config: config, queue: DispatchQueue.global())
-            print("pinging ip \(settings.host)")
+            pinger = try? SwiftyPing(ipv4Address: param.host, config: config, queue: DispatchQueue.global())
+            print("pinging ip \(param.host)")
         }
         
         pinger?.observer = {[weak self] response in

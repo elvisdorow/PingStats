@@ -13,6 +13,7 @@ class SessionParam {
     let pingCountStat: PingCountStat
     let maxtimeSetting: PingMaxtime
     let pingTimeout: PingTimeout
+    let pingPayload: PingPayload
 
     let hostType: HostType
     let host: String
@@ -22,6 +23,7 @@ class SessionParam {
         pingCountStat = settings.pingCountStat
         maxtimeSetting = settings.maxtimeSetting
         pingTimeout = settings.pingTimeout
+        pingPayload = settings.pingPayload
         host = settings.host
         hostType = HostType(rawValue: settings.hostType) ?? .name
     }

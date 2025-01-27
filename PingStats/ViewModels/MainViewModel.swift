@@ -20,7 +20,7 @@ class MainViewModel: ObservableObject {
     @Published var isAnalysisRunning: Bool = false
     @Published var appState: AppState = .empty {
         didSet {
-            isAnalysisRunning = (appState == .running)
+            isAnalysisRunning = (appState == .running || appState == .paused)
         }
     }
     
@@ -58,13 +58,9 @@ class MainViewModel: ObservableObject {
     var sessionDataService = SessionDataService.instance
     
     var session: Session?
+    var sessionParams: SessionParam = SessionParam(settings: .shared)
     
-    var hostTextBox: String {
-        if let session = session {
-            return session.parameters.host
-        }        
-        return settings.host
-    }
+    @Published var hostTextBox: String = ""
     
     init() {
         let monitor = NWPathMonitor()
@@ -75,6 +71,8 @@ class MainViewModel: ObservableObject {
             }
         }
         monitor.start(queue: DispatchQueue.global())
+        
+        self.hostTextBox = settings.host
     }
         
     func start() {
@@ -86,21 +84,22 @@ class MainViewModel: ObservableObject {
         addPingerSubscription()
         addTimerSubscription()
         
-        let sessionParams = SessionParam(settings: .shared)
+        sessionParams = SessionParam(settings: .shared)
         session = Session(sessionParams)
+        hostTextBox = sessionParams.host
 
         statusMessage = "Pinging \(sessionParams.host)..."
 
         if sessionParams.hostType == .ip {
             IPUtils.resolveHostname(for: sessionParams.host) {[weak self] hostname in
-                if let hostname = hostname {
-                    self?.session?.resolvedIpOrHost = hostname
-                    self?.statusMessage = "Pinging \(sessionParams.host) (\(hostname))"
+                if let hostname = hostname, let self = self {
+                    self.session?.resolvedIpOrHost = hostname
+                    self.statusMessage = "Pinging \(self.sessionParams.host) (\(hostname))"
                 }
             }
         }
 
-        pingService.start()
+        pingService.start(param: sessionParams)
         
         appState = .running
         elapsedTime = 0
@@ -114,7 +113,12 @@ class MainViewModel: ObservableObject {
         UIApplication.shared.isIdleTimerDisabled = false
 
         appState = .stopped
-        statusMessage = "Test finished"
+        if let resolvedIpOrHoust = session?.resolvedIpOrHost {
+            statusMessage = "Test finished: \(session?.parameters.host ?? "") (\(resolvedIpOrHoust))"
+        } else {
+            statusMessage = "Test finished: \(session?.parameters.host ?? "")"
+        }
+            
         hasNetworkError = false
         
         cancellables.forEach { $0.cancel() }
@@ -155,24 +159,26 @@ class MainViewModel: ObservableObject {
     func resume() {
         UIApplication.shared.isIdleTimerDisabled = true
         
-        let sessionParams = SessionParam(settings: .shared)
+//        let sessionParams = SessionParam(settings: .shared)
 
-        statusMessage = "Pinging \(sessionParams.host)..."
+        guard let session = self.session else { return }
+        
+        statusMessage = "Pinging \(session.parameters.host)..."
 
-        if sessionParams.hostType == .ip {
-            IPUtils.resolveHostname(for: sessionParams.host) {[weak self] hostname in
+        if session.parameters.hostType == .ip {
+            IPUtils.resolveHostname(for: session.parameters.host) {[weak self] hostname in
                 if let hostname = hostname {
                     self?.session?.resolvedIpOrHost = hostname
-                    self?.statusMessage = "Pinging \(sessionParams.host) (\(hostname))"
+                    self?.statusMessage = "Pinging \(session.parameters.host) (\(hostname))"
                 }
             }
         }
 
-        pingService.start()
+        pingService.start(param: sessionParams)
         addTimerSubscription()
         appState = .running
         
-        AnalyticsService.instance.logEvent(name: "resume_test", parameters: ["host": sessionParams.host])
+        AnalyticsService.instance.logEvent(name: "resume_test", parameters: ["host": session.parameters.host])
      }
     
     private func addPingerSubscription() {

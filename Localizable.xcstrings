@@ -902,12 +902,28 @@
         }
       }
     },
-    "Test finished" : {
+    "Test finished: %@" : {
       "localizations" : {
         "pt-BR" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Teste finalizado"
+            "value" : "Teste finalizado: %@"
+          }
+        }
+      }
+    },
+    "Test finished: %@ (%@)" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Test finished: %1$@ (%2$@)"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Teste finalizado: %1$@ (%2$@)"
           }
         }
       }

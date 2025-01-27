@@ -112,6 +112,13 @@ struct MainView: View {
                 }
             }
         }
+        .onChange(of: settings.host, { oldValue, newValue in
+            if viewModel.appState == .stopped
+                || viewModel.appState == .empty {
+
+                viewModel.hostTextBox = settings.host
+            }
+        })
         .analyticsScreen(name: "MainView")
     }
 }
