@@ -141,10 +141,10 @@ class MainViewModel: ObservableObject {
     }
     
     func pause() {
+        pingService.stop(resetSequence: false)
         UIApplication.shared.isIdleTimerDisabled = false
         appState = .paused
         statusMessage = "Test paused"
-        pingService.stop(resetSequence: false)
         
         timer?.cancel()
         timer = nil
