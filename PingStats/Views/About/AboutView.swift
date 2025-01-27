@@ -49,16 +49,24 @@ struct AboutView: View {
                     Text("Version: \(appVersion)")
                         .font(.subheadline)
                         .foregroundColor(.secondary)
+                    Text("Build: \(buildNumber)")
+                        .font(.caption)
+                        .foregroundColor(.secondary)
                 }
 
                 Spacer()
 
                 // Links
                 VStack(spacing: 15) {
-                    Link("Contact Support", destination: URL(string: "mailto:edorow@gmail.com?subject=PingStats Support")!)
-//                    Link("Privacy Policy", destination: URL(string: "https://yourwebsite.com/privacy-policy")!)
-//                    Link("Terms of Service", destination: URL(string: "https://yourwebsite.com/terms-of-service")!)
-//                    Link("Visit Website", destination: URL(string: "https://yourwebsite.com")!)
+                    HStack(spacing: 5) {
+                        Text("Contact Us: ")
+                            
+                        Link("support@pingstats.app", destination: URL(string: "mailto:support@pingstats.app?subject=Support")!)
+
+                    }
+//                    Link("Privacy Policy", destination: URL(string: "https://pingstats.app/privacy-policy")!)
+//                    Link("Terms of Service", destination: URL(string: "https://pingstats.app/terms-of-service")!)
+//                    Link("Visit Website", destination: URL(string: "https://pingstats.app")!)
                 }
                 .font(.body)
                 .padding(.bottom, 40)

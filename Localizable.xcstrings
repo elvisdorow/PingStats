@@ -176,6 +176,16 @@
         }
       }
     },
+    "Build: %@" : {
+      "localizations" : {
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Compilação: %@"
+          }
+        }
+      }
+    },
     "cellular" : {
       "localizations" : {
         "pt-BR" : {
@@ -260,12 +270,12 @@
         }
       }
     },
-    "Contact Support" : {
+    "Contact Us: " : {
       "localizations" : {
         "pt-BR" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Contactar Suporte"
+            "value" : "Contato:"
           }
         }
       }
@@ -868,6 +878,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Streaming"
+          }
+        }
+      }
+    },
+    "support@pingstats.app" : {
+      "localizations" : {
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "support@pingstats.app"
           }
         }
       }
