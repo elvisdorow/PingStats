@@ -752,6 +752,9 @@
         }
       }
     },
+    "Privacy Policy" : {
+
+    },
     "Reset to defaults" : {
       "localizations" : {
         "pt-BR" : {
@@ -911,6 +914,9 @@
           }
         }
       }
+    },
+    "Terms of Service" : {
+
     },
     "Test finished: %@" : {
       "localizations" : {
@@ -1073,6 +1079,9 @@
           }
         }
       }
+    },
+    "Visit Website" : {
+
     },
     "wifi" : {
       "localizations" : {

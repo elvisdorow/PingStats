@@ -22,7 +22,7 @@ struct AboutView: View {
     
     var body: some View {
         NavigationView {
-            VStack(spacing: 20) {
+            VStack(spacing: 40) {
                 // App Icon
                 Image("LogoAbout")
                     .resizable()
@@ -54,19 +54,20 @@ struct AboutView: View {
                         .foregroundColor(.secondary)
                 }
 
-                Spacer()
 
                 // Links
-                VStack(spacing: 15) {
+                VStack(spacing: 20) {
                     HStack(spacing: 5) {
                         Text("Contact Us: ")
                             
                         Link("support@pingstats.app", destination: URL(string: "mailto:support@pingstats.app?subject=Support")!)
 
                     }
-//                    Link("Privacy Policy", destination: URL(string: "https://pingstats.app/privacy-policy")!)
-//                    Link("Terms of Service", destination: URL(string: "https://pingstats.app/terms-of-service")!)
-//                    Link("Visit Website", destination: URL(string: "https://pingstats.app")!)
+                    Spacer()
+                    
+                    Link("Privacy Policy", destination: URL(string: "https://pingstats.app/privacy-policy.html")!)
+                    Link("Terms of Service", destination: URL(string: "https://pingstats.app/terms-of-service.html")!)
+                    Link("Visit Website", destination: URL(string: "https://pingstats.app")!)
                 }
                 .font(.body)
                 .padding(.bottom, 40)
