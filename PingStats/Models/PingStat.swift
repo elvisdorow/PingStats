@@ -47,7 +47,7 @@ class PingStat {
     
     private func getScore() {
         self.gamingScore = calculateScore(pingWeight: 0.55, jitterWeight: 0.2, packageLossWeight: 0.25)
-        self.streamingScore = calculateScore(pingWeight: 0.2, jitterWeight: 0.2, packageLossWeight: 0.6)
+        self.streamingScore = calculateScore(pingWeight: 0.3, jitterWeight: 0.3, packageLossWeight: 0.4)
         self.videoCallScore = calculateScore(pingWeight: 0.2, jitterWeight: 0.5, packageLossWeight: 0.3)
         
         self.generalScore = ((gamingScore + streamingScore + videoCallScore) / 3) - packageLoss
