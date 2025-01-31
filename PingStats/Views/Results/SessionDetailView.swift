@@ -7,6 +7,7 @@
 
 import SwiftUI
 import FirebaseAnalytics
+import SimpleToast
 
 struct SessionDetailView: View {
     
@@ -14,12 +15,17 @@ struct SessionDetailView: View {
     @State var showShareSheet: Bool = false
     @State var showDeleteConfirmation: Bool = false
     
+    @State var showSaveConfirmation: Bool = false
+        
     @StateObject var vm: SessionDetailViewModel
     
     @Binding var sessions: [Sessions]
     
     @Environment(\.dismiss) var dismiss
 
+    private let toastOptions = SimpleToastOptions(
+        hideAfter: 3
+    )
     
     init(session: Sessions, sessions: Binding<[Sessions]>) {
         self._vm = StateObject(wrappedValue: SessionDetailViewModel(session: session))
@@ -84,7 +90,7 @@ struct SessionDetailView: View {
                     card(title: "Worst Ping", value: String(format: "%.0f ms", vm.session.worstPing))
                 }
             }
-            
+
             VStack(spacing: 33) {
                 
                 Grid(alignment: .center, horizontalSpacing: 20, verticalSpacing: 20) {
@@ -130,6 +136,9 @@ struct SessionDetailView: View {
             VStack(alignment: .center) {
                 buttonViewLogs
             }
+            .simpleToast(isPresented: $showSaveConfirmation, options: toastOptions) {
+                ToastMessage(message: "Result saved in files.")
+            }
             .sheet(isPresented: $showShareSheet) {
                 ActivityView(activityItems: [vm.fileURL!as Any])
             }
@@ -166,33 +175,52 @@ struct SessionDetailView: View {
         .navigationTitle(vm.session.host ?? "")
         .navigationBarTitleDisplayMode(.large)
         .toolbar {
+            
             ToolbarItem(placement: .navigationBarTrailing) {
-                // share session button
-                Button(action: {
-                    vm.shareSession()
+                Menu {
                     
-                    if vm.fileURL != nil {
-                        showShareSheet.toggle()
+                    // share session button
+                    Button(action: {
+                        vm.shareSession()
+                        
+                        if vm.fileURL != nil {
+                            showShareSheet.toggle()
+                        }
+
+                    },
+                        label: {
+                        Label(
+                            title: { Text("Share") },
+                            icon: { Image(systemName: "square.and.arrow.up") }
+                        )
+                    })
+                    
+                    // save session button
+                    Button(action: {
+                        vm.saveSessionToFile()
+                        showSaveConfirmation.toggle()
+                    },
+                        label: {
+                        Label(
+                            title: { Text("Save in Files") },
+                            icon: { Image(systemName: "square.and.arrow.down") }
+                        )
+                    })
+                    
+                    Button(role: .destructive, action: {
+                        showDeleteConfirmation.toggle()
+                    })
+                    {
+                        Label("Delete", systemImage: "trash")
                     }
+                    .tint(Color.theme.appRedColor)
 
-                },
-                    label: {
-                    Label(
-                        title: { Text("Share") },
-                        icon: { Image(systemName: "square.and.arrow.up") }
-                    )
-                })
-
-            }
-            ToolbarItem(placement: .topBarTrailing) {
-                Button(role: .destructive, action: {
-                    showDeleteConfirmation.toggle()
-                })
-                {
-                    Label("Delete", systemImage: "trash")
+                    
+                } label: {
+                    Label("More", systemImage: "ellipsis.circle")
                 }
-                .tint(Color.theme.appRedColor)
             }
+            
         }.background(Color(uiColor: .systemGray6))
         .analyticsScreen(name: "Session Detail")
 

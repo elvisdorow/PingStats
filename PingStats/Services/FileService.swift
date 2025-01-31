@@ -19,11 +19,11 @@ class FileService {
     private init() {}
     
     // Save Session to a file
-    func saveSession(session: Sessions) throws {
+    func saveSession(session: Sessions) throws -> URL? {
         print("saving session to a file ")
         
         let sessionFile = createSessionFile(session: session)
-        let text = sesstionToText(sessionTextFile: sessionFile)
+        let text = sessionToText(sessionTextFile: sessionFile)
         let formatedDate = formatDateToString(session.startDate!, format: "yyyy-MM-dd-HHmmss")
         let filename = "log_\(formatedDate).txt"
         
@@ -31,6 +31,8 @@ class FileService {
             let documentsDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
             let fileURL = documentsDirectory.appendingPathComponent(filename)
             try text.write(to: fileURL, atomically: true, encoding: .utf8)
+            
+            return fileURL
         } catch {
             print("Error saving session \(error)")
             throw error
@@ -100,7 +102,7 @@ class FileService {
         return sessionFile
     }
     
-    func sesstionToText(sessionTextFile: SessionTextFile) -> String {
+    func sessionToText(sessionTextFile: SessionTextFile) -> String {
         
         let connType = ConnectionType(fromKey: sessionTextFile.connectionType).toString()
                 

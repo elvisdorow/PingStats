@@ -21,7 +21,8 @@ class SessionDetailViewModel: ObservableObject {
     
     func saveSessionToFile() {
         do {
-            try FileService.instance.saveSession(session: session)
+            fileURL = try FileService.instance.saveSession(session: session)            
+            AnalyticsService.instance.logEvent(name: "session_saved_detail_view")
         } catch {
             print("Error saving session to file: \(error)")
         }
@@ -29,19 +30,8 @@ class SessionDetailViewModel: ObservableObject {
     
     func shareSession() {
         do {
-            let sessionFile = FileService.instance.createSessionFile(session: session)
-            let text = FileService.instance.sesstionToText(sessionTextFile: sessionFile)
-            let formatedDate = FileService.instance.formatDateToString(session.startDate!, format: "yyyy-MM-dd-HHmmss")
-            let filename = "log_\(formatedDate).txt"
-            
-            let documentsDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
-            fileURL = documentsDirectory.appendingPathComponent(filename)
-
-            if let fileURL = fileURL {
-                try text.write(to: fileURL, atomically: true, encoding: .utf8)
-            }
-            
-            AnalyticsService.instance.logEvent(name: "session_shared")
+            fileURL = try FileService.instance.saveSession(session: session)
+            AnalyticsService.instance.logEvent(name: "session_shared_detail_view")
         } catch {
             print("Error sharing session: \(error)")
         }

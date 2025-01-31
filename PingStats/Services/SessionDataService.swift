@@ -32,11 +32,11 @@ class SessionDataService: DataService {
         return []
     }
     
-    func add(session: Session) {
+    func add(session: Session) -> Sessions? {
         
         let newSession: Sessions = Sessions(context: container.viewContext)
         
-        guard let pingStat = session.pingStat else { return }
+        guard let pingStat = session.pingStat else { return nil }
         
         newSession.startDate = session.startDate
         newSession.endDate = session.endDate
@@ -79,6 +79,8 @@ class SessionDataService: DataService {
         newSession.logs = NSOrderedSet(array: logs)
 
         save()
+        
+        return newSession
     }
     
     func delete(session: Sessions) {

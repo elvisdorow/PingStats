@@ -60,6 +60,9 @@ class MainViewModel: ObservableObject {
     var session: Session?
     var sessionParams: SessionParam = SessionParam(settings: .shared)
     
+    var sessionDb: Sessions?
+    var fileURL: URL?
+    
     @Published var hostTextBox: String = ""
     
     init() {
@@ -77,6 +80,8 @@ class MainViewModel: ObservableObject {
         
     func start() {
         UIApplication.shared.isIdleTimerDisabled = true
+        
+        sessionDb = nil
         
         resetChart()
         pingStat = PingStat()
@@ -138,7 +143,7 @@ class MainViewModel: ObservableObject {
             session.generateFullTestPingStat()
             pingStat = session.pingStat!
             
-            sessionDataService.add(session: session)
+            sessionDb = sessionDataService.add(session: session)
         }
         
         AnalyticsService.instance.logEvent(name: "stop_test", parameters: ["host": session?.parameters.host ?? ""])
@@ -180,6 +185,17 @@ class MainViewModel: ObservableObject {
         
         AnalyticsService.instance.logEvent(name: "resume_test", parameters: ["host": session.parameters.host])
      }
+    
+    func saveSessionToFile() {
+        guard let sessionDb = sessionDb else { return }
+        
+        do {
+            fileURL = try FileService.instance.saveSession(session: sessionDb)
+            AnalyticsService.instance.logEvent(name: "session_shared_main_view")
+        } catch {
+            print("Error sharing file: \(error)")
+        }
+    }
     
     private func addPingerSubscription() {
         pingService.$response

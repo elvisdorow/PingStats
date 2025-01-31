@@ -58,13 +58,9 @@ struct AboutView: View {
                 // Links
                 VStack(spacing: 20) {
                     HStack(spacing: 5) {
-                        Text("Contact Us: ")
-                            
                         Link("support@pingstats.app", destination: URL(string: "mailto:support@pingstats.app?subject=Support")!)
 
                     }
-                    Spacer()
-                    
                     Link("Privacy Policy", destination: URL(string: "https://pingstats.app/privacy-policy.html")!)
                     Link("Terms of Service", destination: URL(string: "https://pingstats.app/terms-of-service.html")!)
                     Link("Visit Website", destination: URL(string: "https://pingstats.app")!)

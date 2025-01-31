@@ -9,6 +9,7 @@ import SwiftUI
 import Charts
 import FullscreenPopup
 import FirebaseAnalytics
+import SimpleToast
 
 struct MainView: View {
     
@@ -20,8 +21,13 @@ struct MainView: View {
     @State private var showAboutView: Bool = false
     
     @State private var showHostList: Bool = false
-    
     @State private var showAlertPausedBg: Bool = false
+    @State private var showShareSheet: Bool = false
+    @State private var showSaveConfirmation: Bool = false
+    
+    private let toastOptions = SimpleToastOptions(
+        hideAfter: 3
+    )
     
     @StateObject var viewModel: MainViewModel = MainViewModel()
     @StateObject var settings = Settings.shared
@@ -58,6 +64,7 @@ struct MainView: View {
                     bottomActions
 
                 }
+                
                 .popup(isPresented: $showAlertPausedBg, delay: .seconds(1)) { isPresented in
                     Color.gray.opacity(0.5)
                 } content: {
@@ -92,6 +99,13 @@ struct MainView: View {
                 AboutView()
                     .presentationCompactAdaptation(.automatic)
             }
+            .sheet(isPresented: $showShareSheet) {
+                ActivityView(activityItems: [viewModel.fileURL!as Any])
+            }
+            .simpleToast(isPresented: $showSaveConfirmation, options: toastOptions) {
+                ToastMessage(message: "Result saved in files.")
+            }
+            
         }
         .onChange(of: scenePhase) { _, newValue in
             if newValue == .background && viewModel.isAnalysisRunning {
@@ -139,6 +153,39 @@ extension MainView {
                     icon: { Image(systemName: "list.bullet.rectangle.portrait") }
                 )
             })
+            
+            if viewModel.session != nil && viewModel.appState == .stopped {
+                // share session button
+                Button(action: {
+                    viewModel.saveSessionToFile()
+                    if viewModel.fileURL != nil {
+                        showShareSheet.toggle()
+                    }
+                },
+                    label: {
+                    Label(
+                        title: { Text("Share") },
+                        icon: { Image(systemName: "square.and.arrow.up") }
+                    )
+                })
+                
+                // save session button
+                Button(action: {
+                    viewModel.saveSessionToFile()
+                    if viewModel.fileURL != nil {
+                        showSaveConfirmation.toggle()
+                    }
+                },
+                    label: {
+                    Label(
+                        title: { Text("Save in Files") },
+                        icon: { Image(systemName: "square.and.arrow.down") }
+                    )
+                })
+
+            }
+            
+            
             Button(action: {
                 showSettingsView.toggle()
             },

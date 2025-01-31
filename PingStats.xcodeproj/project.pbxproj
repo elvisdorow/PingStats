@@ -61,6 +61,8 @@
 		D57F207A2CA4498200676BDD /* PingMaxtimeSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = D57F20792CA4498200676BDD /* PingMaxtimeSlider.swift */; };
 		D5800BEB2CF4C58900687BFE /* SessionPingLogViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5800BEA2CF4C58900687BFE /* SessionPingLogViewModel.swift */; };
 		D58655962D26D1760090776E /* ActivityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D58655952D26D1760090776E /* ActivityView.swift */; };
+		D586A3BC2D4D6184000CA77D /* SimpleToast in Frameworks */ = {isa = PBXBuildFile; productRef = D586A3BB2D4D6184000CA77D /* SimpleToast */; };
+		D586A3BE2D4D6FB1000CA77D /* ToastMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = D586A3BD2D4D6FB1000CA77D /* ToastMessage.swift */; };
 		D5ABB7982D428F6700B2B69B /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = D5ABB7972D428F6700B2B69B /* GoogleService-Info.plist */; };
 		D5ABB79B2D428FEF00B2B69B /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = D5ABB79A2D428FEF00B2B69B /* FirebaseAnalytics */; };
 		D5B7D0042CE636400031D761 /* StatCalculator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5B7D0032CE636400031D761 /* StatCalculator.swift */; };
@@ -146,6 +148,7 @@
 		D57F20792CA4498200676BDD /* PingMaxtimeSlider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PingMaxtimeSlider.swift; sourceTree = "<group>"; };
 		D5800BEA2CF4C58900687BFE /* SessionPingLogViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionPingLogViewModel.swift; sourceTree = "<group>"; };
 		D58655952D26D1760090776E /* ActivityView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityView.swift; sourceTree = "<group>"; };
+		D586A3BD2D4D6FB1000CA77D /* ToastMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToastMessage.swift; sourceTree = "<group>"; };
 		D5ABB7972D428F6700B2B69B /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		D5B7D0032CE636400031D761 /* StatCalculator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatCalculator.swift; sourceTree = "<group>"; };
 		D5BC7BB12CE7E37800D1359A /* ChartItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartItem.swift; sourceTree = "<group>"; };
@@ -169,6 +172,7 @@
 				D5DDABD82D43D29800BC93A5 /* FirebaseCrashlytics in Frameworks */,
 				144D60B42C90966A009B7D9C /* SwiftyPing in Frameworks */,
 				D5ABB79B2D428FEF00B2B69B /* FirebaseAnalytics in Frameworks */,
+				D586A3BC2D4D6184000CA77D /* SimpleToast in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -356,6 +360,7 @@
 			isa = PBXGroup;
 			children = (
 				D54A65672D0B31F600121652 /* CloseButton.swift */,
+				D586A3BD2D4D6FB1000CA77D /* ToastMessage.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -436,6 +441,7 @@
 				14CD07CC2D3A9A95009D2AAF /* FullscreenPopup */,
 				D5ABB79A2D428FEF00B2B69B /* FirebaseAnalytics */,
 				D5DDABD72D43D29800BC93A5 /* FirebaseCrashlytics */,
+				D586A3BB2D4D6184000CA77D /* SimpleToast */,
 			);
 			productName = PingStats;
 			productReference = 14B9508A2C45AC4400E8A388 /* PingStats.app */;
@@ -469,6 +475,7 @@
 				144D60B22C90966A009B7D9C /* XCRemoteSwiftPackageReference "SwiftyPing" */,
 				14CD07CB2D3A9A95009D2AAF /* XCRemoteSwiftPackageReference "swift-fullscreen-popup" */,
 				D5ABB7992D428FEF00B2B69B /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+				D586A3BA2D4D6184000CA77D /* XCRemoteSwiftPackageReference "SimpleToast" */,
 			);
 			productRefGroup = 14B9508B2C45AC4400E8A388 /* Products */;
 			projectDirPath = "";
@@ -587,6 +594,7 @@
 				D557AF842CF12A5C008ED94B /* SessionPingLogView.swift in Sources */,
 				D52F61322CED18170056EFC5 /* MiniLoadingBar.swift in Sources */,
 				140AFF682C6663BA00A4A2C8 /* SettingsView.swift in Sources */,
+				D586A3BE2D4D6FB1000CA77D /* ToastMessage.swift in Sources */,
 				D5FB2D172CA6FDA3002C4AE3 /* Settings.swift in Sources */,
 				D57F20782CA4453500676BDD /* PingTimeoutSlider.swift in Sources */,
 				D57F207A2CA4498200676BDD /* PingMaxtimeSlider.swift in Sources */,
@@ -731,7 +739,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = YES;
-				CURRENT_PROJECT_VERSION = 4;
+				CURRENT_PROJECT_VERSION = 6;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_ASSET_PATHS = "\"PingStats/Preview Content\"";
 				DEVELOPMENT_TEAM = EZ733NNPCJ;
@@ -768,7 +776,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = YES;
-				CURRENT_PROJECT_VERSION = 4;
+				CURRENT_PROJECT_VERSION = 6;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_ASSET_PATHS = "\"PingStats/Preview Content\"";
 				DEVELOPMENT_TEAM = EZ733NNPCJ;
@@ -836,6 +844,14 @@
 				minimumVersion = 0.3.0;
 			};
 		};
+		D586A3BA2D4D6184000CA77D /* XCRemoteSwiftPackageReference "SimpleToast" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/sanzaru/SimpleToast";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.10.1;
+			};
+		};
 		D5ABB7992D428FEF00B2B69B /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
@@ -856,6 +872,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 14CD07CB2D3A9A95009D2AAF /* XCRemoteSwiftPackageReference "swift-fullscreen-popup" */;
 			productName = FullscreenPopup;
+		};
+		D586A3BB2D4D6184000CA77D /* SimpleToast */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = D586A3BA2D4D6184000CA77D /* XCRemoteSwiftPackageReference "SimpleToast" */;
+			productName = SimpleToast;
 		};
 		D5ABB79A2D428FEF00B2B69B /* FirebaseAnalytics */ = {
 			isa = XCSwiftPackageProductDependency;

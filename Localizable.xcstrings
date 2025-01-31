@@ -271,6 +271,7 @@
       }
     },
     "Contact Us: " : {
+      "extractionState" : "stale",
       "localizations" : {
         "pt-BR" : {
           "stringUnit" : {
@@ -520,6 +521,16 @@
         }
       }
     },
+    "More" : {
+      "localizations" : {
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Mais"
+          }
+        }
+      }
+    },
     "ms" : {
       "localizations" : {
         "pt-BR" : {
@@ -753,7 +764,14 @@
       }
     },
     "Privacy Policy" : {
-
+      "localizations" : {
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Política de Privacidade"
+          }
+        }
+      }
     },
     "Reset to defaults" : {
       "localizations" : {
@@ -771,6 +789,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "IP ou Host"
+          }
+        }
+      }
+    },
+    "Result saved in files." : {
+      "localizations" : {
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Resultado salvo em arquivos."
           }
         }
       }
@@ -811,6 +839,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Salvar"
+          }
+        }
+      }
+    },
+    "Save in Files" : {
+      "localizations" : {
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Salvar em Arquivos"
           }
         }
       }
@@ -916,7 +954,14 @@
       }
     },
     "Terms of Service" : {
-
+      "localizations" : {
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Termos de Serviço"
+          }
+        }
+      }
     },
     "Test finished: %@" : {
       "localizations" : {
@@ -1081,7 +1126,14 @@
       }
     },
     "Visit Website" : {
-
+      "localizations" : {
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Visite o Website"
+          }
+        }
+      }
     },
     "wifi" : {
       "localizations" : {
