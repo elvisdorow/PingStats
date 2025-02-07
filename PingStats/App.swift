@@ -7,6 +7,8 @@
 
 import SwiftUI
 import FirebaseCore
+import RevenueCat
+import RevenueCatUI
 
 class AppDelegate: NSObject, UIApplicationDelegate {
   func application(_ application: UIApplication,
@@ -24,6 +26,11 @@ struct App: SwiftUI.App {
     @AppStorage("isFirstTime") private var isFirstTime: Bool = true
     
     var settings: Settings = .shared
+    
+    init() {
+        Purchases.logLevel = .debug
+        Purchases.configure(withAPIKey: "appl_RenSiezHQugsMAbdoKSBDIUqNoT")
+    }
 
     var body: some Scene {
         WindowGroup {
@@ -33,6 +40,7 @@ struct App: SwiftUI.App {
                     initialSetup()
                 }
                 .tint(Color.theme.accent)
+                .presentPaywallIfNeeded(requiredEntitlementIdentifier: "Pro")
         }
     }
     
