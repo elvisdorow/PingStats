@@ -14,6 +14,9 @@
         }
       }
     },
+    "(%@)" : {
+
+    },
     "%@" : {
       "localizations" : {
         "pt-BR" : {
@@ -176,16 +179,6 @@
         }
       }
     },
-    "Build: %@" : {
-      "localizations" : {
-        "pt-BR" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Compilação: %@"
-          }
-        }
-      }
-    },
     "cellular" : {
       "localizations" : {
         "pt-BR" : {
@@ -266,17 +259,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Wi-Fi"
-          }
-        }
-      }
-    },
-    "Contact Us: " : {
-      "extractionState" : "stale",
-      "localizations" : {
-        "pt-BR" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Contato:"
           }
         }
       }
@@ -1009,6 +991,9 @@
         }
       }
     },
+    "Thank You for Your Support! 🎉" : {
+
+    },
     "The number of pings in a moving sample utilized to evaluate network performance in real-time." : {
       "localizations" : {
         "pt-BR" : {
@@ -1089,6 +1074,26 @@
         }
       }
     },
+    "Unlock Pro Features 🚀" : {
+      "localizations" : {
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Desbloqueie Recursos Pro 🚀"
+          }
+        }
+      }
+    },
+    "Upgrade to Pro" : {
+      "localizations" : {
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Faça o upgrade para o Pro"
+          }
+        }
+      }
+    },
     "Version: %@" : {
       "localizations" : {
         "pt-BR" : {
@@ -1125,16 +1130,6 @@
         }
       }
     },
-    "Visit Website" : {
-      "localizations" : {
-        "pt-BR" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Visite o Website"
-          }
-        }
-      }
-    },
     "wifi" : {
       "localizations" : {
         "pt-BR" : {
@@ -1161,6 +1156,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Pior Ping"
+          }
+        }
+      }
+    },
+    "You're a Pro user!" : {
+      "localizations" : {
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Você é um usuário Pro!"
           }
         }
       }

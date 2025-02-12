@@ -37,6 +37,9 @@
   ],
   "settings" : {
     "_applicationInternalID" : "6741027710",
+    "_compatibilityTimeRate" : {
+      "3" : 6
+    },
     "_developerTeamID" : "EZ733NNPCJ",
     "_failTransactionsEnabled" : false,
     "_lastSynchronizedDate" : 760652832.85913396,
@@ -88,7 +91,8 @@
         "enabled" : false,
         "name" : "Offer Code Redeem Sheet"
       }
-    ]
+    ],
+    "_timeRate" : 1001
   },
   "subscriptionGroups" : [
     {
@@ -139,6 +143,10 @@
       ]
     }
   ],
+  "subscriptionOffersKeyPair" : {
+    "id" : "9552919C",
+    "privateKey" : "MIGTAgEAMBMGByqGSM49AgEGCCqGSM49AwEHBHkwdwIBAQQgVf7wsOdkLai3yvsrtYL8bycSHd5VD5bL/cL7zB8r6AygCgYIKoZIzj0DAQehRANCAAScQYFTa5cgljxA8soNX9qMxqDAM1GNiLM/sflsQs1cFRhjiqpU73PYXoFbIhkX2DpQN6eGllwsTHhMFL+WuNjH"
+  },
   "version" : {
     "major" : 4,
     "minor" : 0

@@ -9,6 +9,8 @@
 	</dict>
 	<key>UIAppFonts</key>
 	<array>
+		<string>FontAwesome-Regular-400.otf</string>
+		<string>FontAwesome-Solid-900.otf</string>
 		<string>Inter-Regular.ttf</string>
 		<string>Inter-SemiBold.ttf</string>
 		<string>Inter-Black.ttf</string>

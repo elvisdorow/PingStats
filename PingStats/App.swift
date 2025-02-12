@@ -25,6 +25,8 @@ struct App: SwiftUI.App {
     
     @AppStorage("isFirstTime") private var isFirstTime: Bool = true
     
+    @StateObject var userViewModel = UserViewModel()
+    
     var settings: Settings = .shared
     
     init() {
@@ -40,7 +42,7 @@ struct App: SwiftUI.App {
                     initialSetup()
                 }
                 .tint(Color.theme.accent)
-                .presentPaywallIfNeeded(requiredEntitlementIdentifier: "Pro")
+                .environmentObject(userViewModel)
         }
     }
     
@@ -62,8 +64,19 @@ struct App: SwiftUI.App {
             NotificationService.instance.checkNotificationPermission()
             
             isFirstTime = false
+            
+            restorePurchase()
         }
     }
     
+    func restorePurchase() {
+        Purchases.shared.syncPurchases { customerInfo, error in
+            if let error = error {
+                print("Restore failed: \(error.localizedDescription)")
+            } else {
+                print("Restored purchases: \(customerInfo?.entitlements.active ?? [:])")
+            }
+        }
+    }
 }
 

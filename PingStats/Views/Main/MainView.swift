@@ -148,12 +148,16 @@ extension MainView {
                 showResultsView.toggle()
             },
                    label: {
+
                 Label(
-                    title: { Text("Results") },
+                    title: {
+                        Text("Results") +
+                        Text(" 🔒 ")
+                    },
                     icon: { Image(systemName: "list.bullet.rectangle.portrait") }
                 )
             })
-            
+
             if viewModel.session != nil && viewModel.appState == .stopped {
                 // share session button
                 Button(action: {
