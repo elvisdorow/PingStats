@@ -90,17 +90,6 @@ struct AboutView: View {
             .sheet(isPresented: $showPaywall, content: {
                 PaywallView()
             })
-            .onAppear {
-                print("aboutView onApper")
-                // Using Completion Blocks
-                Purchases.shared.getCustomerInfo { (customerInfo, error) in
-                    if customerInfo?.entitlements["Pro"]?.isActive == true {
-                        print("Customer has Pro entitlement")
-                    }
-
-                }
-
-            }
             .analyticsScreen(name: "About")
         }
     }

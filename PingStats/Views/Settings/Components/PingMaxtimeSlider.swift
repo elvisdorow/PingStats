@@ -10,6 +10,7 @@ import SwiftUI
 struct PingMaxtimeSlider: View {
     
     @Binding var maxtime: PingMaxtime
+    @Binding var enabled: Bool
     
     var body: some View {
         HStack {
@@ -22,6 +23,15 @@ struct PingMaxtimeSlider: View {
                     self.maxtime = PingMaxtime.fromSliderValue(val: newValue)
                 }
             ), in: 1...9, step: 1)
+            .disabled(!enabled)
+            .overlay {
+                if !enabled {
+                    Color.secondary.opacity(0.01)
+                } else {
+                    Color.clear
+
+                }
+            }
 
             Text("\(maxtime.toString())")
                 .frame(width: 65)
@@ -85,5 +95,5 @@ enum PingMaxtime: Int {
 }
 
 #Preview {
-    PingMaxtimeSlider(maxtime: .constant(.min1)).padding()
+    PingMaxtimeSlider(maxtime: .constant(.min1), enabled: .constant(true)).padding()
 }

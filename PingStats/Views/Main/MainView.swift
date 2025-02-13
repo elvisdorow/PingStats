@@ -10,6 +10,7 @@ import Charts
 import FullscreenPopup
 import FirebaseAnalytics
 import SimpleToast
+import RevenueCatUI
 
 struct MainView: View {
     
@@ -25,6 +26,8 @@ struct MainView: View {
     @State private var showShareSheet: Bool = false
     @State private var showSaveConfirmation: Bool = false
     
+    @State private var showPaywall: Bool = false
+    
     private let toastOptions = SimpleToastOptions(
         hideAfter: 3
     )
@@ -33,6 +36,8 @@ struct MainView: View {
     @StateObject var settings = Settings.shared
     
     @Environment(\.scenePhase) var scenePhase
+
+    @EnvironmentObject var userViewModel: UserViewModel
 
     var body: some View {
         NavigationStack {
@@ -62,7 +67,6 @@ struct MainView: View {
                     Spacer()
 
                     bottomActions
-
                 }
                 
                 .popup(isPresented: $showAlertPausedBg, delay: .seconds(1)) { isPresented in
@@ -99,12 +103,16 @@ struct MainView: View {
                 AboutView()
                     .presentationCompactAdaptation(.automatic)
             }
+            .sheet(isPresented: $showPaywall, content: {
+                PaywallView()
+            })
             .sheet(isPresented: $showShareSheet) {
                 ActivityView(activityItems: [viewModel.fileURL!as Any])
             }
             .simpleToast(isPresented: $showSaveConfirmation, options: toastOptions) {
                 ToastMessage(message: "Result saved in files.")
             }
+
             
         }
         .onChange(of: scenePhase) { _, newValue in
@@ -145,45 +153,61 @@ extension MainView {
     var menuItems: some View {
         Menu {
             Button(action: {
-                showResultsView.toggle()
+                if userViewModel.isPayingUser {
+                    showResultsView.toggle()
+                } else {
+                    showPaywall.toggle()
+                }
             },
                    label: {
 
                 Label(
                     title: {
-                        Text("Results") +
-                        Text(" 🔒 ")
+                        Text("Results")
                     },
-                    icon: { Image(systemName: "list.bullet.rectangle.portrait") }
+                    icon: { Image(systemName: userViewModel.isPayingUser ? "list.bullet.rectangle.portrait" : AppIcon.proIcon) }
                 )
             })
 
             if viewModel.session != nil && viewModel.appState == .stopped {
                 // share session button
                 Button(action: {
-                    viewModel.saveSessionToFile()
-                    if viewModel.fileURL != nil {
-                        showShareSheet.toggle()
+                    if userViewModel.isPayingUser {
+                        viewModel.saveSessionToFile()
+                        if viewModel.fileURL != nil {
+                            showShareSheet.toggle()
+                        }
+                    } else {
+                        showPaywall.toggle()
                     }
                 },
                     label: {
                     Label(
-                        title: { Text("Share") },
-                        icon: { Image(systemName: "square.and.arrow.up") }
+                        title: {
+                            Text("Share")
+                        },
+                        icon: { Image(systemName: userViewModel.isPayingUser ? "square.and.arrow.up" : AppIcon.proIcon) }
                     )
                 })
                 
                 // save session button
                 Button(action: {
-                    viewModel.saveSessionToFile()
-                    if viewModel.fileURL != nil {
-                        showSaveConfirmation.toggle()
+                    if userViewModel.isPayingUser {
+                        viewModel.saveSessionToFile()
+                        if viewModel.fileURL != nil {
+                            showSaveConfirmation.toggle()
+                        }
+                    } else {
+                        showPaywall.toggle()
                     }
+                    
                 },
                     label: {
                     Label(
-                        title: { Text("Save in Files") },
-                        icon: { Image(systemName: "square.and.arrow.down") }
+                        title: {
+                            Text("Save in Files")
+                        },
+                        icon: { Image(systemName: userViewModel.isPayingUser ? "square.and.arrow.down" : AppIcon.proIcon) }
                     )
                 })
 
@@ -477,7 +501,7 @@ extension MainView {
 
 
 #Preview {
-    MainView()
+    MainView().environmentObject(UserViewModel())
 }
 
 #Preview {

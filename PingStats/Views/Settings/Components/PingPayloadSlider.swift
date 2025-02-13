@@ -10,6 +10,7 @@ import SwiftUI
 struct PingPayloadSlider: View {
     
     @Binding var payload: PingPayload
+    @Binding var enabled: Bool
     
     var body: some View {
         HStack {
@@ -21,6 +22,15 @@ struct PingPayloadSlider: View {
                     self.payload = PingPayload.fromSliderValue(val: newValue)
                 }
             ), in: 1...6, step: 1)
+            .disabled(!enabled)
+            .overlay {
+                if !enabled {
+                    Color.secondary.opacity(0.01)
+                } else {
+                    Color.clear
+
+                }
+            }
 
             Text("\(payload.toString())")
                 .frame(width: 90)
@@ -72,5 +82,5 @@ enum PingPayload: Int {
 }
 
 #Preview {
-    PingPayloadSlider(payload: .constant(.bytes256)).padding()
+    PingPayloadSlider(payload: .constant(.bytes256), enabled: .constant(true)).padding()
 }

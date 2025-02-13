@@ -94,5 +94,5 @@ struct iconButtonView: View {
 
 
 #Preview {
-    PlayButton(appState: .paused)
+    PlayButton(appState: .stopped)
 }

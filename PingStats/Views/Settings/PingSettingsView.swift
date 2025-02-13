@@ -7,10 +7,13 @@
 
 import SwiftUI
 import FirebaseAnalytics
+import RevenueCatUI
 
 struct PingSettingsView: View {
     
     @StateObject var settings = Settings.shared
+    @EnvironmentObject var userViewModel: UserViewModel
+    @State var showPaywall: Bool = false
     
     var body: some View {
         NavigationView {
@@ -24,19 +27,53 @@ struct PingSettingsView: View {
                 }
 
                 Section {
-                    PingIntervalSlider(intervalValue: $settings.pingInterval)
+                    PingIntervalSlider(intervalValue: $settings.pingInterval, enabled: $userViewModel.isPayingUser)
                     
                 } header: {
-                    Text("Interval")
+                    HStack {
+                        Text("Interval")
+                        if !userViewModel.isPayingUser {
+                            Spacer()
+                            ProBadge()
+                        }
+                    }
                 } footer: {
                     Text("Interval between consecutive ping requests.")
                 }
+                .gesture(
+                    userViewModel.isPayingUser ? nil : DragGesture().onChanged { _ in
+                        showPaywall = true
+                    }
+                )
+                .onTapGesture {
+                    if !userViewModel.isPayingUser {
+                        showPaywall.toggle()
+                    }
+                }
+
                 
                 Section {
-                    PingPayloadSlider(payload: $settings.pingPayload)
+                    PingPayloadSlider(payload: $settings.pingPayload, enabled: $userViewModel.isPayingUser)
                 } header: {
-                    Text("Payload Size")
+                    HStack {
+                        Text("Payload Size")
+                        if !userViewModel.isPayingUser {
+                            Spacer()
+                            ProBadge()
+                        }
+                    }
                 }
+                .gesture(
+                    userViewModel.isPayingUser ? nil : DragGesture().onChanged { _ in
+                        showPaywall = true
+                    }
+                )
+                .onTapGesture {
+                    if !userViewModel.isPayingUser {
+                        showPaywall.toggle()
+                    }
+                }
+
 
                 Section {
                     PingCountStatSlider(countStat: $settings.pingCountStat)
@@ -59,6 +96,9 @@ struct PingSettingsView: View {
             }
             .tint(.theme.accent)
         }
+        .sheet(isPresented: $showPaywall, content: {
+            PaywallView()
+        })
         .analyticsScreen(name: "Ping Settings")
         
     }
@@ -73,5 +113,5 @@ struct PingSettingsView: View {
 }
 
 #Preview {
-    PingSettingsView()
+    PingSettingsView().environmentObject(UserViewModel())
 }

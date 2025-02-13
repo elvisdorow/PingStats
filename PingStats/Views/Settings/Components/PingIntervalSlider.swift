@@ -11,6 +11,7 @@ import SwiftUI
 struct PingIntervalSlider: View {
 
     @Binding var intervalValue: PingInterval
+    @Binding var enabled: Bool
     
     var body: some View {
         HStack {
@@ -22,6 +23,15 @@ struct PingIntervalSlider: View {
                     self.intervalValue = PingInterval.fromSliderValue(val: newValue)
                 }
             ), in: 1...11, step: 1)
+            .disabled(!enabled)
+            .overlay {
+                if !enabled {
+                    Color.secondary.opacity(0.01)
+                } else {
+                    Color.clear
+
+                }
+            }
 
             Text("\(intervalValue.toString())")
                 .frame(width: 65)
@@ -95,6 +105,6 @@ enum PingInterval: Int {
 
 
 #Preview {
-    PingIntervalSlider(intervalValue: .constant(.ms100))
+    PingIntervalSlider(intervalValue: .constant(.sec2), enabled: .constant(true))
         .padding()
 }

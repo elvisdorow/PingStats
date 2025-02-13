@@ -51,6 +51,7 @@
 		D527F7482CAB25A9001B428C /* IPUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = D527F7472CAB25A9001B428C /* IPUtils.swift */; };
 		D527F74A2CAB290B001B428C /* TargetHostViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D527F7492CAB290B001B428C /* TargetHostViewModel.swift */; };
 		D5295D3F2D579BB300A859F6 /* UserViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5295D3E2D579BB300A859F6 /* UserViewModel.swift */; };
+		D52E72AB2D5E351600D6AD6D /* ProBadge.swift in Sources */ = {isa = PBXBuildFile; fileRef = D52E72AA2D5E351600D6AD6D /* ProBadge.swift */; };
 		D52F61322CED18170056EFC5 /* MiniLoadingBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = D52F61312CED18170056EFC5 /* MiniLoadingBar.swift */; };
 		D54192802D56A41D00B8CA61 /* StoreKit.storekit in Resources */ = {isa = PBXBuildFile; fileRef = D541927F2D56A41D00B8CA61 /* StoreKit.storekit */; };
 		D549379A2CEF7AA800F777DD /* PingPayloadSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = D54937992CEF7AA800F777DD /* PingPayloadSlider.swift */; };
@@ -58,7 +59,6 @@
 		D54A656E2D0BA2AF00121652 /* AddHostFormView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D54A656D2D0BA2A800121652 /* AddHostFormView.swift */; };
 		D551F5832CE7F60E0029800D /* SessionParam.swift in Sources */ = {isa = PBXBuildFile; fileRef = D551F5822CE7F60E0029800D /* SessionParam.swift */; };
 		D557AF842CF12A5C008ED94B /* SessionPingLogView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D557AF832CF12A5C008ED94B /* SessionPingLogView.swift */; };
-		D558AB742D5D16F500C45BE9 /* icons.json in Resources */ = {isa = PBXBuildFile; fileRef = D558AB732D5D16F500C45BE9 /* icons.json */; };
 		D55D788F2CE392DF00C49190 /* PingService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D55D788E2CE392DF00C49190 /* PingService.swift */; };
 		D56AC7F62D1F5E3100A0B307 /* FileService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D56AC7F52D1F5E3100A0B307 /* FileService.swift */; };
 		D56AC7F82D1F602D00A0B307 /* SessionTextFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = D56AC7F72D1F602D00A0B307 /* SessionTextFile.swift */; };
@@ -74,8 +74,6 @@
 		D5ABB79B2D428FEF00B2B69B /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = D5ABB79A2D428FEF00B2B69B /* FirebaseAnalytics */; };
 		D5B7D0042CE636400031D761 /* StatCalculator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5B7D0032CE636400031D761 /* StatCalculator.swift */; };
 		D5BC7BB22CE7E37800D1359A /* ChartItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5BC7BB12CE7E37800D1359A /* ChartItem.swift */; };
-		D5DA02142D5D245100D70D56 /* FontAwesome-Regular-400.otf in Resources */ = {isa = PBXBuildFile; fileRef = D5DA02122D5D245100D70D56 /* FontAwesome-Regular-400.otf */; };
-		D5DA02152D5D245100D70D56 /* FontAwesome-Solid-900.otf in Resources */ = {isa = PBXBuildFile; fileRef = D5DA02132D5D245100D70D56 /* FontAwesome-Solid-900.otf */; };
 		D5DDABD62D43C83100BC93A5 /* AnalyticsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5DDABD52D43C82900BC93A5 /* AnalyticsService.swift */; };
 		D5DDABD82D43D29800BC93A5 /* FirebaseCrashlytics in Frameworks */ = {isa = PBXBuildFile; productRef = D5DDABD72D43D29800BC93A5 /* FirebaseCrashlytics */; };
 		D5FA4E2F2CE4D09A0068CBC9 /* PingStatsContainer.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = D5FA4E2D2CE4D09A0068CBC9 /* PingStatsContainer.xcdatamodeld */; };
@@ -85,7 +83,7 @@
 		D5FB2D172CA6FDA3002C4AE3 /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5FB2D162CA6FDA3002C4AE3 /* Settings.swift */; };
 		D5FBDDE82CEC066C0097898A /* SessionDataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5FBDDE72CEC066C0097898A /* SessionDataService.swift */; };
 		D5FBEFF22CB6C43F0077CF0A /* PingSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5FBEFF12CB6C43F0077CF0A /* PingSettingsView.swift */; };
-		D5FFFF262CDD6E070039D7DD /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5FFFF252CDD6E070039D7DD /* Color.swift */; };
+		D5FFFF262CDD6E070039D7DD /* AppTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5FFFF252CDD6E070039D7DD /* AppTheme.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -145,6 +143,7 @@
 		D527F7472CAB25A9001B428C /* IPUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IPUtils.swift; sourceTree = "<group>"; };
 		D527F7492CAB290B001B428C /* TargetHostViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TargetHostViewModel.swift; sourceTree = "<group>"; };
 		D5295D3E2D579BB300A859F6 /* UserViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserViewModel.swift; sourceTree = "<group>"; };
+		D52E72AA2D5E351600D6AD6D /* ProBadge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProBadge.swift; sourceTree = "<group>"; };
 		D52F61312CED18170056EFC5 /* MiniLoadingBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MiniLoadingBar.swift; sourceTree = "<group>"; };
 		D541927F2D56A41D00B8CA61 /* StoreKit.storekit */ = {isa = PBXFileReference; lastKnownFileType = text; path = StoreKit.storekit; sourceTree = "<group>"; };
 		D54937992CEF7AA800F777DD /* PingPayloadSlider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PingPayloadSlider.swift; sourceTree = "<group>"; };
@@ -152,7 +151,6 @@
 		D54A656D2D0BA2A800121652 /* AddHostFormView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddHostFormView.swift; sourceTree = "<group>"; };
 		D551F5822CE7F60E0029800D /* SessionParam.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionParam.swift; sourceTree = "<group>"; };
 		D557AF832CF12A5C008ED94B /* SessionPingLogView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionPingLogView.swift; sourceTree = "<group>"; };
-		D558AB732D5D16F500C45BE9 /* icons.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = icons.json; sourceTree = "<group>"; };
 		D55D788E2CE392DF00C49190 /* PingService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PingService.swift; sourceTree = "<group>"; };
 		D56AC7F52D1F5E3100A0B307 /* FileService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileService.swift; sourceTree = "<group>"; };
 		D56AC7F72D1F602D00A0B307 /* SessionTextFile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionTextFile.swift; sourceTree = "<group>"; };
@@ -166,8 +164,6 @@
 		D5ABB7972D428F6700B2B69B /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		D5B7D0032CE636400031D761 /* StatCalculator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatCalculator.swift; sourceTree = "<group>"; };
 		D5BC7BB12CE7E37800D1359A /* ChartItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartItem.swift; sourceTree = "<group>"; };
-		D5DA02122D5D245100D70D56 /* FontAwesome-Regular-400.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "FontAwesome-Regular-400.otf"; sourceTree = "<group>"; };
-		D5DA02132D5D245100D70D56 /* FontAwesome-Solid-900.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "FontAwesome-Solid-900.otf"; sourceTree = "<group>"; };
 		D5DDABD52D43C82900BC93A5 /* AnalyticsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalyticsService.swift; sourceTree = "<group>"; };
 		D5FA4E2E2CE4D09A0068CBC9 /* PingStatsContainer.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = PingStatsContainer.xcdatamodel; sourceTree = "<group>"; };
 		D5FA4E302CE4D15E0068CBC9 /* TargetHostDataService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TargetHostDataService.swift; sourceTree = "<group>"; };
@@ -176,7 +172,7 @@
 		D5FB2D162CA6FDA3002C4AE3 /* Settings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
 		D5FBDDE72CEC066C0097898A /* SessionDataService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionDataService.swift; sourceTree = "<group>"; };
 		D5FBEFF12CB6C43F0077CF0A /* PingSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PingSettingsView.swift; sourceTree = "<group>"; };
-		D5FFFF252CDD6E070039D7DD /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
+		D5FFFF252CDD6E070039D7DD /* AppTheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppTheme.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -219,6 +215,7 @@
 				D57F20792CA4498200676BDD /* PingMaxtimeSlider.swift */,
 				D5FB2D142CA6E1D1002C4AE3 /* PingCountStatSlider.swift */,
 				D54937992CEF7AA800F777DD /* PingPayloadSlider.swift */,
+				D52E72AA2D5E351600D6AD6D /* ProBadge.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -226,7 +223,7 @@
 		1477566B2C88A0D5003D7573 /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
-				D5FFFF252CDD6E070039D7DD /* Color.swift */,
+				D5FFFF252CDD6E070039D7DD /* AppTheme.swift */,
 				14BBA22C2C98B49400438D2D /* Formatter.swift */,
 				D527F7472CAB25A9001B428C /* IPUtils.swift */,
 				D58655952D26D1760090776E /* ActivityView.swift */,
@@ -239,13 +236,10 @@
 		1485A95F2C87A62000FDC0AC /* Fonts */ = {
 			isa = PBXGroup;
 			children = (
-				D558AB732D5D16F500C45BE9 /* icons.json */,
 				1485A9652C87AC6D00FDC0AC /* Inter-Black.ttf */,
 				1485A9642C87AC6D00FDC0AC /* Inter-Light.ttf */,
 				1485A9622C87A69800FDC0AC /* Inter-Regular.ttf */,
 				1485A9602C87A67F00FDC0AC /* Inter-SemiBold.ttf */,
-				D5DA02122D5D245100D70D56 /* FontAwesome-Regular-400.otf */,
-				D5DA02132D5D245100D70D56 /* FontAwesome-Solid-900.otf */,
 			);
 			path = Fonts;
 			sourceTree = "<group>";
@@ -528,13 +522,10 @@
 			files = (
 				1485A9662C87AC6D00FDC0AC /* Inter-Light.ttf in Resources */,
 				D5ABB7982D428F6700B2B69B /* GoogleService-Info.plist in Resources */,
-				D5DA02142D5D245100D70D56 /* FontAwesome-Regular-400.otf in Resources */,
-				D5DA02152D5D245100D70D56 /* FontAwesome-Solid-900.otf in Resources */,
 				1485A9672C87AC6D00FDC0AC /* Inter-Black.ttf in Resources */,
 				D54192802D56A41D00B8CA61 /* StoreKit.storekit in Resources */,
 				1485A9612C87A67F00FDC0AC /* Inter-SemiBold.ttf in Resources */,
 				14B950952C45AC4600E8A388 /* Preview Assets.xcassets in Resources */,
-				D558AB742D5D16F500C45BE9 /* icons.json in Resources */,
 				1485A9632C87A69800FDC0AC /* Inter-Regular.ttf in Resources */,
 				D51B56E82D3590D6002B39B2 /* Localizable.xcstrings in Resources */,
 				14B950922C45AC4600E8A388 /* Assets.xcassets in Resources */,
@@ -596,6 +587,7 @@
 				14BBA22D2C98B49400438D2D /* Formatter.swift in Sources */,
 				14FB80AE2D36A3A800D3214B /* AboutView.swift in Sources */,
 				1409322F2C52775B00D2C03F /* PingStat.swift in Sources */,
+				D52E72AB2D5E351600D6AD6D /* ProBadge.swift in Sources */,
 				143391DA2C9A365300ED8CDB /* PingIntervalSlider.swift in Sources */,
 				14B9508E2C45AC4400E8A388 /* App.swift in Sources */,
 				14AAA2502C92491A00DF83F0 /* SessionsListView.swift in Sources */,
@@ -617,7 +609,7 @@
 				142C51BC2C64240100492458 /* PingLog.swift in Sources */,
 				D5FA4E332CE4D8870068CBC9 /* DataService.swift in Sources */,
 				14B9509D2C45B62500E8A388 /* ICMPResponse.swift in Sources */,
-				D5FFFF262CDD6E070039D7DD /* Color.swift in Sources */,
+				D5FFFF262CDD6E070039D7DD /* AppTheme.swift in Sources */,
 				D54A65682D0B31F600121652 /* CloseButton.swift in Sources */,
 				D504B6D22D2749810054FEB6 /* IconAndTitleButton.swift in Sources */,
 				14F54FF32C986FEA005260E5 /* SessionDetailView.swift in Sources */,
@@ -774,7 +766,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = YES;
-				CURRENT_PROJECT_VERSION = 6;
+				CURRENT_PROJECT_VERSION = 7;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_ASSET_PATHS = "\"PingStats/Preview Content\"";
 				DEVELOPMENT_TEAM = EZ733NNPCJ;
@@ -811,7 +803,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = YES;
-				CURRENT_PROJECT_VERSION = 6;
+				CURRENT_PROJECT_VERSION = 7;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_ASSET_PATHS = "\"PingStats/Preview Content\"";
 				DEVELOPMENT_TEAM = EZ733NNPCJ;

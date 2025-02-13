@@ -7,10 +7,13 @@
 
 import SwiftUI
 import FirebaseAnalytics
+import RevenueCatUI
 
 struct TargetHostView: View {
 
     @Environment(\.presentationMode) var presentationMode
+    
+    @EnvironmentObject var userVm: UserViewModel
     
     @StateObject var vm: TargetHostViewModel = TargetHostViewModel()
     
@@ -20,6 +23,7 @@ struct TargetHostView: View {
     @State var showAddForm: Bool = false
     @State var newIpAddress: String = ""
     @State var errorMessage: LocalizedStringResource?
+    @State var showPaywall: Bool = false
     
     @State var timer: Timer?
     
@@ -56,6 +60,9 @@ struct TargetHostView: View {
                 })
             .presentationDetents([.height(280), .height(290)])
         }
+        .sheet(isPresented: $showPaywall, content: {
+            PaywallView()
+        })
         .toolbar(content: {
             
             ToolbarItem(placement: .bottomBar) {
@@ -63,8 +70,13 @@ struct TargetHostView: View {
                     title: "New Host",
                     systemImage: "plus.circle.fill",
                     action: {
-                        newIpAddress = ""
-                        showAddForm.toggle()
+                        
+                        if !userVm.isPayingUser && vm.hosts.count >= 3 {
+                            showPaywall.toggle()
+                        } else {
+                            newIpAddress = ""
+                            showAddForm.toggle()
+                        }
                     })
             }
         })

@@ -7,11 +7,13 @@
 
 import SwiftUI
 import FirebaseAnalytics
+import RevenueCatUI
 
 struct SettingsView: View {
     
     @Environment(\.presentationMode) var presentationMode
-       
+    @EnvironmentObject var userViewModel: UserViewModel
+    @State var showPaywall: Bool = false
     @StateObject var settings = Settings.shared
     
     var body: some View {
@@ -53,12 +55,28 @@ struct SettingsView: View {
                 
 
                 Section {
-                    PingMaxtimeSlider(maxtime: $settings.maxtimeSetting)
+                    PingMaxtimeSlider(maxtime: $settings.maxtimeSetting, enabled: $userViewModel.isPayingUser)
        
                 } header: {
-                    Text("Stop After")
+                    HStack {
+                        Text("Stop After")
+                        if !userViewModel.isPayingUser {
+                            Spacer()
+                            ProBadge()
+                        }
+                    }
                 } footer: {
                     Text("Maximum duration for the test to run before it stops automatically.")
+                }
+                .gesture(                    
+                    userViewModel.isPayingUser ? nil : DragGesture().onChanged { _ in
+                        showPaywall = true
+                    }
+                )
+                .onTapGesture {
+                    if !userViewModel.isPayingUser {
+                        showPaywall.toggle()
+                    }
                 }
 
                 Section {
@@ -70,6 +88,9 @@ struct SettingsView: View {
                 }
 
             }
+            .sheet(isPresented: $showPaywall, content: {
+                PaywallView()
+            })
             .toolbar {
                 ToolbarItem {
                     Button(action: {
@@ -82,6 +103,7 @@ struct SettingsView: View {
             .navigationTitle("Settings")
             .toolbarTitleDisplayMode(.inline)
             .analyticsScreen(name: "Settings")
+            
         }
     }
 }
@@ -112,7 +134,12 @@ struct ThemeButton: View {
     }
 }
 
-#Preview {
-    SettingsView()
+struct SettingsView_Preview: PreviewProvider {
+    static var previews: some View {
+        let userViewModel = UserViewModel()
+        userViewModel.isPayingUser = true
+        
+        return SettingsView().environmentObject(userViewModel)
+    }
 }
 
