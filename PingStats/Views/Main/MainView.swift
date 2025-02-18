@@ -306,7 +306,7 @@ extension MainView {
                         .frame(height: 20)
                 }
                 Text("\(Formatter.number(viewModel.pingStat.generalScore, fraction: 0, unit: "%"))")
-                    .frame(width: 55)
+                    .frame(width: 57)
             }
         }
         .padding()

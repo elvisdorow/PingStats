@@ -756,7 +756,14 @@
       }
     },
     "Pro" : {
-
+      "localizations" : {
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pro"
+          }
+        }
+      }
     },
     "Reset to defaults" : {
       "localizations" : {
@@ -995,7 +1002,14 @@
       }
     },
     "Thank You for Your Support! 🎉" : {
-
+      "localizations" : {
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Obrigado pelo Seu Apoio 🎉"
+          }
+        }
+      }
     },
     "The number of pings in a moving sample utilized to evaluate network performance in real-time." : {
       "localizations" : {
