@@ -12,138 +12,136 @@ import FirebaseAnalytics
 import SimpleToast
 import RevenueCatUI
 
-struct MainView: View {
-    
-    @State private var selectedSegment = 1
-    @State private var showLogs = false
-    
-    @State private var showSettingsView: Bool = false
-    @State private var showResultsView: Bool = false
-    @State private var showAboutView: Bool = false
-    
-    @State private var showHostList: Bool = false
-    @State private var showAlertPausedBg: Bool = false
-    @State private var showShareSheet: Bool = false
-    @State private var showSaveConfirmation: Bool = false
-    
-    @State private var showPaywall: Bool = false
-    
-    private let toastOptions = SimpleToastOptions(
-        hideAfter: 3
-    )
-    
-    @StateObject var viewModel: MainViewModel = MainViewModel()
-    @StateObject var settings = Settings.shared
-    
-    @Environment(\.scenePhase) var scenePhase
+    struct MainView: View {
+        
+        @State private var selectedSegment = 1
+        @State private var showLogs = false
+        
+        @State private var showSettingsView: Bool = false
+        @State private var showResultsView: Bool = false
+        @State private var showAboutView: Bool = false
+        
+        @State private var showHostList: Bool = false
+        @State private var showAlertPausedBg: Bool = false
+        @State private var showShareSheet: Bool = false
+        @State private var showSaveConfirmation: Bool = false
+        
+        @State private var showPaywall: Bool = false
+        
+        private let toastOptions = SimpleToastOptions(
+            hideAfter: 3
+        )
+        
+        @StateObject var viewModel: MainViewModel = MainViewModel()
+        @StateObject var settings = Settings.shared
+        
+        @Environment(\.scenePhase) var scenePhase
 
-    @EnvironmentObject var userViewModel: UserViewModel
+        @EnvironmentObject var userViewModel: UserViewModel
 
-    var body: some View {
-        NavigationStack {
-            
-            ZStack {
-                RadialGradient(gradient: Gradient(colors: [Color.theme.backgroundTop, Color.theme.backgroundBottom]),
-                               center: .topLeading,
-                               startRadius: 0,
-                               endRadius: 900).ignoresSafeArea()
+        var body: some View {
+            NavigationStack {
                 
-                VStack(spacing: 0) {
+                ZStack {
+                    RadialGradient(gradient: Gradient(colors: [Color.theme.backgroundTop, Color.theme.backgroundBottom]),
+                                   center: .topLeading,
+                                   startRadius: 0,
+                                   endRadius: 900).ignoresSafeArea()
                     
-                    chartLogView
-                    
-                    Spacer()
+                    VStack(spacing: 0) {
+                        
+                        chartLogView
+                        
+                        Spacer()
 
-                    horizontalChartNetQualityView
+                        horizontalChartNetQualityView
 
-                    Spacer()
-                    
-                    gaugesView
-                    
-                    Spacer()
+                        Spacer()
+                        
+                        gaugesView
+                        
+                        Spacer()
 
-                    textStatsView
-                    
-                    Spacer()
+                        textStatsView
+                        
+                        Spacer()
 
-                    bottomActions
-                }
-                
-                .popup(isPresented: $showAlertPausedBg, delay: .seconds(1)) { isPresented in
-                    Color.gray.opacity(0.5)
-                } content: {
-                    AlertPauseBgView {
-                        showAlertPausedBg = false
-                        viewModel.isMessageBgPausedShown = true
+                        bottomActions
                     }
-                }
-                .environmentObject(viewModel)
-                .toolbar(content: {
-                    
-                    ToolbarItem(placement: .topBarLeading) {
-                        HStack {
-                            Image("logo")
+                    .toolbar(content: {
+                        ToolbarItem(placement: .topBarLeading) {
+                            HStack {
+                                Image("logo")
+                            }
+                        }
+                        ToolbarItem(placement: .topBarTrailing) {
+                            menuItems
+                        }
+                    })
+                    .popup(isPresented: $showAlertPausedBg, delay: .seconds(1)) { isPresented in
+                        Color.gray.opacity(0.5)
+                    } content: {
+                        AlertPauseBgView {
+                            showAlertPausedBg = false
+                            viewModel.isMessageBgPausedShown = true
                         }
                     }
-                    ToolbarItem(placement: .topBarTrailing) {
-                        menuItems
-                    }
+                    .environmentObject(viewModel)
+                    .accentColor(Color.theme.accent)
+                }
+                .popover(isPresented: $showSettingsView) {
+                    SettingsView()
+                        .presentationCompactAdaptation(.fullScreenCover)
+                }
+                .popover(isPresented: $showResultsView) {
+                    SessionsListView()
+                        .presentationCompactAdaptation(.fullScreenCover)
+                }
+                .popover(isPresented: $showAboutView) {
+                    AboutView()
+                        .presentationCompactAdaptation(.automatic)
+                }
+                .sheet(isPresented: $showPaywall, content: {
+                    PaywallView()
                 })
-                .accentColor(Color.theme.accent)
-            }
-            .popover(isPresented: $showSettingsView) {
-                SettingsView()
-                    .presentationCompactAdaptation(.fullScreenCover)
-            }
-            .popover(isPresented: $showResultsView) {
-                SessionsListView()
-                    .presentationCompactAdaptation(.fullScreenCover)
-            }
-            .popover(isPresented: $showAboutView) {
-                AboutView()
-                    .presentationCompactAdaptation(.automatic)
-            }
-            .sheet(isPresented: $showPaywall, content: {
-                PaywallView()
-            })
-            .sheet(isPresented: $showShareSheet) {
-                ActivityView(activityItems: [viewModel.fileURL!as Any])
-            }
-            .simpleToast(isPresented: $showSaveConfirmation, options: toastOptions) {
-                ToastMessage(message: "Result saved in files.")
-            }
+                .sheet(isPresented: $showShareSheet) {
+                    ActivityView(activityItems: [viewModel.fileURL!as Any])
+                }
+                .simpleToast(isPresented: $showSaveConfirmation, options: toastOptions) {
+                    ToastMessage(message: "Result saved in files.")
+                }
 
-            
-        }
-        .onChange(of: scenePhase) { _, newValue in
-            if newValue == .background && viewModel.isAnalysisRunning {
-                viewModel.pause()
                 
-                if !viewModel.isMessageBgPausedShown {
-                    NotificationService.instance.sendAppInBackgroundNotification { scheduled in
-                        if scheduled {
-                            print("Notification scheduled")
+            }
+            .onChange(of: scenePhase) { _, newValue in
+                if newValue == .background && viewModel.isAnalysisRunning {
+                    viewModel.pause()
+                    
+                    if !viewModel.isMessageBgPausedShown {
+                        NotificationService.instance.sendAppInBackgroundNotification { scheduled in
+                            if scheduled {
+                                print("Notification scheduled")
+                            }
                         }
                     }
                 }
-            }
-            
-            if newValue == .active && viewModel.appState == .paused {
-                if viewModel.isMessageBgPausedShown == false {
-                    showAlertPausedBg = true
+                
+                if newValue == .active && viewModel.appState == .paused {
+                    if viewModel.isMessageBgPausedShown == false {
+                        showAlertPausedBg = true
+                    }
                 }
             }
-        }
-        .onChange(of: settings.host, { oldValue, newValue in
-            if viewModel.appState == .stopped
-                || viewModel.appState == .empty {
+            .onChange(of: settings.host, { oldValue, newValue in
+                if viewModel.appState == .stopped
+                    || viewModel.appState == .empty {
 
-                viewModel.hostTextBox = settings.host
-            }
-        })
-        .analyticsScreen(name: "MainView")
+                    viewModel.hostTextBox = settings.host
+                }
+            })
+            .analyticsScreen(name: "MainView")
+        }
     }
-}
 
 // MARK: Extensions
 

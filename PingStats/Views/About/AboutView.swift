@@ -71,7 +71,7 @@ struct AboutView: View {
                     
                     HStack(spacing: 15) {
                         Link("Privacy Policy", destination: URL(string: "https://pingstats.app/privacy-policy.html")!)
-                        Link("Terms of Service", destination: URL(string: "https://pingstats.app/terms-of-service.html")!)
+                        Link("Terms of Service", destination: URL(string: "https://www.apple.com/legal/internet-services/itunes/dev/stdeula/")!)
                     }
                     .font(.footnote)
                 }
