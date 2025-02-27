@@ -101,9 +101,10 @@ import RevenueCatUI
                     AboutView()
                         .presentationCompactAdaptation(.automatic)
                 }
-                .sheet(isPresented: $showPaywall, content: {
+                .popover(isPresented: $showPaywall) {
                     PaywallView()
-                })
+                        .presentationCompactAdaptation(.fullScreenCover)
+                }
                 .sheet(isPresented: $showShareSheet) {
                     ActivityView(activityItems: [viewModel.fileURL!as Any])
                 }
@@ -488,7 +489,7 @@ extension MainView {
         .padding(.horizontal)
         .frame(maxWidth: .infinity)
     }
-    
+
     func triggerHaptic(style: UIImpactFeedbackGenerator.FeedbackStyle) {
         let generator = UIImpactFeedbackGenerator(style: style)
         generator.prepare()
@@ -503,10 +504,11 @@ extension MainView {
 }
 
 #Preview {
-    MainView().preferredColorScheme(.dark)
+    MainView().environmentObject(UserViewModel()).preferredColorScheme(.dark)
 }
 
 #Preview("EN") {
     MainView()
+        .environmentObject(UserViewModel())
         .environment(\.locale, Locale(identifier: "EN"))
 }

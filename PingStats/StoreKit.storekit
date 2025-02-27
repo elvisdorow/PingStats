@@ -17,21 +17,21 @@
     {
       "displayPrice" : "14.99",
       "familyShareable" : false,
-      "internalID" : "6741535981",
+      "internalID" : "6742569919",
       "localizations" : [
         {
-          "description" : "PingStats Pro - Full License",
-          "displayName" : "PingStats Pro",
+          "description" : "Lifetime Access",
+          "displayName" : "Lifetime Access",
           "locale" : "en_US"
         },
         {
-          "description" : "PingStats Pro - Licença Completa",
-          "displayName" : "PingStats Pro",
+          "description" : "Acesso Vitalício",
+          "displayName" : "Acesso Vitalício",
           "locale" : "pt_BR"
         }
       ],
-      "productID" : "ps_1499_lifetime",
-      "referenceName" : "PingStats Pro Lifetime $14.99",
+      "productID" : "ps_1499_forever",
+      "referenceName" : "PingStats Pro - Lifetime, $14.99",
       "type" : "NonConsumable"
     }
   ],
@@ -42,7 +42,7 @@
     },
     "_developerTeamID" : "EZ733NNPCJ",
     "_failTransactionsEnabled" : false,
-    "_lastSynchronizedDate" : 760652832.85913396,
+    "_lastSynchronizedDate" : 762383616.56360102,
     "_locale" : "en_US",
     "_storefront" : "USA",
     "_storeKitErrors" : [
@@ -109,31 +109,59 @@
           "codeOffers" : [
 
           ],
-          "displayPrice" : "9.99",
-          "familyShareable" : true,
-          "groupNumber" : 1,
-          "internalID" : "6741549444",
-          "introductoryOffer" : {
-            "internalID" : "79865D1D",
-            "numberOfPeriods" : 1,
-            "paymentMode" : "free",
-            "subscriptionPeriod" : "P1W"
-          },
+          "displayPrice" : "0.99",
+          "familyShareable" : false,
+          "groupNumber" : 2,
+          "internalID" : "6742569799",
+          "introductoryOffer" : null,
           "localizations" : [
             {
-              "description" : "Detailed ping logs & pro features.",
-              "displayName" : "PingStats Pro (Yearly)",
+              "description" : "Acesso Completo",
+              "displayName" : "Acesso Completo",
+              "locale" : "pt_BR"
+            },
+            {
+              "description" : "All Access",
+              "displayName" : "All Access",
+              "locale" : "en_US"
+            }
+          ],
+          "productID" : "ps_099_1m",
+          "recurringSubscriptionPeriod" : "P1M",
+          "referenceName" : "PingStats Pro - 1 Month, $0.99",
+          "subscriptionGroupID" : "21631233",
+          "type" : "RecurringSubscription",
+          "winbackOffers" : [
+
+          ]
+        },
+        {
+          "adHocOffers" : [
+
+          ],
+          "codeOffers" : [
+
+          ],
+          "displayPrice" : "9.99",
+          "familyShareable" : false,
+          "groupNumber" : 1,
+          "internalID" : "6742569548",
+          "introductoryOffer" : null,
+          "localizations" : [
+            {
+              "description" : "All Access",
+              "displayName" : "All Access",
               "locale" : "en_US"
             },
             {
-              "description" : "Logs detalhados de ping, estatísticas e mais.",
-              "displayName" : "PingStats Pro (Anual)",
+              "description" : "Acesso Completo",
+              "displayName" : "Acesso Completo",
               "locale" : "pt_BR"
             }
           ],
-          "productID" : "ps_999_1year",
+          "productID" : "ps_999_1y",
           "recurringSubscriptionPeriod" : "P1Y",
-          "referenceName" : "PingStats Pro 1 Year $9.99",
+          "referenceName" : "PingStats Pro - 1 Year, $9.99",
           "subscriptionGroupID" : "21631233",
           "type" : "RecurringSubscription",
           "winbackOffers" : [
