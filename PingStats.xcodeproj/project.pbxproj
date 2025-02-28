@@ -14,6 +14,8 @@
 		143391DA2C9A365300ED8CDB /* PingIntervalSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 143391D92C9A365300ED8CDB /* PingIntervalSlider.swift */; };
 		1436956E2C8750E8005CC2B3 /* TargetHostView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1436956D2C8750E8005CC2B3 /* TargetHostView.swift */; };
 		144D60B42C90966A009B7D9C /* SwiftyPing in Frameworks */ = {isa = PBXBuildFile; productRef = 144D60B32C90966A009B7D9C /* SwiftyPing */; };
+		1469E1EE2D7249BB0047C71C /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = 1469E1ED2D7249BB0047C71C /* FirebaseAnalytics */; };
+		1469E1F02D7249BB0047C71C /* FirebaseCrashlytics in Frameworks */ = {isa = PBXBuildFile; productRef = 1469E1EF2D7249BB0047C71C /* FirebaseCrashlytics */; };
 		1485A9612C87A67F00FDC0AC /* Inter-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 1485A9602C87A67F00FDC0AC /* Inter-SemiBold.ttf */; };
 		1485A9632C87A69800FDC0AC /* Inter-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 1485A9622C87A69800FDC0AC /* Inter-Regular.ttf */; };
 		1485A9662C87AC6D00FDC0AC /* Inter-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 1485A9642C87AC6D00FDC0AC /* Inter-Light.ttf */; };
@@ -71,11 +73,9 @@
 		D586A3BC2D4D6184000CA77D /* SimpleToast in Frameworks */ = {isa = PBXBuildFile; productRef = D586A3BB2D4D6184000CA77D /* SimpleToast */; };
 		D586A3BE2D4D6FB1000CA77D /* ToastMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = D586A3BD2D4D6FB1000CA77D /* ToastMessage.swift */; };
 		D5ABB7982D428F6700B2B69B /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = D5ABB7972D428F6700B2B69B /* GoogleService-Info.plist */; };
-		D5ABB79B2D428FEF00B2B69B /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = D5ABB79A2D428FEF00B2B69B /* FirebaseAnalytics */; };
 		D5B7D0042CE636400031D761 /* StatCalculator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5B7D0032CE636400031D761 /* StatCalculator.swift */; };
 		D5BC7BB22CE7E37800D1359A /* ChartItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5BC7BB12CE7E37800D1359A /* ChartItem.swift */; };
 		D5DDABD62D43C83100BC93A5 /* AnalyticsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5DDABD52D43C82900BC93A5 /* AnalyticsService.swift */; };
-		D5DDABD82D43D29800BC93A5 /* FirebaseCrashlytics in Frameworks */ = {isa = PBXBuildFile; productRef = D5DDABD72D43D29800BC93A5 /* FirebaseCrashlytics */; };
 		D5FA4E2F2CE4D09A0068CBC9 /* PingStatsContainer.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = D5FA4E2D2CE4D09A0068CBC9 /* PingStatsContainer.xcdatamodeld */; };
 		D5FA4E312CE4D15E0068CBC9 /* TargetHostDataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5FA4E302CE4D15E0068CBC9 /* TargetHostDataService.swift */; };
 		D5FA4E332CE4D8870068CBC9 /* DataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5FA4E322CE4D8870068CBC9 /* DataService.swift */; };
@@ -180,13 +180,13 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1469E1EE2D7249BB0047C71C /* FirebaseAnalytics in Frameworks */,
 				14CD07CD2D3A9A95009D2AAF /* FullscreenPopup in Frameworks */,
-				D5DDABD82D43D29800BC93A5 /* FirebaseCrashlytics in Frameworks */,
 				D5196CCB2D555D1800D44E76 /* RevenueCat in Frameworks */,
 				144D60B42C90966A009B7D9C /* SwiftyPing in Frameworks */,
 				D5196CCD2D555D1800D44E76 /* RevenueCatUI in Frameworks */,
+				1469E1F02D7249BB0047C71C /* FirebaseCrashlytics in Frameworks */,
 				D515C6002D50F74B00EC8DFB /* StoreKit.framework in Frameworks */,
-				D5ABB79B2D428FEF00B2B69B /* FirebaseAnalytics in Frameworks */,
 				D586A3BC2D4D6184000CA77D /* SimpleToast in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -459,11 +459,11 @@
 			packageProductDependencies = (
 				144D60B32C90966A009B7D9C /* SwiftyPing */,
 				14CD07CC2D3A9A95009D2AAF /* FullscreenPopup */,
-				D5ABB79A2D428FEF00B2B69B /* FirebaseAnalytics */,
-				D5DDABD72D43D29800BC93A5 /* FirebaseCrashlytics */,
 				D586A3BB2D4D6184000CA77D /* SimpleToast */,
 				D5196CCA2D555D1800D44E76 /* RevenueCat */,
 				D5196CCC2D555D1800D44E76 /* RevenueCatUI */,
+				1469E1ED2D7249BB0047C71C /* FirebaseAnalytics */,
+				1469E1EF2D7249BB0047C71C /* FirebaseCrashlytics */,
 			);
 			productName = PingStats;
 			productReference = 14B9508A2C45AC4400E8A388 /* PingStats.app */;
@@ -496,9 +496,9 @@
 			packageReferences = (
 				144D60B22C90966A009B7D9C /* XCRemoteSwiftPackageReference "SwiftyPing" */,
 				14CD07CB2D3A9A95009D2AAF /* XCRemoteSwiftPackageReference "swift-fullscreen-popup" */,
-				D5ABB7992D428FEF00B2B69B /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
 				D586A3BA2D4D6184000CA77D /* XCRemoteSwiftPackageReference "SimpleToast" */,
 				D5196CC92D555D1800D44E76 /* XCRemoteSwiftPackageReference "purchases-ios-spm" */,
+				1469E1EC2D7249BB0047C71C /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
 			);
 			productRefGroup = 14B9508B2C45AC4400E8A388 /* Products */;
 			projectDirPath = "";
@@ -549,6 +549,7 @@
 				"${DWARF_DSYM_FOLDER_PATH}/${DWARF_DSYM_FILE_NAME}/Contents/Info.plist",
 				"$(TARGET_BUILD_DIR)/$(UNLOCALIZED_RESOURCES_FOLDER_PATH)/GoogleService-Info.plist",
 				"$(TARGET_BUILD_DIR)/$(EXECUTABLE_PATH)",
+				"${DWARF_DSYM_FOLDER_PATH}/${DWARF_DSYM_FILE_NAME}/Contents/Resources/DWARF/${PRODUCT_NAME}.debug.dylib",
 			);
 			name = Crashlytics;
 			outputFileListPaths = (
@@ -765,9 +766,10 @@
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = NO;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				COPY_PHASE_STRIP = YES;
+				COPY_PHASE_STRIP = NO;
 				CURRENT_PROJECT_VERSION = 14;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEBUG_INFORMATION_VERSION = "compiler-default";
 				DEVELOPMENT_ASSET_PATHS = "\"PingStats/Preview Content\"";
 				DEVELOPMENT_TEAM = EZ733NNPCJ;
 				ENABLE_PREVIEWS = YES;
@@ -789,6 +791,9 @@
 				PRODUCT_BUNDLE_IDENTIFIER = app.PingStats;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
+				STRIP_INSTALLED_PRODUCT = NO;
+				STRIP_STYLE = "non-global";
+				STRIP_SWIFT_SYMBOLS = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
@@ -803,12 +808,14 @@
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = NO;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				COPY_PHASE_STRIP = YES;
+				COPY_PHASE_STRIP = NO;
 				CURRENT_PROJECT_VERSION = 14;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEBUG_INFORMATION_VERSION = "compiler-default";
 				DEVELOPMENT_ASSET_PATHS = "\"PingStats/Preview Content\"";
 				DEVELOPMENT_TEAM = EZ733NNPCJ;
 				ENABLE_PREVIEWS = YES;
+				ENABLE_TESTABILITY = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = PingStats/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "Ping Stats";
@@ -827,6 +834,9 @@
 				PRODUCT_BUNDLE_IDENTIFIER = app.PingStats;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
+				STRIP_INSTALLED_PRODUCT = NO;
+				STRIP_STYLE = "non-global";
+				STRIP_SWIFT_SYMBOLS = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
@@ -865,6 +875,14 @@
 				kind = branch;
 			};
 		};
+		1469E1EC2D7249BB0047C71C /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 11.9.0;
+			};
+		};
 		14CD07CB2D3A9A95009D2AAF /* XCRemoteSwiftPackageReference "swift-fullscreen-popup" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/Ryu0118/swift-fullscreen-popup";
@@ -889,14 +907,6 @@
 				minimumVersion = 0.10.1;
 			};
 		};
-		D5ABB7992D428FEF00B2B69B /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
-			requirement = {
-				kind = exactVersion;
-				version = 11.7.0;
-			};
-		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -904,6 +914,16 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 144D60B22C90966A009B7D9C /* XCRemoteSwiftPackageReference "SwiftyPing" */;
 			productName = SwiftyPing;
+		};
+		1469E1ED2D7249BB0047C71C /* FirebaseAnalytics */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 1469E1EC2D7249BB0047C71C /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAnalytics;
+		};
+		1469E1EF2D7249BB0047C71C /* FirebaseCrashlytics */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 1469E1EC2D7249BB0047C71C /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseCrashlytics;
 		};
 		14CD07CC2D3A9A95009D2AAF /* FullscreenPopup */ = {
 			isa = XCSwiftPackageProductDependency;
@@ -924,16 +944,6 @@
 			isa = XCSwiftPackageProductDependency;
 			package = D586A3BA2D4D6184000CA77D /* XCRemoteSwiftPackageReference "SimpleToast" */;
 			productName = SimpleToast;
-		};
-		D5ABB79A2D428FEF00B2B69B /* FirebaseAnalytics */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = D5ABB7992D428FEF00B2B69B /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
-			productName = FirebaseAnalytics;
-		};
-		D5DDABD72D43D29800BC93A5 /* FirebaseCrashlytics */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = D5ABB7992D428FEF00B2B69B /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
-			productName = FirebaseCrashlytics;
 		};
 /* End XCSwiftPackageProductDependency section */
 
