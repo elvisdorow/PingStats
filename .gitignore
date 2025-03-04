@@ -92,5 +92,4 @@ iOSInjectionProject/
 *.xcuserstate
 
 .DS_Store
-PingStats.xcodeproj/project.xcworkspace/xcuserdata/*
-PingStats.xcodeproj/project.xcworkspace/xcuserdata/elvis.xcuserdatad/UserInterfaceState.xcuserstate
+PingStats.xcodeproj/project.xcworkspace/xcuserdata/
