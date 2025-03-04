@@ -92,3 +92,4 @@ iOSInjectionProject/
 *.xcuserstate
 
 .DS_Store
+PingStats.xcodeproj/project.xcworkspace/xcuserdata/*
