@@ -27,56 +27,59 @@ struct AboutView: View {
     
     var body: some View {
         NavigationView {
-            VStack(spacing: 40) {
-                // App Icon
-                Image("LogoAbout")
-                    .resizable()
-                    .scaledToFit()
-                    .clipShape(RoundedRectangle(cornerRadius: 20))
-                    .frame(width: 140, height: 140)
-                    .foregroundColor(.blue)
-                    .padding(.top, 40)
-                
-                // App Title
-                Text("PingStats")
-                    .font(.largeTitle)
-                    .fontWeight(.bold)
-                    .foregroundColor(.primary)
-                
-                // App Description
-                Text("PingStat is a network monitoring app that helps you analyze network performance by providing detailed latency statistics, jitter analysis, and packet loss measurements.")
-                    .font(.body)
-                    .multilineTextAlignment(.center)
-                    .lineLimit(nil)
-                    .fixedSize(horizontal: false, vertical: true)
-                    .padding(.horizontal)
-                
-                
-                if userViewModel.isPayingUser {
-                    proUserView
-                } else {
-                    freeUserView
-                }
-                
-                // Links
-                VStack(spacing: 20) {
-                    HStack(spacing: 5) {
-                        Link("support@pingstats.app", destination: URL(string: "mailto:support@pingstats.app?subject=Support")!)
+            ScrollView(.vertical) {
+                VStack(spacing: 40) {
+                    // App Icon
+                    Image("LogoAbout")
+                        .resizable()
+                        .scaledToFit()
+                        .clipShape(RoundedRectangle(cornerRadius: 20))
+                        .frame(width: 140, height: 140)
+                        .foregroundColor(.blue)
+                        .padding(.top, 40)
+                    
+                    // App Title
+                    Text("PingStats")
+                        .font(.largeTitle)
+                        .fontWeight(.bold)
+                        .foregroundColor(.primary)
+                    
+                    // App Description
+                    Text("PingStat is a network monitoring app that helps you analyze network performance by providing detailed latency statistics, jitter analysis, and packet loss measurements.")
+                        .font(.body)
+                        .multilineTextAlignment(.center)
+                        .lineLimit(nil)
+                        .fixedSize(horizontal: false, vertical: true)
+                        .padding(.horizontal)
+                    
+                    
+                    if userViewModel.isPayingUser {
+                        proUserView
+                    } else {
+                        freeUserView
+                    }
+                    
+                    // Links
+                    VStack(spacing: 20) {
+                        HStack(spacing: 5) {
+                            Link("support@pingstats.app", destination: URL(string: "mailto:support@pingstats.app?subject=Support")!)
+                            
+                        }
                         
+                        versionView
+                        
+                        Spacer()
+                        
+                        HStack(spacing: 15) {
+                            Link("Privacy Policy", destination: URL(string: "https://pingstats.app/privacy-policy.html")!)
+                            Link("Terms of Service", destination: URL(string: "https://www.apple.com/legal/internet-services/itunes/dev/stdeula/")!)
+                        }
+                        .font(.footnote)
                     }
-                    
-                    versionView
-                    
-                    Spacer()
-                    
-                    HStack(spacing: 15) {
-                        Link("Privacy Policy", destination: URL(string: "https://pingstats.app/privacy-policy.html")!)
-                        Link("Terms of Service", destination: URL(string: "https://www.apple.com/legal/internet-services/itunes/dev/stdeula/")!)
-                    }
-                    .font(.footnote)
+                    .font(.body)
+                    .padding(.bottom, 40)
                 }
-                .font(.body)
-                .padding(.bottom, 40) 
+
             }
             .navigationTitle("About PingStats")
             .navigationBarTitleDisplayMode(.inline)

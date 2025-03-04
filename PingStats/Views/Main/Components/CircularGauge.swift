@@ -12,7 +12,7 @@ struct CircularGauge: View {
     let type: LocalizedStringResource
     let icon: String
     
-    let iconSize = UIScreen.main.bounds.height * 0.013
+    let iconSize = UIScreen.main.bounds.height * 0.012
 
     @Binding var value: Double
     @Binding var status: PingStat.Status

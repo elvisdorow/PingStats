@@ -52,20 +52,12 @@ import RevenueCatUI
                         
                         chartLogView
                         
-                        Spacer()
-
                         horizontalChartNetQualityView
 
-                        Spacer()
-                        
                         gaugesView
                         
-                        Spacer()
-
                         textStatsView
                         
-                        Spacer()
-
                         bottomActions
                     }
                     .toolbar(content: {
@@ -247,7 +239,7 @@ extension MainView {
             .padding(.leading, 10)
         
         ChartLogView()
-            .frame(height: UIScreen.main.bounds.height * 0.15)
+            .frame(minHeight: UIScreen.main.bounds.height * 0.14)
             .padding(.horizontal)
             .padding(.bottom)
         
@@ -266,7 +258,11 @@ extension MainView {
     
     @ViewBuilder
     var horizontalChartNetQualityView: some View {
-        VStack(alignment: .leading) {
+        
+        let screenHeight = UIScreen.main.bounds.height
+        let barHeight = screenHeight * 0.0224
+        
+        VStack(alignment: .leading, spacing: 7) {
             HStack(alignment: .firstTextBaseline, spacing: 15) {
                 Text("Network Quality")
                     .font(.callout)
@@ -302,7 +298,7 @@ extension MainView {
             HStack {
                 VStack(alignment: .center, spacing: 0) {
                     LoadingBar(currentValue: $viewModel.pingStat.generalScore)
-                        .frame(height: 20)
+                        .frame(height: barHeight)
                 }
                 Text("\(Formatter.number(viewModel.pingStat.generalScore, fraction: 0, unit: "%"))")
                     .frame(width: 57)
@@ -320,7 +316,6 @@ extension MainView {
                 value: $viewModel.pingStat.gamingScore,
                 status: $viewModel.pingStat.gamingStatus
             )
-//            Text("\(viewModel.pingStat.gamingScore)")
             Spacer()
             CircularGauge(
                 type: "Video Call",
@@ -336,7 +331,6 @@ extension MainView {
                 status: $viewModel.pingStat.streamingStatus
             )
         }
-        .frame(height: 120)
         .padding(.horizontal)
         .padding(.top, 6)
     }
@@ -344,8 +338,14 @@ extension MainView {
     @ViewBuilder
     var textStatsView: some View {
         
+        let screenHeight = UIScreen.main.bounds.height
+        
+        let verticalDividerHeight = screenHeight * 0.05
+        let verticalSpacing = screenHeight * 0.04
+        
         HStack(alignment: .center , spacing: 0) {
-            VStack(spacing: 25) {
+            
+            VStack(spacing: verticalSpacing) {
                 TextStatInfo(
                     statusTitle: "Worst",
                     pingValue: "\(Formatter.number(viewModel.pingStat.worstPing, fraction: 0, unit: "ms"))"
@@ -359,10 +359,10 @@ extension MainView {
             VStack {
                 Rectangle()
                     .fill(Color.gray.opacity(0.15))
-                    .frame(width: 1, height: 50)
+                    .frame(width: 1, height: verticalDividerHeight)
                           
             }
-            VStack(alignment: .leading, spacing: 30) {
+            VStack(alignment: .leading, spacing: verticalSpacing) {
                 TextStatInfo(
                     statusTitle: "Average",
                     pingValue: "\(Formatter.number(viewModel.pingStat.averagePing, fraction: 0, unit: "ms"))",
@@ -380,10 +380,10 @@ extension MainView {
             VStack {
                 Rectangle()
                     .fill(Color.gray.opacity(0.15))
-                    .frame(width: 1, height: 50)
+                    .frame(width: 1, height: verticalDividerHeight)
                           
             	}
-            VStack(spacing: 30) {
+            VStack(spacing: verticalSpacing) {
                 TextStatInfo(
                     statusTitle: "Best",
                     pingValue: "\(Formatter.number(viewModel.pingStat.bestPing, fraction: 0, unit: "ms"))"
@@ -395,6 +395,7 @@ extension MainView {
                 )
             }
         }
+        .frame(maxHeight: 180)
         .padding(.horizontal, 5)
     }
     

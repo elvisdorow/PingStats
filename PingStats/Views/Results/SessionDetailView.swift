@@ -91,29 +91,29 @@ struct SessionDetailView: View {
                 }
             }
 
-            VStack(spacing: 33) {
+            VStack(spacing: 25) {
                 
-                Grid(alignment: .center, horizontalSpacing: 20, verticalSpacing: 20) {
+                Grid(alignment: .center, horizontalSpacing: 15, verticalSpacing: 15) {
                     GridRow {
-                        VStack(alignment: .center, spacing: 6) {
+                        VStack(alignment: .center, spacing: 5) {
                             Text("Elapsed Time").font(.footnote).foregroundColor(.secondary)
                             Text(formattedElapsedTime())
                                 .font(.title3)
                         }
-                        VStack(alignment: .center, spacing: 6) {
+                        VStack(alignment: .center, spacing: 5) {
                             Text("Ping Count ").font(.footnote).foregroundColor(.secondary)
                             Text("\(vm.session.pingCount)").font(.title3)
                         }
                     }
                     
                     GridRow {
-                        VStack(alignment: .center, spacing: 6) {
+                        VStack(alignment: .center, spacing: 5) {
                             Text("Ping Interval").font(.footnote).foregroundColor(.secondary)
                             if let interval = PingInterval(rawValue: Int(vm.session.pingInterval)) {
                                 Text("\(interval.toString())").font(.title3)
                             }
                         }
-                        VStack(alignment: .center, spacing: 6) {
+                        VStack(alignment: .center, spacing: 5) {
                             Text("Ping Timeout").font(.footnote).foregroundColor(.secondary)
                             if let timeout = PingTimeout(rawValue: Int(vm.session.pingTimeout)) {
                                 Text("\(timeout.toString())").font(.title3)
@@ -125,17 +125,18 @@ struct SessionDetailView: View {
                 .frame(maxWidth: .infinity)
 
             }
-            .padding(10)
-            .padding(.vertical, 10)
+            .padding(5)
+            .padding(.vertical, 5)
             .frame(maxWidth: /*@START_MENU_TOKEN@*/.infinity/*@END_MENU_TOKEN@*/, alignment: .leading)
             .background(
                 RoundedRectangle(cornerRadius: 20)
                     .fill(.gray.opacity(0.1))
             )
             
-            VStack(alignment: .center) {
+            VStack {
                 buttonViewLogs
             }
+            .frame(maxHeight: 60)
             .simpleToast(isPresented: $showSaveConfirmation, options: toastOptions) {
                 ToastMessage(message: "Result saved in files.")
             }
@@ -169,7 +170,6 @@ struct SessionDetailView: View {
             .padding(.vertical)
             .frame(maxWidth: .infinity, alignment: .center)
 
-            Spacer()
         }
         .padding(.horizontal)
         .navigationTitle(vm.session.host ?? "")
@@ -251,7 +251,7 @@ extension SessionDetailView {
         }
         .foregroundColor(.theme.accent)
         .padding(.horizontal)
-        .frame(height: 50)
+//        .frame(height: 50)
         .frame(maxWidth: 230)
         .onTapGesture {
             showSessionLogs.toggle()
@@ -265,6 +265,8 @@ struct card<Content: View>: View {
 
     let content: Content
     
+    let screenHeight = UIScreen.main.bounds.height
+    
     init(title: LocalizedStringKey, value: String, @ViewBuilder content: () -> Content = { EmptyView() }) {
         self.title = title
         self.value = value
@@ -273,13 +275,14 @@ struct card<Content: View>: View {
     
     var body: some View {
         HStack(alignment: .top) {
-            VStack(alignment: .leading, spacing: 6) {
+            VStack(alignment: .leading, spacing: screenHeight * 0.01) {
                 Text(title).font(.footnote).foregroundColor(.secondary)
                 Text(value).font(.title2).foregroundColor(.primary)
                 content
             }
         }
-        .padding()
+        .padding(.horizontal, screenHeight * 0.025)
+        .padding(.vertical, screenHeight * 0.01)
         .frame(maxWidth: /*@START_MENU_TOKEN@*/.infinity/*@END_MENU_TOKEN@*/, alignment: .leading)
         .background(
             RoundedRectangle(cornerRadius: 20)
