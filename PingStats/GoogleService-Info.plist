@@ -9,7 +9,7 @@
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
-	<string>br.drw.PingStats</string>
+	<string>app.PingStats</string>
 	<key>PROJECT_ID</key>
 	<string>pingstats-4f45d</string>
 	<key>STORAGE_BUCKET</key>

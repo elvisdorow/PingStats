@@ -14,9 +14,6 @@
         }
       }
     },
-    "(%@)" : {
-
-    },
     "%@" : {
       "localizations" : {
         "pt-BR" : {
@@ -715,16 +712,6 @@
         }
       }
     },
-    "PingStat is a network monitoring app that helps you analyze network performance by providing detailed latency statistics, jitter analysis, and packet loss measurements." : {
-      "localizations" : {
-        "pt-BR" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "PingStat é um aplicativo de monitoramento de rede que ajuda a analisar o desempenho da rede, fornecendo estatísticas detalhadas de latência, análise de jitter e medições de perda de pacotes."
-          }
-        }
-      }
-    },
     "PingStats" : {
       "localizations" : {
         "pt-BR" : {
@@ -821,6 +808,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Continuar"
+          }
+        }
+      }
+    },
+    "Review us on the App Store" : {
+      "localizations" : {
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Deixe sua avaliação na App Store"
           }
         }
       }
@@ -1107,16 +1104,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Faça o upgrade para o Pro"
-          }
-        }
-      }
-    },
-    "Version: %@" : {
-      "localizations" : {
-        "pt-BR" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Versão: %@"
           }
         }
       }

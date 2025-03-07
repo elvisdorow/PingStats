@@ -17,6 +17,14 @@ struct AboutView: View {
     
     @State private var showPaywall: Bool = false
     
+    var logoSize: CGFloat {
+        UIScreen.main.bounds.width * 0.26
+    }
+    
+    var mainSpacing: CGFloat {
+        UIScreen.main.bounds.height * 0.04
+    }
+        
     var appVersion: String {
         Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String ?? "1.0"
     }
@@ -27,31 +35,11 @@ struct AboutView: View {
     
     var body: some View {
         NavigationView {
-            ScrollView(.vertical) {
-                VStack(spacing: 40) {
-                    // App Icon
-                    Image("LogoAbout")
-                        .resizable()
-                        .scaledToFit()
-                        .clipShape(RoundedRectangle(cornerRadius: 20))
-                        .frame(width: 140, height: 140)
-                        .foregroundColor(.blue)
-                        .padding(.top, 40)
+                VStack(spacing: mainSpacing) {
                     
-                    // App Title
-                    Text("PingStats")
-                        .font(.largeTitle)
-                        .fontWeight(.bold)
-                        .foregroundColor(.primary)
+                    logoHeaderView
                     
-                    // App Description
-                    Text("PingStat is a network monitoring app that helps you analyze network performance by providing detailed latency statistics, jitter analysis, and packet loss measurements.")
-                        .font(.body)
-                        .multilineTextAlignment(.center)
-                        .lineLimit(nil)
-                        .fixedSize(horizontal: false, vertical: true)
-                        .padding(.horizontal)
-                    
+                    Spacer()
                     
                     if userViewModel.isPayingUser {
                         proUserView
@@ -60,25 +48,30 @@ struct AboutView: View {
                     }
                     
                     // Links
-                    VStack(spacing: 20) {
-                        HStack(spacing: 5) {
-                            Link("support@pingstats.app", destination: URL(string: "mailto:support@pingstats.app?subject=Support")!)
+                    reviewButtonView
                             
+                    Spacer()
+                    
+                    Button(action: {
+                        UIApplication.shared.open(URL(string: "mailto:support@pingstats.app?subject=Support")!)
+                    }) {
+                        HStack(spacing: 5) {
+                            Image(systemName: "envelope.fill")
+                            Text("support@pingstats.app")
                         }
-                        
-                        versionView
-                        
-                        Spacer()
-                        
-                        HStack(spacing: 15) {
-                            Link("Privacy Policy", destination: URL(string: "https://pingstats.app/privacy-policy.html")!)
-                            Link("Terms of Service", destination: URL(string: "https://www.apple.com/legal/internet-services/itunes/dev/stdeula/")!)
-                        }
-                        .font(.footnote)
                     }
+
+                    
+                    HStack(spacing: 15) {
+                        Link("Privacy Policy", destination: URL(string: "https://pingstats.app/privacy-policy.html")!)
+                        Link("Terms of Service", destination: URL(string: "https://www.apple.com/legal/internet-services/itunes/dev/stdeula/")!)
+                    }
+                    .font(.footnote)
+                    
+                    versionView
+                        
                     .font(.body)
-                    .padding(.bottom, 40)
-                }
+                    .padding(.bottom, 35)
 
             }
             .navigationTitle("About PingStats")
@@ -94,6 +87,25 @@ struct AboutView: View {
                 PaywallView()
             })
             .analyticsScreen(name: "About")
+        }
+    }
+    
+    var logoHeaderView: some View {
+        VStack(spacing: 15) {
+            // App Icon
+            Image("LogoAbout")
+                .resizable()
+                .scaledToFit()
+                .clipShape(RoundedRectangle(cornerRadius: 20))
+                .frame(width: logoSize, height: logoSize)
+                .foregroundColor(.blue)
+                .padding(.top, 30)
+            
+            // App Title
+            Text("PingStats")
+                .font(.title)
+                .fontWeight(.bold)
+                .foregroundColor(.primary)
         }
     }
     
@@ -113,6 +125,28 @@ struct AboutView: View {
         .padding()
     }
     
+    var reviewButtonView: some View {
+        VStack(spacing: 15) {
+            Button(action: {
+                UIApplication.shared.open(URL(string: "https://apps.apple.com/app/6741027710")!)
+            }) {
+                VStack(spacing: 10) {
+                    HStack(spacing: 2) {
+                        Image(systemName: "star.fill")
+                        Image(systemName: "star.fill")
+                        Image(systemName: "star.fill")
+                        Image(systemName: "star.fill")
+                        Image(systemName: "star.fill")
+                    }
+                    .font(.subheadline)
+                    .foregroundColor(.yellow)
+                    
+                    Text("Review us on the App Store")
+                }
+            }
+        }
+    }
+    
     var freeUserView: some View {
         VStack(spacing: 15) {
             Text("Unlock Pro Features 🚀")
@@ -130,18 +164,17 @@ struct AboutView: View {
                     .background(Color.theme.accent)
                     .cornerRadius(10)
             }
-            .padding(.horizontal)
+            .padding(.horizontal, 30)
         }
     }
     
     var versionView: some View {
         // Version Information
         HStack(spacing: 3) {
-            Text("Version: \(appVersion)")
-                .font(.subheadline)
-            
-            Text("(\(buildNumber))")
-                .font(.subheadline)
+            Image(systemName: "info.circle")
+                .font(.footnote)
+            Text("\(appVersion)")
+                .font(.footnote)
         }
         .foregroundColor(.secondary)
     }
