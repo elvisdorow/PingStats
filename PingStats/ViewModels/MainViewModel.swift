@@ -143,7 +143,11 @@ class MainViewModel: ObservableObject {
             session.generateFullTestPingStat()
             pingStat = session.pingStat!
             
-            sessionDb = sessionDataService.add(session: session)
+            sessionDataService.add(session: session) { savedSession in
+               DispatchQueue.main.async {
+                   self.sessionDb = savedSession
+               }
+            }
         }
         
         AnalyticsService.instance.logEvent(name: "stop_test", parameters: ["host": session?.parameters.host ?? ""])

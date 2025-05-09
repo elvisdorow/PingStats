@@ -32,55 +32,67 @@ class SessionDataService: DataService {
         return []
     }
     
-    func add(session: Session) -> Sessions? {
+    func add(session: Session, completion: @escaping (Sessions?) -> Void) -> Void {
+        let context = container.viewContext
         
-        let newSession: Sessions = Sessions(context: container.viewContext)
-        
-        guard let pingStat = session.pingStat else { return nil }
-        
-        newSession.startDate = session.startDate
-        newSession.endDate = session.endDate
-        newSession.host = session.parameters.host
-        newSession.resolvedIpOrHost = session.resolvedIpOrHost
-        
-        newSession.connectionType = session.connectionType
-        
-        newSession.bestPing = pingStat.bestPing
-        newSession.worstPing = pingStat.worstPing
-        newSession.jitter = pingStat.jitter
-        newSession.averagePing = pingStat.averagePing
-        newSession.packageLoss = pingStat.packageLoss
-        
-        newSession.generalScore = (pingStat.generalScore > 0) ? pingStat.generalScore : 0.0
-        newSession.streamingScore = (pingStat.streamingScore > 0) ? pingStat.streamingScore : 0.0
-        newSession.videoCallScore = (pingStat.videoCallScore > 0) ? pingStat.videoCallScore : 0.0
-        newSession.gamingScore = (pingStat.gamingScore > 0) ? pingStat.gamingScore : 0.0
-        
-        newSession.pingCount = Int16(session.responses.count)
-        
-        newSession.elapsedTime = session.elapsedTime
-        
-        newSession.pingTimeout = Int16(session.parameters.pingTimeout.rawValue)
-        newSession.pingInterval = Int16(session.parameters.pingInterval.rawValue)
-        newSession.maxtimeSetting = Int16(session.parameters.maxtimeSetting.rawValue)
-
-        var logs: [SessionLog] = []
-        for pingLog in session.pingLogs {
-            let sessionLog = SessionLog(context: container.viewContext)
-            sessionLog.sequence = Int32(pingLog.sequence)
-            sessionLog.bytes = Int32(pingLog.bytes)
-            sessionLog.duration = pingLog.duration
-            sessionLog.timeToLive = Int32(pingLog.timeToLive)
-            sessionLog.dateTime = pingLog.dateTime
-            sessionLog.error = pingLog.error
-
-            logs.append(sessionLog)
+        context.perform {
+            guard let pingStat = session.pingStat else {
+                completion(nil)
+                return
+            }
+            
+            let newSession: Sessions = Sessions(context: context)
+            
+            newSession.startDate = session.startDate
+            newSession.endDate = session.endDate
+            newSession.host = session.parameters.host
+            newSession.resolvedIpOrHost = session.resolvedIpOrHost
+            
+            newSession.connectionType = session.connectionType
+            
+            newSession.bestPing = pingStat.bestPing
+            newSession.worstPing = pingStat.worstPing
+            newSession.jitter = pingStat.jitter
+            newSession.averagePing = pingStat.averagePing
+            newSession.packageLoss = pingStat.packageLoss
+            
+            newSession.generalScore = (pingStat.generalScore > 0) ? pingStat.generalScore : 0.0
+            newSession.streamingScore = (pingStat.streamingScore > 0) ? pingStat.streamingScore : 0.0
+            newSession.videoCallScore = (pingStat.videoCallScore > 0) ? pingStat.videoCallScore : 0.0
+            newSession.gamingScore = (pingStat.gamingScore > 0) ? pingStat.gamingScore : 0.0
+            
+            newSession.pingCount = Int16(session.responses.count)
+            
+            newSession.elapsedTime = session.elapsedTime
+            
+            newSession.pingTimeout = Int16(session.parameters.pingTimeout.rawValue)
+            newSession.pingInterval = Int16(session.parameters.pingInterval.rawValue)
+            newSession.maxtimeSetting = Int16(session.parameters.maxtimeSetting.rawValue)
+            
+            var logs: [SessionLog] = []
+            for pingLog in session.pingLogs {
+                let sessionLog = SessionLog(context: context)
+                sessionLog.sequence = Int32(pingLog.sequence)
+                sessionLog.bytes = Int32(pingLog.bytes)
+                sessionLog.duration = pingLog.duration
+                sessionLog.timeToLive = Int32(pingLog.timeToLive)
+                sessionLog.dateTime = pingLog.dateTime
+                sessionLog.error = pingLog.error
+                
+                logs.append(sessionLog)
+            }
+            newSession.logs = NSOrderedSet(array: logs)
+            
+            do {
+                try context.save()
+                self.sessions = self.load() // Update @Published
+                completion(newSession)
+            } catch {
+                AnalyticsService.instance.logEvent(name: "save_session_error", parameters: ["error": error.localizedDescription, "session": session])
+                completion(nil)
+            }
+            
         }
-        newSession.logs = NSOrderedSet(array: logs)
-
-        save()
-        
-        return newSession
     }
     
     func delete(session: Sessions) {
