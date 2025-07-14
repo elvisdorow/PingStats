@@ -2760,10 +2760,16 @@
             "value" : "Test en pause car l’application a été mise en arrière-plan. Gardez l’application ouverte pour terminer le test."
           }
         },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Test in pausa perché l'app è stata minimizzata. Tienila in primo piano per continuare."
+          }
+        },
         "pt-BR" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Teste pausado porque o aplicativo foi colocado em segundo plano. Mantenha o aplicativo aberto para finalizar o teste."
+            "value" : "Teste pausado porque o app foi minimizado. Mantenha-o em primeiro plano para continuar."
           }
         }
       }
