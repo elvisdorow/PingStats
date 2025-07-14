@@ -2763,7 +2763,7 @@
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Test in pausa perché l'app è stata minimizzata. Tienila in primo piano per continuare."
+            "value" : "Test in pausa: l'app è passata in secondo piano. Funziona solo quando è visibile."
           }
         },
         "pt-BR" : {
