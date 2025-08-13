@@ -20,6 +20,15 @@ class SessionDataService: DataService {
         super.init()
     }
     
+    func get(id: NSManagedObjectID) -> Sessions? {
+        do {
+            return try container.viewContext.existingObject(with: id) as? Sessions
+        } catch {
+            print("Error fetching session with id \(id): \(error)")
+            return nil
+        }
+    }
+    
     func load() -> [Sessions] {
         let request = NSFetchRequest<Sessions>(entityName: entityName)
         request.sortDescriptors = [NSSortDescriptor(key: "startDate", ascending: false)]
@@ -32,7 +41,7 @@ class SessionDataService: DataService {
         return []
     }
     
-    func add(session: Session, completion: @escaping (Sessions?) -> Void) -> Void {
+    func add(session: Session, completion: @escaping (NSManagedObjectID?) -> Void) -> Void {
         let context = container.viewContext
         
         context.perform {
@@ -86,7 +95,7 @@ class SessionDataService: DataService {
             do {
                 try context.save()
                 self.sessions = self.load() // Update @Published
-                completion(newSession)
+                completion(newSession.objectID)
             } catch {
                 AnalyticsService.instance.logEvent(name: "save_session_error", parameters: ["error": error.localizedDescription, "session": session])
                 completion(nil)

@@ -7,6 +7,7 @@
 
 import Foundation
 import Combine
+import CoreData
 import SwiftUI
 import Network
 
@@ -60,7 +61,7 @@ class MainViewModel: ObservableObject {
     var session: Session?
     var sessionParams: SessionParam = SessionParam(settings: .shared)
     
-    var sessionDb: Sessions?
+    var sessionDbId: NSManagedObjectID?
     var fileURL: URL?
     
     @Published var hostTextBox: String = ""
@@ -81,7 +82,7 @@ class MainViewModel: ObservableObject {
     func start() {
         UIApplication.shared.isIdleTimerDisabled = true
         
-        sessionDb = nil
+        sessionDbId = nil
         
         resetChart()
         pingStat = PingStat()
@@ -143,9 +144,9 @@ class MainViewModel: ObservableObject {
             session.generateFullTestPingStat()
             pingStat = session.pingStat!
             
-            sessionDataService.add(session: session) { savedSession in
+            sessionDataService.add(session: session) { savedSessionId in
                DispatchQueue.main.async {
-                   self.sessionDb = savedSession
+                   self.sessionDbId = savedSessionId
                }
             }
         }
@@ -191,7 +192,8 @@ class MainViewModel: ObservableObject {
      }
     
     func saveSessionToFile() {
-        guard let sessionDb = sessionDb else { return }
+        guard let sessionDbId = sessionDbId else { return }
+        guard let sessionDb = sessionDataService.get(id: sessionDbId) else { return }
         
         do {
             fileURL = try FileService.instance.saveSession(session: sessionDb)
