@@ -2692,28 +2692,34 @@
     },
     "Thank You for Your Support! 🎉" : {
       "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Thank You for Your Support! "
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "¡Gracias por tu apoyo! 🎉"
+            "value" : "¡Gracias por tu apoyo!"
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Merci pour votre soutien ! 🎉"
+            "value" : "Merci pour votre soutien!"
           }
         },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Grazie per il tuo supporto! 🎉"
+            "value" : "Grazie per il tuo supporto!"
           }
         },
         "pt-BR" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Obrigado pelo Seu Apoio 🎉"
+            "value" : "Obrigado pelo Seu Apoio!"
           }
         }
       }
@@ -2944,28 +2950,34 @@
     },
     "Unlock Pro Features 🚀" : {
       "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Unlock Pro Features 🏆"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Desbloquea funciones Pro 🚀"
+            "value" : "Desbloquea funciones Pro 🏆"
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Débloquez les fonctions Pro 🚀"
+            "value" : "Débloquez les fonctions Pro 🏆"
           }
         },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Sblocca le funzioni PRO 🚀"
+            "value" : "Sblocca le funzioni PRO 🏆"
           }
         },
         "pt-BR" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Desbloqueie Recursos Pro 🚀"
+            "value" : "Desbloqueie Recursos Pro 🏆"
           }
         }
       }
@@ -3161,7 +3173,7 @@
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Sei un utente Pro! 🎉"
+            "value" : "Sei un utente Pro!"
           }
         },
         "pt-BR" : {
