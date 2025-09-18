@@ -81,6 +81,7 @@ struct AboutView: View {
                     Button("OK") {
                         presentationMode.wrappedValue.dismiss()
                     }
+                    .foregroundColor(.primary)
                 }
             }
             .sheet(isPresented: $showPaywall, content: {

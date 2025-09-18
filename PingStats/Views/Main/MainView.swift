@@ -65,14 +65,26 @@ struct MainView: View {
                     bottomActions
                 }
                 .toolbar(content: {
-                    ToolbarItem(placement: .topBarLeading) {
-                        HStack {
-                            Image("logo")
+                                            
+                    if #available(iOS 26.0, *) {
+                        ToolbarItem(placement: .topBarLeading) {
+                            HStack {
+                                Image("logo")
+                            }
+                        }
+                        .sharedBackgroundVisibility(.hidden)
+                    } else {
+                        ToolbarItem(placement: .topBarLeading) {
+                            HStack {
+                                Image("logo")
+                            }
                         }
                     }
+
                     ToolbarItem(placement: .topBarTrailing) {
                         menuItems
                     }
+                        
                 })
                 .popup(isPresented: $showAlertPausedBg, delay: .seconds(1)) { isPresented in
                     Color.gray.opacity(0.5)
@@ -244,6 +256,7 @@ extension MainView {
                 icon: { Image("menuDotsIcon") }
             )
         }
+        .tint(.primary)
     }
     
     @ViewBuilder
@@ -457,8 +470,17 @@ extension MainView {
                             .navigationBarTitleDisplayMode(.inline)
                             .toolbar(content: {
                                 ToolbarItem(placement: .cancellationAction) {
-                                    CloseButton {
-                                        showHostList = false
+                                    if #available(iOS 26.0, *) {
+                                        Button(action: {
+                                            showHostList = false
+                                        }, label: {
+                                            Image(systemName: "xmark")
+                                        })
+                                        .foregroundColor(.primary)
+                                    } else {
+                                        CloseButton {
+                                            showHostList = false
+                                        }
                                     }
                                 }
                             })

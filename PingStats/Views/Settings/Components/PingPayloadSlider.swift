@@ -19,7 +19,7 @@ struct PingPayloadSlider: View {
                     self.payload.toSliderValue()
                 },
                 set: { newValue in
-                    self.payload = PingPayload.fromSliderValue(val: newValue)
+                    self.payload = PingPayload.fromSliderValue(val: round(newValue))
                 }
             ), in: 1...6, step: 1)
             .disabled(!enabled)

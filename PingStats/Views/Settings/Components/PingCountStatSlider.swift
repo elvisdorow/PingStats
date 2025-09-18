@@ -18,7 +18,7 @@ struct PingCountStatSlider: View {
                     Double(self.countStat.toSliderValue())
                 },
                 set: { newValue in
-                    self.countStat = PingCountStat.fromSliderValue(val: newValue)
+                    self.countStat = PingCountStat.fromSliderValue(val: round(newValue))
                 }
             ), in: 1...7, step: 1)
 

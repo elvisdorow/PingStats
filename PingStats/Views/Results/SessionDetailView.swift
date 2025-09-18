@@ -217,11 +217,20 @@ struct SessionDetailView: View {
 
                     
                 } label: {
-                    Label("More", systemImage: "ellipsis.circle")
+                    if #available(iOS 26.0, *) {
+                        Label("More", systemImage: "ellipsis")
+                    } else {
+                        Label("More", systemImage: "ellipsis.circle")
+
+                    }
+                        
                 }
+                .tint(.primary)
             }
             
-        }.background(Color(uiColor: .systemGray6))
+        }
+        .tint(.primary)
+        .background(Color(uiColor: .systemGray6))
         .analyticsScreen(name: "Session Detail")
 
     }

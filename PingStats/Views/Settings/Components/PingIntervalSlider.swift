@@ -20,7 +20,7 @@ struct PingIntervalSlider: View {
                     self.intervalValue.toSliderValue()
                 },
                 set: { newValue in
-                    self.intervalValue = PingInterval.fromSliderValue(val: newValue)
+                    self.intervalValue = PingInterval.fromSliderValue(val: round(newValue))
                 }
             ), in: 1...11, step: 1)
             .disabled(!enabled)

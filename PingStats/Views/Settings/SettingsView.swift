@@ -98,13 +98,14 @@ struct SettingsView: View {
                     }, label: {
                         Text("OK")
                     })
+                    .foregroundColor(.primary)
                 }
             }
             .navigationTitle("Settings")
             .navigationBarTitleDisplayMode(.inline)
             .analyticsScreen(name: "Settings")
-            
         }
+        .tint(.primary)
     }
 }
 

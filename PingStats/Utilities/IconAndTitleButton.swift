@@ -20,8 +20,8 @@ struct IconAndTitleButton: View {
                 Text(title)
                     .font(.callout)
             }
-            .foregroundColor(.theme.accent)
         }
-        .buttonStyle(.plain)
+        .foregroundColor(.primary)
+        .tint(.primary)
     }
 }

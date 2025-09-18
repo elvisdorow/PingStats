@@ -59,10 +59,21 @@ struct SessionsListView: View {
             .toolbarTitleDisplayMode(.inline)
             .toolbar(content: {
                 ToolbarItem(placement: .topBarLeading) {
-                    IconAndTitleButton(title: "Back", systemImage: "chevron.backward") {
-                        presentationMode.wrappedValue.dismiss()
+                    if #available(iOS 26.0, *) {
+                        Button(action: {
+                            presentationMode.wrappedValue.dismiss()
+                        }, label: {
+                            Image(systemName: "chevron.backward")
+                        })
+                        .tint(.primary)
+                            
+                    } else {
+                        IconAndTitleButton(title: "Back", systemImage: "chevron.backward") {
+                            presentationMode.wrappedValue.dismiss()
+                        }
                     }
                 }
+                    
             })
             .confirmationDialog(
                 "Are you sure?",
@@ -76,6 +87,7 @@ struct SessionsListView: View {
               Text("Are you sure you want to delete?")
             }
         }
+        .tint(.primary)
         .toolbarColorScheme(.dark, for: .navigationBar)
         .analyticsScreen(name: "Sessions List")
     }

@@ -18,7 +18,7 @@ struct PingTimeoutSlider: View {
                     self.pingTimeout.toSliderValue()
                 },
                 set: { newValue in
-                    self.pingTimeout = PingTimeout.fromSliderValue(val: newValue)
+                    self.pingTimeout = PingTimeout.fromSliderValue(val: round(newValue))
                 }
             ), in: 1...10, step: 1)
             

@@ -45,9 +45,20 @@ struct SessionPingLogView: View {
                 .frame(maxWidth: .infinity, alignment: .center)
            .toolbar {
                ToolbarItem(placement: .navigationBarLeading) {
-                   CloseButton {
-                       presentationMode.wrappedValue.dismiss()
+                   if #available(iOS 26.0, *) {
+                       Button(action: {
+                           presentationMode.wrappedValue.dismiss()
+                       }, label: {
+                           Image(systemName: "xmark")
+                       })
+                       .tint(.primary)
+
+                   } else {
+                       CloseButton {
+                           presentationMode.wrappedValue.dismiss()
+                       }
                    }
+                       
                }
            }
            .analyticsScreen(name: "Session Ping Logs")

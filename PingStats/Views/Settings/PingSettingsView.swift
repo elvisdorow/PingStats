@@ -96,11 +96,11 @@ struct PingSettingsView: View {
             }
             .tint(.theme.accent)
         }
+        .tint(.primary)
         .sheet(isPresented: $showPaywall, content: {
             PaywallView()
         })
         .analyticsScreen(name: "Ping Settings")
-        
     }
     
     func resetToDefaults() {
