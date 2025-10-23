@@ -11,7 +11,7 @@ class Settings: ObservableObject {
         }
     }
     
-    @AppStorage("pingInterval") var pingInterval: PingInterval = .sec1
+    @AppStorage("pingInterval") var pingInterval: PingInterval = .ms500
     @AppStorage("pingCountStat") var pingCountStat: PingCountStat = .count50
     @AppStorage("pingMaxtime") var maxtimeSetting: PingMaxtime = .min5
     @AppStorage("pingTimeout") var pingTimeout: PingTimeout = .sec2

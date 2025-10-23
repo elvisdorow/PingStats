@@ -42,44 +42,71 @@ class SessionDataService: DataService {
     }
     
     func add(session: Session, completion: @escaping (NSManagedObjectID?) -> Void) -> Void {
+        // Capture all values that might be accessed during the save operation
+        // to avoid accessing the session object from different queue contexts
+        let sessionStartDate = session.startDate
+        let sessionEndDate = session.endDate
+        let sessionHost = session.parameters.host
+        let sessionResolvedIpOrHost = session.resolvedIpOrHost
+        let sessionConnectionType = session.connectionType
+        let sessionElapsedTime = session.elapsedTime
+        let sessionPingTimeout = session.parameters.pingTimeout.rawValue
+        let sessionPingInterval = session.parameters.pingInterval.rawValue
+        let sessionMaxtimeSetting = session.parameters.maxtimeSetting.rawValue
+        let sessionResponses = session.responses
+        let sessionPingLogs = session.pingLogs
+        
+        // Only capture the ping stat after checking it exists
+        guard let pingStat = session.pingStat else {
+            DispatchQueue.main.async {
+                completion(nil)
+            }
+            return
+        }
+        
+        let pingStatBest = pingStat.bestPing
+        let pingStatWorst = pingStat.worstPing
+        let pingStatJitter = pingStat.jitter
+        let pingStatAverage = pingStat.averagePing
+        let pingStatPackageLoss = pingStat.packageLoss
+        let pingStatGeneralScore = (pingStat.generalScore > 0) ? pingStat.generalScore : 0.0
+        let pingStatStreamingScore = (pingStat.streamingScore > 0) ? pingStat.streamingScore : 0.0
+        let pingStatVideoCallScore = (pingStat.videoCallScore > 0) ? pingStat.videoCallScore : 0.0
+        let pingStatGamingScore = (pingStat.gamingScore > 0) ? pingStat.gamingScore : 0.0
+        
         let context = container.viewContext
         
         context.perform {
-            guard let pingStat = session.pingStat else {
-                completion(nil)
-                return
-            }
-            
             let newSession: Sessions = Sessions(context: context)
             
-            newSession.startDate = session.startDate
-            newSession.endDate = session.endDate
-            newSession.host = session.parameters.host
-            newSession.resolvedIpOrHost = session.resolvedIpOrHost
+            newSession.startDate = sessionStartDate
+            newSession.endDate = sessionEndDate
+            newSession.host = sessionHost
+            newSession.resolvedIpOrHost = sessionResolvedIpOrHost
             
-            newSession.connectionType = session.connectionType
+            newSession.connectionType = sessionConnectionType
             
-            newSession.bestPing = pingStat.bestPing
-            newSession.worstPing = pingStat.worstPing
-            newSession.jitter = pingStat.jitter
-            newSession.averagePing = pingStat.averagePing
-            newSession.packageLoss = pingStat.packageLoss
+            newSession.bestPing = pingStatBest
+            newSession.worstPing = pingStatWorst
+            newSession.jitter = pingStatJitter
+            newSession.averagePing = pingStatAverage
+            newSession.packageLoss = pingStatPackageLoss
             
-            newSession.generalScore = (pingStat.generalScore > 0) ? pingStat.generalScore : 0.0
-            newSession.streamingScore = (pingStat.streamingScore > 0) ? pingStat.streamingScore : 0.0
-            newSession.videoCallScore = (pingStat.videoCallScore > 0) ? pingStat.videoCallScore : 0.0
-            newSession.gamingScore = (pingStat.gamingScore > 0) ? pingStat.gamingScore : 0.0
+            newSession.generalScore = pingStatGeneralScore
+            newSession.streamingScore = pingStatStreamingScore
+            newSession.videoCallScore = pingStatVideoCallScore
+            newSession.gamingScore = pingStatGamingScore
             
-            newSession.pingCount = Int16(session.responses.count)
+            newSession.pingCount = Int16(sessionResponses.count)
             
-            newSession.elapsedTime = session.elapsedTime
+            newSession.elapsedTime = sessionElapsedTime
             
-            newSession.pingTimeout = Int16(session.parameters.pingTimeout.rawValue)
-            newSession.pingInterval = Int16(session.parameters.pingInterval.rawValue)
-            newSession.maxtimeSetting = Int16(session.parameters.maxtimeSetting.rawValue)
+            newSession.pingTimeout = Int16(sessionPingTimeout)
+            newSession.pingInterval = Int16(sessionPingInterval)
+            newSession.maxtimeSetting = Int16(sessionMaxtimeSetting)
             
             var logs: [SessionLog] = []
-            for pingLog in session.pingLogs {
+            for pingLog in sessionPingLogs {
                 let sessionLog = SessionLog(context: context)
                 sessionLog.sequence = Int32(pingLog.sequence)
                 sessionLog.bytes = Int32(pingLog.bytes)
@@ -94,13 +121,19 @@ class SessionDataService: DataService {
             
             do {
                 try context.save()
-                self.sessions = self.load() // Update @Published
-                completion(newSession.objectID)
+                let objectID = newSession.objectID
+                // Update the published property on the main queue
+                DispatchQueue.main.async { [weak self] in
+                    guard let self = self else { return }
+                    self.sessions = self.load() // Update @Published
+                    completion(objectID)
+                }
             } catch {
                 AnalyticsService.instance.logEvent(name: "save_session_error", parameters: ["error": error.localizedDescription, "session": session])
-                completion(nil)
+                DispatchQueue.main.async {
+                    completion(nil)
+                }
             }
-            
         }
     }
     
