@@ -214,28 +214,34 @@
     },
     "About PingStats" : {
       "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "About Ping Stats"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Acerca de PingStats"
+            "value" : "Acerca de Ping Stats"
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "À propos de PingStats"
+            "value" : "À propos de Ping Stats"
           }
         },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Informazioni su PingStats"
+            "value" : "Informazioni su Ping Stats"
           }
         },
         "pt-BR" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Sobre PingStats"
+            "value" : "Sobre Ping Stats"
           }
         }
       }
@@ -1902,28 +1908,34 @@
     },
     "PingStats" : {
       "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ping Stats"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "PingStats"
+            "value" : "Ping Stats"
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "PingStats"
+            "value" : "Ping Stats"
           }
         },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "PingStats"
+            "value" : "Ping Stats"
           }
         },
         "pt-BR" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "PingStats"
+            "value" : "Ping Stats"
           }
         }
       }
