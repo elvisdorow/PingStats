@@ -17,6 +17,8 @@ class MainViewModel: ObservableObject {
     var settings: Settings = .shared
     
     @AppStorage("isMessageBgPausedShown") var isMessageBgPausedShown: Bool = false
+    @AppStorage("goodTestsCount") var goodTestsCount: Int = 0
+
     
     @Published var isAnalysisRunning: Bool = false
     @Published var appState: AppState = .empty {
@@ -143,6 +145,10 @@ class MainViewModel: ObservableObject {
             
             session.generateFullTestPingStat()
             pingStat = session.pingStat!
+            
+            if pingStat.generalScore >= 85 {
+                goodTestsCount += 1
+            }
             
             sessionDataService.add(session: session) { savedSessionId in
                DispatchQueue.main.async {

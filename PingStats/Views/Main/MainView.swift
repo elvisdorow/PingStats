@@ -28,10 +28,7 @@ struct MainView: View {
     @State private var showSaveConfirmation: Bool = false
     
     @State private var showPaywall: Bool = false
-    
-    @Environment(\.requestReview) var requestReview
-    @AppStorage("appScreenViewed") var appScreenViewed: Int = 0
-    
+        
     private let toastOptions = SimpleToastOptions(
         hideAfter: 3
     )
@@ -139,17 +136,7 @@ struct MainView: View {
                 if viewModel.isMessageBgPausedShown == false {
                     showAlertPausedBg = true
                 }
-            }
-            
-            if newValue == .active {
-                DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
-                    appScreenViewed += 1
-                    if appScreenViewed == 25 {
-                        Analytics.logEvent("app_request_review", parameters: nil)
-                        requestReview()
-                    }
-                }
-            }
+            }            
         }
         .onChange(of: settings.host, { oldValue, newValue in
             if viewModel.appState == .stopped

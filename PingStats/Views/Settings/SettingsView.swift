@@ -16,6 +16,10 @@ struct SettingsView: View {
     @State var showPaywall: Bool = false
     @StateObject var settings = Settings.shared
     
+    @AppStorage("goodTestsCount") var goodTestsCount: Int = 0
+    @AppStorage("reviewRequested") var reviewRequested: Bool = false
+    @Environment(\.requestReview) var requestReview
+
     var body: some View {
         
         NavigationStack {
@@ -106,6 +110,12 @@ struct SettingsView: View {
             .analyticsScreen(name: "Settings")
         }
         .tint(.primary)
+        .onAppear {
+            if goodTestsCount >= 5 && !reviewRequested {
+                reviewRequested = true
+                requestReview()
+            }
+        }
     }
 }
 
