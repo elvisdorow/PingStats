@@ -37,6 +37,9 @@ struct MainView: View {
     @StateObject var settings = Settings.shared
     
     @Environment(\.scenePhase) var scenePhase
+    
+    @Environment(\.requestReview) var requestReview
+    @AppStorage("reviewRequested") var reviewRequested: Bool = false
 
     @EnvironmentObject var userViewModel: UserViewModel
 
@@ -448,6 +451,11 @@ extension MainView {
                 .onTapGesture {
                     if !viewModel.isAnalysisRunning {
                         showHostList.toggle()
+                        
+                        if !reviewRequested {
+                            requestReview()
+                            reviewRequested = true
+                        }
                     }
                 }
                 .sheet(isPresented: $showHostList) {
@@ -488,6 +496,11 @@ extension MainView {
                             viewModel.resume()
                         case .running:
                             viewModel.stop()
+                            if !reviewRequested {
+                                print("Requesting review...")
+                                requestReview()
+                                reviewRequested = true
+                            }
                         }
                         triggerHaptic(style: .medium)
                     }

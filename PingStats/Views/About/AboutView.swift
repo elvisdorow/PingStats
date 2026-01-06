@@ -17,6 +17,8 @@ struct AboutView: View {
     
     @State private var showPaywall: Bool = false
     
+    @Environment(\.requestReview) var requestReview
+    
     var logoSize: CGFloat {
         UIScreen.main.bounds.width * 0.26
     }
@@ -129,7 +131,8 @@ struct AboutView: View {
     var reviewButtonView: some View {
         VStack(spacing: 15) {
             Button(action: {
-                UIApplication.shared.open(URL(string: "https://apps.apple.com/app/6741027710")!)
+                requestReview()
+//              UIApplication.shared.open(URL(string: "https://apps.apple.com/app/6741027710")!)
             }) {
                 VStack(spacing: 10) {
                     HStack(spacing: 2) {
