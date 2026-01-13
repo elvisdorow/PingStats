@@ -772,7 +772,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 32;
+				CURRENT_PROJECT_VERSION = 34;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEBUG_INFORMATION_VERSION = "compiler-default";
 				DEVELOPMENT_ASSET_PATHS = "\"PingStats/Preview Content\"";
@@ -791,7 +791,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.1.20;
+				MARKETING_VERSION = 1.1.22;
 				PRODUCT_BUNDLE_IDENTIFIER = app.PingStats;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -810,7 +810,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 32;
+				CURRENT_PROJECT_VERSION = 34;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEBUG_INFORMATION_VERSION = "compiler-default";
 				DEVELOPMENT_ASSET_PATHS = "\"PingStats/Preview Content\"";
@@ -830,7 +830,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.1.20;
+				MARKETING_VERSION = 1.1.22;
 				PRODUCT_BUNDLE_IDENTIFIER = app.PingStats;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
