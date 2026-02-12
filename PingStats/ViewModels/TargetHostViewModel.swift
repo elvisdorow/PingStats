@@ -28,6 +28,13 @@ class TargetHostViewModel: ObservableObject {
     
     var dataService: TargetHostDataService = TargetHostDataService()
     
+    @AppStorage("goodTestsCount") var goodTestsCount: Int = 0
+    @AppStorage("lastReviewedVersion") var lastReviewedVersion: String = "1.0"
+    @Published var shouldShowReview = false
+    var appVersion: String {
+        Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String ?? "1.0"
+    }
+    
     init() {
         bindSubscribers()
     }
@@ -60,6 +67,7 @@ class TargetHostViewModel: ObservableObject {
         dataService.add(host: host)
         
         AnalyticsService.instance.logEvent(name: "add_target_host", parameters: ["host": ipOrHost])
+        checkRequestReview()
         
         return host
     }
@@ -74,5 +82,17 @@ class TargetHostViewModel: ObservableObject {
     
     func reload() {
         dataService.load()
+    }
+    
+    func checkRequestReview() {
+        if goodTestsCount >= 4 && lastReviewedVersion != appVersion {
+            DispatchQueue.main.async {
+                self.lastReviewedVersion = self.appVersion
+                self.goodTestsCount = 0
+                self.shouldShowReview = true
+            }
+            
+            AnalyticsService.instance.logEvent(name: "review_request_thost")
+        }
     }
 }

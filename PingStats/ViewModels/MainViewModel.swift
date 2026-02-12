@@ -17,8 +17,14 @@ class MainViewModel: ObservableObject {
     var settings: Settings = .shared
     
     @AppStorage("isMessageBgPausedShown") var isMessageBgPausedShown: Bool = false
-    @AppStorage("goodTestsCount") var goodTestsCount: Int = 0
 
+    @AppStorage("goodTestsCount") var goodTestsCount: Int = 0
+    @AppStorage("lastReviewedVersion") var lastReviewedVersion: String = "1.0"
+    @Published var shouldShowReview = false
+    
+    var appVersion: String {
+        Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String ?? "1.0"
+    }
     
     @Published var isAnalysisRunning: Bool = false
     @Published var appState: AppState = .empty {
@@ -146,8 +152,19 @@ class MainViewModel: ObservableObject {
             session.generateFullTestPingStat()
             pingStat = session.pingStat!
             
-            if pingStat.generalScore >= 85 {
+            if pingStat.generalScore >= 70 {
                 goodTestsCount += 1
+                print("Last reviewed verstion: \(lastReviewedVersion)")
+                if goodTestsCount >= 6 && lastReviewedVersion != appVersion {
+                    lastReviewedVersion = appVersion
+                    goodTestsCount = 0
+
+                    DispatchQueue.main.async {
+                        self.shouldShowReview = true
+                    }
+                    
+                    AnalyticsService.instance.logEvent(name: "review_request_main")
+                }
             }
             
             sessionDataService.add(session: session) { savedSessionId in

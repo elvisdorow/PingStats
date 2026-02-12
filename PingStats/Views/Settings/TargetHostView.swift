@@ -16,6 +16,8 @@ struct TargetHostView: View {
     @EnvironmentObject var userVm: UserViewModel
     
     @StateObject var vm: TargetHostViewModel = TargetHostViewModel()
+
+    @Environment(\.requestReview) var requestReview
     
     var pingerService = PingService.instance    
     var settings = Settings.shared
@@ -78,6 +80,12 @@ struct TargetHostView: View {
                             showAddForm.toggle()
                         }
                     })
+            }
+        })
+        .onChange(of: vm.shouldShowReview, { _, newValue in
+            if newValue {
+                requestReview()
+                vm.shouldShowReview = false
             }
         })
         .analyticsScreen(name: "Target Hosts")

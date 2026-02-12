@@ -39,7 +39,6 @@ struct MainView: View {
     @Environment(\.scenePhase) var scenePhase
     
     @Environment(\.requestReview) var requestReview
-    @AppStorage("reviewRequested") var reviewRequested: Bool = false
 
     @EnvironmentObject var userViewModel: UserViewModel
 
@@ -146,6 +145,12 @@ struct MainView: View {
                 || viewModel.appState == .empty {
 
                 viewModel.hostTextBox = settings.host
+            }
+        })
+        .onChange(of: viewModel.shouldShowReview, { _, newValue in
+            if newValue {
+                requestReview()
+                viewModel.shouldShowReview = false
             }
         })
         .analyticsScreen(name: "MainView")
@@ -451,11 +456,6 @@ extension MainView {
                 .onTapGesture {
                     if !viewModel.isAnalysisRunning {
                         showHostList.toggle()
-                        
-                        if !reviewRequested {
-                            requestReview()
-                            reviewRequested = true
-                        }
                     }
                 }
                 .sheet(isPresented: $showHostList) {
@@ -496,11 +496,6 @@ extension MainView {
                             viewModel.resume()
                         case .running:
                             viewModel.stop()
-                            if !reviewRequested {
-                                print("Requesting review...")
-                                requestReview()
-                                reviewRequested = true
-                            }
                         }
                         triggerHaptic(style: .medium)
                     }
