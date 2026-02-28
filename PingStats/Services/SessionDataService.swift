@@ -98,7 +98,7 @@ class SessionDataService: DataService {
             newSession.videoCallScore = pingStatVideoCallScore
             newSession.gamingScore = pingStatGamingScore
             
-            newSession.pingCount = Int16(min(sessionResponses.count, Int(Int16.max)))
+            newSession.pingCount = Int32(min(sessionResponses.count, Int(Int32.max)))
             
             newSession.elapsedTime = sessionElapsedTime
 

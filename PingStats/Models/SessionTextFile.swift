@@ -22,7 +22,7 @@ struct SessionTextFile: Codable {
     let averagePing: Double
     let packageLoss: Double
     
-    let pingCount: Int16
+    let pingCount: Int32
     let elapsedTime: Double
     
     let pingTimeout: String

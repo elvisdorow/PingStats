@@ -164,6 +164,7 @@
 		D5ABB7972D428F6700B2B69B /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		D5B7D0032CE636400031D761 /* StatCalculator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatCalculator.swift; sourceTree = "<group>"; };
 		D5BC7BB12CE7E37800D1359A /* ChartItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartItem.swift; sourceTree = "<group>"; };
+		D5D8E3BA2F53A442009CC6EA /* PingStatsContainer_v2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = PingStatsContainer_v2.xcdatamodel; sourceTree = "<group>"; };
 		D5DDABD52D43C82900BC93A5 /* AnalyticsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalyticsService.swift; sourceTree = "<group>"; };
 		D5FA4E2E2CE4D09A0068CBC9 /* PingStatsContainer.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = PingStatsContainer.xcdatamodel; sourceTree = "<group>"; };
 		D5FA4E302CE4D15E0068CBC9 /* TargetHostDataService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TargetHostDataService.swift; sourceTree = "<group>"; };
@@ -948,9 +949,10 @@
 		D5FA4E2D2CE4D09A0068CBC9 /* PingStatsContainer.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
+				D5D8E3BA2F53A442009CC6EA /* PingStatsContainer_v2.xcdatamodel */,
 				D5FA4E2E2CE4D09A0068CBC9 /* PingStatsContainer.xcdatamodel */,
 			);
-			currentVersion = D5FA4E2E2CE4D09A0068CBC9 /* PingStatsContainer.xcdatamodel */;
+			currentVersion = D5D8E3BA2F53A442009CC6EA /* PingStatsContainer_v2.xcdatamodel */;
 			path = PingStatsContainer.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
