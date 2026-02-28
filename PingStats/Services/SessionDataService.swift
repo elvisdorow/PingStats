@@ -74,7 +74,8 @@ class SessionDataService: DataService {
         let pingStatVideoCallScore = (pingStat.videoCallScore > 0) ? pingStat.videoCallScore : 0.0
         let pingStatGamingScore = (pingStat.gamingScore > 0) ? pingStat.gamingScore : 0.0
         
-        let context = container.viewContext
+        let context = container.newBackgroundContext()
+        context.mergePolicy = NSMergeByPropertyObjectTrumpMergePolicy
         
         context.perform {
             let newSession: Sessions = Sessions(context: context)
@@ -97,13 +98,13 @@ class SessionDataService: DataService {
             newSession.videoCallScore = pingStatVideoCallScore
             newSession.gamingScore = pingStatGamingScore
             
-            newSession.pingCount = Int16(sessionResponses.count)
+            newSession.pingCount = Int16(min(sessionResponses.count, Int(Int16.max)))
             
             newSession.elapsedTime = sessionElapsedTime
-            
-            newSession.pingTimeout = Int16(sessionPingTimeout)
-            newSession.pingInterval = Int16(sessionPingInterval)
-            newSession.maxtimeSetting = Int16(sessionMaxtimeSetting)
+
+            newSession.pingTimeout = Int16(min(sessionPingTimeout, Int(Int16.max)))
+            newSession.pingInterval = Int16(min(sessionPingInterval, Int(Int16.max)))
+            newSession.maxtimeSetting = Int16(min(sessionMaxtimeSetting, Int(Int16.max)))
             
             var logs: [SessionLog] = []
             for pingLog in sessionPingLogs {
@@ -129,7 +130,14 @@ class SessionDataService: DataService {
                     completion(objectID)
                 }
             } catch {
-                AnalyticsService.instance.logEvent(name: "save_session_error", parameters: ["error": error.localizedDescription, "session": session])
+                AnalyticsService.instance.logEvent(
+                    name: "save_session_error",
+                    parameters: [
+                        "error": error.localizedDescription,
+                        "host": session.parameters.host,
+                        "responses": session.responses.count,
+                        "type": session.connectionType
+                    ])
                 DispatchQueue.main.async {
                     completion(nil)
                 }
