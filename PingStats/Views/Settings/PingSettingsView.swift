@@ -104,7 +104,7 @@ struct PingSettingsView: View {
     }
     
     func resetToDefaults() {
-        settings.pingInterval = .sec1
+        settings.pingInterval = .ms500
         settings.pingCountStat = .count50
         settings.maxtimeSetting = .min5
         settings.pingTimeout = .sec2
