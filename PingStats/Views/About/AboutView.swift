@@ -131,8 +131,7 @@ struct AboutView: View {
     var reviewButtonView: some View {
         VStack(spacing: 15) {
             Button(action: {
-                requestReview()
-//              UIApplication.shared.open(URL(string: "https://apps.apple.com/app/6741027710")!)
+              UIApplication.shared.open(URL(string: "itms-apps://itunes.apple.com/app/id6741027710?action=write-review")!)
             }) {
                 VStack(spacing: 10) {
                     HStack(spacing: 2) {
@@ -143,7 +142,7 @@ struct AboutView: View {
                         Image(systemName: "star.fill")
                     }
                     .font(.subheadline)
-                    .foregroundColor(.yellow)
+                    .foregroundColor(.primary)
                     
                     Text("Review us on the App Store")
                 }
