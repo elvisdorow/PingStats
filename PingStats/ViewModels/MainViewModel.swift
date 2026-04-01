@@ -152,12 +152,12 @@ class MainViewModel: ObservableObject {
             session.generateFullTestPingStat()
             pingStat = session.pingStat!
             
-            if pingStat.generalScore >= 70 {
+            if pingStat.generalScore >= 80 {
                 goodTestsCount += 1
                 print("Last reviewed verstion: \(lastReviewedVersion)")
-                if goodTestsCount >= 6 && lastReviewedVersion != appVersion {
+                if goodTestsCount >= 10 && lastReviewedVersion != appVersion {
                     lastReviewedVersion = appVersion
-                    goodTestsCount = 0
+//                    goodTestsCount = 0
 
                     DispatchQueue.main.async {
                         self.shouldShowReview = true
